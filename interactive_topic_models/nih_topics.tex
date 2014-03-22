@@ -1,0 +1,44 @@
+\providecommand{\blue}[1]{{\color{blue}{#1}}}
+\providecommand{\red}[1]{{\color{red}{#1}}}
+\providecommand{\green}[1]{{\color{green}{#1}}}
+
+\begin{frame}
+
+\frametitle{Example: Negative Constraint}
+
+\begin{columns}
+
+\column{.4\linewidth}
+
+\begin{tabular}{l*{2}{c}r}
+	Topic & Words \\
+\hline
+
+{\bf 318} & \tb{\red{bladder}, sci, \blue{spinal\_cord}, \blue{spinal\_cord\_injury}, \blue{spinal}, \red{urinary}, \red{urinary\_tract}, \red{urothelial},\blue{injury}, \blue{motor}, \blue{recovery}, \blue{reflex}, \blue{cervical}, \red{urothelium}, \blue{functional\_recovery}} \\
+
+\end{tabular}
+
+\column{.1\linewidth}
+
+\column{.4\linewidth}
+
+\only<3->{
+\begin{tabular}{l*{2}{c}r}
+	Topic & Words \\
+\hline
+
+{\bf 318} & \tb{sci, \blue{spinal\_cord}, \blue{spinal\_cord\_injury}, \blue{spinal}, \blue{injury}, \blue{recovery}, \blue{motor}, \blue{reflex}, \red{urothelial}, \green{injured}, \blue{functional\_recovery}, \green{plasticity}, \green{locomotor}, \blue{cervical}, \green{locomotion}}\\
+
+\end{tabular}
+}
+
+\end{columns}
+
+\only<2->{
+\begin{block}{Negative Constraint}
+  spinal\_cord, bladder
+\end{block}
+
+}
+
+\end{frame}

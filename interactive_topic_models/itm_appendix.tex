@@ -1,0 +1,131 @@
+
+\begin{frame}
+
+\frametitle{Unassign $(d,n,w_{d,n},z_{d,n} = k)$} 
+\begin{algorithmic}[1]
+\STATE $T:~T_{d,k} \leftarrow T_{d,k}-1$
+\STATE If~$w_{d,n}~\notin~\Omega^{old}$,\\
+~~$P:~P_{k, w_{d,n}} \leftarrow P_{k, w_{d,n}} - 1$\\
+\STATE Else: suppose $w_{d,n} \in \Omega^{old}_m$,\\
+~~$P:~P_{k, m} \leftarrow P_{k, m} - 1$\\
+~~$W:~W_{k,m,w_{d,n}} \leftarrow W_{k,m,w_{d,n}} - 1$
+\end{algorithmic}
+	
+
+\end{frame}
+
+
+\begin{frame}
+
+	\frametitle{SparseLDA}
+
+\begin{align}	
+	\label{eq:fast-lda}
+p(z &= k | Z_{-}, w) \propto (\alpha_k + n_{k|d})\frac{\beta + n_{w|k}}{\beta V + n_{\cdot |k}} \\
+&\propto \explain{$s_{\textsc{LDA}}$}{\frac{\alpha_k \beta}{\beta V + n_{\cdot |k}}} + \explain{$r_{\textsc{LDA}}$}{\frac{n_{k|d} \beta}{\beta V + n_{\cdot |k}}}
++ \explain{$q_{\textsc{LDA}}$}{\frac{(\alpha_k + n_{k|d})n_{w | k}}{\beta V +
+    n_{\cdot |k}}} \notag
+\end{align}
+
+\end{frame}
+
+
+\begin{frame}
+
+	\frametitle{Tree-based sampling}
+	
+	\begin{align}
+\label{eq:naive-ldawn}
+p(z_{d,n} &= k, l_{d,n} = \lambda | Z_{-}, L_{-}, w_{d,n}) \\
+&\propto (\alpha_k + n_{k|d})
+\prod_{(i \rightarrow j)\in \lambda} \frac{\beta_{i \rightarrow j} + n_{i \rightarrow j | k}}
+{\sum_{j\prime}{(\beta_{i \rightarrow j'} + n_{i \rightarrow j' | k})}}  \notag
+\end{align}
+
+\end{frame}
+
+
+\begin{frame}
+
+	\frametitle{Factorizing Tree-Based Prior}
+
+
+\begin{align}
+\label{eq:fast-lda}
+p(z &= k | Z_{-}, w) \propto (\alpha_k + n_{k|d})\frac{\beta + n_{w|k}}{\beta V + n_{\cdot |k}} \\
+&\propto \explain{$s_{\textsc{LDA}}$}{\frac{\alpha_k \beta}{\beta V + n_{\cdot |k}}} + \explain{$r_{\textsc{LDA}}$}{\frac{n_{k|d} \beta}{\beta V + n_{\cdot |k}}}
++ \explain{$q_{\textsc{LDA}}$}{\frac{(\alpha_k + n_{k|d})n_{w | k}}{\beta V +
+    n_{\cdot |k}}} \notag
+\end{align}
+\pause
+
+\begin{align}
+\label{eq:smoothing}
+s &= \sum_{k,\lambda} \frac{\alpha_k \prod_{(i \rightarrow j)\in \lambda}{\beta_{i \rightarrow j}}}{\prod_{(i \rightarrow j)\in \lambda} {\sum_{j\prime}{(\beta_{i \rightarrow j'} + n_{i \rightarrow j' | k})}}} \notag \\
+&\le \sum_{k,\lambda} \frac{\alpha_k \prod_{(i \rightarrow j)\in \lambda}{\beta_{i \rightarrow j}}}{\prod_{(i \rightarrow j)\in \lambda} {\sum_{j\prime}{\beta_{i \rightarrow j'}}}} = s'.
+\end{align}
+
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\begin{small}
+\begin{algorithmic}[1]
+\FOR{word w in this document}
+\STATE sample $=$ rand() $* (s' + r + q)$
+\IF{sample $< s'$}
+\STATE compute $s$
+\STATE sample $=$ sample $* (s+r+q) / (s'+r+q)$
+\IF{sample $< s$}
+\RETURN topic $k$ and path $\lambda$ sampled from $s$
+\ENDIF
+\STATE sample $-= s$
+\ELSE
+\STATE sample $-= s'$
+\ENDIF
+\IF{sample $< r$}
+\RETURN topic $k$ and path $\lambda$ sampled from $r$
+\ENDIF
+\STATE sample $-= r$
+\RETURN topic $k$ and path $\lambda$ sampled from $q$
+\ENDFOR
+\end{algorithmic}
+\end{small}
+
+\end{frame}
+
+\centering
+  \begin{tabular}{| c || c | c | c | c |}
+\hline
+\multicolumn{5}{|c|}{{\bf Number of Topics}}\\
+\hline
+& T50 & T100 & T200 & T500\\
+\hline
+\scriptsize{\textsc{Naive}} & $5.700$ & $12.655$ & $29.200$ & $71.223$\\
+\scriptsize{\textsc{Fast}} & $4.935$ & $9.222$ & $17.559$ & $40.691$\\
+\scriptsize{\textsc{Fast-RB}} & $2.937$ & $4.037$ & $5.880$ & $8.551$\\
+\scriptsize{\textsc{Fast-RB-sD}} & $2.675$ & $3.795$ & $5.400$ & $8.363$\\
+\scriptsize{\textsc{Fast-RB-sW}} & $2.449$ & $3.363$ & $4.894$ & $7.404$\\
+\scriptsize{\textsc{Fast-RB-sDW}} & $2.225$ & $3.241$ & $4.672$ & $7.424$\\
+\hline
+\multicolumn{5}{|c|}{{\bf Number of Correlations}}\\
+\hline
+& C50 & C100 & C200 & C500\\
+\hline
+\scriptsize{\textsc{Na\"ive}} & $11.166$ & $12.586$ & $13.000$ & $15.377$\\
+\scriptsize{\textsc{Fast}} & $8.889$ & $9.165$ & $9.177$ & $8.079$\\
+\scriptsize{\textsc{Fast-RB}} & $3.995$ & $4.078$ & $3.858$ & $3.156$\\
+\scriptsize{\textsc{Fast-RB-sD}} & $3.660$ & $3.795$ & $3.593$ & $3.065$\\
+\scriptsize{\textsc{Fast-RB-sW}} & $3.272$ & $3.363$ & $3.308$ & $2.787$\\
+\scriptsize{\textsc{Fast-RB-sDW}} & $3.026$ & $3.241$ & $3.091$ & $2.627$\\
+\hline
+  \end{tabular}
+
+
+\begin{frame}
+
+
+\end{frame}
