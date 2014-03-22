@@ -1,0 +1,124 @@
+\begin{frame}[fragile]
+
+\vspace{-2cm}
+
+\begin{algorithm}[H]
+
+	\begin{scriptsize}
+
+				
+%	\vspace{1ex}\noindent\textbf{Output:}\\
+%		\textsc{Key} - key pair $\langle p_l, p_r \rangle$.\\
+%		\textsc{Value} - value $\sigma^\prime$.
+	
+% 	\vspace{1ex}\noindent\textbf{Configuration}
+% 	\begin{algorithmic}[1]
+% %		\STATE Initialize the total number of topics as $K$, size of the vocabulary $\mathcal{V}$ as $V$, size of the collection $\mathcal{C}$ as $C$.
+% 		\STATE Initialize all the necessary parameter $K$, $V$ and $C$.
+% 		\STATE Initialize or seed a $V \times K$ dimensional matrix $\beta$.
+% 		\STATE Initialize or seed a $C \times K$ dimensional matrix $\gamma$.
+% 		\STATE Initialize or seed a $K$ dimensional vector $\alpha$.
+% 	\end{algorithmic}
+	
+	\vspace{1ex}\noindent\textbf{Map$(d, \vec{w})$}
+	\begin{algorithmic}[1]
+		\REPEAT
+			\FORALL{$v \in [1, V]$}
+				\FORALL{$k \in [1, K]$}
+
+                                \STATE \alert<1>{Update $\phi_{v, k}=\beta_{v, k} \times
+                                \exp(\digam{\gamma_{d, k}})$.}
+				\ENDFOR
+				\STATE Normalize row $\phi_{v, *}$, such that
+                                $\displaystyle\sum_{k=1} ^K\phi_{v, k}=1$.
+                               \STATE Update $\sigma = \sigma + \vec{w}_v \phi_{v}$, where $\phi_{v}$ is a
+                                $K$-dimensional vector, and $\vec{w}_v$ is the
+                                count of $v$ in this document.
+			\ENDFOR
+			\STATE \alert<2>{Update row vector $\gamma_{d, *} = \alpha + \sigma$.}
+		\UNTIL{convergence}
+		\FORALL{$k \in [1, K]$}
+			\FORALL{$v \in [1, V]$}
+				\STATE Emit key-value pair $\langle k, \triangle \rangle : \vec{w}_v \phi_{v}$.
+				%\COMMENT{emit the marginal probability distribution count}
+
+				\label{mapper step: emit marginal distribution}
+				\STATE Emit key-value pair $\langle k, v \rangle : \vec{w}_v \phi_{v}$.
+				\COMMENT{order inversion}
+			\ENDFOR
+
+			\STATE \alert<3>{Emit} key-value pair $\langle \triangle, k \rangle : 
+                        (\digam{\gamma_{d, k}} - \digam{\sum_{l=1}^K \gamma_{d,
+                          l}})$.
+
+			\COMMENT{emit the $\gamma$-tokens for $\alpha$ update}
+
+			\STATE \alert<3>{Output} key-value pair $\langle k, d \rangle - \gamma_{d, k}$ to file.
+		\ENDFOR
+		\STATE \alert<3>{Emit} key-value pair $\langle \triangle, \triangle \rangle - \mathcal{L}$, where $\mathcal{L}$ is log-likelihood of this document.
+
+	\end{algorithmic}
+	
+	\end{scriptsize}
+
+	
+\end{algorithm}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+
+
+\begin{algorithm}[H]
+	\label{alg: reducer}
+
+	\begin{scriptsize}
+%	\begin{small}	
+	
+	\vspace{1ex}\noindent\textbf{Input:}\\
+		\textsc{Key} - key pair $\langle p_{\mathsf{left}}, p_{\mathsf{right}} \rangle$.\\
+		\textsc{Value} - an iterator $\mathcal{I}$ over sequence of values.
+		
+%	\vspace{1ex}\noindent\textbf{Output:}\\
+%		\textsc{Key} - topic index $k \in [1, K]$.\\
+%		\textsc{Value} - $V$-dimensional column vector $\phi_{*, k}$.
+	
+	\vspace{1ex}\noindent\textbf{Reduce}
+	\begin{algorithmic}[1]
+          \STATE \alert<1>{Compute the sum $\sigma$} over all values in the sequence $\mathcal{I}$.
+
+		\IF{$p_{\mathsf{left}}=\triangle$}
+			\IF{$p_{\mathsf{right}}=\triangle$}
+				\STATE Output key-value pair $\langle \triangle, \triangle \rangle - \sigma$ to file.
+
+				\COMMENT{output the model likelihood
+                                  $\mathcal{L}$ for convergence checking}
+
+			\ELSE
+				\STATE \alert<3>{Output key-value pair $\langle \triangle, p_{\mathsf{right}} \rangle - \sigma$ to file.}
+
+				\COMMENT{output the $\gamma$-tokens to update
+                                  $\alpha$-vectors, Section~\ref{subsec: driver}}
+
+				%\COMMENT{output $\gamma$-tokens}
+			\ENDIF
+		\ELSE
+			\IF{$p_{\mathsf{right}}=\triangle$}
+				\STATE Update the normalization factor $n=\sigma$.
+				\COMMENT{order inversion}
+				\label{reducer step: collect marginal distribution}
+			\ELSE
+				\STATE \alert<2>{Output key-value pair $\langle k, v \rangle : \frac{\sigma}{n}$.}
+				\COMMENT{output normalized $\beta$ value}
+			\ENDIF
+		\ENDIF
+	\end{algorithmic}
+
+%	\end{small}	
+	\end{scriptsize}
+\end{algorithm}
+
+\end{frame}

@@ -1,0 +1,245 @@
+%PDF-1.3
+%‚„œ”
+2 0 obj
+<<
+/Length 1484
+>>
+stream
+BT
+/TT2 1 Tf
+14 0 0 14 103.0001 477.95 Tm
+0 0 0 rg
+/GS1 gs
+0 Tc
+0 Tw
+(Log Histogram of Predicted Evocation Distribution)Tj
+/TT4 1 Tf
+12 0 0 12 218.0357 18.22 Tm
+(Predicted Evocation)Tj
+0 12 -12 0 13.09 234.8524 Tm
+(Frequency)Tj
+ET
+0 0 0 RG
+1 J 1 j 0.75 w 10 M []0 d
+1 i 
+74.89 72.94 m
+467.91 72.94 l
+74.89 72.94 m
+74.89 65.74 l
+153.49 72.94 m
+153.49 65.74 l
+232.1 72.94 m
+232.1 65.74 l
+310.7 72.94 m
+310.7 65.74 l
+389.31 72.94 m
+389.31 65.74 l
+467.91 72.94 m
+467.91 65.74 l
+S
+BT
+12 0 0 12 71.5531 47.02 Tm
+5.4382 Tc
+[(0)-277.6(2)5438.2(04)5438.2(06)5438.2(08)5438.2(0)278.6(1)5438.2(0)5438.2(0)]TJ
+ET
+59.17 87.03 m
+59.17 440.65 l
+59.17 87.03 m
+51.97 87.03 l
+59.17 157.76 m
+51.97 157.76 l
+59.17 228.48 m
+51.97 228.48 l
+59.17 299.2 m
+51.97 299.2 l
+59.17 369.93 m
+51.97 369.93 l
+59.17 440.65 m
+51.97 440.65 l
+S
+BT
+0 12 -12 0 41.89 83.6931 Tm
+5.3376 Tc
+[(02468)278.5(1)5337.6(0)]TJ
+ET
+74.89 439.36 19.65 -352.33 re
+94.54 351.53 19.65 -264.5 re
+114.19 305.2 19.65 -218.17 re
+133.84 271.82 19.65 -184.79 re
+153.49 249.88 19.65 -162.85 re
+173.14 228.09 19.65 -141.06 re
+192.79 208.46 19.65 -121.43 re
+212.45 194.69 19.65 -107.66 re
+232.1 182.79 19.65 -95.76 re
+251.75 168.45 19.65 -81.42 re
+271.4 160.56 19.65 -73.53 re
+291.05 174.9 19.65 -87.87 re
+310.7 125.88 19.65 -38.85 re
+330.35 164.73 19.65 -77.7 re
+350.01 136.05 19.65 -49.02 re
+369.66 111.54 19.65 -24.51 re
+389.31 125.88 19.65 -38.85 re
+408.96 87.03 m
+428.61 87.03 l
+h
+428.61 111.54 19.65 -24.51 re
+448.26 125.88 19.65 -38.85 re
+S
+endstream
+endobj
+3 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/ExtGState <<
+/GS1 6 0 R
+>>
+>>
+endobj
+6 0 obj
+<<
+/Type /ExtGState
+/SA false
+/SM 0.02
+/OP false
+/op false
+/OPM 1
+/BG2 /Default
+/UCR2 /Default
+/HT /Default
+/TR2 /Default
+>>
+endobj
+8 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 770
+/CapHeight 718
+/Descent -229
+/Flags 262176
+/FontBBox [-170 -228 1003 962]
+/FontName /Helvetica-Bold
+/ItalicAngle 0
+/StemV 133
+/XHeight 532
+/StemH 140
+>>
+endobj
+9 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 770
+/CapHeight 718
+/Descent -229
+/Flags 32
+/FontBBox [-166 -225 1000 931]
+/FontName /Helvetica
+/ItalicAngle 0
+/StemV 88
+/XHeight 523
+/StemH 88
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 118
+/Widths [278 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 722 667 0 0 722 0 0 0 611 0 0 0 
+667 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 556 611 556 611 556 333 611 0 278 0 0 0 889 611 611 
+0 0 389 556 333 611 556 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Helvetica-Bold
+/FontDescriptor 8 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 121
+/Widths [278 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+556 556 556 0 556 0 556 0 556 0 0 0 0 0 0 0 
+0 0 0 0 0 667 611 0 0 0 0 0 0 0 0 0 
+667 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 556 0 500 556 556 0 0 0 222 0 0 0 0 556 556 
+0 556 333 0 278 556 500 0 0 500 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Helvetica
+/FontDescriptor 9 0 R
+>>
+endobj
+1 0 obj
+<<
+/Type /Page
+/Parent 7 0 R
+/Resources 3 0 R
+/Contents 2 0 R
+>>
+endobj
+10 0 obj
+<<
+/S /D
+>>
+endobj
+11 0 obj
+<<
+/Nums [0 10 0 R ]
+>>
+endobj
+7 0 obj
+<<
+/Type /Pages
+/Kids [1 0 R]
+/Count 1
+/MediaBox [0 0 514 512]
+>>
+endobj
+12 0 obj
+<<
+/CreationDate (D:20051214092953-05'00')
+/ModDate (D:20051214092953-05'00')
+/Producer (PSNormalizer.framework)
+>>
+endobj
+13 0 obj
+<<
+/Type /Catalog
+/Pages 7 0 R
+/PageLabels 11 0 R
+>>
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000002978 00000 n 
+0000000016 00000 n 
+0000001552 00000 n 
+0000002197 00000 n 
+0000002586 00000 n 
+0000001658 00000 n 
+0000003126 00000 n 
+0000001798 00000 n 
+0000002003 00000 n 
+0000003058 00000 n 
+0000003086 00000 n 
+0000003207 00000 n 
+0000003339 00000 n 
+trailer
+<<
+/Size 14
+/Root 13 0 R
+/Info 12 0 R
+/ID [<aaf0c0a32ddbf75fcb09ccf99a822f5e><aaf0c0a32ddbf75fcb09ccf99a822f5e>]
+>>
+startxref
+3408
+%%EOF

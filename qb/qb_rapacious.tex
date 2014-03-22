@@ -1,0 +1,48 @@
+
+
+\section{Improving Rapacious Classifiers}
+
+\begin{frame}
+	\frametitle{Learning which Features are Useful}
+
+	\begin{itemize}
+		\item Use how humans these data as a prior for supervised maxent model~\cite{daume-04}
+		\item Prior for label $a$ and feature $f$ is a function of the number of buzzes $b$ and tf-idf~\cite{salton-68}
+\begin{equation}
+  \left[ \vphantom{\frac{a}{b}}\alpha \ind{ b(a,f) > 0} + \beta b(a,f) + \gamma
+  \right] \mbox{tf-idf}(a,f) .
+\label{eq:meanweight}
+\end{equation}
+		\begin{itemize}
+			\item $\alpha$, $\beta$, and $\gamma = 0$: na\"ive zero prior
+			\item $\alpha$ and $\beta = 0$: linear transformation of the mean
+			\item $\alpha$ and $\gamma = 0$: number of buzzes times tf-idf value of the features
+		\end{itemize}
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Using buzzes as a prior}
+
+\begin{equation*}
+  \left[ \vphantom{\frac{a}{b}}\alpha \ind{ b(a,f) > 0} + \beta b(a,f) + \gamma
+  \right] \mbox{tf-idf}(a,f) .
+\end{equation*}
+
+\begin{center}
+\begin{tabular}{cccccc}
+Answers & Weighting & $\alpha$ & $\beta$ & $\gamma$ & Error\footnote{Buzz and tf-idf computed on training data; grid search on dev data; error on test data} \\
+\hline
+\multirow{5}{*}{100} & zero & - & - & - & 0.22 \\
+& tf-idf & - & - & 8.3 & 0.08 \\
+&  buzz-binary & 10.7 & - & - & {\bf 0.06} \\
+&  buzz-linear & - &  1.1 & - & 0.10 \\
+& buzz-tier & - & 1.6 & 0.5 & 0.07 \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+

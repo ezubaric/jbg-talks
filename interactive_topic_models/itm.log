@@ -1,0 +1,47 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/MacPorts 2011_3) (format=pdflatex 2011.11.30)  8 APR 2012 09:12
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**itm.tex
+(./itm.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, et
+hiopic, arabic, farsi, pinyin, croatian, bulgarian, russian, ukrainian, czech, 
+slovak, danish, dutch, ukenglish, usenglishmax, finnish, basque, french, german
+-x-2009-06-19, ngerman-x-2009-06-19, german, ngerman, swissgerman, monogreek, g
+reek, ancientgreek, ibycus, hungarian, assamese, bengali, gujarati, hindi, kann
+ada, malayalam, marathi, oriya, panjabi, tamil, telugu, sanskrit, italian, lati
+n, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, afrikaans, ar
+menian, coptic, esperanto, estonian, icelandic, indonesian, interlingua, irish,
+ kurmanji, lao, romanian, serbian, serbianc, slovenian, turkish, uppersorbian, 
+welsh, polish, portuguese, spanish, catalan, galician, swedish, turkmen, loaded
+.
+
+./itm.tex:29: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.29 }
+      
+? 
+./itm.tex:29: Emergency stop.
+ ...                                              
+                                                  
+l.29 }
+      
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
+Here is how much of TeX's memory you used:
+ 12 strings out of 493633
+ 300 string characters out of 3142963
+ 47800 words of memory out of 3000000
+ 3411 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 831 hyphenation exceptions out of 8191
+ 7i,0n,6p,77b,14s stack positions out of 5000i,500n,10000p,200000b,50000s
+./itm.tex:29:  ==> Fatal error occurred, no output PDF file produced!
