@@ -1,0 +1,98 @@
+%
+
+\usepackage[T1]{fontenc}
+%\usepackage{kmath,kerkis}
+%\usepackage{fouriernc}
+\usepackage[adobe-utopia]{mathdesign}
+%\usepackage{arev}
+\usepackage{times}
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{framed}
+
+
+
+\setbeamersize{text margin left=0.5cm}
+\setbeamersize{text margin right=0.5cm}
+\setbeamercolor{alert}{fg=red!75!black}
+
+\usetheme{default}
+\useinnertheme{circles}
+\useoutertheme{split}
+\usecolortheme{seahorse}
+% \usecolortheme{dove}
+% \usecolortheme{seagull}
+%\usecolortheme{default}
+% \usecolortheme{dolphin}
+\usefonttheme{structurebold}
+%\usefonttheme{serif}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\normalsize}
+\setbeamercolor{itemize item}{fg=gray}
+\setbeamercolor{enumerate item}{fg=gray}
+\setbeamercolor{itemize item}{fg=gray}
+\setbeamercolor{itemize subitem}{fg=gray}
+\setbeamercolor{item projected}{bg=gray}
+\setbeamercolor{subitem projected}{bg=gray}
+
+
+\newenvironment{bullets}
+{\begin{itemize} \setlength{\itemsep}{10pt}}
+{\end{itemize}}
+
+\newcommand{\mygraphic}[2]{
+  \begin{beamercolorbox}[colorsep*=4pt]{black math}
+    \begin{center}
+      \includegraphics[#1]{#2}
+    \end{center}
+  \end{beamercolorbox}
+}
+
+\setbeamercolor{structure}{bg=gray}
+\setbeamercolor{section in head/foot}{bg=gray}
+\setbeamercolor{palette primary}{bg=lightgray}
+
+
+% packages
+
+\usepackage{amsfonts}
+
+% environments
+
+\newenvironment{packed_enumerate}{
+  \begin{enumerate}
+    \setlength{\topsep}{0pt}
+    \setlength{\itemsep}{2pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+}{\end{enumerate}}
+
+\newenvironment{stepit}
+ {\begin{itemize}[<+-|alert@+>]}
+   {\end{itemize}}
+
+% commands
+
+\newcommand{\g}{\, | \,}
+\newcommand{\indpt}{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+\newcommand{\E}{\textrm{E}}
+\newcommand{\realline}{\mathbb{R}}
+\newcommand{\data}{{\cal D}}
+\newcommand{\loglik}{{\cal L}}
+
+
+\newcommand{\class}[1]{ \texttt{#1}}
+\newcommand{\term}[1]{ ``#1''}
+\newcommand{\tcword}[0]{ w }
+\newcommand{\docsetlabeled}[0]{ D }
+\newcommand{\onedoclabeled}[0]{ d }
+\newcommand{\tcposindex}[0]{ i }
+\newcommand{\myblue}[1]{ {\textbf #1 }}
+\newcommand{\dnrm}[1]{ _{\mbox{\textsc{ #1 }}}}
+\newcommand{\argmax}[0]{ \arg \max }
+\newcommand{\tcjclass}[0]{c_j}
