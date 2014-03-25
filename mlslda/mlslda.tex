@@ -1,0 +1,491 @@
+
+\ifsupershortmlslda
+
+\else
+
+\frame {
+
+\frametitle{Problem}
+
+\begin{itemize}
+	\item We have documents in multiple languages
+	\item They are annotated with the same {\bf continuous response}
+	\begin{itemize}
+		\item Rating of a product
+		\item Movie review
+		\item Percentage of people who retweet a tweet
+                \item Percentage of people consider a comment ``extreme''
+	\end{itemize}
+	\item Can learning a model in multiple languages at once help?
+
+	\pause
+
+	\begin{block}{}
+		For languages where you don't have many resources, {\bf yes!}
+	\end{block}
+
+\end{itemize}
+
+}
+
+\begin{frame}[t]{Conceptual Approach}
+
+  \only<1>{\includegraphics[width=0.85\linewidth]{mlslda/text_topics_prediction_0}}
+  \only<2>{\includegraphics[width=0.85\linewidth]{mlslda/text_topics_prediction_1}}
+  \only<3>{\includegraphics[width=0.85\linewidth]{mlslda/text_topics_prediction_2}}
+  \only<4>{\includegraphics[width=0.85\linewidth]{mlslda/text_topics_prediction_3}}
+  \only<5>{\includegraphics[width=0.85\linewidth]{mlslda/text_topics_prediction_4}}
+  \only<6>{\includegraphics[width=0.85\linewidth]{mlslda/text_topics_prediction_5}}
+  \only<7>{\includegraphics[width=0.85\linewidth]{mlslda/text_topics_prediction_6}}
+
+  \only<5>{
+  	\begin{center}
+		Similar to social science methodology LIWC~\cite{pennebaker-99}
+	\end{center}
+  }
+
+  \only<6>{
+    \begin{itemize}
+      \item {\bf Assumption:} We can create list counts from documents in any language
+      \item {\bf Observation:} Once we have list counts, underlying language doesn't matter
+    \end{itemize}
+  }
+
+  \only<7>{
+  	\begin{block}{}
+		\begin{center}
+		What if we don't know the lists?
+		\end{center}
+	\end{block}
+  }
+
+\end{frame}
+
+\iftmreview
+
+\begin{frame}{Putting Pieces Together}
+
+	\begin{itemize}
+	\item How do we learn the word lists?
+	\begin{itemize}
+		\invisible<-2>{  \item Topic Models }
+	\end{itemize}
+
+
+	\item How do ensure that the word lists reflect sentiment?
+	\begin{itemize}
+		\invisible<-3>{  \item Supervised Topic Models }
+	\end{itemize}
+
+	\item How do make the word lists make sense across languages?
+	\begin{itemize}
+		\invisible<-4>{  \item Semantic Resources } \visible<5>{ }
+	\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\input{topic_models/topic_models.tex}
+
+
+\fi
+
+\ifhighlevel
+
+\else
+
+\frame{
+	\frametitle{Foundation: sLDA}
+
+	\begin{columns}
+		\column{.5\linewidth}
+		   \includegraphics[width=1\linewidth]{mlslda/slda}
+			\begin{center}
+			supervised latent Dirichlet allocation \cite{blei-07b}
+			\end{center}
+		\column{.5\linewidth}
+		  \begin{block}{Generative Process}
+	\begin{enumerate}
+		\item For document $d = 1 \dots D$:
+		\begin{enumerate}
+			\item Draw distribution over topics $\theta_d \sim \mbox{Dir}(\alpha)$
+			\item For each word $n = 1 \dots d_n$
+				\begin{enumerate}
+					\item Draw a topic list assignment	$z_{d,n} \sim \mbox{Discrete}(\theta_d)$
+					\item Draw word $w_{d,n}$ from topic list distribution $w_{d,n} \sim \mbox{Discrete}(\beta_{z_{d,n}})$
+				\end{enumerate}
+			\item Draw response $y_d \sim \mbox{Norm}(\eta^{\top} \bar{z}, \sigma^2)$
+		\end{enumerate}
+	\end{enumerate}
+
+
+		  \end{block}
+	\end{columns}
+
+	\begin{center}
+Topic lists $\beta$, topic assignments $z$, regression parameters $\eta$ learned via posterior inference
+	\end{center}
+}
+
+\fi
+
+\begin{frame}{Foundation: SLDA}
+
+  Supervised Latent Dirichlet Allocation~\cite{blei-07b}
+
+	\begin{block}{Scoring a Document}
+		\begin{itemize}
+			\item Each topic has a score
+			\item Each word has a topic
+			\item Document score is the average of all word scores
+		\end{itemize}
+	\end{block}
+
+	\begin{center}
+	\includegraphics[width=.9\linewidth]{mlslda/slda_example}
+	\end{center}
+
+\end{frame}
+
+\frame{
+	\frametitle{How to make this multilingual}
+
+	\begin{itemize}
+		\item Topic lists provide a layer of abstraction
+		\pause
+		\item \dots if word lists are consistent across languages
+		\item {\bf Holistic}: no component is learned in isolation
+	\end{itemize}
+
+	\pause
+
+\begin{center}
+\includegraphics[width=0.6\linewidth]{mlslda/connections}
+\end{center}
+
+
+}
+
+\section{Key Technical Challenge: Correlations Across Languages}
+
+
+
+\ifhighlevel
+
+\begin{frame}{Encoding Correlations}
+
+  \begin{itemize}
+    \item Statistical NLP typically uses Dirichlet distributions because of conjugacy
+   \item Parameter of Dirichlet encode mean and variance
+    \pause
+    \item But we want correlations!
+      \end{itemize}
+
+\begin{center}
+  \includegraphics[width=0.85\linewidth]{mlslda/correlations_3}
+\end{center}
+
+\end{frame}
+
+\else
+
+\frame {
+  \frametitle{Encoding Correlations}
+
+  \begin{itemize}
+    \item Statistical NLP typically uses Dirichlet distributions because of conjugacy
+    \begin{center}
+    	\includegraphics[width=0.5\linewidth]{topic_models/dirichlet_1} \\
+    	\includegraphics[width=0.5\linewidth]{topic_models/dirichlet_2}
+    \end{center}
+
+    \item Parameter of Dirichlet encode mean and variance
+    \pause
+    \item But we want correlations!
+
+        \end{itemize}
+    \begin{block}{}
+    \begin{center}
+    \begin{tabular}{ccc}
+    	gut & h\v{a}o & good \\
+    \end{tabular}
+    \end{center}
+    \end{block}
+
+
+}
+
+\frame{
+	\frametitle{Encoding Correlations}
+
+\begin{center}
+\only<1>{\includegraphics[width=0.85\linewidth]{mlslda/correlations_naive}}
+\only<2>{\includegraphics[width=0.85\linewidth]{mlslda/correlations_naive_1}}
+\only<3>{\includegraphics[width=0.85\linewidth]{mlslda/correlations_naive_2}}
+\only<4>{\includegraphics[width=0.85\linewidth]{mlslda/correlations}}
+\only<5>{\includegraphics[width=0.85\linewidth]{mlslda/correlations_1}}
+\only<6>{\includegraphics[width=0.85\linewidth]{mlslda/correlations_2}}
+\only<7>{\includegraphics[width=0.85\linewidth]{mlslda/correlations_3}}
+\end{center}
+}
+
+\fi
+
+\section{Sources of Correlation}
+
+\frame
+{
+  \frametitle{Dictionary}
+
+\begin{columns}
+\column{.6\textwidth}
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{mlslda/dictionary}
+\end{center}
+
+\column{.4\textwidth}
+\begin{block}{}
+	\begin{itemize}
+		\item CEDICT (Chinese/English) \cite{cedict}
+		\item HanDeDict (Chinese/German) \cite{handedict}
+		\item Ding (German/English) \cite{richter-08}
+	\end{itemize}
+\end{block}
+
+\end{columns}
+
+}
+
+\fi
+
+\frame
+{
+  \frametitle{Multilingual Ontology}
+
+\begin{center}
+\includegraphics[width=0.75\linewidth]{mlslda/germanet}
+\end{center}
+
+\vspace{-.8cm}
+
+\begin{center}
+	\item GermaNet~\cite{hamp-97,kunze-02}
+\end{center}
+
+}
+
+%\section{Multilingual Supervised Latent Dirichlet Allocation}
+
+\ifhighlevel
+
+\else
+
+\frame
+{
+  \frametitle{Generative Model}
+
+\begin{columns}
+
+\column{.4\textwidth}
+
+\begin{block}{}
+\begin{enumerate}
+	\item For each topic $k = 1 \dots K$, \alert<2>{draw correlated multilingual word distribution $\{{\bm \beta}_k, {\bm \omega}_k, {\bm \phi}_k\}$}
+	\item For each document $d$, $\theta_d \sim \mbox{Dir}(\alpha)$
+	\begin{enumerate}
+	\item $z_{d,n} \sim \mbox{Discrete}(\theta_d)$
+	\item \alert<3> {Draw path $\lambda_{d,n}$ through multilingual tree $z_{d,n}$, emit $w_{d,n}$}
+	\end{enumerate}
+	\item $y_d \sim \mbox{Norm}(\eta^{\top} \bar{z}, \sigma^2)$
+\end{enumerate}
+\end{block}
+
+\column{.6\textwidth}
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{mlslda/mlslda}
+\end{center}
+
+\end{columns}
+
+}
+
+\fi
+
+\iflong
+
+\frame{
+	\frametitle{Inference}
+
+	\begin{itemize}
+		\item Jointly sample $z$ and path $\lambda$ through multilingual tree
+
+\begin{align}
+\textstyle
+p(&z_{n} = k, \lambda_{n} = r | {\bm z}_{-n}, {\bm \lambda}_{-n}, w_n, \eta, \sigma, \Theta) = \nonumber \\
+& p(y_d | {\bm z}, \eta, \sigma) p(\lambda_{n} = r | z_{n} = k, {\bm \lambda}_{-n}, w_n, {\bm \tau}, {\bm \kappa}, {\bm \pi}) \nonumber \\
+& p(z_{n} = k | {\bm z}_{-n}, \alpha). \nonumber
+\label{eq:path-topic-sampling}
+\end{align}
+
+		\item Collapse out multinomial distributions in tree
+		\item Slice sample hyperparameters
+		\item After pass of $z$, update $\eta$
+	\end{itemize}
+}
+
+\fi
+
+\ifsupershortmlslda
+
+\frame{
+\frametitle{Multilingual Supervised LDA}
+\begin{center}
+\includegraphics[width=0.9\linewidth]{mlslda/german_amazon_dict}
+\end{center}
+}
+
+\else
+
+\begin{comment}
+\column{.3\textwidth}
+\begin{block}{}
+	\begin{enumerate}
+		\item For each topic 1 \dots K, draw correlated multilingual word distribution $\{\beta, \omega, \phi\}$
+		\item For each document in language:
+		\begin{enumerate}
+			\item Draw distribution over topics $\theta_d \sim \mbox{Dir}(\alpha)$
+			\item For each word $n = 1 \dots d_n$
+				\begin{enumerate}
+					\item Draw a topic list assignment	$z_n \sim \mbox{Discrete}(\theta_d)$
+					\item Draw word $w_n$ from multilingual word distribution $\{{\bm \beta}_{z_n}, {\bm \omega}_{z_n}, {\bm \pi}_{z_n}\}$
+				\end{enumerate}
+			\item Draw response $y_d \sim \mbox{Norm}(\eta z, \sigma^2)$
+		\end{enumerate}
+	\end{enumerate}
+\end{block}
+\column{.7\textwidth}
+
+\end{comment}
+
+\section{Evaluation}
+
+
+\frame
+{
+  \frametitle{Evaluation: Learned Topics (Chinese - German)}
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{mlslda/chinese_amazon_dict}
+\end{center}
+
+}
+\fi
+
+\ifhighlevel
+
+\else
+
+\frame
+{
+  \frametitle{Evaluation: Learned Topics (English - German)}
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{mlslda/german_amazon_dict}
+\end{center}
+
+}
+
+\fi
+
+\frame {
+
+\frametitle{Evaluation: Prediction Accuracy}
+
+\begin{itemize}
+
+\item Take large corpus (6000) of English movie reviews rated from 0-100~\cite{pang-05}
+\item Combine them with smaller German corpus (300) rated using same system
+\item Compute mean squared error (lower is better) on held out data
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{ccccc}
+Train   & Test & GermaNet     & Dictionary        & Flat \\
+\hline
+DE      & DE   & 73.8         & 24.8              & 92.2 \\
+EN      & DE   & 7.44         & 2.68              & 18.3 \\
+EN + DE & DE   & {\bf 1.17}  & {\bf 1.46}        & {\bf 1.39} \\
+\end{tabular}
+\end{center}
+
+\begin{block}{}
+Moral: More data, even in another language, helps
+\end{block}
+
+}
+
+
+\iflong
+
+\frame{
+	\frametitle{Related work: Modeling}
+
+    \begin{itemize}
+	\item    Alternatives often are difficult (not {\bf conjugate})
+        \begin{itemize}
+    	\item Logistic normal~\cite{blei-06}
+	\item ILP~\cite{ravi-09}
+   \end{itemize}
+   \item Multilingual topic modeling often assumes parallelism
+   \begin{itemize}
+   	\item word level~\cite{zhao-06}
+	\item document level~\cite{mimno-09}
+   \end{itemize}
+   \item Richer concept representation~\cite{jagarlamudi-10}
+   \item Easier inference~\cite{boyd-graber-09}
+   \end{itemize}
+}
+
+\frame{
+	\frametitle{Related work: Sentiment}
+	\begin{itemize}
+		\item Gibbs sampling inference for supervised topic model~\cite{blei-07b}
+		\item Similar in spirit co-training techniques~\cite{wei-10}
+		\item Doesn't rely on translation~\cite{banea-08}
+		\item No specialized multilingual sentiment resources~\cite{denecke-08}
+	\end{itemize}
+}
+
+
+
+\frame {
+
+\frametitle{Next Steps}
+
+\begin{itemize}
+\item Richer responses
+\item More languages
+\item Moving beyond bag of words
+\item Different structures for knowledge
+\item Using human coding as topic seeds
+\item Larger corpora
+\end{itemize}
+
+}
+
+\fi
+
+\frame{
+\frametitle{Takeaway}
+
+\begin{itemize}
+\item {\bf Single} model for both languages
+\item Requires neither automatic translation nor parallel text
+\item Shows flexibility of probabilistic formalism
+\end{itemize}
+
+}
+
+
+

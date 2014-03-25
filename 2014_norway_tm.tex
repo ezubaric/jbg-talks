@@ -1,0 +1,123 @@
+
+\newif\ifcrossling\crosslingtrue
+\newif\ifitmtree\itmtreetrue
+\newif\iflong\longfalse
+\newif\ifevaluation\evaluationfalse
+\newif\ifconjugacy\conjugacyfalse
+\newif\ifnonpar\nonparfalse
+\newif\ifling\lingfalse
+\newif\ifhighlevel\highleveltrue
+\newif\iftmreview\tmreviewfalse
+\newif\ifevocation\evocationfalse
+\newif\ifsupershortmlslda\supershortmlsldatrue
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+
+\definecolor{green}{rgb}{0,.3,0}
+
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{listings}
+\usepackage{environ}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{overpic}
+
+\usepackage{multirow}
+
+\usetheme{Rochester}
+%\useoutertheme{infolines}
+%\usetheme{Boadilla}
+%\usetheme{Singapore}
+\usecolortheme{umd}
+\title{Big Data Analysis with Topic Models: Human Interaction, Streaming Computation, \\and Social Science Applications}
+\author{Jordan Boyd-Graber}
+\date{16. January 2014}
+
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\dir}[1]{\mbox{Dir}(#1)}
+\newcommand{\mult}[1]{\mbox{Mult}( #1)}
+\newcommand{\Beta}[1]{\mbox{Beta}( #1)}
+\newcommand{\G}[1]{\Gamma \left( \textstyle #1 \right)}
+\newcommand{\LG}[1]{\log \Gamma \left( \textstyle #1 \right)}
+\newcommand{\WN}[0]{\textsc{WordNet}}
+\newcommand{\itmspace}[0]{\hspace{2cm}}
+\newcommand{\abr}[1]{\textsc{#1}}
+\newcommand{\lda}[0]{\abr{lda}}
+\newcommand{\slda}[0]{\abr{slda}}
+
+\newcommand{\digam}[1]{\Psi \left( \textstyle #1 \right) }
+\newcommand{\ddigam}[1]{\Psi' \left( \textstyle #1 \right) }
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+\newcommand{\D}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\elbo}{\mathcal{L}}
+
+
+\newcommand{\citename}[1]{\emph{#1} }
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\Dir}{\mathrm{Dir}}
+\newcommand{\Mult}{\mathrm{Mult}}
+\newcommand{\g}[1]{\Gamma \left( #1 \right)}
+\newcommand{\paragraph}[1]{ \vskip 1cm {\bf \large #1}}
+
+\NewEnviron{smalign}{
+\vspace{-.6cm}
+\begin{small}
+\begin{align}
+  \BODY
+\end{align}
+\end{small}
+\vspace{-.6cm}
+}
+
+
+\providecommand{\graphscale}{0.6}
+
+\newcommand{\danquote}[1]{
+
+\begin{flushright}
+\begin{overpic}[width=5.5cm,tics=10]{general_figures/speech_bubble}
+	\put(10,30) { \parbox{4cm}{#1 }}
+\end{overpic}
+\includegraphics[width=1.5cm]{general_figures/milkman_dan}
+\end{flushright}
+}
+
+
+% \AtBeginSection[] % "Beamer, do the following at the start of every section"
+% { \begin{frame}
+
+% \frametitle{Outline} % make a frame titled "Outline"
+% \tableofcontents[currentsection] % show TOC and highlight current section
+% \end{frame} }
+
+\lstset{language=Python}
+
+\DeclareMathSymbol{\R}{\mathbin}{AMSb}{"52}
+
+%\setbeamertemplate{footline}{\hspace*{.5cm}\scriptsize{\insertauthor
+
+\begin{document}
+
+\frame{\titlepage
+\includegraphics[width=0.9\linewidth]{general_figures/umd_logo} \\
+}
+
+\input{topic_models/topic_models}
+\input{topic_models/gibbs_sampling}
+
+\begin{frame}
+\bibliographystyle{plain}
+\tiny
+\bibliography{bib/journal-full,bib/jbg}
+\end{frame}
+
+\end{document}

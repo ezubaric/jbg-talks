@@ -1,0 +1,155 @@
+\newif\iflong\longtrue
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+
+\definecolor{green}{rgb}{0,.3,0}
+
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{listings}
+\usepackage{subfigure}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage[normalem]{ulem}
+\usepackage{overpic}
+
+\usepackage{multirow}
+
+\usetheme{Rochester}
+%\usetheme{Boadilla}
+%\usetheme{Singapore}
+\usecolortheme{umd}
+\title{ Besting the Quiz Master: \\
+Crowdsourcing Incremental Classification Games }
+\author{Jordan Boyd-Graber, Brianna Satinoff, \\ He He, and Hal Daum\`e III}
+\date{25. October 2012}
+
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\dir}[1]{\mbox{Dir}(#1)}
+\newcommand{\mult}[1]{\mbox{Mult}( #1)}
+\newcommand{\G}[1]{\Gamma \left( \textstyle #1 \right)}
+\newcommand{\LG}[1]{\log \Gamma \left( \textstyle #1 \right)}
+
+\newcommand{\digam}[1]{\Psi \left( \textstyle #1 \right) }
+\newcommand{\ddigam}[1]{\Psi' \left( \textstyle #1 \right) }
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+\newcommand{\D}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\elbo}{\mathcal{L}}
+
+
+\newcommand{\citename}[1]{\emph{#1} }
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\Dir}{\mathrm{Dir}}
+\newcommand{\Mult}{\mathrm{Mult}}
+\newcommand{\g}[1]{\Gamma \left( #1 \right)}
+\newcommand{\paragraph}[1]{ \vskip 1cm {\bf \large #1}}
+
+\newcommand{\danquote}[1]{
+
+\begin{flushright}
+\begin{overpic}[width=5.5cm,tics=10]{general_figures/speech_bubble}
+	\put(10,30) { \parbox{4cm}{#1 }}
+\end{overpic}
+\includegraphics[width=1.5cm]{general_figures/milkman_dan}
+\end{flushright}
+}
+
+
+\AtBeginSection[] % "Beamer, do the following at the start of every section"
+{ \begin{frame}
+
+\frametitle{Outline} % make a frame titled "Outline"
+\tableofcontents[currentsection] % show TOC and highlight current section
+\end{frame} }
+
+\lstset{language=Python}
+
+\DeclareMathSymbol{\R}{\mathbin}{AMSb}{"52}
+
+%\setbeamertemplate{footline}{\hspace*{.5cm}\scriptsize{\insertauthor
+
+\begin{document}
+
+% this prints title, author etc. info from above
+
+\frame{\titlepage
+\includegraphics[width=0.9\linewidth]{general_figures/umd_logo} \\
+\tiny
+
+}
+
+
+\begin{frame}
+  \frametitle{About me \dots}
+
+  \begin{columns}
+
+    \column{.5\linewidth}
+
+  \begin{itemize}
+    \item Assistant professor, University of Maryland
+    \item Little out of my element \dots
+    \item Intersection of ML and NLP
+    \item Actively recruiting grad students!
+  \end{itemize}
+
+    \column{.5\linewidth}
+
+
+
+    \end{columns}
+
+
+\end{frame}
+
+\input{qb/qb_intro}
+\iflong
+	\input{qb/qb_rapacious}
+\fi
+\input{qb/qb_incremental_naive}
+\input{qb/qb_incremental_bayes}
+\input{qb/qb_advert}
+\iflong
+	\input{qb/qb.tex}
+\else
+	\begin{frame}{Conclusion and Future Steps}
+	\begin{itemize}
+		\item Quiz Bowl
+		\begin{itemize}
+			\item Fun
+			\item Lots of data: \url{http://umiacs.umd.edu/~jbg/qb}
+			\item Connected with many NLP and ML problems
+                        \item Annotating coreference
+		\end{itemize}
+		\item Better Models
+		\begin{itemize}
+			\item Using RNNs to incorporate syntax
+			\item Strategies for different opponents
+                        \item Scaling up
+		\end{itemize}
+	\end{itemize}
+	\end{frame}
+\fi
+
+\frame{
+
+\huge Questions?
+
+}
+
+\input{qb/qb_extra.tex}
+
+\begin{frame}
+\bibliographystyle{acl}
+\tiny
+\bibliography{journal-full,jbg}
+\end{frame}
+
+
+\end{document}
