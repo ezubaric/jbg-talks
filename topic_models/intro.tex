@@ -1,0 +1,95 @@
+
+
+\providecommand{\graphscale}{0.6}
+
+
+\newcommand{\dirfunc}[3]{ \frac{ \prod_{#1}^{#2} \g{ #3 } } { \g{ \sum_{#1}^{#2} #3 }}}
+\newcommand{\dirnum}[4]{ \frac{\g{ #3 }}{#4} \prod_{#1}^{#2} }
+\newcommand{\dirden}[3]{ \g{ \sum_{#1}^{#2} #3 } }
+
+\section{Topic Model Introduction}
+
+\begin{frame}
+
+	\frametitle{Why topic models?}
+
+	\begin{columns}
+
+	\column{.3\linewidth}
+
+	\includegraphics[width=1\linewidth]{topic_models/newspapers}
+
+	\column{.55\linewidth}
+
+	\begin{itemize}
+		\item Suppose you have a huge number of documents
+		\item Want to know what's going on
+		\item Can't read them all (e.g. every New York Times article from the 90's)
+		\item Topic models offer a way to get a corpus-level view of major themes
+		\pause
+		\item Unsupervised
+	\end{itemize}
+
+
+	\end{columns}
+
+\end{frame}
+
+\frame{
+\begin{center}
+\frametitle{Conceptual Approach}
+From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarrow$ \textbf<2>{words to topics} \\
+\only<1>{\includegraphics[width=0.6\linewidth]{reading_tea_leaves/figures/heldout_0} }
+\only<2>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/figures/nyt_topics_wide}}
+\end{center}
+}
+
+\frame{\frametitle{Conceptual Approach}
+
+\begin{itemize}
+\item For each document, what topics are expressed by that document?
+
+\begin{center}
+\includegraphics[width=0.9\linewidth]{topic_models/nyt_documents}
+\end{center}
+
+\end{itemize}
+}
+
+\iflong
+
+\begin{frame}
+
+\frametitle{Topics from \emph{Science}}
+
+\begin{center}
+\includegraphics[width=0.8\linewidth]{topic_models/example_topics}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+
+\frametitle{Why should you care?}
+
+\begin{itemize}
+\item Neat way to explore / understand corpus collections
+\begin{itemize}
+	\item E-discovery
+	\item Social media
+	\item Scientific data
+\end{itemize}
+\item NLP Applications
+\begin{itemize}
+   \item POS Tagging~\cite{toutanova-08}
+   \item Word Sense Disambiguation~\cite{boyd-graber-07}
+   \item Word Sense Induction~\cite{brody-09}
+   \item Discourse Segmentation~\cite{purver-06}
+\end{itemize}
+\item Psychology~\cite{griffiths-07}: word meaning, polysemy
+\item Inference is (relatively) simple
+\end{itemize}
+
+
+\end{frame}
