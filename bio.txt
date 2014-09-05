@@ -1,0 +1,51 @@
+Jordan Boyd-Graber is an assistant professor in the University of
+Colorado Boulder's Computer Science Department, formerly serving as
+an assistant professor at the University of Maryland.  He is a 2010
+graduate of Princeton University, with a PhD thesis on "Linguistic
+Extensions of Topic Models" working under David Blei.  Jordan's
+research focus is in applying machine learning and Bayesian
+probabilistic models to problems that help us better understand social
+interaction or the human cognitive process.  This research often leads
+him to use tools such as large-scale inference for probabilistic
+methods, natural language processing, multilingual corpus
+understanding, and human computation.
+
+One facet of this research is developing topic models, completely automatic
+tools that can discover structure and meaning in large, multilingual datasets.
+His research has developed new techniques to evaluate topic models, enable
+interactivity in machine learning algorithms, and to expose how topics interact
+with culture and sentiment.  His research has been supported by NSF, IARPA, and
+ARL.
+
+He has received the NIPS Best Student Paper award honorable mention, a Computing
+Innovation Fellowship (declined), and received the Jorgensen scholarship while
+an undergrad at the California Institute of Technology, where he received a BS
+in computer science and in history in 2004.
+
+Dr. Boyd-Graber's specific research contributions to topic modeling include:
+
+  * User-Centric Evaluation: With collaborator Jonathan Chang, he developed the
+    first human-centered evaluation of the quality of topic models.  This work
+    overturned the previous approach of solely using machine learning evaluation
+    techniques.
+
+          http://www.umiacs.umd.edu/~jbg/docs/nips2009-rtl.pdf
+
+  * Interactivity: With his student Yuening Hu, he developed interactive topic
+    modeling, which allows users to repair topics that are incoherent or are
+    inconsistent with a user's needs.
+
+          http://www.umiacs.umd.edu/~jbg/docs/itm.pdf
+
+  * Scalability: With his student Ke Zhai, he developed efficient algorithms for
+    topic model inference across large datasets.
+
+          http://www.umiacs.umd.edu/~jbg/docs/mrlda.pdf
+
+  * Multilinguality: He developed the first topic models that could be applied
+    to unaligned multilingual corpora.
+
+          http://www.umiacs.umd.edu/~jbg/docs/jbg-mlslda-2010.pdf
+
+Jordan is originally from Colorado.  In his spare time, Jordan enjoys competing
+in and writing questions for trivia competitions.
