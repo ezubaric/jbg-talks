@@ -53,7 +53,7 @@
 \end{columns}
 
 \begin{block}{Download}
-  \url{http://umiacs.umd.edu/~jbg/lda_demo/nsf-30k.txt}
+  \url{http://umiacs.umd.edu/~jbg/lda_demo/}
 \end{block}
 
 \pause \pause \pause \pause 
@@ -72,7 +72,7 @@ doc3    none    The objective of this research project is to develop a wireless 
   \frametitle{Preparing \textsc{nsf} Data}
 
   \begin{block}{Mallet Command}
-    mallet \alert<2>{import-file} \alert<3>{--remove-stopwords} \alert<4>{--keep-sequence} \alert<5>{--input ~/data/nsf\_abstracts/nsf-30k.txt} \alert<6>{--output nsf.mallet}
+    mallet \alert<2>{import-file} \alert<3>{--remove-stopwords} \alert<4>{--keep-sequence} \alert<5>{--input nsf-30k.txt} \alert<6>{--output nsf.mallet}
   \end{block}
 
   \pause
@@ -91,7 +91,7 @@ doc3    none    The objective of this research project is to develop a wireless 
   \frametitle{Preparing \textsc{nrc} data}
 
   \begin{block}{Mallet Command}
-    mallet import-file --remove-stopwords --keep-sequence --input ~/data/norwegian\_research/merged.txt --output nrc.mallet \alert<2>{--use-pipe-from nsf.mallet}
+    mallet import-file --remove-stopwords --keep-sequence --input merged.txt --output nrc.mallet \alert<2>{--use-pipe-from nsf.mallet}
   \end{block}
 
   \begin{itemize}
@@ -203,16 +203,17 @@ doc3    none    The objective of this research project is to develop a wireless 
 \small
   \begin{enumerate}
     \setcounter{enumi}{-1}
-    \item {\bf Environmental Science}: climate ocean environmental marine species
-    \item {\bf Materials Science}: materials chemistry properties magnetic structure
-    \item {\bf Systems Engineering}: control network applications power software
-    \item {\bf Social Science}: economic social human policy behavior public
-    \item {\bf Training}: undergraduate education program students graduate training
-    \item {\bf Physics}: mass energy time flow scale mass rate phase energy
-    \item {\bf biology}: cell protein molecular function genes proteins gene cells
-    \item {\bf Computer Science}: information web computer research industry
-    \item {\bf Geology}: region earth ice provide field sites events mantle deep seismic 
-    \item {\bf Math}: theory methods problem mathematical analysis number geometry
+    \item {\bf Computer Science}: data performance network software algorithms 
+    \item {\bf Students}: students education undergraduate school learning faculty 
+    \item {\bf Chemistry}: chemistry chemical organic molecular reactions metal
+    \item {\bf Physics}: high observations waves energy time physics stars flow 
+    \item {\bf Math}: equations models geometry analysis number mathematics
+    \item {\bf Social Science}: social economic information policy human political 
+    \item {\bf Earth Science}: water climate ice ocean carbon high models soil sea
+    \item {\bf Training}: research support award workshop conference program 
+    \item {\bf Biology}: species cell genes plant gene molecular cells dna proteins
+    \item {\bf Materials Science}: materials research high properties
+      project optical magnetic
     \end{enumerate}
 \end{frame}
 
@@ -220,26 +221,24 @@ doc3    none    The objective of this research project is to develop a wireless 
   \frametitle{What documents are associated with each topic?}
 
   \begin{lstlisting}
-138     doc138  8       0.291970802919708       4       0.24087591240875914     0
-       0.08759124087591241     3       0.072992700729927       7       0.06569343065693431     9       0.051094890510948905    5       0.051094890510948905    1       0.051094890510948905    6       0.043795620437956206    2       0.043795620437956206
-139     doc139  4       0.304   5       0.168   6       0.104   9       0.08    8
-       0.072   7       0.064   0       0.064   3       0.048   2       0.048   1
-       0.048  
-    \end{lstlisting}
+8724    doc8724 8       0.5295448158189615      0       0.46418192697602284     7
+       0.0011271253410239611   ...
+8725    doc8725 9       0.8864657651849538      7       0.05057323989491986     2
+       0.045321605268636066     ...
+        \end{lstlisting}
 
     \begin{itemize}
-      \item Document 138 is associated with topic 4 and topic 8
-        \item These are the Training and Geology topics
+      \item Document 8724 is associated with topic 8 and topic 0
+        \item These are the Biology and Computer Science topics
       \end{itemize}
 
       \pause
 
       \vspace{-3cm}
 
-  \begin{block}{doc138}
+  \begin{block}{doc8724}
     \small
-This Americas Program award will support a planning visit 
-dots  to carry out join research planning with scientists of the Instituto, to investigate field logistics, and examining key field sites, with the goal of developing two joint research projects, as well as a joint training program for advanced students of active tectonics and geologic hazards. The projects include a study of the geodynamic mass balance in the northern Andes between volcanic eruptions and erosion; study of neotectonic deformation and catastrophic sedimentation in the Interandean Valley
+Humans and other animals use visual  looming  of a stimulus to detect change in distance of a stimulus in the depth of the visual field. It is unclear how such visual cues drive neural signals that guide appropriate behavioral responses such as approach or avoidance for such a stimulus. Results will be important beyond insect vision, for understanding depth detection and obstacle avoidance by visual mechanisms in general, and for developing useful machine vision and guidance systems in robotics for computational neuroscience.
   \end{block}
 
 \end{frame}
@@ -274,6 +273,44 @@ dots  to carry out join research planning with scientists of the Instituto, to i
       \item Output file
     \end{itemize}
 
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\frametitle{Finding Similar Articles}
+
+  \begin{itemize}
+    \item We found a computational biology grant from \textsc{nsf}
+    \item How do we find similar grants in \textsc{nrc}?
+    \item Look for grants with high probability for Topic 0 and Topic 8
+  \end{itemize}
+
+      \begin{lstlisting}
+187     pages/1253988731023     8       0.4546086322042478      0       0.3405459548
+4236727     5       0.13293471300185633     ...
+186     pages/1253988731014     8       0.41662982704829793     9       0.1797146162
+3145737     ...
+0981687477E-4   
+148     pages/1253984734617     8       0.502404238103382       0       0.4069265225
+375647      6       0.050378383174511626    ...
+      \end{lstlisting}
+
+      \pause
+      \vspace{-3cm}
+
+      \begin{block}{Look it up \dots}
+        \centering
+        \includegraphics[width=0.8\linewidth]{topic_models/nrc_lookup}
+      \end{block}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Which topics appear together?}
+  \centering
+    \only<1>{\includegraphics[width=.8\linewidth]{topic_models/nsf_cor}}
+    \only<2>{\includegraphics[width=.8\linewidth]{topic_models/nrc_cor}}
 \end{frame}
 
 \begin{frame}
