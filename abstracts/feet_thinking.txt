@@ -1,0 +1,12 @@
+
+Title: Thinking on your Feet: Reinforcement Learning for Incremental Language Tasks
+
+Abstract: 
+
+In this talk, I'll discuss two real-world language applications that require "thinking on your feet": synchronous machine translation (or "machine simultaneous interpretation") and question answering (when questions are revealed one piece at a time).  In both cases, effective algorithms for these tasks must interrupt the input stream and decide when to provide output.
+
+Synchronous machine translation is when a sentence is being produced one word at a time in a foreign language and we want to produce a translation in English simultaneously (i.e., with as little delay between a foreign language word and its English translation). This is particularly difficult in verb-final languages like German or Japanese, where an English translation can barely begin until the verb is seen. Effective translation thus requires predictions of unseen elements of the sentence (e.g., the main verb in German and Japanese, or relative clauses in Japanese, or post-positions in Japanese). We use reinforcement learning to decide when to trust our verb predictions. It must learn to balance incorrect translation versus timely translations, and must use those predictions to translate the sentence.
+
+For question answering, we use a specially designed dataset that challenges humans: a trivia game called quiz bowl. These questions are written so that they can be interrupted by someone who knows more about the answer; that is, harder clues are at the start of the question and easier clues are at the end of the question. We create a recursive neural network to predict answers from incomplete questions and use reinforcement learning to decide when to guess.  We are able to answer questions earlier in the questions than most college trivia contestants.
+
+This talk covers three papers presented at the Empirical Methods in Natural Language Processing conference.
