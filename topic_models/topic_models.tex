@@ -7,7 +7,6 @@
 \newcommand{\dirnum}[4]{ \frac{\g{ #3 }}{#4} \prod_{#1}^{#2} }
 \newcommand{\dirden}[3]{ \g{ \sum_{#1}^{#2} #3 } }
 
-\section{Topic Model Introduction}
 
 \begin{frame}
 
@@ -128,6 +127,8 @@ From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarr
   \item How your data came to be
   \item Sequence of Probabilistic Steps
   \item Posterior Inference
+    \pause
+  \item Blei, Ng, Jordan.  Latent {\bf Dirichlet} Allocation.  JMLR, 2003.
 \end{itemize}
 
 \end{frame}
@@ -195,6 +196,18 @@ From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarr
 
 \else
 
+\begin{frame}{Generative Model}
+	\only<1> {   \includegraphics[width=.8\linewidth]{topic_models/nyt_topics}  }
+	\only<2> {   \includegraphics[width=.8\linewidth]{topic_models/nyt_documents}  }
+	\only<3> {   \includegraphics[width=.8\linewidth]{topic_models/inference_0}  }
+	\only<4> {   \includegraphics[width=.8\linewidth]{topic_models/inference_1}  }
+	\only<5> {   \includegraphics[width=.8\linewidth]{topic_models/inference_2}  }
+	\only<6> {   \includegraphics[width=.8\linewidth]{topic_models/inference_3}  }
+	\only<7> {   \includegraphics[width=.6\linewidth]{topic_models/inference_3}  }
+
+
+\end{frame}
+
 \frame
 {
   \frametitle{Generative Model Approach}
@@ -224,10 +237,10 @@ From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarr
 \item Topic models \only<2>{(latent variables)}
 \begin{itemize}
 \ifhighlevel
-	\item Topics to words
+	\item Topics to word types
 	\item Documents to topics
 \else
-	\item Topics to words---multinomial distribution
+	\item Topics to word types---multinomial distribution
 	\item Documents to topics---multinomial distribution
 \fi
 \end{itemize}

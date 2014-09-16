@@ -9,8 +9,8 @@
 		\item Use how humans these data as a prior for supervised maxent model~\cite{daume-04}
 		\item Prior for label $a$ and feature $f$ is a function of the number of buzzes $b$ and tf-idf~\cite{salton-68}
 \begin{equation}
-  \left[ \vphantom{\frac{a}{b}}\alpha \ind{ b(a,f) > 0} + \beta b(a,f) + \gamma
-  \right] \mbox{tf-idf}(a,f) .
+  \left[ \vphantom{\frac{a}{b}}\alpha \alert<4>{\ind{ b(a,f) > 0}} + \beta \alert<3>{ b(a,f)} + \gamma
+  \right] \alert<2>{\mbox{tf-idf}(a,f)} .
 \label{eq:meanweight}
 \end{equation}
 		\begin{itemize}

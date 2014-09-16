@@ -39,17 +39,15 @@ p(z_{d,n} | \theta_d) p(w_{d,n} | \beta_{z_{d,n}})
 
 \frame{
 	\frametitle{Inference}
-
 	\begin{center}
-	\only<1> {   \includegraphics[width=.8\linewidth]{topic_models/inference_0}  }
-	\only<2> {   \includegraphics[width=.8\linewidth]{topic_models/inference_1}  }
-	\only<3> {   \includegraphics[width=.8\linewidth]{topic_models/inference_2}  }
-	\only<4> {   \includegraphics[width=.8\linewidth]{topic_models/inference_3}  }
-	\only<5> {   \includegraphics[width=.6\linewidth]{topic_models/inference_3}  }
+\only<1> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
+\only<2> {\includegraphics[width=.8\linewidth]{topic_models/inference_4}}
+\only<3> {\includegraphics[width=.8\linewidth]{topic_models/inference_5}}
+\only<4> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
+\only<5> {\includegraphics[width=.8\linewidth]{topic_models/inference_6}}
+\only<6> {\includegraphics[width=.8\linewidth]{topic_models/inference_7}}
+\only<7> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
 	\end{center}
-
-        \only<5>{And repeat, conditioning $z_{d,n}$ on all of the other assignments}
-
 }
 
 
@@ -59,12 +57,12 @@ p(z_{d,n} | \theta_d) p(w_{d,n} | \beta_{z_{d,n}})
 \frametitle{Gibbs Sampling}
 \begin{itemize}
 \item For LDA, we will sample the topic assignments
-\item The topics and per-document topic proportions are integrated out / marginalized / Rao-Blackwellized
 \item Thus, we want:
 \begin{equation*}
 p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{ p(z_{d,n} = k, {\bm z}_{-d,n} | {\bm w}, \alpha, \lambda)} { p({\bm z}_{-d,n} | {\bm w},\alpha, \lambda)}
 \end{equation*}
 \pause
+\item The topics and per-document topic proportions are integrated out / marginalized
 \item Let $n_{d,i}$ be the number of words taking topic $i$ in document $d$.  Let $v_{k,w}$ be the number of times word $w$ is used in topic $k$.
 \end{itemize}
 
@@ -153,6 +151,24 @@ p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \al
 \end{frame}
 \else
 \fi
+
+\begin{frame}{Gibbs Sampling Equation}
+  
+\begin{equation}
+\alert<5>{\frac{\alert<1>{n_{d, k}} +  \alert<3>{\alpha_k}}{ \sum_{i}^{K} { n_{d,i} +\alpha_i}}} \alert<6>{\frac{\alert<2>{v_{k, w_{d,n}}} + \alert<4>{\lambda_{w_{d,n}}}}{ \sum_{i} { v_{k,i} + \lambda_{i} }}}
+\end{equation}
+
+\begin{itemize}
+  \item \alert<1>{Number of times document $d$ uses topic $k$}
+  \item \alert<2>{Number of times topic $k$ uses word type $w_{d,n}$}
+  \item \alert<3>{Dirichlet parameter for document to topic
+      distribution}
+  \item \alert<4>{Dirichlet parameter for topic to word distribution}
+  \item \alert<5>{How much this document likes topic $k$}
+  \item \alert<6>{How much this topic likes word $w_{d,n}$}
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}
   \frametitle{Sample Document}
