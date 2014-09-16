@@ -1,0 +1,46 @@
+% Copyright 2007 by Marco Barisione
+% Copyright 2011 by Henricus Bouwmeester
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+\DeclareOptionBeamer{shadow}[true]{\def\beamer@themerounded@shadow{#1}}
+\ExecuteOptionsBeamer{shadow=false}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\definecolor{CUGold}{RGB}{207,184,124} % #CFB87C
+\definecolor{CUDarkGray}{RGB}{86,90,92}
+\definecolor{CULightGray}{RGB}{162,164,163}
+\definecolor{CUBlue}{RGB}{75,146,219} % #4B92DB
+
+\setbeamercolor*{palette primary}{fg=white,bg=CUGold}
+\setbeamercolor*{palette secondary}{fg=white,bg=CUDarkGray}
+\setbeamercolor*{palette tertiary}{fg=white,bg=CULightGray}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+\setbeamercolor*{palette quinary}{fg=white,bg=CUBlue}
+\setbeamercolor*{palette senary}{fg=CUGold,bg=white}
+
+\setbeamercolor*{frametitle}{bg=CUDarkGray,fg=white}
+\setbeamercolor*{part title}{bg=white,fg=CUGold}
+\setbeamercolor*{item}{fg=CUGold}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor*{structure}{fg=CUDarkGray}
+
+\setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+\setbeamercolor{block title alerted}{use=alerted text,fg=alerted text.fg,bg=alerted text.fg!20!bg}
+\setbeamercolor{block title example}{use=example text,fg=example text.fg,bg=example text.fg!20!bg}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!50!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!50!bg}
+
+\setbeamertemplate{blocks}[rounded][shadow=\beamer@themerounded@shadow]
+
+\mode
+<all>
