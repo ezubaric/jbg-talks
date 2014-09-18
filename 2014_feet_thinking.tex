@@ -14,6 +14,8 @@
 
 \pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
 
+\newcommand{\g}{\, | \,}
+
 \newcommand{\gfxs}[2]{
 \begin{center}
 	\includegraphics[width=#2\linewidth]{simtrans/#1}
@@ -27,9 +29,7 @@
 }
 
 
-\usetheme[pageofpages=of,                    % String used between the current page and the
-                                             % total page count.
-          bullet=circle,                     % Use circles instead of squares for bullets.
+\usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
           titleline=true,                    % Show a line below the frame title.
           showdate=true,                     % show the date on the title page
           alternativetitlepage=true,         % Use the fancy title page.
@@ -163,6 +163,52 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{tabular}
 }
 
+\end{frame}
+
+\begin{frame}{Solution: Predicting the Verb}
+
+\begin{columns}
+
+\column{.5\linewidth}
+  \begin{itemize}
+    \item If we can figure out the verb, we can ``complete'' the
+      sentence
+    \item This is provided by language models that can predict the
+      next word in a sentence
+    \item Instead, we'll predict the verb
+  \end{itemize}
+
+\column{.5\linewidth}
+
+\gfxs{autocomplete}{.8}
+
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Language Models of Verbs}
+
+  \only<1>{\gfxs{verb_corpus_1}{.9}}
+  \only<2>{\gfxs{verb_corpus_2}{.9}}
+  \only<3>{\gfxs{verb_corpus_3}{.9}}
+
+\end{frame}
+
+\begin{frame}{Predicting the Verb}
+\begin{equation}
+  \arg\max_v p(v) \prod_{i=1}^t p(x_i \g v, x_{i-n+1:i-1})
+\end{equation}
+\end{frame}
+
+
+\begin{frame}{Consensus Translation}
+
+  \only<1>{\gfxs{consensus_0}{.8}}
+  \only<2>{\gfxs{consensus_1}{.8}}
+  \only<3>{\gfxs{consensus_2}{.8}}
+  \only<4>{\gfxs{consensus_3}{.8}}
+  \only<5>{\gfxs{consensus_4}{.8}}
 \end{frame}
 
 \section{Quiz Bowl}
