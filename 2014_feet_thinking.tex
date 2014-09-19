@@ -196,19 +196,109 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{frame}
 
 \begin{frame}{Predicting the Verb}
+\begin{itemize}
+  \item Build language model for every verb
+  \item Then, for any input text $x$ we can make a prediction of the verb
 \begin{equation}
   \arg\max_v p(v) \prod_{i=1}^t p(x_i \g v, x_{i-n+1:i-1})
 \end{equation}
+\pause
+  \item Most of these predictions will be totally wrong \dots
+  \item leading to horrible translations
+\end{itemize}
 \end{frame}
 
+\begin{frame}{What can we do?}
+
+\begin{columns}
+
+  \column{.5\linewidth}
+  \begin{itemize}
+    \item We have a set of \alert<2>{actions} (predict / translate)
+    \item In a changing environment \only<2->{\alert<2>{(state)}}
+    \item With a well defined \alert<2>{reward}
+\only<3>{\item Reinforcement learning}
+  \end{itemize}
+  \column{.5\linewidth}
+  \only<3->{
+  \gfxs{pancake_robot}{.8}
+  \begin{center}
+  Reinforcement Learning in Robotics: Applications and Real-World
+  Challenges
+  \end{center}
+  }
+
+  \end{columns}
+\end{frame}
+
+\begin{frame}{States and Actions}
+
+  \begin{itemize}
+    \item State
+      \begin{itemize}
+        \item The words we've seen
+        \item Predictions
+      \end{itemize}
+      \pause
+    \item Actions
+      \begin{itemize}
+        \item Wait
+        \item \alert<3>{Predict Verb}
+        \item \alert<3>{Predict Next Word}
+        \item \alert<3>{Commit}
+      \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Translations}
+  \begin{itemize}
+    \item Assume a ``black box''
+    \item German in, English out
+  \end{itemize}
+
+\end{frame}
 
 \begin{frame}{Consensus Translation}
 
-  \only<1>{\gfxs{consensus_0}{.8}}
-  \only<2>{\gfxs{consensus_1}{.8}}
-  \only<3>{\gfxs{consensus_2}{.8}}
-  \only<4>{\gfxs{consensus_3}{.8}}
-  \only<5>{\gfxs{consensus_4}{.8}}
+  \only<1>{\begin{center}
+``German in, English out'' black box
+      \end{center}}
+
+  \only<2>{\gfxs{consensus_0}{.8}}
+  \only<3>{\gfxs{consensus_1}{.8}}
+  \only<4>{\gfxs{consensus_2}{.8}}
+  \only<5>{\gfxs{consensus_3}{.8}}
+  \only<6>{\gfxs{consensus_4}{.8}}
+
+\end{frame}
+
+\begin{frame}{How we could translate a sentence}
+
+\only<1>{\gfxs{example_3}{.9}}
+\only<2>{\gfxs{example_4}{.9}}
+\only<3>{\gfxs{example_5}{.9}}
+\only<4>{\gfxs{example_6}{.9}}
+\only<5>{\gfxs{example_7}{.9}}
+\only<6>{\gfxs{example_8}{.9}}
+\only<7>{\gfxs{example_9}{.9}}
+\only<8>{\gfxs{example_10}{.9}}
+\only<9>{\gfxs{example_11}{.9}}
+\only<10>{\gfxs{example_12}{.9}}
+\only<11>{\gfxs{example_13}{.9}}
+\only<12>{\gfxs{example_14}{.9}}
+\only<13>{\gfxs{example_15}{.9}}
+\only<14>{\gfxs{example_16}{.9}}
+\only<15>{\gfxs{example_17}{.9}}
+\only<16>{\gfxs{example_18}{.9}}
+\only<17>{\gfxs{example_19}{.9}}
+\end{frame}
+
+\begin{frame}{Scoring Translations}
+
+  \only<1>{\gfxs{bleu_ex}{.8}}
+  \only<2>{\gfxs{bleu_correlation}{.6}}
+  \only<3>{\gfxs{integral_0}{.95}}
+  \only<4>{\gfxs{integral_1}{.95}}
 \end{frame}
 
 \section{Quiz Bowl}
