@@ -564,6 +564,97 @@ type \cite{moldovan-00}}
   \only<13>{\gfxq{rnn_0}{.8}}
 \end{frame}
 
+\begin{frame}{Training}
+
+  \begin{columns}
+    \column{.5\linewidth}
+      \begin{itemize}
+        \item Randomly initialize embeddings
+        \item Randomly initialize vectors
+        \item Update using \textsc{warp}
+          \begin{itemize}
+            \item Randomly choose an instance
+            \only<2->{\item Look where it lands}
+            \only<4->{\item Has a right answer}
+            \only<5->{\item Wrong answers may be closer}
+            \only<6->{\item Push away wrong answers
+            \item Bring wright answers closer}
+          \end{itemize}
+      \end{itemize}
+
+    \column{.5\linewidth}
+
+      \only<1>{\gfxq{warp_training_5}{.8}}
+      \only<2>{\gfxq{warp_training_4}{.8}}
+      \only<3>{\gfxq{warp_training_3}{.8}}
+      \only<4>{\gfxq{warp_training_2}{.8}}
+      \only<5>{\gfxq{warp_training_1}{.8}}
+      \only<6>{\gfxq{warp_training_0}{.8}}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Training}
+
+  \begin{itemize}
+    \item We use \textsc{rnn} information from parsed questions
+    \item And bag of words features from Wikipedia
+    \item Combine both features together
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Embedding}
+
+  \gfxq{embedding}{1.0}
+
+\end{frame}
+
+\begin{frame}{Comparing \textsc{rnn} to \textsc{bow}}
+
+\begin{tabular}{lrrrrrr}
+\hline
+& \multicolumn{3}{c}{History} & \multicolumn{3}{c}{Literature}\\
+Model    & Pos 1 & Pos 2 & Full & Pos 1 & Pos 2 & Full \\
+\hline
+\textsc{bow-qb} & 37.5 & 65.9 & 71.4 & 27.4 & 54.0 & 61.9 \\
+\textsc{qanta} & \bf 47.1 & \bf 72.1 & \bf 73.7 & \bf 36.4 & \bf 68.2 & \bf 69.1 \\
+\hline
+\textsc{bow-wiki} & 53.7 & 76.6 & 77.5 & 41.8 & 74.0 & 73.3 \\
+\textsc{combined} & \bf 59.8 & \bf 81.8 & \bf 82.3 & \bf 44.7 & \bf 78.7 & \bf 76.6 \\
+\hline
+\end{tabular}
+
+
+
+
+\end{frame}
+
+\begin{frame}{Now we're able to beat humans}
+
+  \only<1>{\gfxq{human_literature}{1.0}}
+  \only<2>{\gfxq{human_history}{1.0}}
+
+\end{frame}
+
+\begin{frame}{Examining vectors}
+
+  \only<1>{\gfxq{mann}{.65}}
+  \only<2>{\gfxq{cabot}{.6}}
+
+\end{frame}
+
+\begin{frame}{Future Steps}
+
+  \begin{itemize}
+    \item Using Wikipedia: transforming them into question-like sentences
+    \item Incorporating additional information: story plots
+    \item New network structures: capturing coreference
+    \item Exhibition
+  \end{itemize}
+
+\end{frame}
+
 \section{Simultaneous Translation}
 
 \begin{frame}{Simultaneous translation is the norm}
