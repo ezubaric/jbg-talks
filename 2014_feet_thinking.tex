@@ -76,6 +76,10 @@ Language Tasks}
     \begin{itemize}
         \item Dozens of defendants
         \item Judges from four nations (three languages)
+\pause
+        \item Status quo: speak, then translate
+\pause
+        \item After Nuremberg, simultaneouse translations became the norm
      \end{itemize}
 
 \end{columns}
@@ -86,12 +90,15 @@ Language Tasks}
 \begin{frame}{How Long are you Willing to Wait for a Translation?}
 
 \begin{itemize}
-  \item If you have to wait until the person speaking stops talking,
-    then they wait for you to finish translating, it can take
-    \emph{forever}!
-    \pause
-   \item Much better \only<3->{if you could get}
-     \only<4->{translations as soon as possible}
+  \item \only<2->{ If you have to wait a long time for a translation,
+      it makes a real conversation 
+    \emph{impossible}!}
+
+   \only<3->{\item Much better \only<4->{if you could get}
+     \only<5->{translations as soon as possible}}
+
+   \only<6->{\item But machine translation (mostly) works the same way}
+
 \end{itemize}
 
 \end{frame}
@@ -150,7 +157,6 @@ Language Tasks}
 
 \end{frame}
 
-\begin{comment}
 
 \begin{frame}[t]
 	\frametitle{Sample Question 1}
@@ -160,7 +166,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \only<8->{ {\bf Albert \underline{Einstein}}}
 \end{frame}
 
-\end{comment}
 
 
 \begin{frame}[t]
@@ -213,6 +218,17 @@ an} \only<9->{English computer scientist.} \\
 
 \end{frame}
 
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+        \includegraphics[width=0.9\linewidth]{general_figures/hehe}
+    \column{.5\linewidth}
+        \begin{block}{{\bf \href{http://cs.colorado.edu/~jbg//docs/qb_emnlp_2012.pdf}{Besting the Quiz Master: Crowdsourcing Incremental Classification Games}}}
+          {\bf Jordan Boyd-Graber}, He He, and Hal {Daum\'{e} III}. \emph{Empirical Methods in Natural Language Processing}, 2012
+        \end{block}
+  \end{columns}
+\end{frame}
 
 \begin{frame}
 
@@ -548,6 +564,19 @@ type \cite{moldovan-00}}
 
 \end{frame}
 
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+        \includegraphics[width=0.9\linewidth]{general_figures/mohit}
+    \column{.5\linewidth}
+        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_qb_rnn.pdf}{A Neural Network for Factoid Question Answering over Paragraphs}}}
+\underline{\href{http://cs.umd.edu/~miyyer/}{Mohit Iyyer}}, {\bf Jordan Boyd-Graber}, Leonardo Claudino, Richard Socher, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
+        \end{block}
+  \end{columns}
+\end{frame}
+
 \begin{frame}{Using Compositionality}
 
   \only<1-2>{\gfxq{rnn_11}{.8}}
@@ -632,8 +661,8 @@ Model    & Pos 1 & Pos 2 & Full & Pos 1 & Pos 2 & Full \\
 
 \begin{frame}{Now we're able to beat humans}
 
-  \only<1>{\gfxq{human_literature}{1.0}}
-  \only<2>{\gfxq{human_history}{1.0}}
+  \only<2>{\gfxq{human_literature}{1.0}}
+  \only<1>{\gfxq{human_history}{1.0}}
 
 \end{frame}
 
@@ -697,6 +726,19 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{tabular}
 }
 
+\end{frame}
+
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+        \includegraphics[width=0.9\linewidth]{general_figures/alvin}
+    \column{.5\linewidth}
+        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_simtrans.pdf}{Don't Until the Final Verb Wait: Reinforcement Learning for Simultaneous Machine Translation}}}
+\underline{\href{http://www.umiacs.umd.edu/~alvin/}{Alvin Grissom II}}, {\bf Jordan Boyd-Graber}, He He, John Morgan, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
+        \end{block}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Solution: Predicting the Verb}
@@ -914,8 +956,25 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{frame}
 
 
+\begin{frame}{Conclusion}
 
+  \begin{itemize}
+    \item Algorithms that think on their feet
+    \item Interaction between prediction and confidence
+    \item 
+  \end{itemize}
 
+\end{frame}
+
+\begin{frame}{Thanks!}
+
+\end{frame}
+
+\begin{frame}{References}
+\bibliographystyle{style/acl}
+\tiny
+\bibliography{bib/journal-full,bib/jbg}
+\end{frame}
 
 
 
