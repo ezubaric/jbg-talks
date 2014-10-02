@@ -18,6 +18,7 @@
 \newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
 \newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
 \newcommand{\g}{\, | \,}
+\newcommand{\citename}[1]{#1 }
 
 \newcommand{\gfxs}[2]{
 \begin{center}
@@ -79,7 +80,7 @@ Language Tasks}
 \pause
         \item Status quo: speak, then translate
 \pause
-        \item After Nuremberg, simultaneouse translations became the norm
+        \item After Nuremberg, simultaneous translations became the norm
      \end{itemize}
 
 \end{columns}
@@ -127,6 +128,31 @@ Language Tasks}
   \gfxs{nuremberg_translators}{.7}
   \gfxq{quizbowl}{.7}
 
+\end{columns}
+
+\end{frame}
+
+
+
+\begin{frame}{Common Foundation}
+
+\begin{columns}
+
+  \column{.5\linewidth}
+  \begin{itemize}
+    \item We have a set of \alert<2>{actions} (answer / translate)
+    \item In a changing environment \only<2->{\alert<2>{(state)}}
+    \item With a well defined \alert<2>{reward}
+\only<3>{\item Reinforcement learning}
+  \end{itemize}
+  \column{.5\linewidth}
+  \only<3->{
+  \gfxs{pancake_robot}{.8}
+  \begin{center}
+  Reinforcement Learning in Robotics: Applications and Real-World
+  Challenges
+  \end{center}
+  }
 \end{columns}
 
 \end{frame}
@@ -302,6 +328,25 @@ an} \only<9->{English computer scientist.} \\
 
 \end{frame}
 
+
+\begin{frame}{Common Foundation}
+
+\begin{columns}
+
+  \column{.5\linewidth}
+  \begin{itemize}
+    \item We have a set of \alert<2>{actions} (answer / translate)
+    \item In a changing environment \only<2->{\alert<2>{(state)}}
+    \item With a well defined \alert<2>{reward}
+\only<3>{\item Reinforcement learning}
+  \end{itemize}
+  \column{.5\linewidth}
+  \only<3->{
+  \gfxs{pancake_robot}{.8}
+  }
+\end{columns}
+
+\end{frame}
 
 \begin{frame}
 	\frametitle{System for Incremental Classifiers}
@@ -604,10 +649,10 @@ type \cite{moldovan-00}}
           \begin{itemize}
             \item Randomly choose an instance
             \only<2->{\item Look where it lands}
-            \only<4->{\item Has a right answer}
+            \only<4->{\item Has a correct answer}
             \only<5->{\item Wrong answers may be closer}
             \only<6->{\item Push away wrong answers
-            \item Bring wright answers closer}
+            \item Bring correct answers closer}
           \end{itemize}
       \end{itemize}
 
@@ -848,6 +893,26 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
 \end{frame}
 
+\begin{frame}{Scoring one Translation}
+  \begin{center}
+    Bilingual Evaluation Understudy (BLEU)
+\end{center}
+  \only<1>{\gfxs{bleu_ex}{.8}}
+  \only<2>{\gfxs{bleu_correlation}{.6}}
+  \only<3>{\gfxs{integral_0}{.95}}
+  \only<4>{\gfxs{integral_1}{.95}}
+\end{frame}
+
+
+\begin{frame}{Scoring a series of Translations}
+  \begin{center}
+    Bilingual Evaluation Understudy (BLEU)
+\end{center}
+  \only<1>{\gfxs{integral_0}{.95}}
+  \only<2>{\gfxs{integral_1}{.95}}
+\end{frame}
+
+
 \begin{frame}{How we could translate a sentence}
 
 \only<1>{\gfxs{example_3}{.9}}
@@ -869,12 +934,21 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \only<17>{\gfxs{example_19}{.9}}
 \end{frame}
 
-\begin{frame}{Scoring Translations}
-  \only<1>{\gfxs{bleu_ex}{.8}}
-  \only<2>{\gfxs{bleu_correlation}{.6}}
-  \only<3>{\gfxs{integral_0}{.95}}
-  \only<4>{\gfxs{integral_1}{.95}}
+\begin{frame}{Experimental Setup}
+
+  \begin{itemize}
+    \item \textsc{denews} corpus
+      \begin{itemize}
+        \item News snippets
+        \item Some formulaic
+        \item Some surprising
+      \end{itemize}
+    \item Only verb-final sentences
+    \item Some compromises with translation system (to make sure verbs appeared)
+  \end{itemize}
+
 \end{frame}
+
 
 \begin{frame}{Comparing Policies}
 
@@ -933,6 +1007,26 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{frame}
 
 
+\begin{frame}{(Fictional) \textsc{searn} example}
+
+  \begin{itemize}
+    \item Optimal is often too good
+      \begin{itemize}
+        \item Optimal oracle policy may always predict the verb
+      ``gegessen'' after five words
+        \item Our policy can only recognize this much later
+       \end{itemize}
+       \item Interpolating policies explores more states
+         \begin{itemize}
+           \item The classifier might pick up some \emph{later}
+             features that generalize well
+           \item Still get good reward
+           \item Slowly mutating policy lets us uncover these states
+         \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
 \begin{frame}{Learned Policy}
 
   \gfxs{learned_policy}{.8}
@@ -955,13 +1049,14 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
 \end{frame}
 
+\section{Conclusions}
 
 \begin{frame}{Conclusion}
 
   \begin{itemize}
     \item Algorithms that think on their feet
     \item Interaction between prediction and confidence
-    \item 
+    \item Imitation of what humans do
   \end{itemize}
 
 \end{frame}
