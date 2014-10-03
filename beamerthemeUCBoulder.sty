@@ -1,0 +1,38 @@
+% Copyright 2007 by Marco Barisione
+% Copyright 2011 by Henricus Bouwmeester
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+\mode<presentation>
+
+\DeclareOptionBeamer{alternativetitlepage}[true]{\PassOptionsToPackage{alternativetitlepage=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{titlepagelogo}{\PassOptionsToPackage{titlepagelogo=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{headerlogo}{\PassOptionsToPackage{headerlogo=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{bullet}{\PassOptionsToPackage{bullet=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{pageofpages}{\PassOptionsToPackage{pageofpages=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{titleline}[true]{\PassOptionsToPackage{titleline=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{showdate}[true]{\PassOptionsToPackage{showdate=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{watermark}{\PassOptionsToPackage{watermark=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{watermarkheight}{\PassOptionsToPackage{watermarkheight=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{watermarkheightmult}{\PassOptionsToPackage{watermarkheightmult=#1}{beamerouterthemedecolines}}
+
+\ProcessOptionsBeamer
+
+\useinnertheme{fancy}
+\useoutertheme{decolines}
+\usecolortheme{ucdblack}
+
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamerfont{title}{size=\fontsize{14}{16}\selectfont}
+\setbeamerfont{headsection}{size=\fontsize{6}{8}\selectfont\bfseries}
+\setbeamerfont{headsubsection}{size=\fontsize{6}{8}\selectfont}
+\setbeamerfont{pagenumber}{size=\fontsize{5}{5}\selectfont}
+\setbeamerfont{date}{size=\fontsize{6}{8}\selectfont}
+\setbeamerfont{frametitle}{size=\fontsize{10}{16}\selectfont\bfseries}
+
+\mode
+<all>
