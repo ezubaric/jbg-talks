@@ -177,8 +177,24 @@ Language Tasks}
 With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no moving parts. He did not take interaction with neighbors into account when formulating his theory of} \only<3->{heat capacity, so} \only<4->{Debye adjusted the theory for low temperatures. His} \only<4->{summation convention automatically sums repeated indices in tensor products. His name is attached to the A and B coefficients} \only<5->{for spontaneous and stimulated emission, the subject of one of his multiple groundbreaking 1905 papers. He further developed the model of statistics sent to him by} \only<6->{Bose to describe particles with integer spin. For 10 points, who is this German physicist best known for formulating the} \only<7->{special and general theories of relativity?} \\
 \vspace{1cm}
 \only<8->{ {\bf Albert \underline{Einstein}}}
-\end{frame}
 
+\only<9->{
+\vspace{-4cm}
+
+\begin{block}{Faster = Smarter}
+
+  \begin{enumerate}
+    \item Colorado School of Mines
+    \item Brigham Young University
+    \item Harvey Mudd College
+    \item University of Colorado
+  \end{enumerate}
+
+
+\end{block}
+}
+
+\end{frame}
 
 
 \begin{frame}
@@ -506,13 +522,14 @@ type \cite{moldovan-00}}
 \begin{frame}{How can we do better?}
 
   \begin{itemize}
-    \item Use order of words in a sentence ``this man shot at Aaron
-      Burr'' very different from ``Aaron Burr shot at this man''
+    \item Use order of words in a sentence ``this man shot Lee Harvey Oswald'' very different from ``Lee Harvey Oswald shot this man''
     \item Use relationship between questions (``China'' and
       ``Taiwan'')
-    \item Use learned features
+    \item Use learned features and dimensions, not the words we start with
       \pause
     \item Recursive Neural Networks~\cite{socher-12}
+    \item First-time a \emph{learned} representation has been applied
+      to question answering
   \end{itemize}
 
 \end{frame}
@@ -551,8 +568,8 @@ type \cite{moldovan-00}}
   \begin{columns}
     \column{.5\linewidth}
       \begin{itemize}
-        \item Randomly initialize embeddings
-        \item Randomly initialize vectors
+        \item Initialize embeddings from \textsc{word2vec}
+        \item Randomly initialize composition matrices
         \item Update using \textsc{warp}
           \begin{itemize}
             \item Randomly choose an instance
@@ -615,8 +632,7 @@ Percentage accuracy of different vector-space models.
 
 \begin{frame}{Now we're able to beat humans}
 
-  \only<2>{\gfxq{human_literature}{1.0}}
-  \only<1>{\gfxq{human_history}{1.0}}
+  \gfxq{human_history}{1.0}
 
 \end{frame}
 
@@ -664,7 +680,9 @@ Percentage accuracy of different vector-space models.
     \column{.5\linewidth}
       \begin{itemize}
         \item Many languages are \textsc{sov}
-        \item \alert<2>{German}, Japanese, Farsi, Korean, \alert<3>{Yiddish}
+        \item \alert<2>{German}, Japanese, Farsi, Korean,
+          \alert<3>{Yiddish}
+        \item<4-> First learned system for simulatenous translation
       \end{itemize}
     \column{.5\linewidth}
       \gfxs{yoda}{.6}
@@ -776,9 +794,8 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
     \item Actions
       \begin{itemize}
         \item Wait
-        \item \alert<3>{Predict Verb}
-        \item \alert<3>{Predict Next Word}
-        \item \alert<3>{Commit}
+        \item \alert<3>{Predict Verb and Translate}
+        \item \alert<3>{Commit to Translation}
       \end{itemize}
     \end{itemize}
 \end{frame}
@@ -823,28 +840,6 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{frame}
 
 
-\begin{frame}{How we could translate a sentence}
-
-\only<1>{\gfxs{example_3}{.9}}
-\only<2>{\gfxs{example_4}{.9}}
-\only<3>{\gfxs{example_5}{.9}}
-\only<4>{\gfxs{example_6}{.9}}
-\only<5>{\gfxs{example_7}{.9}}
-\only<6>{\gfxs{example_8}{.9}}
-\only<7>{\gfxs{example_9}{.9}}
-\only<8>{\gfxs{example_10}{.9}}
-\only<9>{\gfxs{example_11}{.9}}
-\only<10>{\gfxs{example_12}{.9}}
-\only<11>{\gfxs{example_13}{.9}}
-\only<12>{\gfxs{example_14}{.9}}
-\only<13>{\gfxs{example_15}{.9}}
-\only<14>{\gfxs{example_16}{.9}}
-\only<15>{\gfxs{example_17}{.9}}
-\only<16>{\gfxs{example_18}{.9}}
-\only<17>{\gfxs{example_19}{.9}}
-\end{frame}
-
-
 
 \begin{frame}{Comparing Policies}
 
@@ -856,6 +851,9 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
   \only<6>{\gfxs{reward_example_5}{.8}}
   \only<7>{\gfxs{reward_example_6}{.8}}
 \end{frame}
+
+
+
 
 \begin{frame}{Imitation Learning}
 
@@ -875,6 +873,19 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
   \end{columns}
 
 \end{frame}
+
+
+\begin{frame}{How do we find a good policy?}
+
+  \only<1>{\gfxs{searn_7}{.8}}
+  \only<2>{\gfxs{searn_6}{.8}}
+  \only<3>{\gfxs{searn_5}{.8}}
+  \only<4>{\gfxs{searn_4}{.8}}
+  \only<5>{\gfxs{searn_3}{.8}}
+  \only<6>{\gfxs{searn_2}{.8}}
+  \only<7>{\gfxs{searn_1}{.8}}
+\end{frame}
+
 
 \begin{frame}{How do we find a good policy?}
 
@@ -918,27 +929,8 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
 \end{frame}
 
-\begin{frame}{(Fictional) \textsc{searn} example}
 
-  \begin{itemize}
-    \item Optimal is often too good
-      \begin{itemize}
-        \item Optimal oracle policy may always predict the verb
-      ``gegessen'' after five words
-        \item Our policy can only recognize this much later
-       \end{itemize}
-       \item Interpolating policies explores more states
-         \begin{itemize}
-           \item The classifier might pick up some \emph{later}
-             features that generalize well
-           \item Still get good reward
-           \item Slowly mutating policy lets us uncover these states
-         \end{itemize}
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Learned Policy}
+\begin{frame}{Learned Policy with Accumulated Reward}
 
   \gfxs{learned_policy}{.8}
 
@@ -966,6 +958,11 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
   \begin{itemize}
     \item Algorithms that think on their feet
+      \begin{itemize}
+        \item First learned system for simultaneous translation
+        \item Moving being hand-engineered or bag of words features
+          for question answering
+      \end{itemize}
     \item Interaction between prediction and confidence
     \item Imitation of what humans do
   \end{itemize}
@@ -1014,27 +1011,37 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
 }
 
-
-
 \begin{frame}{Come to Boulder}
 
 \begin{columns}
 	\column{.5\linewidth}
+        \only<1>{
 		\includegraphics[width=.9\linewidth]{colorado/boulder} \\
-		\includegraphics[width=.9\linewidth]{colorado/cs_dept}		
+		\includegraphics[width=.9\linewidth]{colorado/cs_dept}
+              }
+         \only<2>{
+              \includegraphics[width=.9\linewidth]{colorado/slp}
+           }
 	\column{.5\linewidth}	
 		\begin{itemize}
-			\item Looking for 3-4 students next year
+			\item Looking for 3-4 students / interns
 			\begin{itemize}
 				\item Interactive machine learning
 				\item Question answering
 				\item Computational social science
 			\end{itemize}
-			\item Boulder will likely also be hiring 1-2 faculty in and around machine learning
+			\item Boulder will likely also be hiring 1-2
+                          faculty in and around machine learning
+                        \item<2> One of the best places for natural
+                          language processing and cognitive science: Jim Martin, Martha
+                          Palmer, Mans Hulden, Wayne Ward, Michael
+                          Mozer, Aaron Clauset
 		\end{itemize}
 \end{columns}
 
 \end{frame}
+
+
 
 
 \frame{
@@ -1043,8 +1050,8 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
         \begin{block}{Collaborators}
           Hal Daum\'e III (UMD), Dave Blei
-          (Princeton), Philip Resnik (UMD), Christiane Fellbaum
-          (Princeton), NAQT
+          (Princeton), Philip Resnik (UMD), NAQT, Danny Bouman (UMD UG),
+          Stephanie Hwa (UMD UG)
         \end{block}
 
         \begin{block}{Funders}
@@ -1105,6 +1112,28 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 	  \end{center}
 
 \end{frame}
+
+\begin{frame}{How we could translate a sentence}
+
+\only<1>{\gfxs{example_3}{.9}}
+\only<2>{\gfxs{example_4}{.9}}
+\only<3>{\gfxs{example_5}{.9}}
+\only<4>{\gfxs{example_6}{.9}}
+\only<5>{\gfxs{example_7}{.9}}
+\only<6>{\gfxs{example_8}{.9}}
+\only<7>{\gfxs{example_9}{.9}}
+\only<8>{\gfxs{example_10}{.9}}
+\only<9>{\gfxs{example_11}{.9}}
+\only<10>{\gfxs{example_12}{.9}}
+\only<11>{\gfxs{example_13}{.9}}
+\only<12>{\gfxs{example_14}{.9}}
+\only<13>{\gfxs{example_15}{.9}}
+\only<14>{\gfxs{example_16}{.9}}
+\only<15>{\gfxs{example_17}{.9}}
+\only<16>{\gfxs{example_18}{.9}}
+\only<17>{\gfxs{example_19}{.9}}
+\end{frame}
+
 
 
 
