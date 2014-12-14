@@ -121,26 +121,36 @@ Language Tasks}
 
 
 
-\begin{frame}{Common Foundation}
+\begin{frame}{Very Different Tasks, Common Foundation}
 
 \begin{columns}
 \column{.5\linewidth}
-  \gfxs{pancake_robot}{.8}
+  \gfxs{pancake_robot}{.4}
   \begin{center}
-  Reinforcement Learning in Robotics: Applications and Real-World
-  Challenges
   \end{center}
   
   \column{.5\linewidth}
   \begin{itemize}
-    \item We have a set of actions (answer / translate)
-    \item In a changing environment (state)
-    \item With a well defined reward
-      \pause
     \item Reinforcement learning
+    \item Machine learning / robotics framework
+    \item Underused in NLP
   \end{itemize}
-  
 \end{columns}
+
+\vspace{-.5cm}
+
+  \begin{center}
+\begin{tabular}{ccc}
+\hline
+  & QA & MT \\
+\hline
+{\bf State} & Words Seen & Foreign Words Seen \\
+{\bf Reward} & Answer Accuracy & Translation Quality \\
+{\bf Actions} & Answer / Wait & Translate / Wait \\
+\hline
+\end{tabular}
+
+  \end{center}
 
 \end{frame}
 
@@ -179,14 +189,17 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \only<8->{ {\bf Albert \underline{Einstein}}}
 
 \only<9->{
-\vspace{-4cm}
+\vspace{-6cm}
 
 \begin{block}{Faster = Smarter}
 
   \begin{enumerate}
     \item Colorado School of Mines
     \item Brigham Young University
+    \item California Institute of Technology
+    \item Peking University
     \item Harvey Mudd College
+    \item Darmstadt University
     \item University of Colorado
   \end{enumerate}
 
@@ -209,9 +222,13 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 		\column{.5\linewidth}
 		\begin{itemize}
 			\item This is {\bf not} Jeopardy \cite{ferruci-10}
-			\item There are buzzers, but players can only buzz at the end of a question
+			\item There are buzzers, but players only buzz
+                          at the question end
 			\item Doesn't discriminate knowledge
-			\item Quiz bowl questions are pyramidal
+			\item Quiz bowl is pyramidal
+                        \item Watson must decide to answer {\bf once}, after
+                          complete question
+                        \item Quiz Bowl: decide after each word
 		\end{itemize}
 
 	\end{columns}
@@ -244,27 +261,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
   \end{columns}
 \end{frame}
 
-
-
-
-\begin{frame}{Common Foundation}
-
-\begin{columns}
-
-  \column{.5\linewidth}
-  \begin{itemize}
-    \item We have a set of \alert<2>{actions} (answer / translate)
-    \item In a changing environment \only<2->{\alert<2>{(state)}}
-    \item With a well defined \alert<2>{reward}
-\only<3>{\item Reinforcement learning}
-  \end{itemize}
-  \column{.5\linewidth}
-  \only<3->{
-  \gfxs{pancake_robot}{.8}
-  }
-\end{columns}
-
-\end{frame}
 
 \begin{frame}
 	\frametitle{System for Incremental Classifiers}
@@ -555,12 +551,16 @@ type \cite{moldovan-00}}
   \only<5>{\gfxq{rnn_8}{.8}}
   \only<6>{\gfxq{rnn_7}{.8}}
   \only<7>{\gfxq{rnn_6}{.8}}
-  \only<8>{\gfxq{rnn_5}{.8}}
-  \only<9>{\gfxq{rnn_4}{.8}}
-  \only<10>{\gfxq{rnn_3}{.8}}
-  \only<11>{\gfxq{rnn_2}{.8}}
-  \only<12>{\gfxq{rnn_1}{.8}}
-  \only<13>{\gfxq{rnn_0}{.8}}
+
+  \only<8>{\gfxq{rnn_recursive_1}{.8}}
+  \only<9>{\gfxq{rnn_recursive_2}{.8}}
+  \only<10>{\gfxq{rnn_recursive_3}{.8}}
+
+  \only<11>{\gfxq{rnn_5}{.8}}
+  \only<12>{\gfxq{rnn_4}{.8}}
+  \only<13>{\gfxq{rnn_3}{.8}}
+  \only<14>{\gfxq{rnn_2}{.8}}
+
 \end{frame}
 
 \begin{frame}{Training}
@@ -599,6 +599,8 @@ type \cite{moldovan-00}}
     \item We use \textsc{rnn} information from parsed questions
     \item And bag of words features from Wikipedia
     \item Combine both features together
+      \pause
+    \item Incrementalization is tricky (shift-reduce parser)
   \end{itemize}
 
 \end{frame}
@@ -754,32 +756,10 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
   \arg\max_v p(v) \prod_{i=1}^t p(x_i \g v, x_{i-n+1:i-1})
 \end{equation}
 \pause
-  \item Most of these predictions will be totally wrong \dots
+  \item Most of these predictions will be totally wrong (18\%
+    accuracy) \dots
   \item leading to horrible translations
 \end{itemize}
-\end{frame}
-
-\begin{frame}{What can we do?}
-
-\begin{columns}
-
-  \column{.5\linewidth}
-  \begin{itemize}
-    \item We have a set of \alert<2>{actions} (predict / translate)
-    \item In a changing environment \only<2->{\alert<2>{(state)}}
-    \item With a well defined \alert<2>{reward}
-\only<3>{\item Reinforcement learning}
-  \end{itemize}
-  \column{.5\linewidth}
-  \only<3->{
-  \gfxs{pancake_robot}{.8}
-  \begin{center}
-  Reinforcement Learning in Robotics: Applications and Real-World
-  Challenges
-  \end{center}
-  }
-
-  \end{columns}
 \end{frame}
 
 \begin{frame}{States and Actions}
@@ -791,7 +771,7 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
         \item Predictions
       \end{itemize}
       \pause
-    \item Actions
+    \item Actions (more complicated than Quiz Bowl)
       \begin{itemize}
         \item Wait
         \item \alert<3>{Predict Verb and Translate}
@@ -843,13 +823,17 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
 \begin{frame}{Comparing Policies}
 
-  \only<1>{\gfxs{reward_example_0}{.8}}
-  \only<2>{\gfxs{reward_example_1}{.8}}
-  \only<3>{\gfxs{reward_example_2}{.8}}
-  \only<4>{\gfxs{reward_example_3}{.8}}
-  \only<5>{\gfxs{reward_example_4}{.8}}
-  \only<6>{\gfxs{reward_example_5}{.8}}
-  \only<7>{\gfxs{reward_example_6}{.8}}
+  \only<1-7>{\vspace{4.75cm}}
+  \only<8-14>{\vspace{3.3cm}}
+  \only<15-21>{\vspace{2cm}}
+
+  \only<1,8,15,22>{\gfxs{reward_example_0}{.8}}
+  \only<2,9,16,23>{\gfxs{reward_example_1}{.8}}
+  \only<3,10,17,24>{\gfxs{reward_example_2}{.8}}
+  \only<4,11,18,25>{\gfxs{reward_example_3}{.8}}
+  \only<5,12,19,26>{\gfxs{reward_example_4}{.8}}
+  \only<6,13,20,27>{\gfxs{reward_example_5}{.8}}
+  \only<7,14,21,28>{\gfxs{reward_example_6}{.8}}
 \end{frame}
 
 
@@ -930,11 +914,21 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{frame}
 
 
-\begin{frame}{Learned Policy with Accumulated Reward}
 
-  \gfxs{learned_policy}{.8}
+\begin{frame}{Comparing Policies}
+
+  \gfxs{cummulative}{.6}
 
 \end{frame}
+
+\begin{frame}{Learned Policy with Accumulated Reward}
+
+  \only<1>{\gfxs{compare_line_batch}{.8}}
+  \only<2>{\gfxs{compare_line_batch_monotone}{.8}}
+  \only<3>{\gfxs{compare_line_batch_monotone_opt}{.8}}
+  \only<4>{\gfxs{compare_line_all}{.8}}
+\end{frame}
+
 
 \begin{frame}{Example Sentence}
 
@@ -947,6 +941,7 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
   \begin{itemize}
     \item Richer translation model
     \item Paraphrase database
+    \item Better reward (e.g., MEANT)
     \item Verb prediction through argument structure
   \end{itemize}
 

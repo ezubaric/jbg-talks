@@ -1,0 +1,735 @@
+
+\newif\ifcrossling\crosslingtrue
+\newif\ifitmtree\itmtreetrue
+\newif\iflong\longfalse
+\newif\ifevaluation\evaluationfalse
+\newif\ifconjugacy\conjugacyfalse
+\newif\ifnonpar\nonparfalse
+\newif\ifling\lingfalse
+\newif\ifhighlevel\highleveltrue
+\newif\iftmreview\tmreviewfalse
+\newif\ifevocation\evocationfalse
+\newif\ifsupershortmlslda\supershortmlsldatrue
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+\pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
+\definecolor{green}{rgb}{0,.3,0}
+
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{listings}
+\usepackage{environ}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{overpic}
+
+\usepackage{multirow}
+
+\usetheme{Rochester}
+%\useoutertheme{infolines}
+%\usetheme{Boadilla}
+%\usetheme{Singapore}
+\usecolortheme{umd}
+\title{Interactive Topic Models}
+\author{Jordan Boyd-Graber}
+
+\usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
+          titleline=true,                    % Show a line below the frame title.
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/culogo,              % Logo for the first page.
+          % Logo for the header on first page.
+          headerlogo=general_figures/boulder_cs,
+          ]{UCBoulder}
+
+\usecolortheme{ucdblack}
+\date{Fall 2014}
+
+
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\dir}[1]{\mbox{Dir}(#1)}
+\newcommand{\mult}[1]{\mbox{Mult}( #1)}
+\newcommand{\Beta}[1]{\mbox{Beta}( #1)}
+\newcommand{\G}[1]{\Gamma \left( \textstyle #1 \right)}
+\newcommand{\LG}[1]{\log \Gamma \left( \textstyle #1 \right)}
+\newcommand{\WN}[0]{\textsc{WordNet}}
+\newcommand{\itmspace}[0]{\hspace{2cm}}
+\newcommand{\abr}[1]{\textsc{#1}}
+\newcommand{\lda}[0]{\abr{lda}}
+\newcommand{\slda}[0]{\abr{slda}}
+
+\newcommand{\digam}[1]{\Psi \left( \textstyle #1 \right) }
+\newcommand{\ddigam}[1]{\Psi' \left( \textstyle #1 \right) }
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+\newcommand{\D}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\elbo}{\mathcal{L}}
+
+
+\newcommand{\citename}[1]{\emph{#1} }
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\Dir}{\mathrm{Dir}}
+\newcommand{\Mult}{\mathrm{Mult}}
+\newcommand{\g}[1]{\Gamma \left( #1 \right)}
+\newcommand{\paragraph}[1]{ \vskip 1cm {\bf \large #1}}
+
+\NewEnviron{smalign}{
+\vspace{-.6cm}
+\begin{small}
+\begin{align}
+  \BODY
+\end{align}
+\end{small}
+\vspace{-.6cm}
+}
+
+
+\providecommand{\graphscale}{0.6}
+
+\newcommand{\danquote}[1]{
+
+\begin{flushright}
+\begin{overpic}[width=5.5cm,tics=10]{general_figures/speech_bubble}
+	\put(10,30) { \parbox{4cm}{#1 }}
+\end{overpic}
+\includegraphics[width=1.5cm]{general_figures/milkman_dan}
+\end{flushright}
+}
+
+
+% \AtBeginSection[] % "Beamer, do the following at the start of every section"
+% { \begin{frame}
+
+% \frametitle{Outline} % make a frame titled "Outline"
+% \tableofcontents[currentsection] % show TOC and highlight current section
+% \end{frame} }
+
+\lstset{language=Python}
+
+\DeclareMathSymbol{\R}{\mathbin}{AMSb}{"52}
+
+%\setbeamertemplate{footline}{\hspace*{.5cm}\scriptsize{\insertauthor
+
+\begin{document}
+
+% this prints title, author etc. info from above
+
+\frame{\titlepage}
+
+
+\begin{frame}{Roadmap}
+
+	\begin{itemize}
+		\item Topic models
+		\item Need for interactivity
+		\item Models and learning for interactivity
+		\item Tweaking and exploring data
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{center}
+\frametitle{Topic Models as a Black Box}
+From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarrow$ \textbf<2>{words to topics} \\
+\only<1>{\includegraphics[width=0.6\linewidth]{reading_tea_leaves/figures/heldout_0} }
+\only<2>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/figures/nyt_topics_wide}}
+\only<3>{\includegraphics[width=0.9\linewidth]{topic_models/nyt_documents}}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{Not all topics are great}
+
+	\begin{center}
+		\only<1>{\includegraphics[width=.8\linewidth]{reading_tea_leaves/figures/topic_precision}}
+		\only<2>{\includegraphics[width=.8\linewidth]{reading_tea_leaves/figures/shuttered_model_precision}}
+		
+		\begin{block}{Reading Tea Leaves}
+			Chang, Boyd-Graber, Wang, Gerrish, Blei.  NIPS 2009.
+		\end{block}
+	\end{center}
+\end{frame}
+
+
+\frame{
+
+\begin{center}
+\only<1>{Model Precision on New York Times}
+\end{center}
+
+\begin{columns}
+\column{.84\linewidth}
+\begin{flushright}
+  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/mp}}
+  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/mp_y}\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_mp}\\}
+  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_x}}
+
+\end{flushright}
+\column{.15\linewidth}
+  \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/legend}
+\end{columns}
+\vspace{-0.75cm}
+\begin{center}
+  \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/held-out} \\
+\only<1> {within a model, higher likelihood $\not =$ higher interpretability}
+\end{center}
+}
+
+
+
+\frame{
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+\includegraphics[width=.8\linewidth]{general_figures/yuening}
+
+\column{.5\linewidth}
+
+\begin{block}{Interactive Topic Modeling}
+Yuening Hu, Jordan Boyd-Graber, and Brianna Satinoff.  Association for Computational Linguistics, 2011.
+\end{block}
+
+\end{columns}
+
+}
+
+
+\frame{
+
+\frametitle{The Problem: User Perspective}
+
+\begin{columns}
+
+\column{.4\linewidth}
+\begin{center}
+\begin{tabular}{ccc}
+& \only<2->{\itmspace}\color<2->{red}{bladder} & \\
+& \only<3->{\hspace{-2cm}} \color<3->{blue}{spinal\_cord}  & \\
+& \only<3->{\hspace{-2cm}} \color<3->{blue}{sci} & \\
+& \only<3->{\hspace{-2cm}}\color<3->{blue}{spinal\_cord\_injury} & \\
+& \only<3->{\hspace{-2cm}}\color<3->{blue}{spinal} & \\
+& \only<2->{\itmspace}\color<2->{red}{urinary} & \\
+& \only<2->{\itmspace}\color<2->{red}{urothelial} & \\
+& \only<3->{\hspace{-2cm}}\color<3->{blue}{cervical} & \\
+& injury & \\
+& recovery & \\
+& \only<2->{\itmspace}\color<2->{red}{urinary\_tract} & \\
+& locomotor & \\
+& \only<3->{\hspace{-2cm}}\color<3->{blue}{lumbar} & \\
+\end{tabular}
+\end{center}
+
+\column{.6\linewidth}
+
+\danquote{These words don't belong together!}
+
+\end{columns}
+
+}
+
+\begin{frame}
+        \frametitle{This is serious business!}
+
+
+        \begin{itemize}
+          \item Decision makers see problems
+          \item No easy way to correct the problem
+          \item Result: entire approach is abandoned
+\pause
+          \item Two ingredients in the fix:
+            \begin{itemize}
+              \item New models
+              \item How to learn from mistakes
+            \end{itemize}
+        \end{itemize}
+
+\end{frame}
+
+
+
+\frame{
+	\frametitle{Fix Ingredient \#1: The model}
+
+\begin{columns}
+
+\column{.4\linewidth}
+
+\begin{itemize}
+	\item The topics in a topic model are \only<2->{\alert<2>{uncorrelated}} distributions over words
+	\only<3->{
+	\item The advice you get can be encoded as correlations
+		\begin{itemize}
+			\alert<4>{\item Positive correlations}
+			\alert<5>{\item Negative correlations}
+		\end{itemize}
+	}
+
+\end{itemize}
+
+\column{.6\linewidth}
+
+	\only<1-2>{	\includegraphics[width=\linewidth]{interactive_topic_models/constraints_1}     }
+	\only<3-4>{	\includegraphics[width=\linewidth]{interactive_topic_models/constraints_2}     }
+	\only<5->{	\includegraphics[width=\linewidth]{interactive_topic_models/constraints_3}     }
+\end{columns}
+
+}
+
+\frame{
+
+	\frametitle{Tree-based Generative Process}
+
+	\begin{itemize}
+		\item In LDA, a topic is a multinomial distribution over words
+		\item Here, \emph{each topic} is a tree
+		\begin{itemize}
+			\item Each word is a leaf
+			\item Start at root node
+			\item Proceed down tree node by node until you reach a leaf
+		\end{itemize}
+	\end{itemize}
+}
+
+
+\frame{
+
+	\frametitle{Example of Priors}
+
+	\begin{center}
+		\only<1>{ \includegraphics[width=.8\linewidth]{interactive_topic_models/tree_constraints_0} }
+		\only<2>{ \includegraphics[width=.8\linewidth]{interactive_topic_models/tree_constraints_1} }
+		\only<3>{ \includegraphics[width=.8\linewidth]{interactive_topic_models/tree_constraints_2} }
+	\end{center}
+
+	\begin{columns}
+
+		\column{.5\linewidth}
+
+			\only<2>{
+
+			\begin{itemize}
+				\item For negative correlations $\tau << \beta$
+				\item Encourages very, very sparse distributions
+			\end{itemize}
+				\includegraphics[width=.7\linewidth]{interactive_topic_models/uniform_dirichlet}
+
+
+			}
+
+
+			\only<3>{
+
+			\begin{itemize}
+				\item For positive correlations $\eta >> \beta$
+				\item Encourages uniform distributions
+			\end{itemize}
+				\includegraphics[width=.7\linewidth]{interactive_topic_models/sparse_dirichlet}
+
+
+			}
+
+		\column{.5\linewidth}
+
+	\end{columns}
+
+}
+
+
+
+\begin{frame}
+  \frametitle{Adding meaning to topic models}
+
+        \begin{itemize}
+	 \item Add an additional step to model topics as a distribution over concepts
+
+         \item We've used this formalism to build probabilistic word-sense
+           disambiguation algorithms~\cite{boyd-graber-07} and multilingual models~\cite{boyd-graber-10}
+
+         \item Others have used it to encode database constraints (e.g. cannot link and must link)~\cite{andrzejewski-09} or first order logic~\cite{andrzejewski-11}
+        \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Adding meaning to topic models}
+        \begin{block}{Traditional Topic Models}
+                $ p(w) = \prod_d \prod_n^{N_d} \left( p(w_{d,n} | \phi_{z_{d,n}})
+                  \explain{\alert<3>{topic}}{p(z_{d,n} | \theta_d)} \right) p(\theta_d | \alpha)                 \explain{\alert<2>{topic to words}}{ \prod_k^K
+p(\phi_k | \eta) }$
+        \end{block}
+
+        \begin{block}{Our Model}
+          \vspace{-0.8cm}
+          \begin{align*}
+               p(w) = \prod_d \prod_n^{N_d} & \left( p(w_{d,n} | \pi_{l_{d,n}})
+                 \explain{\alert<6>{meaning and topic}} {p(l_{d,n} | \phi_{d,n} )
+                   p(z_{d,n} | \theta_d)}  \right) p(\theta_d | \alpha) \\
+               &  \explain{\alert<4>{topic to concept}}{\prod_k^K
+                p(\phi_k | \eta)} \explain{\alert<5>{concept to word}}{\prod_c^C \left(
+                  p(\pi_{k,c} | \tau) \right) }
+           \end{align*}
+        \end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+
+        % TODO(jbg): add image
+        \frametitle{Fix Ingredient \#2: Online Learning}
+
+        \begin{itemize}
+                \item Feedback shows data where you made mistakes
+                \item ``Forget'' those data~\cite{yao-09}
+                \item Then rerun inference, pretending you're seeing them for the first time
+                \item Allows you to escape from local optima
+        \end{itemize}
+
+\end{frame}
+
+
+
+\frame{
+	\frametitle{How to incorporate feedback?}
+
+	\begin{columns}
+
+	\column{.5\linewidth}
+
+		\begin{columns}
+
+			\column{.6\linewidth}
+
+			\includegraphics[width=\linewidth]{topic_models/nyt_topics}
+
+
+			\column{.4\linewidth}
+			\begin{center}
+				\only<2->{\includegraphics[width=.6\linewidth]{general_figures/arrow_right_down} \\}
+				\only<2->{\includegraphics[width=.6\linewidth]{general_figures/milkman_dan} \\}
+				\invisible<-2>{\includegraphics[width=.6\linewidth,angle=270]{general_figures/arrow_right_down}}
+			\end{center}
+
+		\end{columns}
+
+	\column{.5\linewidth}
+
+	\begin{enumerate}
+		\item Fit initial topic model
+			\pause
+		\item Get feedback from user
+			\pause
+		\item Incrementally relearn model
+			\begin{itemize}
+                                \item Forget your mistakes
+				\item Replace the model with a correlated one
+				\item Continue inference
+			\end{itemize}
+	\end{enumerate}
+\pause
+Keep computation \alert<4>{fast and consistent} \cite{Hu-12a}
+	\end{columns}
+
+}
+
+
+\frame{
+	\frametitle{Inference}
+	\begin{center}
+\only<1> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
+\only<2> {\includegraphics[width=.8\linewidth]{topic_models/inference_4}}
+\only<3> {\includegraphics[width=.8\linewidth]{topic_models/inference_5}}
+\only<4> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
+\only<5> {\includegraphics[width=.8\linewidth]{topic_models/inference_6}}
+\only<6> {\includegraphics[width=.8\linewidth]{topic_models/inference_7}}
+\only<7> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
+	\end{center}
+}
+
+
+\frame{
+	\frametitle{Forgetting is everything}
+
+	\begin{itemize}
+		\item Just start over?
+			\begin{itemize}
+				\item More expensive computation
+				\item Might create more problems
+				\item Bad user experience
+			\end{itemize}
+		\item View problem as online inference~\cite{yao-09}
+		\item Suggestions reflect errors
+		\item ``Forget'' problems
+		\item Pretend you're seeing it for the first time
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Inference}
+
+	\begin{columns}
+
+		\column{.5\linewidth}
+		\begin{flushright}
+			\only<1>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_0}    }
+			\only<2>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_1}    }
+			\only<3>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_2}    }
+			\only<4>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_3}    }							\only<5>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_4}    }
+			\only<6>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_5}    }
+			\only<7>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_6}    }
+			\only<8>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_7}    }
+			\only<9>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_8}    }
+			\only<10>{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_9}    }							\only<11->{    \includegraphics[height=7cm]{interactive_topic_models/mcmc_state_a}    }
+		\end{flushright}
+		\column{.5\linewidth}
+
+		\only<1> {  This toy example has all the problems from before!  }
+		\only<2-6> {
+
+		\includegraphics[width=\linewidth]{interactive_topic_models/constraints_4}
+
+		\begin{block}{Negative Correlation}
+
+		\begin{itemize}
+			\item \emph{bladder} and \emph{spine} can't be together
+			\item Idea 1: Forget {\bf terms}
+		\end{itemize}
+
+
+		\end{block}
+
+		}
+
+		\only<7-11> {
+
+		\includegraphics[width=\linewidth]{interactive_topic_models/constraints_5}
+
+		\begin{block}{Positive Correlation}
+		\begin{itemize}
+			\item \emph{shuttle} and \emph{nasa} should be together
+			\item Idea 2: Forget {\bf documents} with terms
+		\end{itemize}
+		\end{block}
+
+		}
+
+	\end{columns}
+
+}
+
+
+\input{interactive_topic_models/nyt_soviet_russia}
+
+\input{interactive_topic_models/nih_topics}
+
+ \frame{
+ 	\frametitle{Interactive Topic Models in the Wild \dots}
+ \begin{center}
+ 	\only<1>{    \includegraphics[width=\linewidth]{interactive_topic_models/new_interface}    }
+ 	\only<2>{    \includegraphics[width=\linewidth]{interactive_topic_models/new_interface_edit}    }
+   \end{center}
+}
+
+
+
+\frame{
+	\frametitle{What people did \dots}
+
+
+	\begin{itemize}
+		\item Inscrutable
+			\begin{itemize}
+				\item better, people, right, take, things
+				\item fbi, let, says
+			\end{itemize}
+		\item Collocations
+			\begin{itemize}
+				\item jesus, christ
+				\item solar, sun
+				\item even, number
+				\item book, list
+			\end{itemize}
+		\item Common instances (e.g. first names)
+		\item Not all were successful: mac, windows
+
+	\end{itemize}
+
+}
+
+\begin{frame}{Information Exploration User Study}
+
+\begin{itemize}
+	\item Asked users to explore legislation
+	\item Then asked them questions
+	\item Could use ITM + full text search or static TM + full text search
+	\item ITM users were more confident and used topic models more
+\end{itemize}
+
+\end{frame}
+% Add new slide about MLJ study
+
+\begin{frame}{Conclusion}
+
+	\begin{itemize}
+		\item Topic models are imperfect, but were a take it or leave it proposition
+		\item Interactive topic models: let you fix mistakes
+		\item Still much to be done:
+			\begin{itemize}
+				\item Better interfaces
+				\item More feedback: supervision, label inductions
+				\item How to present models to encourage interactivity
+			\end{itemize}
+	
+	\end{itemize}
+
+\end{frame}
+
+
+\frame{
+
+	\frametitle{Thanks}
+
+        \begin{block}{Collaborators}
+          Yuening Hu (UMD), Ke Zhai (UMD), Viet-An Nguyen (UMD), Dave Blei
+          (Princeton), Jonathan Chang (Facebook), Philip Resnik (UMD), Christiane Fellbaum (Princeton), Jerry
+          Zhu (Wisconsin), Sean Gerrish (Sift), Chong Wang (CMU), Dan Osherson
+          (Princeton), Sinead Williamson (CMU)
+        \end{block}
+
+        \begin{block}{Funders}
+        \end{block}
+        \begin{center}
+          \includegraphics[width=0.2\linewidth]{general_figures/nsf}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/arl}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/iarpa}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/lockheed-martin}
+       \end{center}
+
+}
+
+
+
+
+\begin{frame}{References}
+\bibliographystyle{style/acl}
+\tiny
+\bibliography{bib/journal-full,bib/jbg}
+\end{frame}
+
+
+
+\begin{frame}{Latent Dirichlet Allocation: A Generative Model}
+
+\begin{itemize}
+\item Focus in this talk: statistical methods
+  \begin{itemize}
+    \item Model: story of how your data came to be
+    \item Latent variables: missing pieces of your story
+    \item Statistical inference: filling in those missing pieces
+  \end{itemize}
+\item We use latent Dirichlet allocation (LDA)~\cite{blei-03}, a fully Bayesian
+  version of pLSI~\cite{hofmann-99}, probabilistic version of
+  LSA~\cite{landauer-97}
+\end{itemize}
+
+\end{frame}
+
+\frame
+{
+  \frametitle{Latent Dirichlet Allocation: A Generative Model}
+
+\begin{center}
+\only<1>{ \includegraphics[scale=0.4]{topic_models/lda1.pdf} }
+\only<2>{ \includegraphics[scale=0.4]{topic_models/lda2.pdf} }
+\only<3>{ \includegraphics[scale=0.4]{topic_models/lda3.pdf} }
+\only<4->{ \includegraphics[scale=0.4]{topic_models/lda4.pdf} }
+\end{center}
+
+\begin{itemize}
+\item<1-> For each topic $k \in \{1, \dots, K\}$, draw a multinomial distribution $\beta_k$ from a Dirichlet distribution with parameter $\lambda$
+\item<2-> For each document $d \in \{1, \dots, M\}$, draw a multinomial distribution $\theta_d$ from a Dirichlet distribution with parameter $\alpha$
+\item<3-> For each word position $n \in \{1, \dots, N\}$, select a hidden topic $z_n$ from the multinomial distribution parameterized by $\theta$.
+\item<4-> Choose the observed word $w_n$ from the distribution $\beta_{z_n}$.
+\end{itemize}
+
+\only<5->{We use statistical inference to uncover the most likely unobserved variables given observed data.}
+}
+
+\begin{frame}
+
+	\includegraphics[width=1.0\linewidth]{mrlda/lda_graphmod_nyt}
+
+\end{frame}
+
+
+\begin{frame}{SHLDA Model}
+                    \centering
+    \includegraphics[width=.5\linewidth]{shlda/shLDA}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Infvoc Classification Accuracy}
+
+\begin{table}[tb]
+\centering
+%\begin{footnotesize}
+\begin{tabular}{ c | c | c | c | c}
+%\hline
+%\multicolumn{4}{c|}{model settings} & accuracy $\%$ \\
+\hline
+\multirow{10}{*}{ \begin{sideways}{\visible<1->{$S=155$}}\end{sideways}} &
+\multirow{9}{*}{\begin{sideways}{\visible<1->{$\tau_0=64$
+      $\kappa=0.6$}}\end{sideways}} & \visible<3->{\textit{infvoc}} &
+\visible<3->{$\alpha^\beta=3k$ $T=40k$ $U=10$} & \visible<3->{$52.683$} \\
+\cline{3-5}
+& & \visible<1->{\textit{fixvoc}} & \visible<1->{vb-dict} & \visible<1->{$45.514$} \\
+& & \visible<4->{\textit{fixvoc}} & \visible<4->{vb-null} & \visible<4->{$49.390$} \\
+& & \visible<4->{\textit{fixvoc}} & \visible<4->{hybrid-dict} & \visible<4->{$46.720$} \\
+& & \visible<4->{\textit{fixvoc}} & \visible<4->{hybrid-null} & \visible<4->{$50.474$} \\
+\cline{3-5}
+& & \visible<2->{\textit{fixvoc-hash}} & \visible<2->{vb-dict} & \visible<2->{$52.525$} \\
+& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{vb-full $T=30k$} & \visible<4->{$51.653$} \\
+& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{hybrid-dict} & \visible<4->{$50.948$} \\
+& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{hybrid-full $T=30k$} & \visible<4->{$50.948$} \\
+\cline{2-5}
+& \multicolumn{3}{c|}{\visible<5->{\textit{dtm-dict} $tcv=0.001$}} & \visible<5->{$62.845$} \\
+\hline
+\end{tabular}
+%\end{footnotesize}
+\caption{Classification accuracy based on $50$ topic features
+  extracted from \textit{20 newsgroups} data.}
+% \label{tbl:20-news-class}
+\end{table}
+
+\only<2->{
+\begin{center}
+Topics learned with \textit{hashing} are no longer interpretable, they
+can only be used as features.
+\end{center}}
+
+\end{frame}
+
+\input{topic_models/gibbs_sampling.tex}
+
+\input{interactive_topic_models/itm_appendix}
+
+
+\end{document}
