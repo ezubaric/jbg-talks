@@ -1,0 +1,91 @@
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{subfigure}
+\usepackage{colortbl}
+
+\usepackage{multirow}
+
+\pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
+
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+%\newcommand{\g}{\, | \,}
+\newcommand{\citename}[1]{#1 }
+
+\newcommand{\greentext}[1]{\textcolor{caribbeangreen}{#1}}
+\newcommand{\yellowtext}[1]{\textcolor{amber}{#1}}
+\newcommand{\redtext}[1]{\textcolor{red}{#1}}
+\newcommand{\bluetext}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\Dir}{\mathrm{Dir}}
+\newcommand{\Mult}{\mathrm{Mult}}
+\newcommand{\g}[1]{\Gamma \left( #1 \right)}
+\newcommand{\paragraph}[1]{ \vskip 1cm {\bf \large #1}}
+
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\subtwo}[2]{_{#1, #2}}
+\newcommand{\subthree}[3]{_{#1, #2, #3}}
+\newcommand{\minussubtwo}[2]{_{-{#1, #2}}}
+\newcommand{\minussubthree}[3]{_{-{#1, #2, #3}}}
+\newcommand{\suptwo}[2]{^{#1, #2}}
+\newcommand{\supthree}[3]{^{#1, #2, #3}}
+\newcommand{\minussuptwo}[2]{^{-{#1, #2}}}
+\newcommand{\minussupthree}[3]{^{-{#1, #2, #3}}}
+\newcommand{\prior}[1]{\mathcal{B}#1} % to be revised
+
+\newcommand{\gfxs}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{simtrans/#1}
+\end{center}
+}
+
+\newcommand{\gfxq}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{qb/#1}
+\end{center}
+}
+
+
+\usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
+          titleline=true,                    % Show a line below the frame title.
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/culogo,              % Logo for the first page.
+          % Logo for the header on first page.
+          headerlogo=general_figures/boulder_cs,
+          ]{UCBoulder}
+
+\usecolortheme{ucdblack}
+\title[Tea Party in the House]{Tea Party in the House: A Hierarchical Ideal Point Topic Model
+  and Its Application to Republican Legislators in the 112\textsuperscript{th} Congress}
+\author{Viet-An Nguyen, Kristina Miler, Jordan Boyd-Graber, and Philip Resnik}
+\date{August 2015}
+
+\institute[Boulder] % (optional, but mostly needed)
+{University of Colorado Boulder}
+
+\AtBeginSection[] % "Beamer, do the following at the start of every section"
+{ \begin{frame} \frametitle{Outline} % make a frame titled "Outline"
+\tableofcontents[currentsection] % show TOC and highlight current section
+\end{frame} }
+
+\begin{document}
+
+\frame{
+\titlepage
+\tiny
+}
+
+\input{teaparty/s5_ideal_point}
+
+
+\end{document}
