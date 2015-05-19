@@ -42,15 +42,9 @@
 \newcommand{\minussupthree}[3]{^{-{#1, #2, #3}}}
 \newcommand{\prior}[1]{\mathcal{B}#1} % to be revised
 
-\newcommand{\gfxs}[2]{
+\newcommand{\gfx}[2]{
 \begin{center}
-	\includegraphics[width=#2\linewidth]{simtrans/#1}
-\end{center}
-}
-
-\newcommand{\gfxq}[2]{
-\begin{center}
-	\includegraphics[width=#2\linewidth]{qb/#1}
+	\includegraphics[width=#2\linewidth]{teaparty/figures/#1}
 \end{center}
 }
 
@@ -67,7 +61,7 @@
 \usecolortheme{ucdblack}
 \title[Tea Party in the House]{Tea Party in the House: A Hierarchical Ideal Point Topic Model
   and Its Application to Republican Legislators in the 112\textsuperscript{th} Congress}
-\author{Viet-An Nguyen, Kristina Miler, Jordan Boyd-Graber, and Philip Resnik}
+\author[Nguyen, Miler, Boyd-Graber, Resnik]{Viet-An Nguyen, Kristina Miler, Jordan Boyd-Graber, and Philip Resnik}
 \date{August 2015}
 
 \institute[Boulder] % (optional, but mostly needed)
@@ -84,6 +78,21 @@
 \titlepage
 \tiny
 }
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+      \includegraphics[width=.9\linewidth]{general_figures/an}
+    \column{.5\linewidth}
+      \begin{itemize}
+        \item Former PhD student at Maryland
+        \item Now at Facebook
+        \item Visa issues
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
 
 \input{teaparty/s5_ideal_point}
 
