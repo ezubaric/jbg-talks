@@ -1,0 +1,367 @@
+\section[Multi-dimensional Ideal Points from Roll-call Votes and Text]{Multi-dimensional Ideal Points from Roll-call Votes and Text}%
+
+\frame{
+    \frametitle{Multi-dimensional Ideal Points from Votes and Text}
+    \includegraphics[width=.20\textwidth]{figures/section_icons_1}
+    \includegraphics[width=.20\textwidth]{figures/section_icons_2}
+    \includegraphics[width=.20\textwidth]{figures/section_icons_3}
+    \includegraphics[width=.35\textwidth]{figures/section_icons_4}
+    \begin{block}{}
+        \begin{itemize*}
+          \item[$\star$] In collaboration with Prof. Kristina Miler (Government \&
+          Politics, UMD)
+        \end{itemize*}
+    \end{block}
+}
+
+\frame{
+    \frametitle{Motivation}
+    \begin{itemize}
+      \item In SHLDA, we used pre-computed DW-NOMINATE scores to estimate the positions of
+          legislators on the \bluetext{liberal}-\redtext{conservative} spectrum
+      \item One-dimensional ideal points
+    \end{itemize}
+    \begin{center}
+    \vspace{-1cm}
+      \includegraphics[width=.8\textwidth]{figures/s5/dimensions_2}%
+    \vspace{-1cm}
+    \end{center}
+    \begin{itemize}
+      \item<2-> People might have different positions on different issues
+
+      \item<2> $\rightarrow$ \redtext{Multi-dimensional ideal points}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{One-dimensional Ideal Point using Votes}
+    \begin{figure}
+      \centering
+        \only<1>{\includegraphics[width=.9\textwidth]{figures/s5/1_votes}}%
+        \only<2>{\includegraphics[width=.9\textwidth]{figures/s5/2_onedim_ip_eqn}}%
+        \only<3>{\includegraphics[width=.9\textwidth]{figures/s5/3_onedim_ip_eqn_explained}}%
+        \only<4->{\includegraphics[width=.9\textwidth]{figures/s5/3a_onedim_ip_eqn_highlighted}}%
+    \end{figure}
+    \vspace{-.3cm}
+    \hfill \tiny{\cite{Poole:AJPS85}}
+
+    \vspace{-0.5cm}
+
+    \begin{columns}
+      \column{\textwidth}
+        \begin{center}
+            \only<1-3>{\includegraphics[width=.8\textwidth]{figures/s5/dimensions_0}}%
+            \only<4>{\includegraphics[width=.8\textwidth]{figures/s5/dimensions_1}}%
+            \only<5>{\includegraphics[width=.8\textwidth]{figures/s5/dimensions_2}}%
+        \end{center}
+    \end{columns}
+}%
+
+\frame{
+    \frametitle{Multi-dimensional Ideal Point using Votes}
+    \begin{figure}
+      \centering
+        \only<1>{\includegraphics[width=.9\textwidth]{figures/s5/4_multdim_ip_eqn}}%
+        \only<2>{\includegraphics[width=.9\textwidth]{figures/s5/5_multdim_ip_eqn_explained}}%
+        \only<3->{\includegraphics[width=.9\textwidth]{figures/s5/5a_multdim_ip_eqn_highlighted}}%
+    \end{figure}
+    \vspace{-.3cm}
+    \hfill \tiny{\cite{Heckman:NBER96,Jackman:PA01,Clinton:APSR04}}
+    \begin{figure}
+        \only<1-2>{\includegraphics[width=.8\textwidth]{figures/s5/dimensions_0}}%
+        \only<3>{\includegraphics[width=.8\textwidth]{figures/s5/dimensions_3}}%
+        \only<4>{\includegraphics[width=.8\textwidth]{figures/s5/dimensions_4}}%
+    \end{figure}
+}%
+
+\frame{
+    \frametitle{Multi-dimensional Ideal Point using Votes \& \textbf{Text}}
+    \begin{figure}
+      \centering
+        \only<1>{\includegraphics[width=.9\textwidth]{figures/s5/1a_votes_text}}%
+        \only<2>{\includegraphics[width=.9\textwidth]{figures/s5/6_multdim_ip_text_eqn}}%
+        \only<3->{\includegraphics[width=.9\textwidth]{figures/s5/7_multdim_ip_text_eqn_explained}}%
+    \end{figure}
+    \vspace{-.3cm}
+    \hfill \tiny{} \cite{Gerrish:NIPS12,Bonica:AJPS13:ideology,Lauderdale:AJPS14,Sim:AAAI15:utility}
+    \begin{figure}
+        \only<1-3>{\includegraphics[width=.8\textwidth]{figures/s5/dimensions_4}}%
+        \only<4->{\includegraphics[width=.8\textwidth]{figures/s5/dimensions_5}}%
+    \end{figure}
+}%
+
+\frame{
+    \frametitle{Our approach: Hierarchical Ideal Point Topic Model}
+    \begin{figure}
+    \centering
+      \includegraphics[width=\textwidth]{figures/s5/expected_output}
+    \end{figure}
+}
+
+\frame{
+    \frametitle{Approach Overview}
+    \only<1-5>{
+    \begin{block}{Using both votes and text to learn}
+        \begin{itemize}
+          \item\alert<2-4>{Two-level topic hierarchy}
+          \begin{itemize}
+            \item\alert<2>{First-level nodes map to agenda issues}
+            \item\alert<2>{Second-level nodes map to issue-specific frames}
+            \item\alert<3>{Use existing labeled data to learn priors for interpretable
+                issues}
+            \item\alert<4>{Ideal points for frames for predictions using text only}
+          \end{itemize}
+          \item\alert<5>{Ideal points in multiple interpretable dimensions}
+        \end{itemize}
+    \end{block}
+    \vspace{-.5cm}
+    \begin{figure}
+      \centering
+      \only<1>{\includegraphics[width=.9\textwidth]{figures/s5/output_1}}%
+      \only<2>{\includegraphics[width=.9\textwidth]{figures/s5/output_2}}%
+      \only<3>{\includegraphics[width=.9\textwidth]{figures/s5/output_4}}%
+      \only<4>{\includegraphics[width=.9\textwidth]{figures/s5/output_5}}%
+      \only<5>{\includegraphics[width=.9\textwidth]{figures/s5/output_3}}%
+    \end{figure}
+    }
+
+    \only<6>{
+    \begin{block}{Inputs}
+      \begin{itemize}
+        \item A collection of votes $\{v \subtwo ab\}$
+        \item A collection of $D$ speeches $\{\bm w_d\}$, each of which is given by legislator
+            $a_d$
+        \item A collection of $B$ bill text $\{\bm w'_b\}$
+      \end{itemize}
+    \end{block}
+    \begin{center}
+      \includegraphics[width=.75\textwidth]{figures/s5/data}%
+    \end{center}
+    }
+}
+
+\frame{
+    \frametitle{Hierarchical Ideal Point Topic Model}
+    \only<1>{
+    \begin{overlayarea}{\linewidth}{3.5cm}
+    \begin{block}{Modeling bill text}
+        \begin{itemize}
+          \item Each bill text $b$ is a mixture over $K$ issues $\vartheta_b$
+          \item Each bill token is generated from the topic at a \redtext{first-level issue node}
+        \end{itemize}
+    \end{block}
+    \end{overlayarea}
+    \begin{center}
+      \includegraphics[width=.8\textwidth]{figures/s5/modeling_bills}
+    \end{center}
+    }
+
+    \only<2>{
+    \begin{overlayarea}{\linewidth}{3.5cm}
+    \begin{block}{Modeling speeches}
+        \begin{itemize}
+          \item Each speech $d$ also has a distribution $\theta_d$ over $K$ issues
+          \item For each issue $k$, each speech $d$ has a distribution over an unbounded number of
+          frames $\psi \subtwo dk$
+          \item Each speech token is generated from the topic at a \redtext{second-level frame
+          node}
+        \end{itemize}
+    \end{block}
+    \end{overlayarea}
+    \begin{center}
+      \includegraphics[width=.8\textwidth]{figures/s5/modeling_speeches}
+    \end{center}
+    }
+
+    \only<3>{
+    \begin{overlayarea}{\linewidth}{3.5cm}
+    \begin{block}{Modeling votes}
+        \begin{itemize}
+          \item Legislator $a$ votes `Yea' on bill $b$ with probability $p(v \subtwo ab = \mbox{Yea}) = \Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk u \subtwo ak +
+          y_b)$
+          \item \redtext{Ideal point} $u \subtwo ak \sim \mathcal{N}(\sum_{j=1}^{J_k} \eta \subtwo kj \psi \subthree akj, \rho)$
+        \end{itemize}
+    \end{block}
+    \end{overlayarea}
+    \begin{center}
+      \includegraphics[width=.8\textwidth]{figures/s5/modeling_idealpoint}
+    \end{center}
+    }
+}
+
+\frame{
+\frametitle{Evaluation: Tea Party in the House}
+    \begin{block}{The Tea Party}
+    \small
+    \begin{itemize*}
+      \item Recent American political movement supporting more freedom, smaller government, lower tax
+      \item Played an important role in recent electoral politics, especially within the Republican
+      Party
+      \item Organizations:
+      \begin{itemize}
+        \item Institutional: Tea Party Caucus
+        \item Other: Tea Party Express, Tea Party Patriots, Freedom Works
+      \end{itemize}
+      \item ``\textbf{Conventional views of ideology as a single--dimensional, left–-right
+          spectrum experience great difficulty in understanding or explaining the Tea Party.}''
+
+        \hfill \cite[ARPS]{CarminesARPS15}
+    \end{itemize*}
+    \end{block}
+
+    \pause
+    \vspace{-.2cm}
+    \begin{block}{Data}
+    \small
+    \begin{itemize*}
+      \item 240 Republican Representatives in the 112\textsuperscript{th} U.S. House
+      \item 60 are members of the Tea Party Caucus (self-identified)
+      \item 60 key votes selected by Freedom Works (2011-2012)
+      \item Speeches, bill text and voting records from the Library of Congress
+    \end{itemize*}
+    \end{block}
+}
+
+\frame{
+    \frametitle{One-dimensional Ideal Points}
+    \begin{columns}
+      \column{.49\textwidth}
+      \vspace{-.5cm}
+      \begin{center}
+        \includegraphics<1>[width=.85\textwidth]{figures/s5/bottom_0}%
+        \includegraphics<2-3>[width=.85\textwidth]{figures/s5/bottom_1}%
+      \end{center}
+        \only<4>{
+        \vspace{-1cm}
+            \begin{block}{}
+            \small
+            \begin{itemize}
+              \item \textbf{Flake} and \textbf{Amash} didn't self-identify as members of the
+                  Tea Party Caucus but have been endorsed by other Tea Party organizations
+            \end{itemize}
+            \end{block}
+
+            \vspace{-.2cm}
+
+            \begin{block}{}
+            \begin{center}
+              \includegraphics<4>[width=.65\textwidth]{figures/s5/new_republic.png}%
+            \end{center}
+            \vspace{-.5cm}
+            \footnotesize
+                ``Some 46 House members and six senators had been listed as part of the loosely organized Tea Party
+caucus in Congress. In addition, there were about 18 other House members like Trey Gowdy, Mark
+Meadows, and \redtext{Justin Amash}, and several senators, including \redtext{Jeff Flake} and Pat
+Toomey, \redtext{who owed their election to support from the Tea Party and its Washington
+allies}.''
+            \end{block}
+        }
+      \column{.49\textwidth}
+      \vspace{-.5cm}
+      \begin{center}
+        \includegraphics<1>[width=.85\textwidth]{figures/s5/top_0}%
+        \includegraphics<2,4>[width=.85\textwidth]{figures/s5/top_1}%
+      \end{center}
+        \only<3>{
+        \vspace{-1cm}
+            \begin{block}{}
+            \small
+                \begin{itemize}
+                  \item \textbf{Alexander} and \textbf{Crenshaw}'s votes only agree with
+                      Freedom Works 48\% and 50\% respectively
+                  \item Both voted for raising the debt ceiling and are listed as ``\alert<3>{traitor}''
+                \end{itemize}
+            \end{block}
+            \includegraphics<3>[width=\textwidth]{figures/s5/traitor.png}
+        }
+    \end{columns}
+}
+
+\frame{
+    \frametitle{Multi-dimensional Ideal Points}
+    \begin{figure}
+      \centering
+        \includegraphics<1>[width=.75\textwidth]{figures/s5/multdim_ip_112}%
+        \includegraphics<2->[width=\textwidth]{figures/s5/mult_ip_top}%
+    \end{figure}
+    \only<2->{
+        \begin{block}{}
+            Freedom Works' key votes on most highly polarized dimensions are about government spending
+        \end{block}
+    }
+}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction}
+    \begin{block}{Experiment setup}
+    \begin{itemize}
+    \small
+      \item Task: Binary classification of whether a legislator is a member of the Tea Party Caucus
+      \item Evaluation metric: AUC-ROC
+      \item Classifier: SVM$^{light}$
+      \item Five-fold stratified cross-validation
+    \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{block}{Features}
+    \begin{itemize}
+    \small
+      \item Text-based features: normalized term frequency (\textbf{TF}) and \textbf{TF-IDF}
+      \item \textbf{Vote}: binary features
+      \item \textbf{HIPTM}: features extracted from our model including
+      \begin{itemize}
+        \item $K$-dim ideal point $u \subtwo ak$ estimated from both votes and text
+        \item $K$-dim ideal point estimated from text only $\bm \eta_k^T \hat{\bm \psi} \subtwo ak$
+        \item $B$ probabilities estimating $a$'s votes $\Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk u \subtwo ak +
+          y_b)$
+      \end{itemize}
+    \end{itemize}
+    \end{block}
+}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction: Votes \& Text}
+    \begin{center}
+        \includegraphics<1>[width=\textwidth]{figures/s5/votetext_1}
+        \includegraphics<2>[width=\textwidth]{figures/s5/votetext_2}
+        \includegraphics<3>[width=\textwidth]{figures/s5/votetext_3}
+        \includegraphics<4>[width=\textwidth]{figures/s5/votetext_4}
+        \includegraphics<5>[width=\textwidth]{figures/s5/votetext_5}
+        \includegraphics<6>[width=\textwidth]{figures/s5/votetext_6}
+    \end{center}
+}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction: Text Only}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{figures/s5/textonly_1}
+        \includegraphics<2->[width=\textwidth]{figures/s5/textonly_2}
+      \end{center}
+      \uncover<3>{
+      \vspace{-1cm}
+      \begin{block}{}
+        Vote-based features are not needed at test time, so this model makes it possible to do better
+prediction even for people who have no voting record in Congress
+        \begin{itemize}
+          \item e.g., new members of Congress or political candidates.
+        \end{itemize}
+      \end{block}
+      }
+}
+
+\frame{
+    \frametitle{Summary}
+    We introduce the \textit{Hierarchical Ideal Point Topic Model} which extends existing
+    multi-dimensional ideal point models using a hierarchy of topics, allowing us to
+    \begin{itemize}
+      \item Discover and analyze \textbf{agenda issues and issue-specific frames} in a unified framework
+      \item Provide a formal computational model corresponding to the theory of \textbf{framing
+          as second-level agenda setting}
+      \item Analyze ideological positions of legislators in \textbf{multiple interpretable
+      dimensions}
+      \item Make \textbf{predictions on issue-specific ideological position} of unseen legislators using
+      their \textbf{text only}
+    \end{itemize}
+}
