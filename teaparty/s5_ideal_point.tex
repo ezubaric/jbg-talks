@@ -1,37 +1,89 @@
 \section[Multi-dimensional Ideal Points from Roll-call Votes and Text]{Multi-dimensional Ideal Points from Roll-call Votes and Text}%
 
+
+\section{Motivation}
+
+\begin{frame}{Representing Elected Officials: Ideal Points}
+  \gfx{dw_nominate}{.8}
+  \pause
+  An essential tool in political science: distinguish trends and characterize subgroups
+\end{frame}
+
+
 \frame{
-    \frametitle{Multi-dimensional Ideal Points from Votes and Text}
-    \includegraphics[width=.20\textwidth]{teaparty/figures/section_icons_1}
-    \includegraphics[width=.20\textwidth]{teaparty/figures/section_icons_2}
-    \includegraphics[width=.20\textwidth]{teaparty/figures/section_icons_3}
-    \includegraphics[width=.35\textwidth]{teaparty/figures/section_icons_4}
-    \begin{block}{}
-        \begin{itemize*}
-          \item[$\star$] In collaboration with Prof. Kristina Miler (Government \&
-          Politics, UMD)
-        \end{itemize*}
+\frametitle{Evaluation: Tea Party in the House}
+    \begin{block}{The Tea Party}
+    \small
+    \begin{itemize*}
+      \item Recent American political movement supporting more freedom, smaller government, lower tax
+      \item Played an important role in recent electoral politics, especially within the Republican
+      Party
+      \item Organizations:
+      \begin{itemize}
+        \item Institutional: Tea Party Caucus
+        \item Other: Tea Party Express, Tea Party Patriots, Freedom Works
+      \end{itemize}
+      \item ``\textbf{Conventional views of ideology as a single--dimensional, left–-right
+          spectrum experience great difficulty in understanding or explaining the Tea Party.}''
+
+        \hfill \cite[ARPS]{CarminesARPS15}
+    \end{itemize*}
+    \end{block}
+
+    \pause
+    \vspace{-.2cm}
+    \begin{block}{Goal}
+    \small
+    \begin{itemize*}
+      \item Explain Tea Partiers in terms of issues and votes
+      \item Identify Tea Partiers from their rhetoric
+    \end{itemize*}
     \end{block}
 }
 
-\frame{
-    \frametitle{Motivation}
-    \begin{itemize}
-      \item In SHLDA, we used pre-computed DW-NOMINATE scores to estimate the positions of
-          legislators on the \bluetext{liberal}-\redtext{conservative} spectrum
-      \item One-dimensional ideal points
-    \end{itemize}
-    \begin{center}
-    \vspace{-1cm}
-      \includegraphics[width=.8\textwidth]{teaparty/figures/s5/dimensions_2}%
-    \vspace{-1cm}
-    \end{center}
-    \begin{itemize}
-      \item<2-> People might have different positions on different issues
 
-      \item<2> $\rightarrow$ \redtext{Multi-dimensional ideal points}
-    \end{itemize}
-}
+\begin{frame}{Not everyone has a voting record}
+
+  \begin{columns}
+    \column{.5\linewidth}
+    \begin{itemize}
+      \item Ideal points estimated based on voting record
+      \item Not all candidates have a voting record
+        \begin{itemize}
+          \item Governors
+          \item Entertainers
+          \item CEOs
+        \end{itemize}
+        \pause
+       \item But all politicians---by definition---talk
+      \end{itemize}
+      \column{.25\linewidth}
+        \gfx{carson}{.75}
+        \gfx{fiorina}{.75}
+      \column{.25\linewidth}
+        \gfx{walker}{.75}
+        \gfx{schwarzenegger}{.75}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Let's use whatever data we have}
+
+\begin{columns}
+  \column{.6\linewidth}
+  \gfx{carson_twitter}{.95}
+  \column{.4\linewidth}
+  A single model that uses:
+  \begin{itemize}
+    \item Bill text
+    \item Votes
+    \item Commentary
+  \end{itemize}
+  to map political actors to the same continuous space.
+\end{columns}
+\end{frame}
+
+\section{Ideal Point Review}
 
 \frame{
     \frametitle{One-dimensional Ideal Point using Votes}
@@ -61,16 +113,16 @@
     \frametitle{Multi-dimensional Ideal Point using Votes}
     \begin{figure}
       \centering
-        \only<1>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/4_multdim_ip_eqn}}%
-        \only<2>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/5_multdim_ip_eqn_explained}}%
-        \only<3->{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/5a_multdim_ip_eqn_highlighted}}%
+        \only<1>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/4_multdim_ip_eqn}}%
+        \only<2>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/5_multdim_ip_eqn_explained}}%
+        \only<3->{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/5a_multdim_ip_eqn_highlighted}}%
     \end{figure}
-    \vspace{-.3cm}
+    \vspace{-.5cm}
     \hfill \tiny{\cite{Heckman:NBER96,Jackman:PA01,Clinton:APSR04}}
     \begin{figure}
-        \only<1-2>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/dimensions_0}}%
-        \only<3>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/dimensions_3}}%
-        \only<4>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/dimensions_4}}%
+        \only<1-2>{\includegraphics[width=.7\textwidth]{teaparty/figures/s5/dimensions_0}}%
+        \only<3>{\includegraphics[width=.7\textwidth]{teaparty/figures/s5/dimensions_3}}%
+        \only<4>{\includegraphics[width=.7\textwidth]{teaparty/figures/s5/dimensions_4}}%
     \end{figure}
 }%
 
@@ -78,15 +130,15 @@
     \frametitle{Multi-dimensional Ideal Point using Votes \& \textbf{Text}}
     \begin{figure}
       \centering
-        \only<1>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/1a_votes_text}}%
-        \only<2>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/6_multdim_ip_text_eqn}}%
-        \only<3->{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/7_multdim_ip_text_eqn_explained}}%
+        \only<1>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/1a_votes_text}}%
+        \only<2>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/6_multdim_ip_text_eqn}}%
+        \only<3->{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/7_multdim_ip_text_eqn_explained}}%
     \end{figure}
     \vspace{-.3cm}
     \hfill \tiny{} \cite{Gerrish:NIPS12,Bonica:AJPS13:ideology,Lauderdale:AJPS14,Sim:AAAI15:utility}
     \begin{figure}
-        \only<1-3>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/dimensions_4}}%
-        \only<4->{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/dimensions_5}}%
+        \only<1-3>{\includegraphics[width=.7\textwidth]{teaparty/figures/s5/dimensions_4}}%
+        \only<4->{\includegraphics[width=.7\textwidth]{teaparty/figures/s5/dimensions_5}}%
     \end{figure}
 }%
 
