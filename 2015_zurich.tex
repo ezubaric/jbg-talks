@@ -1,0 +1,210 @@
+\newif\ifcrossling\crosslingfalse
+\newif\iflong\longfalse
+\newif\ifevaluation\evaluationfalse
+\newif\ifconjugacy\conjugacyfalse
+\newif\ifnonpar\nonparfalse
+\newif\ifhighlevel\highlevelfalse
+\newif\ifitmtree\itmtreetrue
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{subfigure}
+\usepackage{colortbl}
+\usepackage{overpic}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{multirow}
+
+\pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
+
+
+\newcommand{\danquote}[1]{
+
+\begin{flushright}
+\begin{overpic}[width=5.5cm,tics=10]{general_figures/speech_bubble}
+	\put(10,30) { \parbox{4cm}{#1 }}
+\end{overpic}
+\includegraphics[width=1.5cm]{general_figures/milkman_dan}
+\end{flushright}
+}
+
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+%\newcommand{\g}{\, | \,}
+\newcommand{\citename}[1]{#1 }
+
+\newcommand{\greentext}[1]{\textcolor{caribbeangreen}{#1}}
+\newcommand{\yellowtext}[1]{\textcolor{amber}{#1}}
+\newcommand{\redtext}[1]{\textcolor{red}{#1}}
+\newcommand{\bluetext}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\Dir}{\mathrm{Dir}}
+\newcommand{\Mult}{\mathrm{Mult}}
+\newcommand{\g}[1]{\Gamma \left( #1 \right)}
+\newcommand{\paragraph}[1]{ \vskip 1cm {\bf \large #1}}
+
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\subtwo}[2]{_{#1, #2}}
+\newcommand{\subthree}[3]{_{#1, #2, #3}}
+\newcommand{\minussubtwo}[2]{_{-{#1, #2}}}
+\newcommand{\minussubthree}[3]{_{-{#1, #2, #3}}}
+\newcommand{\suptwo}[2]{^{#1, #2}}
+\newcommand{\supthree}[3]{^{#1, #2, #3}}
+\newcommand{\minussuptwo}[2]{^{-{#1, #2}}}
+\newcommand{\minussupthree}[3]{^{-{#1, #2, #3}}}
+\newcommand{\prior}[1]{\mathcal{B}#1} % to be revised
+
+\newcommand{\gfx}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{teaparty/figures/#1}
+\end{center}
+}
+
+
+\usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
+          titleline=true,                    % Show a line below the frame title.
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/culogo,              % Logo for the first page.
+          % Logo for the header on first page.
+          headerlogo=general_figures/boulder_cs,
+          ]{UCBoulder}
+
+\usecolortheme{ucdblack}
+\title[ITM]{Interactive Topic Modeling (and applications to US Tea Party)}
+\author[Boyd-Graber]{Jordan Boyd-Graber (UCB)}
+\date{August 2015}
+
+\institute[Boulder] % (optional, but mostly needed)
+{University of Maryland and University of Colorado Boulder}
+
+%\AtBeginSection[] % "Beamer, do the following at the start of every section"
+%{ \begin{frame} \frametitle{Outline} % make a frame titled "Outline"
+%\tableofcontents[currentsection] % show TOC and highlight current section
+%\end{frame} }
+
+\begin{document}
+
+\frame{
+\titlepage
+\tiny
+}
+
+
+
+\input{topic_models/topic_models}
+
+\frame{
+	\frametitle{Why topic models?}
+	
+	\begin{columns}
+	
+	\column{.5\linewidth}
+	
+	\begin{itemize}
+		\item Facilitating distant reading: Matt Jockers (English literature), Robert Nelson (civil war journalism), David Mimno (classics journals)
+		\item Applications beyond text~\cite{feifei-05,airoldi-08,hu-09}
+	\end{itemize}
+	
+		\begin{flushright}
+      			\includegraphics[width=3cm]{topic_models/hu} 
+		\end{flushright}
+	
+	\column{.4\linewidth}
+
+		\begin{center}
+			\includegraphics[width=4cm]{topic_models/feifei} 
+			\includegraphics[width=4cm]{topic_models/socialnetworks} 
+		\end{center}	
+	
+	\end{columns}
+}
+
+
+\section{Interactive Topic Models}
+
+\frame{
+
+	\frametitle{Why interactive?}
+	
+	\begin{itemize}
+		\item Correct obvious errors easily
+		\item Builds better intuitions
+		\item ``Buy in'' 		
+		\item Better downstream models
+	\end{itemize}
+
+}
+
+\input{interactive_topic_models/itm}
+
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+      \includegraphics[width=.9\linewidth]{general_figures/an}
+    \column{.5\linewidth}
+    \begin{block}{Tea Party in the House: A Hierarchical Ideal Point Topic Model
+  and Its Application to Republican Legislators in the 112\textsuperscript{th} Congress}
+  
+  Viet-An Nguyen (UMD), Kristina Miler (UMD), Jordan Boyd-Graber (UCB), and Philip Resnik (UMD)
+  
+    \end{block}
+      \begin{itemize}
+        \item Former PhD student at Maryland
+        \item Now at Facebook
+        \item Application of ITM
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+\input{teaparty/s5_ideal_point}
+
+
+\frame{
+
+	\frametitle{Thanks}
+
+        \begin{block}{Collaborators}
+          Yuening Hu (UMD), Viet-An Nguyen (UMD), Dave Blei
+          (Columbia), Philip Resnik (UMD), Jerry
+          Zhu (Wisconsin)
+        \end{block}
+
+        \begin{block}{Funders}
+        \end{block}
+        \begin{center}
+          \includegraphics[width=0.2\linewidth]{general_figures/nsf}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/arl}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/iarpa}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/lockheed-martin}
+       \end{center}
+
+}
+
+\begin{frame}{References}
+\bibliographystyle{style/acl}
+\tiny
+\bibliography{bib/journal-full,bib/jbg,teaparty/vietan}
+\end{frame}
+
+
+\input{topic_models/gibbs_sampling.tex}
+
+\input{interactive_topic_models/itm_appendix}
+
+\end{document}
