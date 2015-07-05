@@ -39,7 +39,7 @@
           ]{UCBoulder}
 
 \usecolortheme{ucdblack}
-\title[Labeling Science]{Efficient, Interpretable Labeling for Large
+\title[Labeling Science]{ALTO: Efficient, Interpretable Labeling for Large
   Scientific Document Collections}
 \author{ Jordan Boyd-Graber}
 \date{July 10, 2015}
@@ -167,15 +167,18 @@ Problems
 
 
 \begin{frame}{Show users topic model output}
-  \gfx{intro_screen}{.8}
+  \only<1>{\gfx{intro_screen}{.8}}
+  \only<2>{\gfx{topic_zoom}{.8}}
 \end{frame}
 
 
 \begin{frame}{User labels some documents}
-  \gfx{labeling_main}{.8}
+  \only<1>{\gfx{doc_zoom}{.8}}
+  \only<2>{\gfx{labeling_main}{.8}}
+  \only<3>{\gfx{label_set}{.8}}
 \pause
 \centering
-Creates complete label set
+\only<3->{Creates complete label set}
 
 \end{frame}
 
@@ -188,10 +191,12 @@ But probably imperfect
 
 
 \begin{frame}{Active learning guides user to problem areas}
-  \gfx{labeling_AL}{.8}
+  \only<1>{\gfx{labeling_AL}{.8}}
+  \only<2>{\gfx{new_labels}{.8}}
 \pause
 \centering
-New labels, areas of confusion for algorithm
+  \only<1>{ New labels, areas of confusion for algorithm}
+  \only<2>{ User sees which documents have been labeled}
 
 \end{frame}
 
@@ -204,7 +209,7 @@ New labels, areas of confusion for algorithm
 
 \only<5>{
 \centering
-Caveat: dataset with gold labels
+Caveat: dataset with gold labels (Congressional Records)
 }
 \end{frame}
 
@@ -222,6 +227,12 @@ will label using our method, topic models, wiki labels, and others
 \end{frame}
 
 \begin{frame}{Measuring Quality}
+
+\begin{Itemize}
+  \item Curate topics to answer several RFQs
+  \item Different set of users rates applicability/quality
+  \item Compare to underlying value
+\end{Itemize}
 
 \end{frame}
 
