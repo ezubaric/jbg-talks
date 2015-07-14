@@ -3,13 +3,10 @@
 \documentclass[compress]{beamer}
 
 %\usepackage{beamerthemesplit}
-\usepackage{xmpmulti}
-
 \usepackage{graphicx,float,wrapfig, bbm}
 \usepackage{amsfonts, bbold, comment}
 \usepackage{mdwlist}
 \usepackage{subfigure}
-\usepackage{colortbl}
 
 \usepackage{multirow}
 
@@ -59,16 +56,18 @@
 \tiny
 }
 
-\begin{frame}{Setting: Big Data, Inconsistent Metadata}
+\begin{frame}{Setting: Labeling Big, Heterogenous Data}
 
 \begin{columns}
 
 \column{.5\linewidth}
 
 \begin{itemize}
-  \item Abstracts from many different agencies
   \item No cohesive organization scheme
-  \item Untapped promise: looking at the text
+  \item Goal: Create relevant labelings with high value
+  \item ALTO: Application of human effort improves
+    \emph{purity} or automated method
+  \item Future work: Measure task-specific relevance
 \end{itemize}
 
 
@@ -78,43 +77,9 @@
 
 \end{frame}
 
-\begin{frame}{Problem: Unanticipated Questions}
 
-\begin{columns}
 
-\column{.5\linewidth}
-\gfx{wind}{.8}
-
-\column{.5\linewidth}
-
-\begin{itemize}
-  \item Existing schemas cannot answer new questions
-  \item E.g.: What are we funding in renewables in New Jersey?
-  \item Goal: Find these slices with minimum cost but provide a high
-    quality answer
-\end{itemize}
-
-\end{columns}
-
-\end{frame}
-
-\section{Framework for Understanding Tradeoffs}
-
-\begin{frame}{Cost vs. Quality}
-  \only<1>{\gfx{quality_cost_1}{.7}}
-  \only<2>{\gfx{quality_cost_2}{.7}}
-  \only<3>{\gfx{quality_cost_3}{.7}}
-  \only<4>{\gfx{quality_cost_4}{.7}}
-\end{frame}
-
-\begin{frame}{Understanding Tradeoffs}
-  \only<1>{\gfx{frontier_1}{.8}}
-  \only<2>{\gfx{frontier_2}{.8}}
-  \only<3>{\gfx{frontier_3}{.8}}
-  \only<4>{\gfx{frontier_4}{.8}}
-\end{frame}
-
-\section{Topic Models}
+\section{Topic Models: Low Cost Analysis}
 
 \begin{frame}{Examples of topics from NSF}
 
@@ -144,7 +109,7 @@ language, learning, human, brain, visual
 Problems
 \begin{itemize}
  \item Could be granularity mismatch
-  \item Topics not always interpretable or relevant
+  \item Topics not always salient or relevant
   \item Take it or leave it
 \end{itemize}
 
@@ -173,7 +138,7 @@ Problems
 
 
 \begin{frame}{User labels some documents}
-  \only<1>{\gfx{doc_zoom}{.8}}
+  \only<1>{\gfx{doc_view}{.8}}
   \only<2>{\gfx{labeling_main}{.8}}
   \only<3>{\gfx{label_set}{.8}}
 \pause
@@ -201,38 +166,39 @@ But probably imperfect
 \end{frame}
 
 
-\begin{frame}{Early Experiments}
-  \only<1>{\gfx{purity_1}{.95}}
-  \only<2>{\gfx{purity_2}{.95}}
-  \only<3>{\gfx{purity_3}{.95}}
-  \only<4->{\gfx{purity_4}{.95}}
+\begin{frame}{Early Experiments (Purity)}
+  \only<1>{\gfx{purity_0}{.95}}
+  \only<2>{\gfx{purity_1}{.95}}
+  \only<3>{\gfx{purity_2}{.95}}
+  \only<4>{\gfx{purity_3}{.95}}
+  \only<5>{\gfx{purity_4}{.95}}
 
-\only<5>{
+\only<1>{
 \centering
-Caveat: dataset with gold labels (Congressional Records)
+Dataset with gold labels (Congressional Records)
 }
 \end{frame}
 
-\section{Unscientific Examples}
+\section{Qualitative Examples}
 
 \begin{frame}{Five diverse projects}
 
-What will go here eventually: five NSF projects which we
-will label using our method, topic models, wiki labels, and others
-
+  \gfx{example_labels}{.95}
 \end{frame}
 
-\begin{frame}{How they are labeled}
+\begin{frame}{Future Work: Measuring Task-Specific Relevance}
 
-\end{frame}
-
-\begin{frame}{Measuring Quality}
-
-\begin{Itemize}
-  \item Curate topics to answer several RFQs
-  \item Different set of users rates applicability/quality
-  \item Compare to underlying value
-\end{Itemize}
+\begin{itemize}
+  \item Select 3-5 difficult QFRs
+  \item Have users respond using different systems
+    \begin{itemize}
+      \item Information Retrieval (e.g., Wiki Labels)
+      \item Topic Models
+      \item ALTO
+    \end{itemize}
+  \item Evaluators assess utility/relevance
+  \item Compare methods' value (building label set, document examples)
+\end{itemize}
 
 \end{frame}
 
