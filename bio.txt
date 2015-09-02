@@ -17,10 +17,11 @@ interactivity in machine learning algorithms, and to expose how topics interact
 with culture and sentiment.  His research has been supported by NSF, IARPA, and
 ARL.
 
-He has received the NIPS Best Student Paper award honorable mention, a Computing
-Innovation Fellowship (declined), and received the Jorgensen scholarship while
-an undergrad at the California Institute of Technology, where he received a BS
-in computer science and in history in 2004.
+He has received the CoNLL 2015 Best Paper Award, a NIPS 2009 Best
+Student Paper award honorable mention, a Computing Innovation
+Fellowship (declined), and received the Jorgensen scholarship while an
+undergrad at the California Institute of Technology, where he received
+a BS in computer science and in history in 2004.
 
 Dr. Boyd-Graber's specific research contributions to topic modeling include:
 
