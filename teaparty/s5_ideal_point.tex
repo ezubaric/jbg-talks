@@ -1,11 +1,10 @@
-\section[Multi-dimensional Ideal Points from Roll-call Votes and Text]{Multi-dimensional Ideal Points from Roll-call Votes and Text}%
 
 
 \section{Motivation}
 
 \begin{frame}{Representing Elected Officials: Ideal Points}
   \gfx{dw_nominate}{.7}
-  \pause
+
   An essential tool in political science: distinguish trends and characterize subgroups
 \end{frame}
 
@@ -15,9 +14,8 @@
     \begin{block}{The Tea Party}
     \small
     \begin{itemize*}
-      \item Recent American political movement supporting more freedom, smaller government, lower tax
-      \item Played an important role in recent electoral politics, especially within the Republican
-      Party
+      \item American political movement for freedom, small government, lower tax
+      \item Disrupting Republican Party and recent elections
       \item Organizations:
       \begin{itemize}
         \item Institutional: Tea Party Caucus
@@ -30,7 +28,6 @@
     \end{itemize*}
     \end{block}
 
-    \pause
     \vspace{-.2cm}
     \begin{block}{Goal}
     \small
@@ -45,6 +42,13 @@
 \begin{frame}{Not everyone has a voting record}
 
   \begin{columns}
+      \column{.25\linewidth}
+        \gfx{carson}{.75}
+        \gfx{fiorina}{.75}
+      \column{.25\linewidth}
+        \gfx{walker}{.75}
+        \gfx{schwarzenegger}{.75}
+
     \column{.5\linewidth}
     \begin{itemize}
       \item Ideal points estimated based on voting record
@@ -57,12 +61,6 @@
         \pause
        \item But all politicians---by definition---talk
       \end{itemize}
-      \column{.25\linewidth}
-        \gfx{carson}{.75}
-        \gfx{fiorina}{.75}
-      \column{.25\linewidth}
-        \gfx{walker}{.75}
-        \gfx{schwarzenegger}{.75}
   \end{columns}
 
 \end{frame}
@@ -80,6 +78,8 @@
     \item Commentary
   \end{itemize}
   to map political actors to the same continuous space.
+  \pause
+  This work: congressional floor speeches
 \end{columns}
 \end{frame}
 
@@ -143,39 +143,17 @@
     \end{figure}
 }%
 
-\begin{frame}{First-level topics from Political Scientists}
-
-\begin{columns}
-	\column{.5\linewidth}
-		\begin{itemize}
-			\item Government 
-			\item Trade
-			\item Defense
-			\item Law and Crime 
-			\item Transportation 		
-			\item Parks and Lands 										
-		\end{itemize}
-	\column{.5\linewidth}
-		\begin{itemize}
-			\item Energy 
-			\item Environment 
-			\item Education 
-			\item Labor Issues 
-			\item Health 
-			\item Rights and Liberties 												
-		\end{itemize}
-	
-\end{columns}
-
-\end{frame}
 
 \section{Hierarchical Ideal Point Topic Model}
 
+
 \frame{
-    \frametitle{Our approach: Hierarchical Ideal Point Topic Model}
+    \frametitle{Hierarchical Ideal Point Topic Model: Intuition}
+    \centering
+    What are your thoughts on the issue of {\bf immigration}?
     \begin{figure}
     \centering
-      \includegraphics[width=\textwidth]{teaparty/figures/s5/expected_output}
+      \includegraphics[width=\textwidth]{teaparty/figures/framing}
     \end{figure}
 }
 
@@ -257,13 +235,13 @@
     \end{center}
     }
 
-    \only<3>{
+    \only<3->{
     \begin{overlayarea}{\linewidth}{3.5cm}
     \begin{block}{Hierarchical Ideal Point Topic Model: Modeling votes}
         \begin{itemize}
-          \item Legislator $a$ votes `Yea' on bill $b$ with probability $p(v \subtwo ab = \mbox{Yea}) = \Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk u \subtwo ak +
+          \item Legislator $a$ votes `Yea' on bill $b$ with probability $p(v \subtwo ab = \mbox{Yea}) = \Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk \alert<4>{u \subtwo ak} +
           y_b)$
-          \item \redtext{Ideal point} $u \subtwo ak \sim \mathcal{N}(\sum_{j=1}^{J_k} \eta \subtwo kj \psi \subthree akj, \rho)$
+          \item \alert<3>{Ideal point} $\alert<5>{u \subtwo ak} \sim \mathcal{N}(\sum_{j=1}^{J_k} \alert<7>{\eta \subtwo kj} \alert<6>{\psi \subthree akj}, \rho)$
         \end{itemize}
     \end{block}
     \end{overlayarea}
@@ -279,9 +257,8 @@
     \begin{block}{The Tea Party}
     \small
     \begin{itemize*}
-      \item Recent American political movement supporting more freedom, smaller government, lower tax
-      \item Played an important role in recent electoral politics, especially within the Republican
-      Party
+      \item American political movement for freedom, small government, lower tax
+      \item Disrupting Republican Party and recent elections
     \end{itemize*}
     \end{block}
 
@@ -297,6 +274,67 @@
     \end{itemize*}
     \end{block}
 }
+
+\section{Predicting Membership}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction}
+    \begin{block}{Experiment setup}
+    \begin{itemize}
+    \small
+      \item Task: Binary classification of whether a legislator is a member of the Tea Party Caucus
+      \item Evaluation metric: AUC-ROC
+      \item Classifier: SVM$^{light}$
+      \item Five-fold stratified cross-validation
+    \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{block}{Features}
+    \begin{itemize}
+    \small
+      \item Text-based features: normalized term frequency (\textbf{TF}) and \textbf{TF-IDF}
+      \item \textbf{Vote}: binary features
+      \item \textbf{HIPTM}: features extracted from our model including
+      \begin{itemize}
+        \item $K$-dim ideal point $u \subtwo ak$ estimated from both votes and text
+        \item $K$-dim ideal point estimated from text only $\bm \eta_k^T \hat{\bm \psi} \subtwo ak$
+        \item $B$ probabilities estimating $a$'s votes $\Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk u \subtwo ak +
+          y_b)$
+      \end{itemize}
+    \end{itemize}
+    \end{block}
+}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction: Votes \& Text}
+    \begin{center}
+        \includegraphics<1>[width=\textwidth]{teaparty/figures/s5/votetext_1}
+        \includegraphics<2>[width=\textwidth]{teaparty/figures/s5/votetext_2}
+        \includegraphics<3>[width=\textwidth]{teaparty/figures/s5/votetext_3}
+        \includegraphics<4>[width=\textwidth]{teaparty/figures/s5/votetext_4}
+        \includegraphics<5>[width=\textwidth]{teaparty/figures/s5/votetext_5}
+        \includegraphics<6>[width=\textwidth]{teaparty/figures/s5/votetext_6}
+    \end{center}
+}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction: Text Only}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{teaparty/figures/s5/textonly_1}
+        \includegraphics<2->[width=\textwidth]{teaparty/figures/s5/textonly_2}
+      \end{center}
+
+%      \begin{block}{}
+%        Vote-based features are not needed at test time, so this model makes it possible to do better
+%prediction even for people who have no voting record in Congress
+%        \begin{itemize}
+%          \item e.g., new members of Congress or political candidates.
+%        \end{itemize}
+%      \end{block}
+}
+
 
 \section{How They Vote}
 
@@ -361,72 +399,13 @@ allies}.''
         %\includegraphics<1>[width=.7\textwidth]{teaparty/figures/s5/multdim_ip_112}%
         \includegraphics<1->[width=\textwidth]{teaparty/figures/s5/mult_ip_top}%
     \end{figure}
-    \only<2->{
+
         \begin{block}{}
             Freedom Works' key votes on most highly polarized dimensions are about government spending
         \end{block}
-    }
+
 }
 
-\section{Predicting Membership}
-
-\frame{
-    \frametitle{Tea Party Caucus Membership Prediction}
-    \begin{block}{Experiment setup}
-    \begin{itemize}
-    \small
-      \item Task: Binary classification of whether a legislator is a member of the Tea Party Caucus
-      \item Evaluation metric: AUC-ROC
-      \item Classifier: SVM$^{light}$
-      \item Five-fold stratified cross-validation
-    \end{itemize}
-    \end{block}
-
-    \pause
-
-    \begin{block}{Features}
-    \begin{itemize}
-    \small
-      \item Text-based features: normalized term frequency (\textbf{TF}) and \textbf{TF-IDF}
-      \item \textbf{Vote}: binary features
-      \item \textbf{HIPTM}: features extracted from our model including
-      \begin{itemize}
-        \item $K$-dim ideal point $u \subtwo ak$ estimated from both votes and text
-        \item $K$-dim ideal point estimated from text only $\bm \eta_k^T \hat{\bm \psi} \subtwo ak$
-        \item $B$ probabilities estimating $a$'s votes $\Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk u \subtwo ak +
-          y_b)$
-      \end{itemize}
-    \end{itemize}
-    \end{block}
-}
-
-\frame{
-    \frametitle{Tea Party Caucus Membership Prediction: Votes \& Text}
-    \begin{center}
-        \includegraphics<1>[width=\textwidth]{teaparty/figures/s5/votetext_1}
-        \includegraphics<2>[width=\textwidth]{teaparty/figures/s5/votetext_2}
-        \includegraphics<3>[width=\textwidth]{teaparty/figures/s5/votetext_3}
-        \includegraphics<4>[width=\textwidth]{teaparty/figures/s5/votetext_4}
-        \includegraphics<5>[width=\textwidth]{teaparty/figures/s5/votetext_5}
-        \includegraphics<6>[width=\textwidth]{teaparty/figures/s5/votetext_6}
-    \end{center}
-}
-
-\frame{
-    \frametitle{Tea Party Caucus Membership Prediction: Text Only}
-      \begin{center}
-        \includegraphics<1>[width=\textwidth]{teaparty/figures/s5/textonly_1}
-        \includegraphics<2->[width=\textwidth]{teaparty/figures/s5/textonly_2}
-      \end{center}
-
-%      \begin{block}{}
-%        Vote-based features are not needed at test time, so this model makes it possible to do better
-%prediction even for people who have no voting record in Congress
-%        \begin{itemize}
-%          \item e.g., new members of Congress or political candidates.
-%        \end{itemize}
-%      \end{block}
-}
 
 \section{How They Talk}
 
@@ -440,7 +419,10 @@ allies}.''
 
 
 \begin{frame}{Polarization}
-	\gfx{polarization}{.8}
+	\only<1>{\gfx{polarization_1}{.7}}
+	\only<2>{\gfx{polarization_2}{.7}}
+	\only<3>{\gfx{polarization_3}{.7}}
+	\only<4>{\gfx{polarization_4}{.7}}
 \end{frame}
 
 \section{Conclusion}
