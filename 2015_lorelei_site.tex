@@ -92,6 +92,7 @@
       monolingual)
     \item Goal 2: Serve as machine representation for classification
       into ontology
+      \item Mimic Year 1 topic evaluation
   \end{itemize}
 
   \begin{center}
@@ -145,38 +146,11 @@
     \item Relatively language independent
    \end{itemize}
 \pause
-\item NPMI and human judgements
+\item {\bf NPMI} and {\bf human judgments} as proxy for classification accuracy
 \end{itemize}
 \end{frame}
 
-	\begin{frame}{TED Talk Translations}
-	    \begin{itemize}
-	      \item Languages: English, Chinese, Turkish;
-	      \item $970$ documents in each language;
-	      \item Labeled with topics (business, society, technology)
-	    \end{itemize}
-	\end{frame}
 
-
-
-	\begin{frame}{Wikipedia}
-		\begin{itemize}
-			\item Obtained from \url{http://linguatools.org/tools/corpora/wikipedia-comparable-corpora/};
-			\item Languages: English, Chinese, Turkish;
-			\item $62,352$ documents in each language;
-			\item Used for evaluating NPMI scores.
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}{Brief News}
-		\begin{itemize}
-			\item Provided by LORELEI;
-			\item Languages: English, Uzbek;
-			\item $1,731$ documents in each language;
-			\item Working on hand-annotation of topic (not complete)
-		\end{itemize}
-	\end{frame}
-	
 
 		\begin{frame}{Normalized Mutual Pointwise Information (NPMI)}
 			\begin{itemize}
@@ -184,7 +158,7 @@
 					\begin{align}
 					NPMI(w_i,w_j)=\frac{\log\left(\frac{\Pr(w_i,w_j)}{\Pr(w_i)\Pr(w_j)}\right)}{-\log\Pr(w_i,w_j)}.
 					\end{align}
-			\item Correlates well with human judgements of
+			\item Correlates well with human judgments of
                           topic quality
 			\end{itemize}
 			\begin{center}
@@ -203,12 +177,12 @@
 				\includegraphics[height=0.3\textheight]{multilingual_itm/npmi-cross.pdf}
 			\end{center}
 
-				\item When there are more than two languages, we calculate the NPMI-Cross for each pair of languages and take the average.			
+				\item When there are more than two languages, we calculate the NPMI-Cross for each pair of languages and take the average.
 				\item Seems to work well even with
                                   very limited parallel data
 			\end{itemize}
 		\end{frame}
-		
+
 
 		\begin{frame}{Classification}
 
@@ -226,10 +200,10 @@
                     \only<2>{\includegraphics[width=1.0\linewidth]{multilingual_itm/classification_2}}
                     \end{columns}
 		\end{frame}
-	
 
 
-	
+
+
 	% \begin{frame}{Dataset}
 	% 	Note on the corpus:
 	% 	\begin{itemize}
@@ -241,7 +215,37 @@
 	% 	\end{itemize}
 	% \end{frame}
 
-	
+	\begin{frame}{TED Talk Translations}
+	    \begin{itemize}
+	      \item Languages: English, Chinese, Turkish;
+	      \item $970$ documents in each language;
+	      \item Labeled with subjects (business, society, technology)
+	    \end{itemize}
+	\end{frame}
+
+
+
+	\begin{frame}{Wikipedia}
+		\begin{itemize}
+			\item Obtained from \url{http://linguatools.org/tools/corpora/wikipedia-comparable-corpora/};
+			\item Languages: English, Chinese, Turkish;
+			\item $1600$ parallel documents;
+			\item Used for evaluating NPMI scores.
+\pause
+\item Could we get by with fewer documents?
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{Brief News}
+		\begin{itemize}
+			\item Provided by LORELEI;
+			\item Languages: English, Uzbek;
+			\item $1,731$ documents in each language;
+			\item Working on hand-annotation of subject (not complete)
+		\end{itemize}
+	\end{frame}
+
+
 	\begin{frame}{English and Chinese}
 		\begin{itemize}
 			\item Correlation between \textbf{classification accuracy} and \textbf{NPMI-Internal}:
@@ -252,14 +256,14 @@
 			\item Correlation between \textbf{average classification accuracy} and \textbf{NPMI-Cross}:
 			\begin{itemize}
 				\item $0.8216$
-			\end{itemize}			
+			\end{itemize}
 		\end{itemize}
 		\begin{center}
 			\includegraphics[height=0.5\textheight]{multilingual_itm/clf-en-cmn.pdf}
 			\includegraphics[height=0.5\textheight]{multilingual_itm/npmi-en-cmn.pdf}
 		\end{center}
 	\end{frame}
-	
+
 	\begin{frame}{English and Turkish}
 		\begin{itemize}
 			\item Correlation between \textbf{classification accuracy} and \textbf{NPMI-Internal}:
@@ -270,13 +274,13 @@
 			\item Correlation between \textbf{average classification accuracy} and \textbf{NPMI-Cross}:
 			\begin{itemize}
 				\item $0.7963$
-			\end{itemize}			
+			\end{itemize}
 		\end{itemize}
 		\begin{center}
 			\includegraphics[height=0.5\textheight]{multilingual_itm/clf-en-tr.pdf}
 			\includegraphics[height=0.5\textheight]{multilingual_itm/npmi-en-tr.pdf}
 		\end{center}
-	\end{frame}	
+	\end{frame}
 
 
 	\begin{frame}{Chinese and Turkish}
@@ -289,13 +293,13 @@
 			\item Correlation between \textbf{average classification accuracy} and \textbf{NPMI-Cross}:
 				\begin{itemize}
 					\item $0.7394$
-				\end{itemize}			
+				\end{itemize}
 		\end{itemize}
 		\begin{center}
 			\includegraphics[height=0.5\textheight]{multilingual_itm/clf-cmn-tr.pdf}
 			\includegraphics[height=0.5\textheight]{multilingual_itm/npmi-cmn-tr.pdf}
 		\end{center}
-	\end{frame}	
+	\end{frame}
 
 
 
