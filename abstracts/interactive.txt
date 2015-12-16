@@ -1,0 +1,45 @@
+
+Title: Anticipating, Helping, and Competing with Humans: Text-based
+Machine Learning Systems that Interact with Humans
+
+Abstract: 
+
+In this talk, I'll discuss three real-world language applications that
+require "thinking on your feet": document classification, synchronous
+machine translation (or "machine simultaneous interpretation"), and
+question answering (when questions are revealed one piece at a time).
+Effective algorithms for all of these tasks must combine insights from
+both large quantities of data but must also understand what a human is
+doing at a given moment.
+
+Document classification is a long, laborious process that requires
+annotators to understand large datasets, build a label set, and then
+create traning examples for a classifier.  We show that an approach
+that combines topic models with active learning can produce label sets
+faster than traditional annotation frameworks by quickly giving
+annotators and overview of the dataset and then identifying parts of a
+dataset that the annotator should look at next to create the fastest
+training set possible.
+
+Synchronous machine translation is when a sentence is being produced
+one word at a time in a foreign language and we want to produce a
+translation in English simultaneously (i.e., with as little delay
+between a foreign language word and its English translation). This is
+particularly difficult in verb-final languages like German or
+Japanese, where an English translation can barely begin until the verb
+is seen.  We present a reinforcement learning solution that learns to
+predict unseen parts of the sentence and incorporate these into fast,
+accurate translations.
+
+For question answering, we use a specially designed dataset that
+challenges humans: a trivia game called quiz bowl. These questions are
+written so that they can be interrupted by someone who knows more
+about the answer; that is, harder clues are at the start of the
+question and easier clues are at the end of the question. We create a
+recursive neural network to predict answers from incomplete questions
+and use reinforcement learning to decide when to guess.  We are able
+to answer questions earlier in the questions than most college trivia
+contestants.
+
+This talk covers three papers presented at the Empirical Methods in
+Natural Language Processing conference.

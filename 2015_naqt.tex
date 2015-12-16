@@ -1,4 +1,4 @@
-
+ 
 \documentclass[compress]{beamer}
 
 %\usepackage{beamerthemesplit}
@@ -43,9 +43,9 @@
           ]{UCBoulder}
 
 \usecolortheme{ucdblack}
-\title[Thinking on Your Feet]{Thinking on your Feet: \\ \textsc{hsnct} Exhibition Match}
+\title[Thinking on Your Feet]{Thinking on your Feet: \\ Seattle Exhibition Match}
 \author{ Jordan Boyd-Graber}
-\date{May 30, 2015}
+\date{October 2, 2015}
 
 \institute[Boulder] % (optional, but mostly needed)
 {University of Colorado Boulder}
@@ -68,16 +68,15 @@
 
 \begin{itemize}
 	\item A computer that plays quiz bowl: \textsc{qanta}
-	\item Facing off against four Jeopardy champions
+	\item Facing off against Ken Jennings
 	\pause
 	\item But first
 	\begin{itemize}
 		\item Who we are
 		\item How \textsc{qanta} works
-		\item Introducing our opponents
+                \item Connection to hard real-world problems
+		\item Introducing our opponent
 	\end{itemize}
-	\pause
-	\item Afterward: questions and thanks
 \end{itemize}
 
 \end{frame}
@@ -111,6 +110,17 @@
 
 \end{frame}
 
+
+\begin{frame}[t]
+	\frametitle{Sample Question 1}
+
+With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no moving parts. He did not take interaction with neighbors into account when formulating his theory of} \only<3->{heat capacity, so} \only<4->{Debye adjusted the theory for low temperatures. His} \only<4->{summation convention automatically sums repeated indices in tensor products. His name is attached to the A and B coefficients} \only<5->{for spontaneous and stimulated emission, the subject of one of his multiple groundbreaking 1905 papers. He further developed the model of statistics sent to him by} \only<6->{Bose to describe particles with integer spin. For 10 points, who is this German physicist best known for formulating the} \only<7->{special and general theories of relativity?} \\
+\vspace{1cm}
+\only<8->{ {\bf Albert \underline{Einstein}}}
+
+\end{frame}
+
+
 \begin{frame}{Who we are}
 
 	\begin{columns}
@@ -118,7 +128,7 @@
 			\begin{block}{Jordan Boyd-Graber}
 			
 			\begin{itemize}
-				\item Professor at the University of Colorado
+				\item Professor at Colorado
 				\item Former quiz bowl player at Caltech (4$^{th}$, 2004 UG ICT) and Princeton (4$^{th}$, ACF Nats 2005)
 			\end{itemize}
 			
@@ -130,14 +140,15 @@
 			\begin{block}{Mohit Iyyer}
 			
 			\begin{itemize}
-				\item Final year PhD student, University of Maryland
+				\item $n$-year PhD student, University of Maryland
 				\item National Champion, 2008 HSNCT
 			\end{itemize}
 			
 			\end{block}
 			\gfxq{mohit_qb}{.5}	
 	\end{columns}
-
+        Other folks: Hal Daum\'e III, Anupam Guha, He He, Brianna
+        Satinoff, Manjhunath Ravi, Danny Bouman
 \end{frame}
 
 \section{How QANTA works}
@@ -275,88 +286,26 @@
 
 
 
-\begin{frame}{}
+\begin{frame}{It's not all fun and games \dots}
 
   \begin{columns}
-    \column{.5\linewidth}
-        \includegraphics[width=0.9\linewidth]{general_figures/hehe}
-    \column{.5\linewidth}
-        \begin{block}{{\bf \href{http://cs.colorado.edu/~jbg//docs/qb_emnlp_2012.pdf}{Besting the Quiz Master: Crowdsourcing Incremental Classification Games}}}
-          {\bf Jordan Boyd-Graber}, He He, and Hal {Daum\'{e} III}. \emph{Empirical Methods in Natural Language Processing}, 2012
+    \column{.4\linewidth}
+    \begin{center}
+        \includegraphics[width=0.7\linewidth]{general_figures/hehe} \\
+        \includegraphics[width=0.7\linewidth]{general_figures/alvin}
+      \end{center}
+    \column{.6\linewidth}
+        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg/docs/2015_emnlp_rewrite.pdf}{Syntax-based Rewriting for Simultaneous Machine Translation}}}
+He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2015
         \end{block}
         
-\begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_simtrans.pdf}{Don't Until the Final Verb Wait: Reinforcement Learning for Simultaneous Machine Transl\
+\begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg/docs/2014_emnlp_simtrans.pdf}{Don't Until the Final Verb Wait: Reinforcement Learning for Simultaneous Machine Transl\
 ation}}}
 \underline{\href{http://www.umiacs.umd.edu/~alvin/}{Alvin Grissom II}}, {\bf Jordan Boyd-Graber}, He He, John Morgan, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural L\
 anguage Processing}, 2014
         \end{block}        
   \end{columns}
 \end{frame}
-
-
-
-\begin{frame}
-\frametitle{How do we know if we're doing well?}
-
-\begin{columns}
-
-	\column{0.5\linewidth}
-
-	\begin{center}
-		\includegraphics[width=0.8\linewidth]{qb/screenshot}
-	\end{center}
-
-	\column{0.5\linewidth}
-
-	\begin{itemize}
-		\item 2010: Website where people could play quiz bowl online
-		\item 7000 questions were answered in the first day
-		\item Over 43000 questions were answered in the space of two weeks
-		\item Total of 461 unique users
-		\item Leaderboard to encourage users
-		\pause
-		\item Progenitor of ProtoBowl
-	\end{itemize}
-
-\end{columns}
-\end{frame}
-
-
-\begin{frame}{Now we're able to beat humans}
-
-  \gfxq{human_history}{1.0}
-  \pause
-  
- Until today, our system has never faced an opponent face to screen
-
-\end{frame}
-
-
-\section{Competition}
-
-\begin{frame}{What's next}
-
-	\begin{itemize}
-		\item 40 questions from rounds 15 \& 16
-		\item No bonuses
-		\item \textsc{qanta} sees a word when I push a button: decides when to answer
-		\item Mohit will input whether players are correct or not
-		\pause
-		\item Our opponents
-		\begin{columns}
-			\column{.25\linewidth}
-				\gfxq{colby_jeo}{1.0}
-			\column{.25\linewidth}
-				\gfxq{ben_jeo}{1.0}
-			\column{.25\linewidth}
-				\gfxq{alex_jeo}{1.0}
-			\column{.25\linewidth}
-				\gfxq{kristin_jeo}{1.0}						
-		\end{columns}
-	\end{itemize}
-
-\end{frame}
-
 
 \begin{frame}{Why simultaneous translation hard is}
 
@@ -373,6 +322,53 @@ anguage Processing}, 2014
 
 \end{frame}
 
+\section{Competition}
+
+\begin{frame}{Inconclusive First Steps}
+
+		\begin{columns}
+			\column{.25\linewidth}
+				\gfxq{colby_jeo}{1.0} 
+                                Colby Burnett:
+                                \$375,000
+			\column{.25\linewidth}
+				\gfxq{ben_jeo}{1.0}
+                                Ben Ingram:
+                                \$427,534
+			\column{.25\linewidth}
+				\gfxq{alex_jeo}{1.0}
+                                Alex Jacobs: \$151,802
+			\column{.25\linewidth}
+				\gfxq{kristin_jeo}{1.0}
+                                Kristin Sausville: \$95,201
+		\end{columns}
+
+                \pause
+
+                \begin{center}
+                End result: 200-200 tie!
+                \end{center}
+
+\end{frame}
+
+
+\begin{frame}{What's next}
+
+	\begin{itemize}
+		\item 40 questions written by Kurtis Droge
+                  \item Read by Christopher Grubb
+		\item \textsc{qanta} sees a word when I push a button: decides when to answer
+		\pause
+
+                \item Our opponent
+                  \gfxq{jennings}{.5}
+	\end{itemize}
+
+\end{frame}
+
+
+
+
 \begin{frame}{Questions and Discussion}
 
 	\begin{center}
@@ -387,7 +383,7 @@ anguage Processing}, 2014
 \begin{frame}{Postmortem}
 
 \begin{itemize}
-	\item Only most common 4,000 answers
+	\item Only most common 5,000 answers
 	\item Trash and current events: too much churn
 	\item Creative questions
 	\item Common link questions
@@ -432,8 +428,9 @@ anguage Processing}, 2014
               }
 	\column{.5\linewidth}	
 		\begin{itemize}
-			\item Looking for undergrads/grads/interns to combine cutting edge artificial intelligence with trivia
-			\item One of the best schools for natural language processing in the world
+                \item Looking for undergrads/grads/interns
+                \item A great place for natural language
+                  processing (but no UW)
 		\end{itemize}
 \end{columns}
 
@@ -451,19 +448,22 @@ anguage Processing}, 2014
 
 	\begin{columns}
 	
-	\column{.45\linewidth}
+	\column{.3\linewidth}
         \begin{block}{Funders}
         \begin{center}
           \includegraphics[width=0.4\linewidth]{general_figures/nsf}
        \end{center}
         \end{block}
         
-        \pause
-	\column{.45\linewidth}        
+	\column{.3\linewidth}        
         \begin{block}{Supporters}
         	\gfxq{naqt}{.4}
         \end{block}
-        
+        \column{.3\linewidth}
+        \begin{block}{Host}
+        	\includegraphics[width=.8\linewidth]{general_figures/uw}
+        \end{block}        
+
         \end{columns}
 }
 
