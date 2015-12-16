@@ -1,0 +1,221 @@
+
+\newif\ifcrossling\crosslingtrue
+\newif\ifitmtree\itmtreetrue
+\newif\iflong\longtrue
+\newif\ifevaluation\evaluationfalse
+\newif\ifconjugacy\conjugacyfalse
+\newif\ifnonpar\nonparfalse
+\newif\ifling\lingfalse
+\newif\ifhighlevel\highleveltrue
+\newif\iftmreview\tmreviewfalse
+\newif\ifevocation\evocationfalse
+\newif\ifsupershortmlslda\supershortmlsldatrue
+
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{subfigure}
+\usepackage{colortbl}
+
+\usepackage{multirow}
+
+\pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
+
+\newcommand{\pos}[1]{{\texttt{#1}}}
+
+\newcommand{\gfxs}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{simtrans/#1}
+\end{center}
+}
+
+\newcommand{\gfxq}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{qb/#1}
+\end{center}
+}
+
+
+\usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
+          titleline=true,                    % Show a line below the frame title.
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/culogo,              % Logo for the first page.
+          % Logo for the header on first page.
+          headerlogo=general_figures/boulder_cs,
+          ]{UCBoulder}
+
+\usecolortheme{ucdblack}
+\title{Topic Models}
+\author{Jordan Boyd-Graber}
+\date{9. October 2015}
+
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\dir}[1]{\mbox{Dir}(#1)}
+\newcommand{\mult}[1]{\mbox{Mult}( #1)}
+\newcommand{\Beta}[1]{\mbox{Beta}( #1)}
+\newcommand{\G}[1]{\Gamma \left( \textstyle #1 \right)}
+\newcommand{\LG}[1]{\log \Gamma \left( \textstyle #1 \right)}
+\newcommand{\WN}[0]{\textsc{WordNet}}
+\newcommand{\itmspace}[0]{\hspace{2cm}}
+\newcommand{\abr}[1]{\textsc{#1}}
+\newcommand{\lda}[0]{\abr{lda}}
+\newcommand{\slda}[0]{\abr{slda}}
+
+\newcommand{\digam}[1]{\Psi \left( \textstyle #1 \right) }
+\newcommand{\ddigam}[1]{\Psi' \left( \textstyle #1 \right) }
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+\newcommand{\D}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\elbo}{\mathcal{L}}
+
+
+\newcommand{\citename}[1]{\emph{#1} }
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\Dir}{\mathrm{Dir}}
+\newcommand{\Mult}{\mathrm{Mult}}
+\newcommand{\g}[1]{\Gamma \left( #1 \right)}
+\newcommand{\paragraph}[1]{ \vskip 1cm {\bf \large #1}}
+
+
+
+\providecommand{\graphscale}{0.6}
+
+
+
+\AtBeginSection[] % "Beamer, do the following at the start of every section"
+{ \begin{frame}
+
+\frametitle{Outline} % make a frame titled "Outline"
+\tableofcontents[currentsection] % show TOC and highlight current section
+\end{frame} }
+
+\lstset{language=Python,basicstyle=\tiny}
+
+\DeclareMathSymbol{\R}{\mathbin}{AMSb}{"52}
+
+%\setbeamertemplate{footline}{\hspace*{.5cm}\scriptsize{\insertauthor
+
+\begin{document}
+
+\frame{ \titlepage \tiny}
+
+\section{Topic Model Introduction}
+
+\input{topic_models/intro}
+
+\section{Motivation for Scientific Documents}
+
+\input{topic_models/grant_motivation}
+
+\section{Definition and Derivation}
+
+\input{topic_models/definition}
+
+\section{Inference}
+
+\input{topic_models/gibbs_sampling}
+
+\section{Mallet Tutorial}
+
+\input{topic_models/mallet_tutorial}
+
+% \section{Research / Extensions}
+% \input{interactive_topic_models/short_version}
+%\input{mlslda/multilingual_short}
+
+
+\begin{comment}
+\begin{frame}{Other Research: Hierarchical Models}
+   \begin{center}
+   \only<1>{ \includegraphics[width=0.8\linewidth]{shlda/ideology_topics}}
+   \only<2>{ \includegraphics[width=1.0\linewidth]{shlda/amazon_topics}}
+   \only<3>{ \includegraphics[width=0.7\linewidth]{shlda/amazon_topics_zoom}}
+   \end{center}
+\end{frame}
+
+\begin{frame}{Other Research: Incorporating New Words}
+  \only<1>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_1}}
+  \only<2>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_2}}
+  \only<3>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_3}}
+  \only<4>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_4}}
+  \only<5>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_5}}
+  \only<6>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_6}}
+  \only<7>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_7}}
+  \only<8>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_8}}
+%\end{figure}
+%\end{center}
+\begin{center}
+\vspace{-5mm}
+An example topic from \textit{20 newsgroups} under our model.
+Numbers preceeding words are ranks in topic.
+\end{center}
+
+\end{frame}
+\end{comment}
+
+
+\section{Conclusion}
+
+\begin{frame}{Topic Models for Large Text Collections}
+
+  \begin{itemize}
+    \item Unsupervised tool for understanding large text collections
+    \item Statistical foundation
+    \item Open source tools for learning these models
+    \item Example application to \textsc{nsf} and \textsc{nrc} data
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Learn More}
+
+  \begin{center}
+  https://www.youtube.com/ezubaric
+  \includegraphics[width=1.0\linewidth]{general_figures/youtube}
+  \end{center}
+
+\end{frame}
+
+\frame{
+
+	\frametitle{Thanks}
+
+        \begin{block}{Collaborators}
+          Yuening Hu (UMD), Ke Zhai (UMD), Viet-An Nguyen (UMD), Dave Blei
+          (Princeton), Jonathan Chang (Facebook), Philip Resnik (UMD), Christiane Fellbaum (Princeton), Jerry
+          Zhu (Wisconsin), Sean Gerrish (Sift), Chong Wang (CMU), Dan Osherson
+          (Princeton), Sinead Williamson (CMU)
+        \end{block}
+
+        \begin{block}{Funders}
+        \end{block}
+        \begin{center}
+          \includegraphics[width=0.2\linewidth]{general_figures/nsf}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/arl}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/iarpa}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/lockheed-martin}
+       \end{center}
+
+}
+
+
+\begin{frame}
+\bibliographystyle{plain}
+\tiny
+\bibliography{bib/journal-full,bib/jbg}
+\end{frame}
+
+\end{document}

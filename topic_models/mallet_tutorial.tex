@@ -1,5 +1,3 @@
-
-
 \begin{frame}{Mallet}
 
 \begin{itemize}
@@ -26,9 +24,7 @@
 
   \begin{itemize}
     \item Learn a (small-sized) topic model on \textsc{nsf} data
-    \item Apply those topics to \textsc{nrc} data
     \item Discover the priorities of \textsc{nsf}
-    \item Connects \textsc{nrc} grants to that model
     \item Walk through the commands to do everything
   \end{itemize}
 \end{frame}
@@ -38,19 +34,26 @@
 
 \frametitle {Getting Your Data}
 
-\begin{columns}
-  \column{.6\linewidth}
-    \begin{itemize}
-      \item Text file separated by columns
-      \item \alert<1>{First column: doc id}
-      \item \alert<2>{Second column: language}
-      \item \alert<3>{Third column: text}
-    \end{itemize}
-  \column{.3\linewidth}
-     \begin{tabular}{lll}
-       \alert<1>{doc} & \alert<2>{lang} & \alert<3>{text} \\
-     \end{tabular}
-\end{columns}
+
+\begin{itemize}
+	\item All data in single directory
+	\item Each file is separate document
+	\item (Optional) Remove stop words beforehand
+\end{itemize}
+
+%\begin{columns}
+%  \column{.6\linewidth}
+%    \begin{itemize}
+%      \item Connect to database
+%      \item \alert<1>{First column: doc id}
+%      \item \alert<2>{Second column: language}
+%      \item \alert<3>{Third column: text}
+%    \end{itemize}
+%  \column{.3\linewidth}
+%     \begin{tabular}{lll}
+%       \alert<1>{doc} & \alert<2>{lang} & \alert<3>{text} \\
+%     \end{tabular}
+%\end{columns}
 
 \begin{block}{Download}
   \url{http://umiacs.umd.edu/~jbg/lda_demo/}
@@ -87,23 +90,23 @@ doc3    none    The objective of this research project is to develop a wireless 
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{Preparing \textsc{nrc} data}
-
-  \begin{block}{Mallet Command}
-    mallet import-file --remove-stopwords --keep-sequence --input merged.txt --output nrc.mallet \alert<2>{--use-pipe-from nsf.mallet}
-  \end{block}
-
-  \begin{itemize}
-    \item Nearly identical to previous command
-    \pause
-    \item Main difference: use \textsc{nsf} vocabulary to encode the data
-    \item \textsc{lda} doesn't know what words mean
-    \item Internally, these algorithms map words to numbers: oxygen (2134), neutrino (33), Weber (1701)
-    \item This ensures that this mapping is consistent between datasets
-   \end{itemize}
-
-\end{frame}
+%\begin{frame}
+%  \frametitle{Preparing \textsc{nrc} data}
+%
+%  \begin{block}{Mallet Command}
+%    mallet import-file --remove-stopwords --keep-sequence --input merged.txt --output nrc.mallet \alert<2>{--use-pipe-from nsf.mallet}
+%  \end{block}
+%
+%  \begin{itemize}
+%    \item Nearly identical to previous command
+%    \pause
+%    \item Main difference: use \textsc{nsf} vocabulary to encode the data
+%    \item \textsc{lda} doesn't know what words mean
+%    \item Internally, these algorithms map words to numbers: oxygen (2134), neutrino (33), Weber (1701)
+%    \item This ensures that this mapping is consistent between datasets
+%   \end{itemize}
+%
+%\end{frame}
 
 
 \begin{frame}
@@ -244,73 +247,73 @@ Humans and other animals use visual  looming  of a stimulus to detect change in 
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Applying topics to \textsc{nrc} data}
-  \begin{itemize}
-    \item Assume that we are satisfied with this topic analysis
-    \item \textsc{nsf} is convenient example
-      \begin{itemize}
-        \item \textsc{eu}-wide research
-        \item Wikipedia
-        \item Publications
-      \end{itemize}
-      \item Associate \alert<2>{new documents} with some \alert<3>{standard}
-      \item Compare funding levels for comparable topics (regardless of internal classification)
-  \end{itemize}
-
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Applying Topics}
-    \begin{block}{Mallet Command}
-      mallet infer-topics --input \alert<2>{nrc.mallet} --inferencer \alert<3>{nsf\_10.inf} --output-doc-topics \alert<4>{nrc.doc}
-    \end{block}
-
-    \begin{itemize}
-      \item Document to apply model to
-      \item Inferencer created from model
-      \item Output file
-    \end{itemize}
-
-\end{frame}
-
-
-\begin{frame}[fragile]
-
-\frametitle{Finding Similar Articles}
-
-  \begin{itemize}
-    \item We found a computational biology grant from \textsc{nsf}
-    \item How do we find similar grants in \textsc{nrc}?
-    \item Look for grants with high probability for Topic 0 and Topic 8
-  \end{itemize}
-
-      \begin{lstlisting}
-187     pages/1253988731023     8       0.4546086322042478      0       0.3405459548
-4236727     5       0.13293471300185633     ...
-186     pages/1253988731014     8       0.41662982704829793     9       0.1797146162
-3145737     ...
-0981687477E-4   
-148     pages/1253984734617     8       0.502404238103382       0       0.4069265225
-375647      6       0.050378383174511626    ...
-      \end{lstlisting}
-
-      \pause
-      \vspace{-3cm}
-
-      \begin{block}{Look it up \dots}
-        \centering
-        \includegraphics[width=0.8\linewidth]{topic_models/nrc_lookup}
-      \end{block}
-
-\end{frame}
+%\begin{frame}
+%  \frametitle{Applying topics to \textsc{nrc} data}
+%  \begin{itemize}
+%    \item Assume that we are satisfied with this topic analysis
+%    \item \textsc{nsf} is convenient example
+%      \begin{itemize}
+%        \item \textsc{eu}-wide research
+%        \item Wikipedia
+%        \item Publications
+%      \end{itemize}
+%      \item Associate \alert<2>{new documents} with some \alert<3>{standard}
+%      \item Compare funding levels for comparable topics (regardless of internal classification)
+%  \end{itemize}
+%
+%\end{frame}
+%
+%
+%\begin{frame}
+%  \frametitle{Applying Topics}
+%    \begin{block}{Mallet Command}
+%      mallet infer-topics --input \alert<2>{nrc.mallet} --inferencer \alert<3>{nsf\_10.inf} --output-doc-topics \alert<4>{nrc.doc}
+%    \end{block}
+%
+%    \begin{itemize}
+%      \item Document to apply model to
+%      \item Inferencer created from model
+%      \item Output file
+%    \end{itemize}
+%
+%\end{frame}
+%
+%
+%\begin{frame}[fragile]
+%
+%\frametitle{Finding Similar Articles}
+%
+%  \begin{itemize}
+%    \item We found a computational biology grant from \textsc{nsf}
+%    \item How do we find similar grants in \textsc{nrc}?
+%    \item Look for grants with high probability for Topic 0 and Topic 8
+%  \end{itemize}
+%
+%      \begin{lstlisting}
+%187     pages/1253988731023     8       0.4546086322042478      0       0.3405459548
+%4236727     5       0.13293471300185633     ...
+%186     pages/1253988731014     8       0.41662982704829793     9       0.1797146162
+%3145737     ...
+%0981687477E-4   
+%148     pages/1253984734617     8       0.502404238103382       0       0.4069265225
+%375647      6       0.050378383174511626    ...
+%      \end{lstlisting}
+%
+%      \pause
+%      \vspace{-3cm}
+%
+%      \begin{block}{Look it up \dots}
+%        \centering
+%        \includegraphics[width=0.8\linewidth]{topic_models/nrc_lookup}
+%      \end{block}
+%
+%\end{frame}
 
 \begin{frame}
   \frametitle{Which topics appear together?}
   \centering
     \only<1>{\includegraphics[width=.8\linewidth]{topic_models/nsf_cor}}
-    \only<2>{\includegraphics[width=.8\linewidth]{topic_models/nrc_cor}}
+%    \only<2>{\includegraphics[width=.8\linewidth]{topic_models/nrc_cor}}
 \end{frame}
 
 \begin{frame}

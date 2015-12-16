@@ -7,117 +7,60 @@
 \newcommand{\dirnum}[4]{ \frac{\g{ #3 }}{#4} \prod_{#1}^{#2} }
 \newcommand{\dirden}[3]{ \g{ \sum_{#1}^{#2} #3 } }
 
+\section{Topic Model Introduction}
+
+
 
 \begin{frame}
+\frametitle{The Challenge of Big Data}
 
-	\frametitle{Why topic models?}
+\begin{columns}
 
-	\begin{columns}
+\column{.5\linewidth}
 
-	\column{.3\linewidth}
+Every second \dots
+\begin{itemize}
+  \item 600 new blog posts appear
+  \item 34,000 tweets are tweeted
+  \item 30 GB of data uploaded to Facebook
+\end{itemize}
+\pause
 
-	\includegraphics[width=1\linewidth]{topic_models/newspapers}
+\begin{block}{Unstructured}
+  No XML, no semantic web, no annotation.  Often just raw text.
+\end{block}
 
-	\column{.55\linewidth}
+\column{.5\linewidth}
 
-	\begin{itemize}
-		\item Suppose you have a huge number of documents
-		\item Want to know what's going on
-		\item Can't read them all (e.g. every New York Times article from the 90's)
-		\item Topic models offer a way to get a corpus-level view of major themes
-		\pause
-		\item Unsupervised
-	\end{itemize}
+\only<3->{
+Common task: what's going on in this dataset.
+\begin{itemize}
+   \item Intelligence analysts
+   \item Brand monitoring
+   \item Journalists
+   \item Humanists
+\end{itemize}
+}
+\only<4>{
+\centering
+Common solution: topic models
+}
 
-
-	\end{columns}
+\end{columns}
 
 \end{frame}
 
-\frame{
+\begin{frame}
+
 \begin{center}
-\frametitle{Conceptual Approach}
+\frametitle{Topic Models as a Black Box}
 From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarrow$ \textbf<2>{words to topics} \\
 \only<1>{\includegraphics[width=0.6\linewidth]{reading_tea_leaves/figures/heldout_0} }
 \only<2>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/figures/nyt_topics_wide}}
-\end{center}
-}
-
-\frame{\frametitle{Conceptual Approach}
-
-\begin{itemize}
-\item For each document, what topics are expressed by that document?
-
-\begin{center}
-\includegraphics[width=0.9\linewidth]{topic_models/nyt_documents}
-\end{center}
-
-\end{itemize}
-}
-
-\iflong
-
-\begin{frame}
-
-\frametitle{Topics from \emph{Science}}
-
-\begin{center}
-\includegraphics[width=0.8\linewidth]{topic_models/example_topics}
+\only<3>{\includegraphics[width=0.9\linewidth]{topic_models/nyt_documents}}
 \end{center}
 
 \end{frame}
-
-
-\begin{frame}
-
-\frametitle{Why should you care?}
-
-\begin{itemize}
-\item Neat way to explore / understand corpus collections
-\begin{itemize}
-	\item E-discovery
-	\item Social media
-	\item Scientific data
-\end{itemize}
-\item NLP Applications
-\begin{itemize}
-   \item POS Tagging~\cite{toutanova-08}
-   \item Word Sense Disambiguation~\cite{boyd-graber-07}
-   \item Word Sense Induction~\cite{brody-09}
-   \item Discourse Segmentation~\cite{purver-06}
-\end{itemize}
-\item Psychology~\cite{griffiths-07}: word meaning, polysemy
-\item Inference is (relatively) simple
-\end{itemize}
-
-\end{frame}
-
-\frame
-{
-  \frametitle{Matrix Factorization Approach}
-
-\begin{center}
-\includegraphics[width=0.9\linewidth]{topic_models/factorization.pdf}
-\end{center}
-
-\begin{columns}
-\column{.5\textwidth}
-\begin{block}{}
-	\begin{itemize}
-		\item[K] Number of topics
-		\item[M] Number of documents
-		\item[V] Size of vocabulary
-	\end{itemize}
-\end{block}
-\column{.5\textwidth}
-\pause
-\begin{itemize}
-\item If you use singular value decomposition (SVD), this technique is called latent semantic analysis.
-\item Popular in information retrieval.
-\end{itemize}
-\end{columns}
-
-}
 
 \begin{frame}
 
@@ -127,89 +70,11 @@ From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarr
   \item How your data came to be
   \item Sequence of Probabilistic Steps
   \item Posterior Inference
-    \pause
-  \item Blei, Ng, Jordan.  Latent {\bf Dirichlet} Allocation.  JMLR, 2003.
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Multinomial Distribution}
-
-	\begin{itemize}
-		\item Distribution over discrete outcomes
-		\item Represented by non-negative vector that sums to one
-		\item Picture representation
-	\begin{center}
-\includegraphics[width=0.4\linewidth]{topic_models/multinomial}
-	\end{center}
-		\pause
-		\item Come from a Dirichlet distribution
-
-	\end{itemize}
-
-
-\end{frame}
-
-\begin{frame}
-
-\frametitle{Dirichlet Distribution}
-
-\begin{center}
-\includegraphics[width=0.4\linewidth]{topic_models/equations/dirichlet} \\ \bigskip
-\pause
-\includegraphics[width=0.6\linewidth]{topic_models/dirichlet_1} \\
-\includegraphics[width=0.2\linewidth]{topic_models/equations/dirichlet_params_1} \includegraphics[width=0.2\linewidth]{topic_models/equations/dirichlet_params_2} \includegraphics[width=0.2\linewidth]{topic_models/equations/dirichlet_params_3} \\
-\pause
-\includegraphics[width=0.6\linewidth]{topic_models/dirichlet_2} \\
-\includegraphics[width=0.2\linewidth]{topic_models/equations/dirichlet_params_4} \includegraphics[width=0.2\linewidth]{topic_models/equations/dirichlet_params_5} \includegraphics[width=0.2\linewidth]{topic_models/equations/dirichlet_params_6} \\
-\end{center}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Dirichlet Distribution}
-\begin{center}
-\includegraphics[width=0.5\linewidth]{topic_models/sparsity}
-\end{center}
-\end{frame}
-
-\fi
-\ifconjugacy
-
-\begin{frame}
-\frametitle{Dirichlet Distribution}
-\begin{itemize}
-  \item If ${\bm \phi} \sim \Dir(\alpha)$, ${\bm w} \sim \Mult(\phi)$, and $n_k = |\{ w_i : w_i = k\}|$ then
-  \begin{align}
-  	p(\phi | \alpha, {\bm w}) & \propto p({\bm w} | \phi) p(\phi | \alpha) \\
-	                       & \propto  \prod_{k} \phi^{n_k} \pause  \prod_k { \phi^{\alpha_k - 1}} \\
-	                       & \propto \prod_k \phi^{\alpha_k + n_k - 1}
-  \end{align}
-  \item Conjugacy: this {\bf posterior} has the same form as the {\bf prior}
-\end{itemize}
-\end{frame}
-
-\fi
-
-\ifhighlevel
-
-\else
-
-\begin{frame}{Generative Model}
-	\only<1> {   \includegraphics[width=.8\linewidth]{topic_models/nyt_topics}  }
-	\only<2> {   \includegraphics[width=.8\linewidth]{topic_models/nyt_documents}  }
-	\only<3> {   \includegraphics[width=.8\linewidth]{topic_models/inference_0}  }
-	\only<4> {   \includegraphics[width=.8\linewidth]{topic_models/inference_1}  }
-	\only<5> {   \includegraphics[width=.8\linewidth]{topic_models/inference_2}  }
-	\only<6> {   \includegraphics[width=.8\linewidth]{topic_models/inference_3}  }
-	\only<7> {   \includegraphics[width=.6\linewidth]{topic_models/inference_3}  }
-
-
-\end{frame}
-
-\frame
-{
   \frametitle{Generative Model Approach}
 
 \begin{center}
@@ -227,35 +92,9 @@ From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarr
 \end{itemize}
 
 \only<5->{We use statistical inference to uncover the most likely unobserved variables given observed data.}
-}
-
-\fi
-
-\begin{frame}
-\frametitle{Topic Models: What's Important}
-\begin{itemize}
-\item Topic models \only<2>{(latent variables)}
-\begin{itemize}
-\ifhighlevel
-	\item Topics to word types
-	\item Documents to topics
-\else
-	\item Topics to word types---multinomial distribution
-	\item Documents to topics---multinomial distribution
-\fi
-\end{itemize}
-\item Focus in this talk: statistical methods
-  \begin{itemize}
-    \item Model: story of how your data came to be
-    \item Latent variables: missing pieces of your story
-    \item Statistical inference: filling in those missing pieces
-  \end{itemize}
-\item We use latent Dirichlet allocation (LDA)~\cite{blei-03}, a fully Bayesian
-  version of pLSI~\cite{hofmann-99}, probabilistic version of
-  LSA~\cite{landauer-97}
-\end{itemize}
-
 \end{frame}
+
+
 
 \ifevaluation
 

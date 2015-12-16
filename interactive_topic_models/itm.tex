@@ -305,7 +305,7 @@
 
 \fi
 
-\newcommand{\tb}[1]{\parbox{0.8\linewidth}{ \tiny{ #1 }} \vspace{.2cm} }
+\renewcommand{\tb}[1]{\parbox{0.8\linewidth}{ \tiny{ #1 }} \vspace{.2cm} }
 
 \frame{
 
@@ -389,65 +389,49 @@
 
 }
 
-\iflong
+\input{interactive_topic_models/nih_topics}
 
-\frame{
 
-\frametitle{Simulating an interactive user}
 
-	\begin{itemize}
-		\item Take the 20 Newsgroups
-		\item Imagine that we have a user that is reconstructing the newsgroups from undifferentiated data
-			\begin{itemize}
-				\item In practice, extract words from training data (information gain)
-				\item {\bf soc.religion.christian}:  ``catholic, scripture, resurrection, pope, sabbath, spiritual, pray, divine, doctrine, orthodox''
-			\end{itemize}
-		\item Add them to the topic model as a positive correlation
-		\item Train classifier on topic model document features
-		\pause
-		\item If test accuracy goes up, model is doing a better job of representing corpus
-	\end{itemize}
+\begin{frame}
 
-}
-
-\frame{
+        \frametitle{Experiments}
 
 \begin{columns}
 
 \column{.5\linewidth}
 
-\begin{block}{How much do you forget?}
   \begin{itemize}
-    \item Tricky
-    \item Need to control for amount of inference
-   \item Forgetting document seemed to work best
-     \item Details in paper
-  \end{itemize}
-\end{block}
+   \item Simulating users through classifying social media
+     \begin{itemize}
+       \item Investigating different learning strategies
+       \item How much to forget
+     \end{itemize}
+   \end{itemize}
 
 \column{.5\linewidth}
 
 \begin{center}
-\includegraphics[width=\linewidth]{interactive_topic_models/ablation_30_topics.pdf}
+\includegraphics[width=\linewidth]{interactive_topic_models/ablation_30_topics}
 \end{center}
 
-
 \end{columns}
-}
+
+\begin{itemize}
+    \item User study: mechanical Turk
+      \begin{itemize}
+        \item We can't do everything users want: proper names, mac vs. pc
+        \item Users are senstive to polysemy (``msg'': food or e-mail)
+      \end{itemize}
+    \item User study: exploring congressional debates
+      \begin{itemize}
+        \item Collaboration with social scientists
+        \item Interactivity makes people use topic models more
+       \end{itemize}
+  \end{itemize}
 
 
-\fi
-
-
-
- \frame{
- 	\frametitle{Interactive Topic Models in the Wild \dots}
- \begin{center}
- 	\only<1>{    \includegraphics[width=\linewidth]{interactive_topic_models/new_interface}    }
- 	\only<2>{    \includegraphics[width=\linewidth]{interactive_topic_models/new_interface_edit}    }
-   \end{center}
-}
-
+\end{frame}
 
 % -------------------------
 % Old version
