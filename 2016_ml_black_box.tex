@@ -10,11 +10,17 @@
 \usepackage{mdwlist}
 \usepackage{subfigure}
 \usepackage{colortbl}
+\usepackage{overpic}
 
 \usepackage{multirow}
 
 \pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
 
+\newcommand{\slda}[0]{\abr{slda}}
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\lda}[0]{\abr{lda}}
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\itmspace}[0]{\hspace{2cm}}
 \newcommand{\pos}[1]{{\texttt{#1}}}
 \newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
 \newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
@@ -22,6 +28,17 @@
 \newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
 \newcommand{\g}{\, | \,}
 \newcommand{\citename}[1]{#1 }
+
+\newcommand{\danquote}[1]{
+
+\begin{flushright}
+\begin{overpic}[width=5.5cm,tics=10]{general_figures/speech_bubble}
+	\put(10,30) { \parbox{4cm}{#1 }}
+\end{overpic}
+\includegraphics[width=1.5cm]{general_figures/milkman_dan}
+\end{flushright}
+}
+
 
 \newcommand{\gfxs}[2]{
 \begin{center}
@@ -46,12 +63,11 @@
           ]{UCBoulder}
 
 \usecolortheme{ucdblack}
-\title[Thinking on Your Feet]{Thinking on your Feet: Reinforcement Learning for Incremental
-Language Tasks}
+\title[]{Machine Learning Shouldn't Be a Black Box}
 \author{ Jordan Boyd-Graber}
-\date{Fall 2015}
+\date{Spring 2016}
 
-\institute[Boulder] % (optional, but mostly needed)
+\institute[] % (optional, but mostly needed)
 {University of Colorado Boulder}
 
 \AtBeginSection[] % "Beamer, do the following at the start of every section"
@@ -65,6 +81,224 @@ Language Tasks}
 \titlepage
 \tiny
 }
+
+\begin{frame}{Evaluating Topic Models}
+
+\begin{columns}
+
+\column{.6\linewidth}
+\begin{block}{ Reading Tea Leaves: How Humans Interpret Topic Models}
+Jonathan Chang, Jordan Boyd-Graber, Chong Wang, Sean Gerrish, and David
+M. Blei. Reading Tea Leaves: How Humans Interpret Topic Models. Neural
+Information Processing Systems, 2009.
+\end{block}
+
+{\bf Jonathan and I shared a NIPS 2009 Best Student Paper HM}
+
+\column{.3\linewidth}
+\includegraphics[width=.8\linewidth]{general_figures/jonathan}
+
+\end{columns}
+
+\end{frame}
+
+
+
+\frame{
+\frametitle{Evaluation}
+\begin{center}
+%\only<1>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/figures/heldout_1} }
+\only<1>{\includegraphics[width=\linewidth]{reading_tea_leaves/figures/heldout_2} }
+%\only<3>{\includegraphics[width=\linewidth]{reading_tea_leaves/figures/heldout_3} }
+\only<2>{\includegraphics[width=\linewidth]{reading_tea_leaves/figures/heldout_4}  \\
+	\large Measures predictive power (likelihood / perplexity)}
+\end{center}
+}
+
+
+\frame{
+        \frametitle{Interruption}
+
+  \begin{columns}
+  \column{.6\linewidth}
+  \begin{block}{Do you have any real results?}
+  \centering
+     \includegraphics[width=0.5\linewidth]{reading_tea_leaves/jelinek} \\
+     Fred Jelinek, inventor of perplexity~\cite{jelinek-76}
+  \end{block}
+
+  \column{.4\linewidth}
+
+  \begin{itemize}
+    \item Computational linguists and machine learning researchers like {\bf numbers}
+    \item Likelihood and perplexity are convenient numbers
+    \pause
+    \item What do we {\bf actually} care about in topic models?
+  \end{itemize}
+
+  \end{columns}
+}
+
+\frame{
+\frametitle{Qualitative Evaluation of the Latent Space}
+
+\begin{center}
+\only<1>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/topics_from_papers/1} \\ \cite{hofmann-99} }
+\only<2>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/2} \\ \cite{blei-03} }
+\only<3>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/3} \\ \cite{mimno-09} }
+\only<4>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/4} \\ \cite{maskeri-08} }
+\end{center}
+}
+
+\frame{
+\frametitle{Data from the Cloud}
+\begin{columns}[c]
+
+
+\column{0.45\linewidth}
+
+\begin{block}{Then}
+\includegraphics[width=0.95\linewidth]{evocation/figures/mechanical_turk_old}
+\end{block}
+
+
+\column{0.45\linewidth}
+
+\begin{block}{Now}
+\includegraphics[width=0.95\linewidth]{evocation/figures/mechanical_turk_new}
+\end{block}
+
+\end{columns}
+}
+
+\frame{
+  \frametitle{Word Intrusion}
+
+  \begin{enumerate}
+    \item Take the highest probability words from a topic
+
+      \begin{block}{Original Topic}
+        dog, cat, horse, pig, cow
+      \end{block}
+\pause
+    \item Take a high-probability word from another topic and add it
+      \begin{block}{Topic with Intruder}
+        dog, cat, \alert<2->{apple}, horse, pig, cow
+      \end{block}
+\pause
+     \item We ask users to find the word that doesn't belong
+  \end{enumerate}
+\begin{block}{Hypothesis}
+If the topics are interpretable, users will consistently choose true intruder
+\end{block}
+}
+
+
+\frame{
+\frametitle{Interpretability and Likelihood (NYT)}
+
+\providecommand{\graphscale}{0.6}
+
+\begin{columns}
+\column{.84\linewidth}
+  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/mp}}
+  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/mp_y}\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_mp}\\}
+  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_x}}
+\column{.15\linewidth}
+  \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/legend}
+\end{columns}
+
+\begin{center}
+  \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/held-out} \\
+Within a model, higher likelihood $\not =$ higher interpretability
+\end{center}
+}
+
+
+\begin{frame}{Since then \dots}
+
+  \begin{itemize}
+    \item A way to get at an evaluation that matches {\bf what we care about}
+    \item A necessary step to improving topic models for navigating large datasets~\cite{talley-11}
+    \item Others have discovered automatic methods that uncover the same properties~\cite{newman-10,mimno-11}
+    \item And extended the technique to structured topics and phrases~\cite{lindsey-12,weninger-12}
+  \end{itemize}
+
+\end{frame}
+
+\frame{
+
+\frametitle{The Problem: User Perspective}
+
+\begin{columns}
+
+\column{.4\linewidth}
+\begin{center}
+\begin{tabular}{ccc}
+& \only<2->{\itmspace}\color<2->{red}{bladder} & \\
+& \only<3->{\hspace{-2cm}} \color<3->{blue}{spinal\_cord}  & \\
+& \only<3->{\hspace{-2cm}} \color<3->{blue}{sci} & \\
+& \only<3->{\hspace{-2cm}}\color<3->{blue}{spinal\_cord\_injury} & \\
+& \only<3->{\hspace{-2cm}}\color<3->{blue}{spinal} & \\
+& \only<2->{\itmspace}\color<2->{red}{urinary} & \\
+& \only<2->{\itmspace}\color<2->{red}{urothelial} & \\
+& \only<3->{\hspace{-2cm}}\color<3->{blue}{cervical} & \\
+& injury & \\
+& recovery & \\
+& \only<2->{\itmspace}\color<2->{red}{urinary\_tract} & \\
+& locomotor & \\
+& \only<3->{\hspace{-2cm}}\color<3->{blue}{lumbar} & \\
+\end{tabular}
+\end{center}
+
+\column{.6\linewidth}
+
+\danquote{These words don't belong together!}
+
+\end{columns}
+
+}
+
+
+\begin{frame}
+  \frametitle{Adding meaning to topic models}
+        \begin{block}{Traditional Topic Models}
+                $ p(w) = \prod_d \prod_n^{N_d} \left( p(w_{d,n} | \phi_{z_{d,n}})
+                  \explain{\alert<3>{topic}}{p(z_{d,n} | \theta_d)} \right) p(\theta_d | \alpha)                 \explain{\alert<2>{topic to words}}{ \prod_k^K
+p(\phi_k | \eta) }$
+        \end{block}
+
+        \begin{block}{Our Model}
+          \vspace{-0.8cm}
+          \begin{align*}
+               p(w) = \prod_d \prod_n^{N_d} & \left( p(w_{d,n} | \pi_{l_{d,n}})
+                 \explain{\alert<6>{meaning and topic}} {p(l_{d,n} | \phi_{d,n} )
+                   p(z_{d,n} | \theta_d)}  \right) p(\theta_d | \alpha) \\
+               &  \explain{\alert<4>{topic to concept}}{\prod_k^K
+                p(\phi_k | \eta)} \explain{\alert<5>{concept to word}}{\prod_c^C \left(
+                  p(\pi_{k,c} | \tau) \right) }
+           \end{align*}
+        \end{block}
+
+
+\end{frame}
+
+
+
+\input{interactive_topic_models/nyt_soviet_russia}
+
+\input{interactive_topic_models/nih_topics}
+
+
+\begin{frame}{Real-World Use Cases}
+
+  \begin{itemize}
+    \item GSA
+    \item NSF
+    \item FCC
+   \end{itemize}
+
+\end{frame}
 
 
 \begin{frame}{Nuremburg Trials}
@@ -93,566 +327,6 @@ Language Tasks}
 
 \end{frame}
 
-
-
-\begin{frame}{Algorithms that think on their feet}
-
-\begin{columns}
-
-  \column{.65\linewidth}
-  \begin{itemize}
-     \item Algorithms that process examples \emph{one word at a time}
-       \begin{itemize}
-         \item Simultaneous machine translation
-         \item Trivia games
-       \end{itemize}
-      \item Similar structure
-        \begin{itemize}
-          \item Prediction
-          \item Policy
-        \end{itemize}
-  \end{itemize}
-
-  \column{.3\linewidth}
-
-  \gfxs{nuremberg_translators}{.7}
-  \gfxq{quizbowl}{.7}
-
-\end{columns}
-
-\end{frame}
-
-
-
-\begin{frame}{Very Different Tasks, Common Foundation}
-
-\begin{columns}
-\column{.5\linewidth}
-  \gfxs{pancake_robot}{.4}
-  \begin{center}
-  \end{center}
-  
-  \column{.5\linewidth}
-  \begin{itemize}
-    \item Reinforcement learning
-    \item Machine learning / robotics framework
-    \item Underused in NLP
-  \end{itemize}
-\end{columns}
-
-\vspace{-.5cm}
-
-  \begin{center}
-\begin{tabular}{ccc}
-\hline
-  & QA & MT \\
-\hline
-{\bf State} & Words Seen & Foreign Words Seen \\
-{\bf Reward} & Answer Accuracy & Translation Quality \\
-{\bf Actions} & Answer / Wait & Translate / Wait \\
-\hline
-\end{tabular}
-
-  \end{center}
-
-\end{frame}
-
-\section{Quiz Bowl}
-
-\begin{frame}
-	\frametitle{Humans doing Incremental Classification}
-	\begin{columns}
-
-	\column{.5\linewidth}
-	\begin{itemize}
-		\item Game called ``quiz bowl''
-		\item Two teams play each other
-		\begin{itemize}
-			\item Moderator reads a question
-			\item When a team knows the answer, they signal (``buzz'' in)
-			\item If right, they get points; otherwise, rest of the question is read to the other team
-		\end{itemize}
-		\item Hundreds of teams in the US alone
-                \only<2>{\item Example \dots}
-	\end{itemize}
-
-	\column{.5\linewidth}
-	\includegraphics{qb/quizbowl}
-
-	\end{columns}
-
-\end{frame}
-
-\begin{frame}[t]
-\frametitle{Sample Question}
-	\frametitle{Sample Question}
-
-With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no moving parts. He did not take interaction with neighbors into account when formulating his theory of} \only<3->{heat capacity, so} \only<4->{Debye adjusted the theory for low temperatures. His} \only<4->{summation convention automatically sums repeated indices in tensor products. His name is attached to the A and B coefficients} \only<5->{for spontaneous and stimulated emission, the subject of one of his multiple groundbreaking 1905 papers. He further developed the model of statistics sent to him by} \only<6->{Bose to describe particles with integer spin. For 10 points, who is this German physicist best known for formulating the} \only<7->{special and general theories of relativity?} \\
-\vspace{1cm}
-\only<8->{ {\bf Albert \underline{Einstein}}}
-
-\only<9->{
-\vspace{-6cm}
-
-\begin{block}{Faster = Smarter}
-
-  \begin{enumerate}
-    \item Colorado School of Mines
-    \item Cornell University
-    \item Brigham Young University
-    \item California Institute of Technology
-    \item Peking University
-    \item Harvey Mudd College
-    \item Darmstadt University
-    \item University of Colorado
-  \end{enumerate}
-
-
-\end{block}
-}
-
-
-\end{frame}
-
-
-
-\begin{frame}
-	\frametitle{Humans doing Incremental Classification}
-
-	\begin{columns}
-		\column{.5\linewidth}
-
-		\includegraphics[width=1.0\linewidth]{qb/jeopardy}
-
-
-		\column{.5\linewidth}
-		\begin{itemize}
-			\item This is {\bf not} Jeopardy \cite{ferruci-10}
-			\item There are buzzers, but players only buzz
-                          at the question end
-			\item Doesn't discriminate knowledge
-			\item Quiz bowl is pyramidal
-                        \item Watson must decide to answer {\bf once}, after
-                          complete question
-                        \item Quiz Bowl: decide after each word
-		\end{itemize}
-
-	\end{columns}
-
-\end{frame}
-
-
-
-\begin{frame}
-	\frametitle{Humans doing Incremental Classification}
-
-	\begin{itemize}
-		\item Thousands of questions are written every year
-		\item Large question databases
-		\item Teams practice on these questions (some online, e.g. IRC)
-		\item How can we learn from this?
-	\end{itemize}
-
-\end{frame}
-
-\begin{frame}{}
-
-  \begin{columns}
-    \column{.5\linewidth}
-        \includegraphics[width=0.7\linewidth]{general_figures/hehe} \\
-        \includegraphics[width=0.7\linewidth]{general_figures/mohit}
-    \column{.5\linewidth}
-        \begin{block}{{\bf
-              \href{http://cs.colorado.edu/~jbg//docs/qb_emnlp_2012.pdf}{Besting
-                the Quiz Master: Crowdsourcing Incremental
-                Classification Games}}} 
-
-          {\bf Jordan Boyd-Graber}, He He, and Hal {Daum\'{e} III}. \emph{Empirical Methods in Natural Language Processing}, 2012
-        \end{block}
-
-        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_qb_rnn.pdf}{A Neural Network for Factoid Question Answering over Paragraphs}}}
-\underline{\href{http://cs.umd.edu/~miyyer/}{Mohit Iyyer}}, {\bf Jordan Boyd-Graber}, Leonardo Claudino, Richard Socher, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
-        \end{block}
-
-
-  \end{columns}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{System for Incremental Classifiers}
-
-	\begin{itemize}
-		\item Treat this as a MDP
-		\item Action: {\bf buzz} now or {\bf wait}
-                     \pause
-                    \begin{enumerate}
-                  \item {\bf Content Model} is constantly generating guesses
-                     \item {\bf Oracle} provides examples where it is correct
-                   \item The {\bf Policy} generalizes to test data
-                       \item {\bf Features} represent our state
-                    \end{enumerate}
-	\end{itemize}
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      \alert<3->{content model} & oracle & policy & features \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
-\end{frame}
-
-
-\begin{frame}{Content Model}
-
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      \alert{content model} & oracle & policy & features \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
-
-
-  \begin{itemize}
-   \item Bayesian generative model with answers as latent state
-         \item Unambiguous Wikipedia pages
-           \item Unigram term weightings (na\"ive Bayes, BM25)
-    \item Maintains posterior distribution over guesses
-    \item Always has a guess of what it should answer
-      \begin{itemize}
-        \item policy will tell us when to trust it
-       \end{itemize}
-
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Vector Space Model}
-
-  \only<1>{\gfxq{unigram_models_0}{.8}}
-  \only<2>{\gfxq{unigram_models_1}{.8}}
-  \only<3>{\gfxq{unigram_models_2}{.8}}
-  \only<4>{\gfxq{unigram_models_3}{.8}}
-  \only<5>{\gfxq{unigram_models_4}{.8}}
-  \only<6>{\gfxq{unigram_models_5}{.8}}
-  \only<7>{\gfxq{unigram_models_6}{.8}}
-  \only<8>{\gfxq{unigram_models_7}{.8}}
-  \only<9>{\gfxq{unigram_models_8}{.8}}
-
-
-\end{frame}
-
-
-\begin{frame}{How can we do better?}
-
-  \begin{itemize}
-    \item Use order of words in a sentence ``this man shot Lee Harvey Oswald'' very different from ``Lee Harvey Oswald shot this man''
-    \item Use relationship between questions (``China'' and
-      ``Taiwan'')
-    \item Use learned features and dimensions, not the words we start with
-      \pause
-    \item Recursive Neural Networks~\cite{socher-12}
-    \item First-time a \emph{learned} representation has been applied
-      to question answering
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Using Compositionality}
-
-  \only<1-2>{\gfxq{rnn_11}{.8}}
-  \only<3>{\gfxq{rnn_10}{.8}}
-  \only<4>{\gfxq{rnn_9}{.8}}
-  \only<5>{\gfxq{rnn_8}{.8}}
-  \only<6>{\gfxq{rnn_7}{.8}}
-  \only<7>{\gfxq{rnn_6}{.8}}
-
-  \only<8>{\gfxq{rnn_recursive_1}{.8}}
-  \only<9>{\gfxq{rnn_recursive_2}{.8}}
-  \only<10>{\gfxq{rnn_recursive_3}{.8}}
-
-  \only<11>{\gfxq{rnn_5}{.8}}
-  \only<12>{\gfxq{rnn_4}{.8}}
-  \only<13>{\gfxq{rnn_3}{.8}}
-  \only<14>{\gfxq{rnn_2}{.8}}
-
-\end{frame}
-
-
-\begin{frame}{Training}
-
-  \begin{columns}
-    \column{.5\linewidth}
-      \begin{itemize}
-        \item Initialize embeddings from \textsc{word2vec}
-        \item Randomly initialize composition matrices
-        \item Update using \textsc{warp}
-          \begin{itemize}
-            \item Randomly choose an instance
-            \only<2->{\item Look where it lands}
-            \only<4->{\item Has a correct answer}
-            \only<5->{\item Wrong answers may be closer}
-            \only<6->{\item Push away wrong answers
-            \item Bring correct answers closer}
-          \end{itemize}
-      \end{itemize}
-
-    \column{.5\linewidth}
-
-      \only<1>{\gfxq{warp_training_5}{.8}}
-      \only<2>{\gfxq{warp_training_4}{.8}}
-      \only<3>{\gfxq{warp_training_3}{.8}}
-      \only<4>{\gfxq{warp_training_2}{.8}}
-      \only<5>{\gfxq{warp_training_1}{.8}}
-      \only<6>{\gfxq{warp_training_0}{.8}}
-  \end{columns}
-
-\end{frame}
-
-
-\begin{frame}{Oracle}
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      content model & \alert{oracle} & policy & features \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
-\begin{center}
-  \includegraphics[width=0.8\linewidth]{qb/oracle}
-\end{center}
-
-\begin{itemize}
-  \item As each token is revealed, look at content model's guess
-    \item If it's right, positive instance; otherwise negative
-      \item Nearly optimal policy to buzz whenever correct (upper bound)
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Policy}
-
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      content model & oracle & \alert{policy} & features \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
-
- \begin{itemize}
-    \item Mapping: state $\mapsto$ action
-    \item Use oracle as example actions
-    \item Learned as classifier \cite{langford-05}
-    \item At test time, use the same features as for training
-      \begin{itemize}
-        \item Question text (so far)
-        \item Guess
-        \item Posterior distribution
-        \item Change in posterior
-      \end{itemize}
-\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[t]{Features (by example)}
-
-\only<1-3>{
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      content model & oracle & policy & \alert{features} \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
-\vspace{.5cm}
-}
-
-\only<4->{\vspace{-1.5cm}}
-
-  \begin{columns}[T]
-    \column{.3\linewidth}
-
-    \only<1->{ \includegraphics[width=2\linewidth]{qb/feature_ex_l_1} \\ }
-    \vspace{.5cm}
-    \only<4->{ \includegraphics[width=2\linewidth]{qb/feature_ex_l_2}  \\ }
-    \vspace{.5cm}
-    \only<7->{ \includegraphics[width=2\linewidth]{qb/feature_ex_l_3}  \\ }
-
-
-    \column{.68\linewidth}
-    \vspace{-.5cm}
-    \only<2->{ \includegraphics[width=.85\linewidth]{qb/feature_ex_r_1} \\ }
-    \only<3->{ \vspace{-.5cm} \hspace{.5cm} \includegraphics[width=.1\linewidth]{qb/feature_ex_wait}  \\ }
-    \only<5->{ \includegraphics[width=\linewidth]{qb/feature_ex_r_2} \\ }
-    \only<6->{ \vspace{-.5cm} \hspace{.5cm}\includegraphics[width=.1\linewidth]{qb/feature_ex_wait}  \\ }
-    \only<8->{ \includegraphics[width=\linewidth]{qb/feature_ex_r_3} \\ }
-    \only<9->{ \vspace{-.5cm} \hspace{.5cm} \includegraphics[width=.1\linewidth]{qb/feature_ex_buzz}  \\ }
-    \only<9->{Answer: {\bf Julius Caesar}}
-  \end{columns}
-
-\end{frame}
-
-
-
-\begin{frame}{Simulating a Game}
-		\begin{itemize}
-			\item Present tokens incrementally to algorithm, see where it buzzes
-			\item Compare to where humans buzzed in
-			\item Payoff matrix (wrt Computer)
-			\begin{center}
-\begin{tabular}{lccr}
-& Computer & Human & Payoff \\
-\hline
-1 & first and wrong & right & $-15$ \\
-2 & --- & first and correct & $-10$ \\
-3  & first and wrong & wrong & $-5$ \\
-4 & first and correct & --- & $+10$ \\
-5 & wrong & first and wrong & $+5$ \\
-6 & right & first and wrong & $+15$ \\
-\hline
-\end{tabular}
-			\end{center}
-		\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Interface}
-
-\begin{columns}
-
-	\column{0.5\linewidth}
-
-	\begin{center}
-		\includegraphics[width=0.8\linewidth]{qb/screenshot}
-	\end{center}
-
-	\column{0.5\linewidth}
-	\only<1>{
-	\begin{itemize}
-		\item Users could ``veto'' categories or tournaments
-		\item Questions presented in canonical order
-		\item Approximate string matching (w/ override)
-	\end{itemize}
-	}
-
-	\only<2>{
-	\begin{itemize}
-		\item Started on Amazon Mechanical Turk
-		\item 7000 questions were answered in the first day
-		\item Over 43000 questions were answered in the space of two weeks
-		\item Total of 461 unique users
-		\item Leaderboard to encourage users
-	\end{itemize}
-	}
-
-\end{columns}
-\end{frame}
-
-
-\begin{frame}{Embedding}
-
-  \gfxq{embedding}{1.0}
-
-\end{frame}
-
-\begin{frame}{Comparing \textsc{rnn} to \textsc{bow}}
-
-\begin{center}
-\begin{tabular}{lrrrrrr}
-\hline
-& \multicolumn{3}{c}{History} & \multicolumn{3}{c}{Literature}\\
-Model    & Sent 1 & Sent 2 & Full & Sent 1 & Sent 2 & Full \\
-\hline
-\textsc{bow-qb} & 37.5 & 65.9 & 71.4 & 27.4 & 54.0 & 61.9 \\
-\alert<2>{\textsc{rnn}} & \bf 47.1 & \bf 72.1 & \bf 73.7 & \bf 36.4 & \bf 68.2 & \bf 69.1 \\
-\hline
-\alert<3>{\textsc{bow-wiki}} & 53.7 & 76.6 & 77.5 & 41.8 & 74.0 & 73.3 \\
-\alert<4>{\textsc{combined}} & \bf 59.8 & \bf 81.8 & \bf 82.3 & \bf 44.7 & \bf 78.7 & \bf 76.6 \\
-\hline
-\end{tabular}
-\end{center}
-
-Percentage accuracy of different vector-space models.
-
-\end{frame}
-
-\begin{frame}{Now we're able to beat humans}
-
-  \gfxq{human_history}{1.0}
-
-\end{frame}
-
-\begin{frame}{Examining vectors}
-
-  \only<1>{\gfxq{mann}{.65}}
-  \only<2>{\gfxq{cabot}{.6}}
-
-\end{frame}
-
-\begin{frame}{Experiment 1}
-
-		\begin{columns}
-			\column{.25\linewidth}
-				\gfxq{colby_jeo}{1.0} 
-                                Colby Burnett:
-                                \$375,000
-			\column{.25\linewidth}
-				\gfxq{ben_jeo}{1.0}
-                                Ben Ingram:
-                                \$427,534
-			\column{.25\linewidth}
-				\gfxq{alex_jeo}{1.0}
-                                Alex Jacobs: \$151,802
-			\column{.25\linewidth}
-				\gfxq{kristin_jeo}{1.0}
-                                Kristin Sausville: \$95,201
-		\end{columns}
-
-                \pause
-
-                
-                \begin{center}
-                End result: 200-200 tie!
-                \end{center}
-
-\end{frame}
-
-\begin{frame}{Experiment 2}
-
-\gfxq{jennings}{.7}
-
-\begin{itemize}
-  \item More data helps
-  \item Improving country pages specifically
-  \item Still weak on popular culture
-  \item Limited set of answers
-\end{itemize}
-
-\end{frame}
-
-
-\begin{frame}{Building on this Foundation}
-
-  \begin{itemize}
-    \item Using Wikipedia: Deep Averaging Networks~\cite{iyyer-15}
-    \item New network structures: capturing coreference~\cite{guha-15}
-    \item Incorporating additional information: story plots
-  \end{itemize}
-
-\end{frame}
 
 \section{Simultaneous Translation}
 
@@ -1058,30 +732,753 @@ Aggressiveness based on different right probability thresholds
 
 \end{frame}
 
-\begin{frame}{Future Steps}
+% Diplomacy
+
+
+\section{SHLDA: Detecting Framing}
+
+\providecommand{\shlda}{\textsc{ShLDA}}
+
+\begin{frame}
+  \vspace{-2cm}
+  \begin{columns}
+    \column{.45\linewidth}
+    \begin{center}
+      \includegraphics[width=\linewidth]{cognitive/crowdsourcing_off}
+      \end{center}
+    \column{.45\linewidth}
+    \begin{center}
+      \includegraphics[width=\linewidth]{cognitive/user_off}
+      \end{center}
+
+  \end{columns}
+
+  \begin{columns}
+    \column{.45\linewidth}
+    \begin{center}
+      \includegraphics[width=\linewidth]{cognitive/algorithms_off}
+      \end{center}
+    \column{.45\linewidth}
+    \begin{center}
+      \includegraphics[width=\linewidth]{cognitive/framing_on}
+      \end{center}
+  \end{columns}
+
+\only<2->{
+\vspace{-3cm}
+\begin{block}{Detecting Framing}
+        Using topic models to detect spin
+\end{block}
+}
+
+
+\end{frame}
+
+
+\frame{
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+\includegraphics[width=.8\linewidth]{general_figures/an}
+
+\column{.5\linewidth}
+
+\begin{block}{Lexical and Hierarchical Topic Regression}
+Viet-An Nguyen, Jordan Boyd-Graber, and Philip Resnik. NIPS 2013.
+\end{block}
+
+\end{columns}
+
+}
+
+
+
+% The problem of framing
+\begin{frame}{Message Matters}
+
+\begin{itemize}
+  \item People make radically different decisions based on how information is
+  presented~\cite{tversky-92}
+  \item Politicians and marketers do this too
+\begin{columns}
+\column{.45\linewidth}
+\begin{block}{Gain frame}
+    Flossing your teeth daily removes particles of food in the mouth, avoiding bacteria, which promotes great breath.
+\end{block}
+\column{.49\linewidth}
+\begin{block}{Loss frame}
+    If you do not floss your teeth daily, particles of food remain in the mouth, collecting bacteria, which causes bad breath.
+\end{block}
+
+\end{columns}
+\pause
+  \item Can we discover this automatically?
+\end{itemize}
+
+
+
+
+\end{frame}
+
+% Our model
+
+\begin{frame}{The data}
+  \begin{columns}
+    \column{.5\linewidth}
+    \begin{itemize}
+      \item Every document has an associated {\bf response variable}
+        \begin{itemize}
+      \item Politicians: \alert<1>{Ideology of speaker}
+      \item Products: \alert<2>{Stars on a review}
+       \end{itemize}
+      \item We need the response to find association of frame and topic
+    \end{itemize}
+
+    \column{.5\linewidth}
+    \only<1>{
+    \begin{center}
+    \includegraphics[width=0.8\linewidth]{shlda/ideology_scale}
+    \end{center}
+       \begin{block}{}
+       This Christmas I want you to do the most loving thing and I want you to buy each of your children an SKS rifle and 500 rounds of ammunition.
+       \end{block}
+    }
+    \only<2>{
+      \includegraphics[width=0.6\linewidth]{shlda/response}
+      }
+
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Our Model}
+
+\providecommand{\shldascale}{0.3}
+
+\centering
+  \only<1>{ \includegraphics[scale=\shldascale]{shlda/intuition_topics_0}}
+  \only<2>{ \includegraphics[scale=\shldascale]{shlda/intuition_topics_1}}
+  \only<3>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_0}}
+  \only<4>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_1}}
+  \only<5>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_2}}
+  \only<6>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_3}}
+  \only<7>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_4}}
+  \only<8>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_5}}
+  \only<9>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_6}}
+  \only<10>{ \includegraphics[scale=\shldascale]{shlda/intuition_full_0}}
+  \only<11->{ \includegraphics[scale=\shldascale]{shlda/intuition_full_1}}
+
+  \only<11->{We call this model \alert<14>{supervised} \alert<13>{hierarchical} \alert<12>{latent Dirichlet
+    allocation} (SHLDA).}
+
+\end{frame}
+
+% Examples
+
+
+\begin{frame}{Adding in Lexical Regression}
+
+\centering
+    \only<1>{ \includegraphics[width=.6\linewidth]{shlda/equation_0}}
+    \only<2>{ \includegraphics[width=.65\linewidth]{shlda/equation_1}}
+    \only<3>{ \includegraphics[width=.675\linewidth]{shlda/equation_2}}
+    \only<4>{ \includegraphics[width=.675\linewidth]{shlda/equation_3}}
+    \only<5>{ \includegraphics[width=.7\linewidth]{shlda/equation_4}}
+
+ \begin{itemize}
+    \item Some words have {\bf context-specific} contributions (topics)
+    \item Some words have {\bf constant} contributions (words)
+    \item Long noted for sentiment analysis
+      \begin{itemize}
+        \item ``Wonderful'': always good
+          \item ``Unpredictable'': good for books, bad for steering
+        \end{itemize}
+    \end{itemize}
+
+
+\end{frame}
+
+
+
+\begin{frame}{Qualitative Results}
+   \begin{center}
+   \only<1>{ \includegraphics[width=0.8\linewidth]{shlda/ideology_topics}}
+   \only<2>{ \includegraphics[width=1.0\linewidth]{shlda/amazon_topics}}
+   \only<3>{ \includegraphics[width=0.7\linewidth]{shlda/amazon_topics_zoom}}
+   \end{center}
+\end{frame}
+
+\begin{frame}{Quantitative Results}
+
+\centering
+
+\begin{tabular}{|c||c|c|c|c|}
+  \hline
+Models & Floor Debates & Amazon & Movie \\
+  \hline
+  $\textsc{svr-}\lda{}_{10}$     & $1.247$       & $1.241$ & $0.970$ \\
+  $\textsc{svr-}\lda{}_{30}$     & $1.183$       & $1.091$ & $0.938$ \\
+  $\textsc{svr-}\lda{}_{50}$     & $1.135$       & $1.130$ & $0.906$ \\
+  {\textsc{svr-voc}}             & $1.467$       & $0.972$ & $0.681$\\
+  {\textsc{svr-lda-voc}}         & $1.101$       & $0.965$ & $0.678$\\ \hline \hline
+  $\textsc{mlr-}\lda{}_{10}$     & $1.151$       & $1.034$ & $0.957$ \\
+  $\textsc{mlr-}\lda{}_{30}$     & $1.125$       & $1.065$ &$0.936$ \\
+  $\textsc{mlr-}\lda{}_{50}$     & $1.081$       & $1.114$ & $0.914$ \\
+  {\textsc{mlr-voc}}             & $1.124$       & $0.869$ & $0.721$\\
+  {\textsc{mlr-lda-voc}}         & $1.120$       & $\bm {0.860}$ & $0.702$\\\hline \hline
+  $\slda{}_{10}$                 & $1.145$       & $1.113$ & $0.953$\\
+  $\slda{}_{30}$                 & $1.188$       & $1.146$ & $0.852$\\
+  $\slda{}_{50}$                 & $1.184$       & $1.939$ & $0.772$\\ \hline \hline
+  {\shlda{}}                     & $\bm {1.076}$ & $0.871$ & $\bm {0.673}$\\ \hline
+\end{tabular}
+
+Mean squared error averaged over 5 folds.
+\end{frame}
+
+\begin{frame}
+   \frametitle{What's next \dots}
+
+   \begin{columns}
+     \column{.5\linewidth}
+       \begin{block}{Stem-cell (R)}
+         \begin{itemize}
+           \footnotesize
+           \item When the teachings of a faith are described as ``a culture of death'' \dots its [adherents] are being slandered.
+           \item I accept, as an inseparable component of my faith, the omnipotence, omnipresence, and omniscience of God.
+         \end{itemize}
+       \end{block}
+     \column{.5\linewidth}
+       \begin{block}{Stem-cell (D)}
+         \begin{itemize}
+           \tiny
+           \item They [conservatives] would surely---and appropriately---have
+           ridiculed were it not supporting their current point of view.  In
+           fact, there is little credible evidence to suggest adult stem cells
+           have the same therapeutic potential as embryonic stem cells.
+
+           \item Opponents assert that embryonic stem cells are unnecessary
+           because adult stem cells, as well as umbilical cord blood stem cells,
+           will perform at least as well as embryonic stem cells.
+
+         \end{itemize}
+       \end{block}
+   \end{columns}
+
+   \begin{itemize}
+     \item Detecting sentences that are ``framed''
+     \item Working with political scientists to validate results
+     \item Creating a ``spin detector''
+     \item Offering the opposing spin
+   \end{itemize}
+
+\end{frame}
+
+
+\section{Quiz Bowl}
+
+\begin{frame}
+	\frametitle{Humans doing Incremental Classification}
+	\begin{columns}
+
+	\column{.5\linewidth}
+	\begin{itemize}
+		\item Game called ``quiz bowl''
+		\item Two teams play each other
+		\begin{itemize}
+			\item Moderator reads a question
+			\item When a team knows the answer, they signal (``buzz'' in)
+			\item If right, they get points; otherwise, rest of the question is read to the other team
+		\end{itemize}
+		\item Hundreds of teams in the US alone
+                \only<2>{\item Example \dots}
+	\end{itemize}
+
+	\column{.5\linewidth}
+	\includegraphics{qb/quizbowl}
+
+	\end{columns}
+
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Sample Question}
+	\frametitle{Sample Question}
+
+With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no moving parts. He did not take interaction with neighbors into account when formulating his theory of} \only<3->{heat capacity, so} \only<4->{Debye adjusted the theory for low temperatures. His} \only<4->{summation convention automatically sums repeated indices in tensor products. His name is attached to the A and B coefficients} \only<5->{for spontaneous and stimulated emission, the subject of one of his multiple groundbreaking 1905 papers. He further developed the model of statistics sent to him by} \only<6->{Bose to describe particles with integer spin. For 10 points, who is this German physicist best known for formulating the} \only<7->{special and general theories of relativity?} \\
+\vspace{1cm}
+\only<8->{ {\bf Albert \underline{Einstein}}}
+
+\only<9->{
+\vspace{-6cm}
+
+\begin{block}{Faster = Smarter}
+
+  \begin{enumerate}
+    \item Colorado School of Mines
+    \item Cornell University
+    \item Brigham Young University
+    \item California Institute of Technology
+    \item Peking University
+    \item Harvey Mudd College
+    \item Darmstadt University
+    \item University of Colorado
+  \end{enumerate}
+
+
+\end{block}
+}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Humans doing Incremental Classification}
+
+	\begin{columns}
+		\column{.5\linewidth}
+
+		\includegraphics[width=1.0\linewidth]{qb/jeopardy}
+
+
+		\column{.5\linewidth}
+		\begin{itemize}
+			\item This is {\bf not} Jeopardy \cite{ferruci-10}
+			\item There are buzzers, but players only buzz
+                          at the question end
+			\item Doesn't discriminate knowledge
+			\item Quiz bowl is pyramidal
+                        \item Watson must decide to answer {\bf once}, after
+                          complete question
+                        \item Quiz Bowl: decide after each word
+		\end{itemize}
+
+	\end{columns}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Humans doing Incremental Classification}
+
+	\begin{itemize}
+		\item Thousands of questions are written every year
+		\item Large question databases
+		\item Teams practice on these questions (some online, e.g. IRC)
+		\item How can we learn from this?
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+        \includegraphics[width=0.7\linewidth]{general_figures/hehe} \\
+        \includegraphics[width=0.7\linewidth]{general_figures/mohit}
+    \column{.5\linewidth}
+        \begin{block}{{\bf
+              \href{http://cs.colorado.edu/~jbg//docs/qb_emnlp_2012.pdf}{Besting
+                the Quiz Master: Crowdsourcing Incremental
+                Classification Games}}}
+
+          {\bf Jordan Boyd-Graber}, He He, and Hal {Daum\'{e} III}. \emph{Empirical Methods in Natural Language Processing}, 2012
+        \end{block}
+
+        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_qb_rnn.pdf}{A Neural Network for Factoid Question Answering over Paragraphs}}}
+\underline{\href{http://cs.umd.edu/~miyyer/}{Mohit Iyyer}}, {\bf Jordan Boyd-Graber}, Leonardo Claudino, Richard Socher, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
+        \end{block}
+
+
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{System for Incremental Classifiers}
+
+	\begin{itemize}
+		\item Treat this as a MDP
+		\item Action: {\bf buzz} now or {\bf wait}
+                     \pause
+                    \begin{enumerate}
+                  \item {\bf Content Model} is constantly generating guesses
+                     \item {\bf Oracle} provides examples where it is correct
+                   \item The {\bf Policy} generalizes to test data
+                       \item {\bf Features} represent our state
+                    \end{enumerate}
+	\end{itemize}
+\begin{block}{}
+  \begin{center}
+    \vspace{-.5cm}
+    \begin{tabular}{cccc}
+      \alert<3->{content model} & oracle & policy & features \\
+    \end{tabular}
+    \vspace{-.5cm}
+  \end{center}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Content Model}
+
+\begin{block}{}
+  \begin{center}
+    \vspace{-.5cm}
+    \begin{tabular}{cccc}
+      \alert{content model} & oracle & policy & features \\
+    \end{tabular}
+    \vspace{-.5cm}
+  \end{center}
+\end{block}
+
 
   \begin{itemize}
-    \item Richer translation model
-    \item Paraphrase database
-    \item Better reward (e.g., MEANT)
-    \item Verb prediction through argument structure
+   \item Bayesian generative model with answers as latent state
+         \item Unambiguous Wikipedia pages
+           \item Unigram term weightings (na\"ive Bayes, BM25)
+    \item Maintains posterior distribution over guesses
+    \item Always has a guess of what it should answer
+      \begin{itemize}
+        \item policy will tell us when to trust it
+       \end{itemize}
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Vector Space Model}
+
+  \only<1>{\gfxq{unigram_models_0}{.8}}
+  \only<2>{\gfxq{unigram_models_1}{.8}}
+  \only<3>{\gfxq{unigram_models_2}{.8}}
+  \only<4>{\gfxq{unigram_models_3}{.8}}
+  \only<5>{\gfxq{unigram_models_4}{.8}}
+  \only<6>{\gfxq{unigram_models_5}{.8}}
+  \only<7>{\gfxq{unigram_models_6}{.8}}
+  \only<8>{\gfxq{unigram_models_7}{.8}}
+  \only<9>{\gfxq{unigram_models_8}{.8}}
+
+
+\end{frame}
+
+
+\begin{frame}{How can we do better?}
+
+  \begin{itemize}
+    \item Use order of words in a sentence ``this man shot Lee Harvey Oswald'' very different from ``Lee Harvey Oswald shot this man''
+    \item Use relationship between questions (``China'' and
+      ``Taiwan'')
+    \item Use learned features and dimensions, not the words we start with
+      \pause
+    \item Recursive Neural Networks~\cite{socher-12}
+    \item First-time a \emph{learned} representation has been applied
+      to question answering
   \end{itemize}
 
 \end{frame}
+
+\begin{frame}{Using Compositionality}
+
+  \only<1-2>{\gfxq{rnn_11}{.8}}
+  \only<3>{\gfxq{rnn_10}{.8}}
+  \only<4>{\gfxq{rnn_9}{.8}}
+  \only<5>{\gfxq{rnn_8}{.8}}
+  \only<6>{\gfxq{rnn_7}{.8}}
+  \only<7>{\gfxq{rnn_6}{.8}}
+
+  \only<8>{\gfxq{rnn_recursive_1}{.8}}
+  \only<9>{\gfxq{rnn_recursive_2}{.8}}
+  \only<10>{\gfxq{rnn_recursive_3}{.8}}
+
+  \only<11>{\gfxq{rnn_5}{.8}}
+  \only<12>{\gfxq{rnn_4}{.8}}
+  \only<13>{\gfxq{rnn_3}{.8}}
+  \only<14>{\gfxq{rnn_2}{.8}}
+
+\end{frame}
+
+
+\begin{frame}{Training}
+
+  \begin{columns}
+    \column{.5\linewidth}
+      \begin{itemize}
+        \item Initialize embeddings from \textsc{word2vec}
+        \item Randomly initialize composition matrices
+        \item Update using \textsc{warp}
+          \begin{itemize}
+            \item Randomly choose an instance
+            \only<2->{\item Look where it lands}
+            \only<4->{\item Has a correct answer}
+            \only<5->{\item Wrong answers may be closer}
+            \only<6->{\item Push away wrong answers
+            \item Bring correct answers closer}
+          \end{itemize}
+      \end{itemize}
+
+    \column{.5\linewidth}
+
+      \only<1>{\gfxq{warp_training_5}{.8}}
+      \only<2>{\gfxq{warp_training_4}{.8}}
+      \only<3>{\gfxq{warp_training_3}{.8}}
+      \only<4>{\gfxq{warp_training_2}{.8}}
+      \only<5>{\gfxq{warp_training_1}{.8}}
+      \only<6>{\gfxq{warp_training_0}{.8}}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Oracle}
+\begin{block}{}
+  \begin{center}
+    \vspace{-.5cm}
+    \begin{tabular}{cccc}
+      content model & \alert{oracle} & policy & features \\
+    \end{tabular}
+    \vspace{-.5cm}
+  \end{center}
+\end{block}
+\begin{center}
+  \includegraphics[width=0.8\linewidth]{qb/oracle}
+\end{center}
+
+\begin{itemize}
+  \item As each token is revealed, look at content model's guess
+    \item If it's right, positive instance; otherwise negative
+      \item Nearly optimal policy to buzz whenever correct (upper bound)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Policy}
+
+\begin{block}{}
+  \begin{center}
+    \vspace{-.5cm}
+    \begin{tabular}{cccc}
+      content model & oracle & \alert{policy} & features \\
+    \end{tabular}
+    \vspace{-.5cm}
+  \end{center}
+\end{block}
+
+ \begin{itemize}
+    \item Mapping: state $\mapsto$ action
+    \item Use oracle as example actions
+    \item Learned as classifier \cite{langford-05}
+    \item At test time, use the same features as for training
+      \begin{itemize}
+        \item Question text (so far)
+        \item Guess
+        \item Posterior distribution
+        \item Change in posterior
+      \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[t]{Features (by example)}
+
+\only<1-3>{
+\begin{block}{}
+  \begin{center}
+    \vspace{-.5cm}
+    \begin{tabular}{cccc}
+      content model & oracle & policy & \alert{features} \\
+    \end{tabular}
+    \vspace{-.5cm}
+  \end{center}
+\end{block}
+\vspace{.5cm}
+}
+
+\only<4->{\vspace{-1.5cm}}
+
+  \begin{columns}[T]
+    \column{.3\linewidth}
+
+    \only<1->{ \includegraphics[width=2\linewidth]{qb/feature_ex_l_1} \\ }
+    \vspace{.5cm}
+    \only<4->{ \includegraphics[width=2\linewidth]{qb/feature_ex_l_2}  \\ }
+    \vspace{.5cm}
+    \only<7->{ \includegraphics[width=2\linewidth]{qb/feature_ex_l_3}  \\ }
+
+
+    \column{.68\linewidth}
+    \vspace{-.5cm}
+    \only<2->{ \includegraphics[width=.85\linewidth]{qb/feature_ex_r_1} \\ }
+    \only<3->{ \vspace{-.5cm} \hspace{.5cm} \includegraphics[width=.1\linewidth]{qb/feature_ex_wait}  \\ }
+    \only<5->{ \includegraphics[width=\linewidth]{qb/feature_ex_r_2} \\ }
+    \only<6->{ \vspace{-.5cm} \hspace{.5cm}\includegraphics[width=.1\linewidth]{qb/feature_ex_wait}  \\ }
+    \only<8->{ \includegraphics[width=\linewidth]{qb/feature_ex_r_3} \\ }
+    \only<9->{ \vspace{-.5cm} \hspace{.5cm} \includegraphics[width=.1\linewidth]{qb/feature_ex_buzz}  \\ }
+    \only<9->{Answer: {\bf Julius Caesar}}
+  \end{columns}
+
+\end{frame}
+
+
+
+\begin{frame}{Simulating a Game}
+		\begin{itemize}
+			\item Present tokens incrementally to algorithm, see where it buzzes
+			\item Compare to where humans buzzed in
+			\item Payoff matrix (wrt Computer)
+			\begin{center}
+\begin{tabular}{lccr}
+& Computer & Human & Payoff \\
+\hline
+1 & first and wrong & right & $-15$ \\
+2 & --- & first and correct & $-10$ \\
+3  & first and wrong & wrong & $-5$ \\
+4 & first and correct & --- & $+10$ \\
+5 & wrong & first and wrong & $+5$ \\
+6 & right & first and wrong & $+15$ \\
+\hline
+\end{tabular}
+			\end{center}
+		\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Interface}
+
+\begin{columns}
+
+	\column{0.5\linewidth}
+
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{qb/screenshot}
+	\end{center}
+
+	\column{0.5\linewidth}
+	\only<1>{
+	\begin{itemize}
+		\item Users could ``veto'' categories or tournaments
+		\item Questions presented in canonical order
+		\item Approximate string matching (w/ override)
+	\end{itemize}
+	}
+
+	\only<2>{
+	\begin{itemize}
+		\item Started on Amazon Mechanical Turk
+		\item 7000 questions were answered in the first day
+		\item Over 43000 questions were answered in the space of two weeks
+		\item Total of 461 unique users
+		\item Leaderboard to encourage users
+	\end{itemize}
+	}
+
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Embedding}
+
+  \gfxq{embedding}{1.0}
+
+\end{frame}
+
+\begin{frame}{Comparing \textsc{rnn} to \textsc{bow}}
+
+\begin{center}
+\begin{tabular}{lrrrrrr}
+\hline
+& \multicolumn{3}{c}{History} & \multicolumn{3}{c}{Literature}\\
+Model    & Sent 1 & Sent 2 & Full & Sent 1 & Sent 2 & Full \\
+\hline
+\textsc{bow-qb} & 37.5 & 65.9 & 71.4 & 27.4 & 54.0 & 61.9 \\
+\alert<2>{\textsc{rnn}} & \bf 47.1 & \bf 72.1 & \bf 73.7 & \bf 36.4 & \bf 68.2 & \bf 69.1 \\
+\hline
+\alert<3>{\textsc{bow-wiki}} & 53.7 & 76.6 & 77.5 & 41.8 & 74.0 & 73.3 \\
+\alert<4>{\textsc{combined}} & \bf 59.8 & \bf 81.8 & \bf 82.3 & \bf 44.7 & \bf 78.7 & \bf 76.6 \\
+\hline
+\end{tabular}
+\end{center}
+
+Percentage accuracy of different vector-space models.
+
+\end{frame}
+
+\begin{frame}{Now we're able to beat humans}
+
+  \gfxq{human_history}{1.0}
+
+\end{frame}
+
+\begin{frame}{Examining vectors}
+
+  \only<1>{\gfxq{mann}{.65}}
+  \only<2>{\gfxq{cabot}{.6}}
+
+\end{frame}
+
+\begin{frame}{Experiment 1}
+
+		\begin{columns}
+			\column{.25\linewidth}
+				\gfxq{colby_jeo}{1.0}
+                                Colby Burnett:
+                                \$375,000
+			\column{.25\linewidth}
+				\gfxq{ben_jeo}{1.0}
+                                Ben Ingram:
+                                \$427,534
+			\column{.25\linewidth}
+				\gfxq{alex_jeo}{1.0}
+                                Alex Jacobs: \$151,802
+			\column{.25\linewidth}
+				\gfxq{kristin_jeo}{1.0}
+                                Kristin Sausville: \$95,201
+		\end{columns}
+
+                \pause
+
+
+                \begin{center}
+                End result: 200-200 tie!
+                \end{center}
+
+\end{frame}
+
+\begin{frame}{Experiment 2}
+
+\gfxq{jennings}{.7}
+
+\begin{itemize}
+  \item More data helps
+  \item Improving country pages specifically
+  \item Still weak on popular culture
+  \item Limited set of answers
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Building on this Foundation}
+
+  \begin{itemize}
+    \item Using Wikipedia: Deep Averaging Networks~\cite{iyyer-15}
+    \item New network structures: capturing coreference~\cite{guha-15}
+    \item Incorporating additional information: story plots
+  \end{itemize}
+
+\end{frame}
+
 
 \section{Conclusions}
 
 \begin{frame}{Conclusion}
 
   \begin{itemize}
-    \item Algorithms that think on their feet
-      \begin{itemize}
-        \item First learned system for simultaneous translation
-        \item Moving being hand-engineered or bag of words features
-          for question answering
-      \end{itemize}
-    \item Interaction between prediction and confidence
-    \item Imitation of what humans do
+    \item Transparency
   \end{itemize}
 
 \end{frame}
@@ -1150,15 +1547,15 @@ Aggressiveness based on different right probability thresholds
         \end{block}
 
 	\begin{columns}
-	
+
 	\column{.5\linewidth}
         \begin{block}{Funders}
         \begin{center}
           \includegraphics[width=0.4\linewidth]{general_figures/nsf}
        \end{center}
         \end{block}
-        
-	\column{.5\linewidth}        
+
+	\column{.5\linewidth}
         \begin{block}{Supporters}
         	\gfxq{naqt}{.4}
         \end{block}
