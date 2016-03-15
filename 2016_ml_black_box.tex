@@ -11,6 +11,7 @@
 \usepackage{subfigure}
 \usepackage{colortbl}
 \usepackage{overpic}
+\usepackage{pdfpages}
 
 \usepackage{multirow}
 
@@ -53,6 +54,8 @@
 }
 
 
+\newif\ifjobtalk\jobtalkfalse
+
 \usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
           titleline=true,                    % Show a line below the frame title.
           showdate=true,                     % show the date on the title page
@@ -70,17 +73,77 @@
 \institute[] % (optional, but mostly needed)
 {University of Colorado Boulder}
 
-\AtBeginSection[] % "Beamer, do the following at the start of every section"
-{ \begin{frame} \frametitle{Outline} % make a frame titled "Outline"
-\tableofcontents[currentsection] % show TOC and highlight current section
-\end{frame} }
-
 \begin{document}
 
 \frame{
 \titlepage
 \tiny
 }
+
+\begin{frame}[plain]
+\vspace*{-1pt}
+\only<1>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_1}}}
+\only<2>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_2}}}
+\only<3>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_3}}}
+\only<4>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_4}}}
+\only<5>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_5}}}
+\only<6>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/blackbox}}}
+\only<7>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_outline}}}
+\only<8>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_inform}}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{The Challenge of Big Data}
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+Every second \dots
+\begin{itemize}
+  \item 600 new blog posts appear
+  \item 34,000 tweets are tweeted
+  \item 30 GB of data uploaded to Facebook
+\end{itemize}
+\pause
+
+\begin{block}{Unstructured}
+  No XML, no semantic web, no annotation.  Often just raw text.
+\end{block}
+
+\column{.5\linewidth}
+
+\only<3->{
+Common task: what's going on in this dataset.
+\begin{itemize}
+   \item Intelligence analysts
+   \item Brand monitoring
+   \item Journalists
+   \item Humanists
+\end{itemize}
+}
+\only<4>{
+\centering
+Common solution: topic models
+}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{center}
+\frametitle{What does a Topic Model do?}
+From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarrow$ \textbf<2>{words to topics} \\
+\only<1>{\includegraphics[width=0.6\linewidth]{reading_tea_leaves/figures/heldout_0} }
+\only<2>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/figures/nyt_topics_wide}}
+%\only<3>{\includegraphics[width=0.9\linewidth]{topic_models/nyt_documents}}
+\end{center}
+
+\end{frame}
+
 
 \begin{frame}{Evaluating Topic Models}
 
@@ -93,7 +156,9 @@ M. Blei. Reading Tea Leaves: How Humans Interpret Topic Models. Neural
 Information Processing Systems, 2009.
 \end{block}
 
+\ifjobtalk
 {\bf Jonathan and I shared a NIPS 2009 Best Student Paper HM}
+\fi
 
 \column{.3\linewidth}
 \includegraphics[width=.8\linewidth]{general_figures/jonathan}
@@ -151,27 +216,6 @@ Information Processing Systems, 2009.
 }
 
 \frame{
-\frametitle{Data from the Cloud}
-\begin{columns}[c]
-
-
-\column{0.45\linewidth}
-
-\begin{block}{Then}
-\includegraphics[width=0.95\linewidth]{evocation/figures/mechanical_turk_old}
-\end{block}
-
-
-\column{0.45\linewidth}
-
-\begin{block}{Now}
-\includegraphics[width=0.95\linewidth]{evocation/figures/mechanical_turk_new}
-\end{block}
-
-\end{columns}
-}
-
-\frame{
   \frametitle{Word Intrusion}
 
   \begin{enumerate}
@@ -224,6 +268,12 @@ Within a model, higher likelihood $\not =$ higher interpretability
     \item And extended the technique to structured topics and phrases~\cite{lindsey-12,weninger-12}
   \end{itemize}
 
+\end{frame}
+
+
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_collaborate}}
 \end{frame}
 
 \frame{
@@ -300,37 +350,33 @@ p(\phi_k | \eta) }$
 
 \end{frame}
 
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_collaborate}}
+\end{frame}
 
-\begin{frame}{Nuremburg Trials}
+\begin{frame}[plain]{}
+\vspace*{-4cm}
+ \gfxs{nuremberg_trials}{1.0}
 
-\begin{columns}
+\vspace{-4cm}
 
-\column{.5\linewidth}
-
-    \gfxs{nuremberg_trials}{1.0}
-
-\column{.5\linewidth}
-
+\begin{block}{N\"urnberg Trials}
     \begin{itemize}
         \item Dozens of defendants
         \item Judges from four nations (three languages)
-\pause
         \item Status quo: speak, then translate
-\pause
-        \item After Nuremberg, simultaneous translations became the
-          norm
-\pause
-        \item Long wait $\rightarrow$ bad conversation
      \end{itemize}
 
-\end{columns}
+\end{block}
+
 
 \end{frame}
 
 
 \section{Simultaneous Translation}
 
-\begin{frame}{Simultaneous translation is the norm}
+\begin{frame}{Simultaneous translation now the norm}
 
   \begin{columns}
     \column{.5\linewidth}
@@ -345,7 +391,7 @@ p(\phi_k | \eta) }$
 
 \end{frame}
 
-\begin{frame}{Why simultaneous translation really hard is}
+\begin{frame}{Why interpretation really hard is}
 
   \begin{columns}
     \column{.5\linewidth}
@@ -353,7 +399,7 @@ p(\phi_k | \eta) }$
         \item Many languages are \textsc{sov}
         \item \alert<2>{German}, Japanese, Farsi, Korean,
           \alert<3>{Yiddish}
-        \item<4-> First learned system for simulatenous translation
+        \item<4-> How can we learn from trained interpreters?
       \end{itemize}
     \column{.5\linewidth}
       \gfxs{yoda}{.6}
@@ -378,240 +424,49 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
 \end{frame}
 
-
-\begin{frame}{}
-
-  \begin{columns}
-    \column{.5\linewidth}
-        \includegraphics[width=0.9\linewidth]{general_figures/alvin}
-    \column{.5\linewidth}
-        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_simtrans.pdf}{Don't Until the Final Verb Wait: Reinforcement Learning for Simultaneous Machine Translation}}}
-\underline{\href{http://www.umiacs.umd.edu/~alvin/}{Alvin Grissom II}}, {\bf Jordan Boyd-Graber}, He He, John Morgan, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
-        \end{block}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Solution: Predicting the Verb}
-
-\begin{columns}
-
-\column{.5\linewidth}
-  \begin{itemize}
-    \item If we can figure out the verb, we can ``complete'' the
-      sentence
-    \item This is provided by language models that can predict the
-      next word in a sentence
-    \item Instead, we'll predict the verb
-  \end{itemize}
-
-\column{.5\linewidth}
-
-\gfxs{autocomplete}{.8}
-
-\end{columns}
-
-\end{frame}
-
-
-\begin{frame}{Language Models of Verbs}
-
-  \only<1>{\gfxs{verb_corpus_1}{.9}}
-  \only<2>{\gfxs{verb_corpus_2}{.9}}
-  \only<3>{\gfxs{verb_corpus_3}{.9}}
-
-\end{frame}
-
-\begin{frame}{Predicting the Verb}
-\begin{itemize}
-  \item Build language model for every verb
-  \item Then, for any input text $x$ we can make a prediction of the verb
-\begin{equation}
-  \arg\max_v p(v) \prod_{i=1}^t p(x_i \g v, x_{i-n+1:i-1})
-\end{equation}
-\pause
-  \item Most of these predictions will be totally wrong (18\%
-    accuracy) \dots
-  \item leading to horrible translations
-\end{itemize}
-\end{frame}
-
-\begin{frame}{States and Actions}
-
-  \begin{itemize}
-    \item State
-      \begin{itemize}
-        \item The words we've seen
-        \item Predictions
-      \end{itemize}
-      \pause
-    \item Actions (more complicated than Quiz Bowl)
-      \begin{itemize}
-        \item Wait
-        \item \alert<3>{Predict Verb and Translate}
-        \item \alert<3>{Commit to Translation}
-      \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Translations}
-  \begin{itemize}
-    \item Assume a ``black box''
-    \item German in, English out
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Consensus Translation}
-
-  \only<1>{\begin{center}
-``German in, English out'' black box
-      \end{center}}
-
-  \only<2>{\gfxs{consensus_0}{.8}}
-  \only<3>{\gfxs{consensus_1}{.8}}
-  \only<4>{\gfxs{consensus_2}{.8}}
-  \only<5>{\gfxs{consensus_3}{.8}}
-  \only<6>{\gfxs{consensus_4}{.8}}
-
-\end{frame}
-
-\begin{frame}{Scoring one Translation}
-  \begin{center}
-    Bilingual Evaluation Understudy (BLEU)
-\end{center}
-  \only<1>{\gfxs{bleu_ex}{.8}}
-  \only<2>{\gfxs{bleu_correlation}{.6}}
-\end{frame}
-
-
-\begin{frame}{Scoring a series of Translations}
-  \begin{center}
-    Bilingual Evaluation Understudy (BLEU)
-\end{center}
-  \only<1>{\gfxs{integral_0}{.95}}
-  \only<2>{\gfxs{integral_1}{.95}}
-\end{frame}
-
-
-
-\begin{frame}{Comparing Policies}
-
-  \only<1-7>{\vspace{4.75cm}}
-  \only<8-14>{\vspace{3.3cm}}
-  \only<15-21>{\vspace{2cm}}
-
-  \only<1,8,15,22>{\gfxs{reward_example_0}{.8}}
-  \only<2,9,16,23>{\gfxs{reward_example_1}{.8}}
-  \only<3,10,17,24>{\gfxs{reward_example_2}{.8}}
-  \only<4,11,18,25>{\gfxs{reward_example_3}{.8}}
-  \only<5,12,19,26>{\gfxs{reward_example_4}{.8}}
-  \only<6,13,20,27>{\gfxs{reward_example_5}{.8}}
-  \only<7,14,21,28>{\gfxs{reward_example_6}{.8}}
-\end{frame}
-
-
-
-
-\begin{frame}{Imitation Learning}
-
-  \begin{columns}
-    \column{.5\linewidth}
-       \gfxs{imitation_fold}{.8}
-       \gfxs{imitation_drive}{.8}
-    \column{.5\linewidth}
-    \begin{itemize}
-      \item Given all the predictions that we make (and the resulting
-        translations) \dots
-      \item Discover the optimal in hindsight policies
-      \item Goal: Teach our algorithm to think on its feet
-      \item Challenge: Represent states in a way that will generalize
-    \end{itemize}
-
-  \end{columns}
-
-\end{frame}
-
-
-\begin{frame}{How do we find a good policy?}
-
-  \only<1>{\gfxs{searn_7}{.8}}
-  \only<2>{\gfxs{searn_6}{.8}}
-  \only<3>{\gfxs{searn_5}{.8}}
-  \only<4>{\gfxs{searn_4}{.8}}
-  \only<5>{\gfxs{searn_3}{.8}}
-  \only<6>{\gfxs{searn_2}{.8}}
-  \only<7>{\gfxs{searn_1}{.8}}
-\end{frame}
-
-
-\begin{frame}{How do we find a good policy?}
-
-  \begin{itemize}
-    \item Find optimal policies through dynamic programming $\pi_0
-      \equiv \pi*$
-    \item Represent states $s$ through a feature vector $\vec f(s)$
-      \pause
-    \item Until convergence:
-      \begin{itemize}
-        \item Generate examples of state action pairs: $(\pi_t(s), s)$
-        \item Create a classifier that maps states to actions (an
-          apprentice policy) $h_t: f(s) \mapsto A$ \only<3->{(Loss of
-            classifier is the negative reward)}
-    \item Interpolate learned classifier $\pi_{t+1} = \lambda \pi_t +
-      (1-\lambda) h_t$
-  \end{itemize}
-  \end{itemize}
-
-\only<4->{
-  \begin{center}
-    \textsc{searn}: \underline{Se}arching to L\underline{earn}
-    (Daum\'e \& Marcu, 2006)
-    \end{center}
-}
-\end{frame}
-
-
-\begin{frame}{Experimental Setup}
-
-  \begin{itemize}
-    \item \textsc{denews} corpus
-      \begin{itemize}
-        \item News snippets
-        \item Some formulaic
-        \item Some surprising
-      \end{itemize}
-    \item Only verb-final sentences
-    \item Some compromises with translation system (to make sure verbs appeared)
-  \end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}{Comparing Policies}
-
-  \gfxs{cummulative}{.6}
-
-\end{frame}
-
-\begin{frame}{Learned Policy with Accumulated Reward}
-
-  \only<1>{\gfxs{compare_line_batch}{.8}}
-  \only<2>{\gfxs{compare_line_batch_monotone}{.8}}
-  \only<3>{\gfxs{compare_line_batch_monotone_opt}{.8}}
-  \only<4>{\gfxs{compare_line_all}{.8}}
-\end{frame}
-
-
-\begin{frame}{Example Sentence}
-
-  \gfxs{ex_imperfect}{.7}
+\begin{frame}[plain]{}
+\vspace*{-1pt}
+  \gfxs{interpreter-screenshot}{1.0}
 
   \pause
+  \vspace{-4cm}
 
-  But we're still at the mercy of our translation black box
+  \begin{block}{Learning from Interpreters}
+    \begin{itemize}
+      \item What tricks do they use?
+      \item How can we teach machines to use them?
+      \item How do we know when to use them?
+      \item Giving back to interpreters
+    \end{itemize}
+  \end{block}
 
 \end{frame}
+
+\begin{frame}{What tricks to interpreters use?}
+
+  \begin{columns}
+    \column{.5\linewidth}
+  \begin{itemize}
+    \item Generalize~\cite{dell92access,cuetos06access}
+    \item Summarize
+    \item Passivization
+    \item Segmentation~\cite{erik11theory,shimizu13iwslt}
+    \item Predictions~\cite{levy2013expectation,momma2015timing}
+  \end{itemize}
+    \column{.5\linewidth}
+    \centering
+        \includegraphics[width=0.4\linewidth]{general_figures/hehe}
+        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg/docs/2016_naacl_interpretese.pdf}{Interpretese vs. Translationese: The Uniqueness of Human Strategies in Simultaneous Interpretation}}}
+He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
+\emph{North American Association for Computational Linguistics}, 2016
+        \end{block}
+  \end{columns}
+
+
+  % Need pictures / examples
+
+\end{frame}
+
 
 
 \begin{frame}{}
@@ -732,273 +587,227 @@ Aggressiveness based on different right probability thresholds
 
 \end{frame}
 
-% Diplomacy
 
-
-\section{SHLDA: Detecting Framing}
-
-\providecommand{\shlda}{\textsc{ShLDA}}
-
-\begin{frame}
-  \vspace{-2cm}
-  \begin{columns}
-    \column{.45\linewidth}
-    \begin{center}
-      \includegraphics[width=\linewidth]{cognitive/crowdsourcing_off}
-      \end{center}
-    \column{.45\linewidth}
-    \begin{center}
-      \includegraphics[width=\linewidth]{cognitive/user_off}
-      \end{center}
-
-  \end{columns}
+\begin{frame}{}
 
   \begin{columns}
-    \column{.45\linewidth}
-    \begin{center}
-      \includegraphics[width=\linewidth]{cognitive/algorithms_off}
-      \end{center}
-    \column{.45\linewidth}
-    \begin{center}
-      \includegraphics[width=\linewidth]{cognitive/framing_on}
-      \end{center}
+    \column{.5\linewidth}
+        \includegraphics[width=0.9\linewidth]{general_figures/alvin}
+    \column{.5\linewidth}
+        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_simtrans.pdf}{Don't Until the Final Verb Wait: Reinforcement Learning for Simultaneous Machine Translation}}}
+\underline{\href{http://www.umiacs.umd.edu/~alvin/}{Alvin Grissom II}}, {\bf Jordan Boyd-Graber}, He He, John Morgan, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
+        \end{block}
   \end{columns}
-
-\only<2->{
-\vspace{-3cm}
-\begin{block}{Detecting Framing}
-        Using topic models to detect spin
-\end{block}
-}
-
-
 \end{frame}
 
-
-\frame{
-
-\begin{columns}
-
-\column{.5\linewidth}
-
-\includegraphics[width=.8\linewidth]{general_figures/an}
-
-\column{.5\linewidth}
-
-\begin{block}{Lexical and Hierarchical Topic Regression}
-Viet-An Nguyen, Jordan Boyd-Graber, and Philip Resnik. NIPS 2013.
-\end{block}
-
-\end{columns}
-
-}
-
-
-
-% The problem of framing
-\begin{frame}{Message Matters}
-
-\begin{itemize}
-  \item People make radically different decisions based on how information is
-  presented~\cite{tversky-92}
-  \item Politicians and marketers do this too
-\begin{columns}
-\column{.45\linewidth}
-\begin{block}{Gain frame}
-    Flossing your teeth daily removes particles of food in the mouth, avoiding bacteria, which promotes great breath.
-\end{block}
-\column{.49\linewidth}
-\begin{block}{Loss frame}
-    If you do not floss your teeth daily, particles of food remain in the mouth, collecting bacteria, which causes bad breath.
-\end{block}
-
-\end{columns}
+\begin{frame}[plain]
+\vspace{-4cm}
+\gfxs{autocomplete}{1.0}
 \pause
-  \item Can we discover this automatically?
-\end{itemize}
-
-
-
+\vspace{-6cm}
+\begin{block}{Predict the Verb}
+  \begin{itemize}
+    \item Predicting the verb ``unlocks'' sentence
+    \item Language models are good at word prediction
+    \item But instead, we'll predict the verb
+  \end{itemize}
+\end{block}
 
 \end{frame}
 
-% Our model
 
-\begin{frame}{The data}
+\begin{frame}{Language Models of Verbs}
+
+  \only<1>{\gfxs{verb_corpus_1}{.9}}
+  \only<2>{\gfxs{verb_corpus_2}{.9}}
+  \only<3>{\gfxs{verb_corpus_3}{.9}}
+
+\end{frame}
+
+\begin{frame}{Predicting the Verb}
+\begin{itemize}
+  \item Build language model for every verb
+  \item Then, for any input text $x$ we can make a prediction of the verb
+\begin{equation}
+  \arg\max_v p(v) \prod_{i=1}^t p(x_i \g v, x_{i-n+1:i-1})
+\end{equation}
+\pause
+  \item Most of these predictions will be totally wrong (18\%
+    accuracy) \dots
+  \item leading to horrible translations
+\end{itemize}
+\end{frame}
+
+% \begin{frame}{Consensus Translation}
+
+%   \only<1>{\begin{center}
+% ``German in, English out'' black box
+%       \end{center}}
+
+%   \only<2>{\gfxs{consensus_0}{.8}}
+%   \only<3>{\gfxs{consensus_1}{.8}}
+%   \only<4>{\gfxs{consensus_2}{.8}}
+%   \only<5>{\gfxs{consensus_3}{.8}}
+%   \only<6>{\gfxs{consensus_4}{.8}}
+
+% \end{frame}
+
+\begin{frame}{Scoring one Translation}
+  \begin{center}
+    Bilingual Evaluation Understudy (BLEU)
+\end{center}
+  \only<1>{\gfxs{bleu_ex}{.8}}
+  \only<2>{\gfxs{bleu_correlation}{.6}}
+\end{frame}
+
+
+\begin{frame}{Scoring a series of Translations}
+  \begin{center}
+    Bilingual Evaluation Understudy (BLEU)
+\end{center}
+  \only<1>{\gfxs{integral_0}{.95}}
+  \only<2>{\gfxs{integral_1}{.95}}
+\end{frame}
+
+
+
+\begin{frame}{Comparing Policies}
+
+  \only<1-7>{\vspace{4.75cm}}
+  \only<8-14>{\vspace{3.3cm}}
+  \only<15-21>{\vspace{2cm}}
+
+  \only<1,8,15,22>{\gfxs{reward_example_0}{.8}}
+  \only<2,9,16,23>{\gfxs{reward_example_1}{.8}}
+  \only<3,10,17,24>{\gfxs{reward_example_2}{.8}}
+  \only<4,11,18,25>{\gfxs{reward_example_3}{.8}}
+  \only<5,12,19,26>{\gfxs{reward_example_4}{.8}}
+  \only<6,13,20,27>{\gfxs{reward_example_5}{.8}}
+  \only<7,14,21,28>{\gfxs{reward_example_6}{.8}}
+\end{frame}
+
+
+
+
+\begin{frame}{Imitation Learning}
+
   \begin{columns}
+    \column{.5\linewidth}
+       \gfxs{imitation_fold}{.8}
+       \gfxs{imitation_drive}{.8}
     \column{.5\linewidth}
     \begin{itemize}
-      \item Every document has an associated {\bf response variable}
-        \begin{itemize}
-      \item Politicians: \alert<1>{Ideology of speaker}
-      \item Products: \alert<2>{Stars on a review}
-       \end{itemize}
-      \item We need the response to find association of frame and topic
+      \item Given all the predictions that we make (and the resulting
+        translations) \dots
+      \item Discover the optimal in hindsight policies
+      \item Goal: Teach our algorithm to think on its feet
+      \item Challenge: Represent states in a way that will generalize
     \end{itemize}
-
-    \column{.5\linewidth}
-    \only<1>{
-    \begin{center}
-    \includegraphics[width=0.8\linewidth]{shlda/ideology_scale}
-    \end{center}
-       \begin{block}{}
-       This Christmas I want you to do the most loving thing and I want you to buy each of your children an SKS rifle and 500 rounds of ammunition.
-       \end{block}
-    }
-    \only<2>{
-      \includegraphics[width=0.6\linewidth]{shlda/response}
-      }
 
   \end{columns}
-\end{frame}
-
-\begin{frame}{Our Model}
-
-\providecommand{\shldascale}{0.3}
-
-\centering
-  \only<1>{ \includegraphics[scale=\shldascale]{shlda/intuition_topics_0}}
-  \only<2>{ \includegraphics[scale=\shldascale]{shlda/intuition_topics_1}}
-  \only<3>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_0}}
-  \only<4>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_1}}
-  \only<5>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_2}}
-  \only<6>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_3}}
-  \only<7>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_4}}
-  \only<8>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_5}}
-  \only<9>{ \includegraphics[scale=\shldascale]{shlda/intuition_regression_6}}
-  \only<10>{ \includegraphics[scale=\shldascale]{shlda/intuition_full_0}}
-  \only<11->{ \includegraphics[scale=\shldascale]{shlda/intuition_full_1}}
-
-  \only<11->{We call this model \alert<14>{supervised} \alert<13>{hierarchical} \alert<12>{latent Dirichlet
-    allocation} (SHLDA).}
 
 \end{frame}
 
-% Examples
+
+\begin{frame}{How do we find a good policy?}
+
+\only<1>{\gfxs{searn_1}{1.0}}
+\only<2>{\gfxs{searn_2}{1.0}}
+\only<3>{\gfxs{searn_3}{1.0}}
+\only<4>{\gfxs{searn_4}{1.0}}
+\only<5>{\gfxs{searn_5}{1.0}}
+\only<6>{\gfxs{searn_6}{1.0}}
+\only<7>{\gfxs{searn_7}{1.0}}
+\only<8>{\gfxs{searn_8}{1.0}}
+\only<9>{\gfxs{searn_9}{1.0}}
+\end{frame}
 
 
-\begin{frame}{Adding in Lexical Regression}
+\begin{frame}{How do we find a good policy?}
 
-\centering
-    \only<1>{ \includegraphics[width=.6\linewidth]{shlda/equation_0}}
-    \only<2>{ \includegraphics[width=.65\linewidth]{shlda/equation_1}}
-    \only<3>{ \includegraphics[width=.675\linewidth]{shlda/equation_2}}
-    \only<4>{ \includegraphics[width=.675\linewidth]{shlda/equation_3}}
-    \only<5>{ \includegraphics[width=.7\linewidth]{shlda/equation_4}}
-
- \begin{itemize}
-    \item Some words have {\bf context-specific} contributions (topics)
-    \item Some words have {\bf constant} contributions (words)
-    \item Long noted for sentiment analysis
+  \begin{itemize}
+    \item Find optimal policies through dynamic programming $\pi_0
+      \equiv \pi*$
+    \item Represent states $s$ through a feature vector $\vec f(s)$
+      \pause
+    \item Until convergence:
       \begin{itemize}
-        \item ``Wonderful'': always good
-          \item ``Unpredictable'': good for books, bad for steering
-        \end{itemize}
-    \end{itemize}
+        \item Generate examples of state action pairs: $(\pi_t(s), s)$
+        \item Create a classifier that maps states to actions (an
+          apprentice policy) $h_t: f(s) \mapsto A$ \only<3->{(Loss of
+            classifier is the negative reward)}
+    \item Interpolate learned classifier $\pi_{t+1} = \lambda \pi_t +
+      (1-\lambda) h_t$
+  \end{itemize}
+  \end{itemize}
 
+\only<4->{
+  \begin{center}
+    \textsc{searn}: \underline{Se}arching to L\underline{earn}
+    (Daum\'e \& Marcu, 2006)
+    \end{center}
+}
+\end{frame}
+
+
+\begin{frame}{Experimental Setup}
+
+  \begin{itemize}
+    \item \textsc{denews} corpus
+      \begin{itemize}
+        \item News snippets
+        \item Some formulaic
+        \item Some surprising
+      \end{itemize}
+    \item Only verb-final sentences
+    \item Some compromises with translation system (to make sure verbs appeared)
+  \end{itemize}
 
 \end{frame}
 
 
 
-\begin{frame}{Qualitative Results}
-   \begin{center}
-   \only<1>{ \includegraphics[width=0.8\linewidth]{shlda/ideology_topics}}
-   \only<2>{ \includegraphics[width=1.0\linewidth]{shlda/amazon_topics}}
-   \only<3>{ \includegraphics[width=0.7\linewidth]{shlda/amazon_topics_zoom}}
-   \end{center}
+\begin{frame}{Comparing Policies}
+
+  \gfxs{cummulative}{.6}
+
 \end{frame}
 
-\begin{frame}{Quantitative Results}
+\begin{frame}{Learned Policy with Accumulated Reward}
 
-\centering
-
-\begin{tabular}{|c||c|c|c|c|}
-  \hline
-Models & Floor Debates & Amazon & Movie \\
-  \hline
-  $\textsc{svr-}\lda{}_{10}$     & $1.247$       & $1.241$ & $0.970$ \\
-  $\textsc{svr-}\lda{}_{30}$     & $1.183$       & $1.091$ & $0.938$ \\
-  $\textsc{svr-}\lda{}_{50}$     & $1.135$       & $1.130$ & $0.906$ \\
-  {\textsc{svr-voc}}             & $1.467$       & $0.972$ & $0.681$\\
-  {\textsc{svr-lda-voc}}         & $1.101$       & $0.965$ & $0.678$\\ \hline \hline
-  $\textsc{mlr-}\lda{}_{10}$     & $1.151$       & $1.034$ & $0.957$ \\
-  $\textsc{mlr-}\lda{}_{30}$     & $1.125$       & $1.065$ &$0.936$ \\
-  $\textsc{mlr-}\lda{}_{50}$     & $1.081$       & $1.114$ & $0.914$ \\
-  {\textsc{mlr-voc}}             & $1.124$       & $0.869$ & $0.721$\\
-  {\textsc{mlr-lda-voc}}         & $1.120$       & $\bm {0.860}$ & $0.702$\\\hline \hline
-  $\slda{}_{10}$                 & $1.145$       & $1.113$ & $0.953$\\
-  $\slda{}_{30}$                 & $1.188$       & $1.146$ & $0.852$\\
-  $\slda{}_{50}$                 & $1.184$       & $1.939$ & $0.772$\\ \hline \hline
-  {\shlda{}}                     & $\bm {1.076}$ & $0.871$ & $\bm {0.673}$\\ \hline
-\end{tabular}
-
-Mean squared error averaged over 5 folds.
+  \only<1>{\gfxs{compare_line_batch}{.8}}
+  \only<2>{\gfxs{compare_line_batch_monotone}{.8}}
+  \only<3>{\gfxs{compare_line_batch_monotone_opt}{.8}}
+  \only<4>{\gfxs{compare_line_all}{.8}}
 \end{frame}
 
-\begin{frame}
-   \frametitle{What's next \dots}
 
-   \begin{columns}
-     \column{.5\linewidth}
-       \begin{block}{Stem-cell (R)}
-         \begin{itemize}
-           \footnotesize
-           \item When the teachings of a faith are described as ``a culture of death'' \dots its [adherents] are being slandered.
-           \item I accept, as an inseparable component of my faith, the omnipotence, omnipresence, and omniscience of God.
-         \end{itemize}
-       \end{block}
-     \column{.5\linewidth}
-       \begin{block}{Stem-cell (D)}
-         \begin{itemize}
-           \tiny
-           \item They [conservatives] would surely---and appropriately---have
-           ridiculed were it not supporting their current point of view.  In
-           fact, there is little credible evidence to suggest adult stem cells
-           have the same therapeutic potential as embryonic stem cells.
+\begin{frame}{Example Sentence}
 
-           \item Opponents assert that embryonic stem cells are unnecessary
-           because adult stem cells, as well as umbilical cord blood stem cells,
-           will perform at least as well as embryonic stem cells.
+  \gfxs{ex_imperfect}{.7}
 
-         \end{itemize}
-       \end{block}
-   \end{columns}
+\end{frame}
 
-   \begin{itemize}
-     \item Detecting sentences that are ``framed''
-     \item Working with political scientists to validate results
-     \item Creating a ``spin detector''
-     \item Offering the opposing spin
-   \end{itemize}
+\begin{frame}[plain]
 
+\only<1>{ \gfxs{computer-interpreter}{1.0} }
+\only<2>{ \gfxs{computer-interpreter}{1.0}
+\vspace{-5cm}
+\gfxs{centaur-chess}{0.8}}
+
+\end{frame}
+
+
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_compete}}
 \end{frame}
 
 
 \section{Quiz Bowl}
 
-\begin{frame}
-	\frametitle{Humans doing Incremental Classification}
-	\begin{columns}
-
-	\column{.5\linewidth}
-	\begin{itemize}
-		\item Game called ``quiz bowl''
-		\item Two teams play each other
-		\begin{itemize}
-			\item Moderator reads a question
-			\item When a team knows the answer, they signal (``buzz'' in)
-			\item If right, they get points; otherwise, rest of the question is read to the other team
-		\end{itemize}
-		\item Hundreds of teams in the US alone
-                \only<2>{\item Example \dots}
-	\end{itemize}
-
-	\column{.5\linewidth}
-	\includegraphics{qb/quizbowl}
-
-	\end{columns}
-
+\begin{frame}[plain]
+  \includegraphics[width=1.0\linewidth]{qb/quizbowl}
 \end{frame}
 
 \begin{frame}[t]
@@ -1009,6 +818,7 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \vspace{1cm}
 \only<8->{ {\bf Albert \underline{Einstein}}}
 
+\ifjobtalk
 \only<9->{
 \vspace{-6cm}
 
@@ -1028,37 +838,39 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \end{block}
 }
+\fi
 
 
 \end{frame}
 
 
-
-\begin{frame}
-	\frametitle{Humans doing Incremental Classification}
-
-	\begin{columns}
-		\column{.5\linewidth}
-
+\begin{frame}[plain]
+  \vspace{-2cm}
 		\includegraphics[width=1.0\linewidth]{qb/jeopardy}
-
-
-		\column{.5\linewidth}
+                \pause
+                \vspace{-8cm}
+         \begin{block}{This is {\bf not} Jeopardy \cite{ferruci-10}}
 		\begin{itemize}
-			\item This is {\bf not} Jeopardy \cite{ferruci-10}
-			\item There are buzzers, but players only buzz
-                          at the question end
-			\item Doesn't discriminate knowledge
-			\item Quiz bowl is pyramidal
-                        \item Watson must decide to answer {\bf once}, after
+                        \item Jeopardy: must decide to answer {\bf once}, after
                           complete question
                         \item Quiz Bowl: decide after each word
 		\end{itemize}
 
-	\end{columns}
+	\end{block}
 
 \end{frame}
 
+
+\begin{frame}{How to approach this problem \dots}
+
+  \begin{columns}
+    \column{.5\linewidth}
+    \gfxq{guess}{0.8}
+    \column{.5\linewidth}
+    \gfxq{buzzer}{0.8}
+  \end{columns}
+  \pause
+\end{frame}
 
 
 \begin{frame}
@@ -1095,33 +907,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
   \end{columns}
 \end{frame}
-
-
-\begin{frame}
-	\frametitle{System for Incremental Classifiers}
-
-	\begin{itemize}
-		\item Treat this as a MDP
-		\item Action: {\bf buzz} now or {\bf wait}
-                     \pause
-                    \begin{enumerate}
-                  \item {\bf Content Model} is constantly generating guesses
-                     \item {\bf Oracle} provides examples where it is correct
-                   \item The {\bf Policy} generalizes to test data
-                       \item {\bf Features} represent our state
-                    \end{enumerate}
-	\end{itemize}
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      \alert<3->{content model} & oracle & policy & features \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
-\end{frame}
-
 
 \begin{frame}{Content Model}
 
@@ -1165,40 +950,30 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \end{frame}
 
 
+
 \begin{frame}{How can we do better?}
 
   \begin{itemize}
-    \item Use order of words in a sentence ``this man shot Lee Harvey Oswald'' very different from ``Lee Harvey Oswald shot this man''
     \item Use relationship between questions (``China'' and
       ``Taiwan'')
     \item Use learned features and dimensions, not the words we start with
-      \pause
-    \item Recursive Neural Networks~\cite{socher-12}
-    \item First-time a \emph{learned} representation has been applied
-      to question answering
+    \item Does the order of words matter?
   \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Using Compositionality}
 
-  \only<1-2>{\gfxq{rnn_11}{.8}}
-  \only<3>{\gfxq{rnn_10}{.8}}
-  \only<4>{\gfxq{rnn_9}{.8}}
-  \only<5>{\gfxq{rnn_8}{.8}}
-  \only<6>{\gfxq{rnn_7}{.8}}
-  \only<7>{\gfxq{rnn_6}{.8}}
 
-  \only<8>{\gfxq{rnn_recursive_1}{.8}}
-  \only<9>{\gfxq{rnn_recursive_2}{.8}}
-  \only<10>{\gfxq{rnn_recursive_3}{.8}}
+\begin{frame}{Deep Averaging Networks}
 
-  \only<11>{\gfxq{rnn_5}{.8}}
-  \only<12>{\gfxq{rnn_4}{.8}}
-  \only<13>{\gfxq{rnn_3}{.8}}
-  \only<14>{\gfxq{rnn_2}{.8}}
+  \only<1>{\gfxq{dan_1}{.8}}
+  \only<2>{\gfxq{dan_2}{.6}}
+  \only<3>{\gfxq{dan_3}{.6}}
+  \only<4>{\gfxq{dan_4}{.6}}
 
 \end{frame}
+
+
 
 
 \begin{frame}{Training}
@@ -1233,15 +1008,7 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 
 \begin{frame}{Oracle}
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      content model & \alert{oracle} & policy & features \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
+
 \begin{center}
   \includegraphics[width=0.8\linewidth]{qb/oracle}
 \end{center}
@@ -1256,15 +1023,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \begin{frame}{Policy}
 
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      content model & oracle & \alert{policy} & features \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
 
  \begin{itemize}
     \item Mapping: state $\mapsto$ action
@@ -1283,22 +1041,10 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 
 
-\begin{frame}[t]{Features (by example)}
+\begin{frame}[plain]
 
-\only<1-3>{
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      content model & oracle & policy & \alert{features} \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
-\vspace{.5cm}
-}
 
-\only<4->{\vspace{-1.5cm}}
+\only<4->{\vspace{-.5cm}}
 
   \begin{columns}[T]
     \column{.3\linewidth}
@@ -1325,27 +1071,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 
 
-\begin{frame}{Simulating a Game}
-		\begin{itemize}
-			\item Present tokens incrementally to algorithm, see where it buzzes
-			\item Compare to where humans buzzed in
-			\item Payoff matrix (wrt Computer)
-			\begin{center}
-\begin{tabular}{lccr}
-& Computer & Human & Payoff \\
-\hline
-1 & first and wrong & right & $-15$ \\
-2 & --- & first and correct & $-10$ \\
-3  & first and wrong & wrong & $-5$ \\
-4 & first and correct & --- & $+10$ \\
-5 & wrong & first and wrong & $+5$ \\
-6 & right & first and wrong & $+15$ \\
-\hline
-\end{tabular}
-			\end{center}
-		\end{itemize}
-\end{frame}
-
 \begin{frame}
 \frametitle{Interface}
 
@@ -1358,23 +1083,19 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 	\end{center}
 
 	\column{0.5\linewidth}
-	\only<1>{
-	\begin{itemize}
-		\item Users could ``veto'' categories or tournaments
-		\item Questions presented in canonical order
-		\item Approximate string matching (w/ override)
-	\end{itemize}
-	}
+
 
 	\only<2>{
 	\begin{itemize}
-		\item Started on Amazon Mechanical Turk
-		\item 7000 questions were answered in the first day
-		\item Over 43000 questions were answered in the space of two weeks
-		\item Total of 461 unique users
-		\item Leaderboard to encourage users
+		\item 7000 questions: first day
+		\item 43000 questions: two weeks
+		\item 461 unique users
+                \item Imitated \dots
 	\end{itemize}
+        \gfxq{protobowl}{.8}
 	}
+
+
 
 \end{columns}
 \end{frame}
@@ -1386,32 +1107,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \end{frame}
 
-\begin{frame}{Comparing \textsc{rnn} to \textsc{bow}}
-
-\begin{center}
-\begin{tabular}{lrrrrrr}
-\hline
-& \multicolumn{3}{c}{History} & \multicolumn{3}{c}{Literature}\\
-Model    & Sent 1 & Sent 2 & Full & Sent 1 & Sent 2 & Full \\
-\hline
-\textsc{bow-qb} & 37.5 & 65.9 & 71.4 & 27.4 & 54.0 & 61.9 \\
-\alert<2>{\textsc{rnn}} & \bf 47.1 & \bf 72.1 & \bf 73.7 & \bf 36.4 & \bf 68.2 & \bf 69.1 \\
-\hline
-\alert<3>{\textsc{bow-wiki}} & 53.7 & 76.6 & 77.5 & 41.8 & 74.0 & 73.3 \\
-\alert<4>{\textsc{combined}} & \bf 59.8 & \bf 81.8 & \bf 82.3 & \bf 44.7 & \bf 78.7 & \bf 76.6 \\
-\hline
-\end{tabular}
-\end{center}
-
-Percentage accuracy of different vector-space models.
-
-\end{frame}
-
-\begin{frame}{Now we're able to beat humans}
-
-  \gfxq{human_history}{1.0}
-
-\end{frame}
 
 \begin{frame}{Examining vectors}
 
@@ -1448,9 +1143,25 @@ Percentage accuracy of different vector-space models.
 
 \end{frame}
 
+\begin{frame}[plain]
+
+\gfxq{hsnct1}{1.0}
+
+\end{frame}
+
 \begin{frame}{Experiment 2}
 
 \gfxq{jennings}{.7}
+
+\pause
+
+\vspace{-5cm}
+\gfxq{jennings_handshake}{1.0}
+
+\end{frame}
+
+
+\begin{frame}{Building on this Foundation}
 
 \begin{itemize}
   \item More data helps
@@ -1461,79 +1172,469 @@ Percentage accuracy of different vector-space models.
 
 \end{frame}
 
+\begin{frame}[plain]
 
-\begin{frame}{Building on this Foundation}
-
-  \begin{itemize}
-    \item Using Wikipedia: Deep Averaging Networks~\cite{iyyer-15}
-    \item New network structures: capturing coreference~\cite{guha-15}
-    \item Incorporating additional information: story plots
-  \end{itemize}
+\only<1>{
+\gfxq{seattle_crowd}{.5}
+\gfxq{chicago_crowd}{.5}
+}
+\only<2>{
+\gfxq{boring_dot_products}{1.0}
+}
 
 \end{frame}
 
+% Diplomacy
+
+
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_compete}}
+\end{frame}
+
+
+% Update paper http://www.umiacs.umd.edu/~jbg/docs/
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+        \includegraphics[width=0.7\linewidth]{general_figures/vlad}
+    \column{.5\linewidth}
+        \begin{block}{{\bf
+              \href{http://cs.colorado.edu/~jbg//docs/2015_acl_diplomacy.pdf}{Linguistic Harbingers of Betrayal: A Case Study on an Online Strategy Game}}}
+
+          Vlad Niculae, Srijan Kumar, Jordan Boyd-Graber, and Cristian
+          Danescu-Niculescu-Mizil. \emph{Association for Computational Linguistics}, 2015
+        \end{block}
+
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[plain]
+\vspace*{-1pt}
+\only<1>{\makebox[\linewidth]{\includegraphics[page=1,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<2>{\makebox[\linewidth]{\includegraphics[page=2,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<3>{\makebox[\linewidth]{\includegraphics[page=3,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<4>{\makebox[\linewidth]{\includegraphics[page=4,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<5>{\makebox[\linewidth]{\includegraphics[page=5,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<6>{\makebox[\linewidth]{\includegraphics[page=6,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<7>{\makebox[\linewidth]{\includegraphics[page=7,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<8>{\makebox[\linewidth]{\includegraphics[page=8,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<9>{\makebox[\linewidth]{\includegraphics[page=9,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<10>{\makebox[\linewidth]{\includegraphics[page=10,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<11>{\makebox[\linewidth]{\includegraphics[page=11,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<12>{\makebox[\linewidth]{\includegraphics[page=12,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<13>{\makebox[\linewidth]{\includegraphics[page=13,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<14>{\makebox[\linewidth]{\includegraphics[page=14,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<15>{\makebox[\linewidth]{\includegraphics[page=15,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<16>{\makebox[\linewidth]{\includegraphics[page=16,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<17>{\makebox[\linewidth]{\includegraphics[page=17,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<18>{\makebox[\linewidth]{\includegraphics[page=18,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<19>{\makebox[\linewidth]{\includegraphics[page=19,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<20>{\makebox[\linewidth]{\includegraphics[page=20,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<21>{\makebox[\linewidth]{\includegraphics[page=21,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\only<22>{\makebox[\linewidth]{\includegraphics[page=22,width=\paperwidth]{diplomacy/betrayal-slides}}}
+\end{frame}
+
+\begin{frame}[plain]
+\vspace*{-1pt}
+\only<1>{\makebox[\linewidth]{\includegraphics[page=1,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<2>{\makebox[\linewidth]{\includegraphics[page=2,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<3>{\makebox[\linewidth]{\includegraphics[page=3,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<4>{\makebox[\linewidth]{\includegraphics[page=4,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<5>{\makebox[\linewidth]{\includegraphics[page=5,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<6>{\makebox[\linewidth]{\includegraphics[page=6,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<7>{\makebox[\linewidth]{\includegraphics[page=7,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<8>{\makebox[\linewidth]{\includegraphics[page=8,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<9>{\makebox[\linewidth]{\includegraphics[page=9,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<10>{\makebox[\linewidth]{\includegraphics[page=10,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<11>{\makebox[\linewidth]{\includegraphics[page=11,width=\paperwidth]{diplomacy/betrayal-results}}}
+\only<12>{\makebox[\linewidth]{\includegraphics[page=12,width=\paperwidth]{diplomacy/betrayal-results}}}
+
+\end{frame}
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+      \includegraphics[width=.9\linewidth]{general_figures/an}
+    \column{.5\linewidth}
+        \begin{block}{{\bf
+              \href{http://cs.colorado.edu/~jbg//docs/2015_acl_teaparty.pdf}{ Tea Party in the House: A Hierarchical Ideal Point Topic Model and Its Application to Republican Legislators in the 112th Congress}}}
+
+          Viet-An Nguyen, Jordan Boyd-Graber, Philip Resnik, and Kristina Miler.  \emph{Association for Computational Linguistics}, 2015
+        \end{block}
+
+  \end{columns}
+
+\end{frame}
+
+% Commands for teaparty stuff
+\newcommand{\subtwo}[2]{_{#1, #2}}
+\newcommand{\subthree}[3]{_{#1, #2, #3}}
+\newcommand{\minussubtwo}[2]{_{-{#1, #2}}}
+\newcommand{\minussubthree}[3]{_{-{#1, #2, #3}}}
+\newcommand{\suptwo}[2]{^{#1, #2}}
+\newcommand{\supthree}[3]{^{#1, #2, #3}}
+\newcommand{\minussuptwo}[2]{^{-{#1, #2}}}
+\newcommand{\minussupthree}[3]{^{-{#1, #2, #3}}}
+\newcommand{\prior}[1]{\mathcal{B}#1} % to be revised
+\newcommand{\greentext}[1]{\textcolor{caribbeangreen}{#1}}
+\newcommand{\yellowtext}[1]{\textcolor{amber}{#1}}
+\newcommand{\redtext}[1]{\textcolor{red}{#1}}
+\newcommand{\bluetext}[1]{\textcolor{blue}{#1}}
+
+\providecommand{\gfx}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{teaparty/figures/#1}
+\end{center}
+}
+
+
+
+\frame{
+\frametitle{Evaluation: Tea Party in the House}
+    \begin{block}{The Tea Party}
+    \small
+    \begin{itemize*}
+      \item American political movement for freedom, small government, lower tax
+      \item Disrupting Republican Party and recent elections
+      \item Organizations:
+      \begin{itemize}
+        \item Institutional: Tea Party Caucus
+        \item Other: Tea Party Express, Tea Party Patriots, Freedom Works
+      \end{itemize}
+      \item ``\textbf{Conventional views of ideology as a single--dimensional, left-right
+          spectrum experience great difficulty in understanding or explaining the Tea Party.}''
+
+        \hfill \cite[ARPS]{CarminesARPS15}
+    \end{itemize*}
+    \end{block}
+
+    \vspace{-.2cm}
+    \begin{block}{Goal}
+    \small
+    \begin{itemize*}
+      \item Explain Tea Partiers in terms of issues and votes
+      \item Identify Tea Partiers from their rhetoric
+    \end{itemize*}
+    \end{block}
+}
+
+\begin{frame}{Not everyone has a voting record}
+
+  \begin{columns}
+      \column{.25\linewidth}
+        \gfx{carson}{.75}
+        \gfx{fiorina}{.75}
+      \column{.25\linewidth}
+        \gfx{walker}{.75}
+        \gfx{schwarzenegger}{.75}
+
+    \column{.5\linewidth}
+    \begin{itemize}
+      \item Ideal points estimated based on voting record
+      \item Not all candidates have a voting record
+        \begin{itemize}
+          \item Governors
+          \item Entertainers
+          \item CEOs
+        \end{itemize}
+        \pause
+       \item But all politicians---by definition---talk
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Let's use whatever data we have}
+
+\begin{columns}
+  \column{.6\linewidth}
+  \gfx{carson_twitter}{.95}
+  \column{.4\linewidth}
+  A single model that uses:
+  \begin{itemize}
+    \item Bill text
+    \item Votes
+    \item Commentary
+  \end{itemize}
+  to map political actors to the same continuous space.
+  \pause
+  This work: congressional floor speeches
+\end{columns}
+\end{frame}
+
+\section{Hierarchical Ideal Point Topic Model}
+
+
+\frame{
+    \frametitle{Hierarchical Ideal Point Topic Model: Intuition}
+    \centering
+    What are your thoughts on the issue of {\bf immigration}?
+    \begin{figure}
+    \centering
+      \includegraphics[width=\textwidth]{teaparty/figures/framing}
+    \end{figure}
+}
+
+\frame{
+    \frametitle{Hierarchical Ideal Point Topic Model: Overview}
+    \only<1-5>{
+    \begin{block}{Using both votes and text to learn}
+        \begin{itemize}
+          \item Two-level topic hierarchy:
+            \only<2>{
+            \begin{itemize}
+            \item \alert<2>{First-level nodes map to agenda issues}
+            \item \alert<2>{Second-level nodes map to issue-specific frames}
+	   \end{itemize}}
+            \only<3>{\alert<3>{Use existing labeled data to learn priors for interpretable
+                issues}}
+            \only<4>{ \alert<4>{Ideal points for frames for predictions using text only}}
+
+          \item\alert<5>{Ideal points in multiple interpretable dimensions}
+        \end{itemize}
+    \end{block}
+    \vspace{-.5cm}
+    \begin{figure}
+      \centering
+      \only<1>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_1}}%
+      \only<2>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/output_2}}%
+      \only<3>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_4}}%
+      \only<4>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_5}}%
+      \only<5>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_3}}%
+    \end{figure}
+    }
+
+    \only<6>{
+    \begin{block}{Hierarchical Ideal Point Topic Model: Inputs}
+      \begin{itemize}
+        \item A collection of votes $\{v \subtwo ab\}$
+        \item A collection of $D$ speeches $\{\bm w_d\}$, each of which is given by legislator
+            $a_d$
+        \item A collection of $B$ bill text $\{\bm w'_b\}$
+      \end{itemize}
+    \end{block}
+    \begin{center}
+      \includegraphics[width=.75\textwidth]{teaparty/figures/s5/data}%
+    \end{center}
+    }
+}
+
+\frame{
+    \frametitle{Hierarchical Ideal Point Topic Model}
+    \only<1>{
+    \begin{overlayarea}{\linewidth}{3.5cm}
+    \begin{block}{Modeling bill text}
+        \begin{itemize}
+          \item Each bill text $b$ is a mixture over $K$ issues $\vartheta_b$
+          \item Each bill token generated from topic at \redtext{first-level issue node}
+        \end{itemize}
+    \end{block}
+    \end{overlayarea}
+    \vspace{-1.2cm}
+    \begin{center}
+      \includegraphics[width=.8\textwidth]{teaparty/figures/s5/modeling_bills}
+    \end{center}
+    }
+
+    \only<2>{
+    \begin{overlayarea}{\linewidth}{3.5cm}
+    \begin{block}{Hierarchical Ideal Point Topic Model: Generative Process}
+        \begin{itemize}
+          \item Each speech $d$ also has a distribution $\theta_d$ over $K$ issues
+          \item Each issue $k$, each speech $d$ has distribution over frames $\psi \subtwo dk$
+          \item Each speech token from topic at \redtext{second-level frame
+          node}
+        \end{itemize}
+    \end{block}
+    \end{overlayarea}
+    \vspace{-1cm}
+    \begin{center}
+      \includegraphics[width=.8\textwidth]{teaparty/figures/s5/modeling_speeches}
+    \end{center}
+    }
+
+    \only<3->{
+    \begin{overlayarea}{\linewidth}{3.5cm}
+    \begin{block}{Hierarchical Ideal Point Topic Model: Modeling votes}
+        \begin{itemize}
+          \item Legislator $a$ votes `Yea' on bill $b$ with probability $p(v \subtwo ab = \mbox{Yea}) = \Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk \alert<4>{u \subtwo ak} +
+          y_b)$
+          \item \alert<3>{Ideal point} $\alert<5>{u \subtwo ak} \sim \mathcal{N}(\sum_{j=1}^{J_k} \alert<7>{\eta \subtwo kj} \alert<6>{\psi \subthree akj}, \rho)$
+        \end{itemize}
+    \end{block}
+    \end{overlayarea}
+    \vspace{-1cm}
+    \begin{center}
+      \includegraphics[width=.8\textwidth]{teaparty/figures/s5/modeling_idealpoint}
+    \end{center}
+    }
+}
+
+
+\section{Predicting Membership}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction}
+    \begin{block}{Experiment setup}
+    \begin{itemize}
+    \small
+      \item Task: Binary classification of whether a legislator is a member of the Tea Party Caucus
+      \item Evaluation metric: AUC-ROC
+      \item Classifier: SVM$^{light}$
+      \item Five-fold stratified cross-validation
+    \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{block}{Features}
+    \begin{itemize}
+    \small
+      \item Text-based features: normalized term frequency (\textbf{TF}) and \textbf{TF-IDF}
+      \item \textbf{Vote}: binary features
+      \item \textbf{HIPTM}: features extracted from our model including
+      \begin{itemize}
+        \item $K$-dim ideal point $u \subtwo ak$ estimated from both votes and text
+        \item $K$-dim ideal point estimated from text only $\bm \eta_k^T \hat{\bm \psi} \subtwo ak$
+        \item $B$ probabilities estimating $a$'s votes $\Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk u \subtwo ak +
+          y_b)$
+      \end{itemize}
+    \end{itemize}
+    \end{block}
+}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction: Votes \& Text}
+    \begin{center}
+        \includegraphics<1>[width=\textwidth]{teaparty/figures/s5/votetext_1}
+        \includegraphics<2>[width=\textwidth]{teaparty/figures/s5/votetext_2}
+        \includegraphics<3>[width=\textwidth]{teaparty/figures/s5/votetext_3}
+        \includegraphics<4>[width=\textwidth]{teaparty/figures/s5/votetext_4}
+        \includegraphics<5>[width=\textwidth]{teaparty/figures/s5/votetext_5}
+        \includegraphics<6>[width=\textwidth]{teaparty/figures/s5/votetext_6}
+    \end{center}
+}
+
+\frame{
+    \frametitle{Tea Party Caucus Membership Prediction: Text Only}
+      \begin{center}
+        \includegraphics<1>[width=\textwidth]{teaparty/figures/s5/textonly_1}
+        \includegraphics<2->[width=\textwidth]{teaparty/figures/s5/textonly_2}
+      \end{center}
+
+%      \begin{block}{}
+%        Vote-based features are not needed at test time, so this model makes it possible to do better
+%prediction even for people who have no voting record in Congress
+%        \begin{itemize}
+%          \item e.g., new members of Congress or political candidates.
+%        \end{itemize}
+%      \end{block}
+}
+
+
+
+\frame{
+    \frametitle{Multi-dimensional Ideal Points}
+    \begin{figure}
+      \centering
+        %\includegraphics<1>[width=.7\textwidth]{teaparty/figures/s5/multdim_ip_112}%
+        \includegraphics<1->[width=\textwidth]{teaparty/figures/s5/mult_ip_top}%
+    \end{figure}
+
+        \begin{block}{}
+           Most highly polarized dimensions are about government spending
+        \end{block}
+
+}
+
+
+\section{How They Talk}
+
+\begin{frame}{Framing Healthcare}
+	\gfx{health}{.8}
+\end{frame}
+
+\begin{frame}{Framing Macroeconomics}
+	\gfx{macroeconomics}{.8}
+\end{frame}
+
+
+\begin{frame}{Polarization}
+	\only<1>{\gfx{polarization_1}{.7}}
+	\only<2>{\gfx{polarization_2}{.7}}
+	\only<3>{\gfx{polarization_3}{.7}}
+	\only<4>{\gfx{polarization_4}{.7}}
+\end{frame}
 
 \section{Conclusions}
 
 \begin{frame}{Conclusion}
 
   \begin{itemize}
+    \item Interpretability: topic models
+    \item Intuitive trainability: games, translation
     \item Transparency
+    \item Relevance
   \end{itemize}
 
 \end{frame}
 
-\frame{
-  \frametitle{But wait, there's more!}
+% \frame{
+%   \frametitle{But wait, there's more!}
 
-  \vspace{-.5cm}
+%   \vspace{-.5cm}
 
-\begin{columns}
-
-
-
-  \column{.5\linewidth}
-
-   \begin{block}{Computational Social Science}
-     \centering
-     \includegraphics[width=0.9\linewidth]{teaparty/figures/framing} \\
-     \cite{nguyen-13b,nguyen-15}
-   \end{block}
-
-
-    \begin{block}{Interactive Machine Learning}
-     \centering
-        \includegraphics[width=0.4\linewidth]{interactive_topic_models/new_interface} \\
-       \cite{boyd-graber-06b,ma-09,nikolova-09}
-    \end{block}
-
-
-  \column{.5\linewidth}
-
-
-    \begin{block}{Multilingual Topic Models}
-      \begin{center}
-        \begin{large}
-          $p_{\mbox{topic}}(e | f)$ \\
-         \end{large}
-      \cite{eidelman-12,hu-14}
-       \end{center}
-    \vspace{-.3cm}
-    \end{block}
-
-
-    \begin{block}{Sentiment / Internal State}
-    \centering
-        \includegraphics[width=0.4\linewidth]{general_figures/diplomacy} \\
-        \cite{niculae-15,sayeed-12,boyd-graber-10}
-    \end{block}
+% \begin{columns}
 
 
 
+%   \column{.5\linewidth}
 
-\end{columns}
+%    \begin{block}{Computational Social Science}
+%      \centering
+%      \includegraphics[width=0.9\linewidth]{teaparty/figures/framing} \\
+%      \cite{nguyen-13b,nguyen-15}
+%    \end{block}
 
-}
+
+%     \begin{block}{Interactive Machine Learning}
+%      \centering
+%         \includegraphics[width=0.4\linewidth]{interactive_topic_models/new_interface} \\
+%        \cite{boyd-graber-06b,ma-09,nikolova-09}
+%     \end{block}
+
+
+%   \column{.5\linewidth}
+
+
+%     \begin{block}{Multilingual Topic Models}
+%       \begin{center}
+%         \begin{large}
+%           $p_{\mbox{topic}}(e | f)$ \\
+%          \end{large}
+%       \cite{eidelman-12,hu-14}
+%        \end{center}
+%     \vspace{-.3cm}
+%     \end{block}
+
+
+%     \begin{block}{Sentiment / Internal State}
+%     \centering
+%         \includegraphics[width=0.4\linewidth]{general_figures/diplomacy} \\
+%         \cite{niculae-15,sayeed-12,boyd-graber-10}
+%     \end{block}
+
+
+
+
+% \end{columns}
+
+% }
 
 
 
@@ -1542,8 +1643,9 @@ Percentage accuracy of different vector-space models.
 	\frametitle{Thanks}
 
         \begin{block}{Collaborators}
-          \textsc{naqt}, Hal Daum\'e III (UMD), Anupam Guha (Maryland), Manjhunath Ravi (Colorado), Danny Bouman (UMD UG),
-          Stephanie Hwa (UMD UG)
+          \textsc{naqt}, Hal Daum\'e III (UMD), Philip Resnik (UMD), Cristian
+          Danescu-Niculescu-Mizil (Cornell), Leah Findlater (UMD), Kevin Seppi
+          (BYU), Eric Ringger (BYU)
         \end{block}
 
 	\begin{columns}
@@ -1574,6 +1676,25 @@ Percentage accuracy of different vector-space models.
 
 
 
+\begin{frame}{Using Compositionality}
+
+  \only<1-2>{\gfxq{rnn_11}{.8}}
+  \only<3>{\gfxq{rnn_10}{.8}}
+  \only<4>{\gfxq{rnn_9}{.8}}
+  \only<5>{\gfxq{rnn_8}{.8}}
+  \only<6>{\gfxq{rnn_7}{.8}}
+  \only<7>{\gfxq{rnn_6}{.8}}
+
+  \only<8>{\gfxq{rnn_recursive_1}{.8}}
+  \only<9>{\gfxq{rnn_recursive_2}{.8}}
+  \only<10>{\gfxq{rnn_recursive_3}{.8}}
+
+  \only<11>{\gfxq{rnn_5}{.8}}
+  \only<12>{\gfxq{rnn_4}{.8}}
+  \only<13>{\gfxq{rnn_3}{.8}}
+  \only<14>{\gfxq{rnn_2}{.8}}
+
+\end{frame}
 
 	\input{qb/qb_rapacious}
 
