@@ -29,6 +29,15 @@
 \newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
 \newcommand{\g}{\, | \,}
 \newcommand{\citename}[1]{#1 }
+\newcommand{\fsi}[2]{
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{#1}}
+\begin{center}
+#2
+\end{center}
+\end{frame}
+}
 
 \newcommand{\danquote}[1]{
 
@@ -182,36 +191,16 @@ Information Processing Systems, 2009.
 
 
 \frame{
-        \frametitle{Interruption}
-
-  \begin{columns}
-  \column{.6\linewidth}
-  \begin{block}{Do you have any real results?}
-  \centering
-     \includegraphics[width=0.5\linewidth]{reading_tea_leaves/jelinek} \\
-     Fred Jelinek, inventor of perplexity~\cite{jelinek-76}
-  \end{block}
-
-  \column{.4\linewidth}
-
-  \begin{itemize}
-    \item Computational linguists and machine learning researchers like {\bf numbers}
-    \item Likelihood and perplexity are convenient numbers
-    \pause
-    \item What do we {\bf actually} care about in topic models?
-  \end{itemize}
-
-  \end{columns}
-}
-
-\frame{
 \frametitle{Qualitative Evaluation of the Latent Space}
 
 \begin{center}
 \only<1>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/topics_from_papers/1} \\ \cite{hofmann-99} }
 \only<2>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/2} \\ \cite{blei-03} }
 \only<3>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/3} \\ \cite{mimno-09} }
-\only<4>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/4} \\ \cite{maskeri-08} }
+\only<4>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/4}
+  \\ \cite{maskeri-08} }
+\only<5>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/topics_from_papers/5}
+  \\ \cite{hall-08} }
 \end{center}
 }
 
@@ -247,13 +236,14 @@ If the topics are interpretable, users will consistently choose true intruder
 \column{.84\linewidth}
   \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/mp}}
   \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/mp_y}\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_mp}\\}
-  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_x}}
+  % \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_x}}
 \column{.15\linewidth}
   \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/legend}
 \end{columns}
 
+  \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/held-out}
+  \\
 \begin{center}
-  \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/held-out} \\
 Within a model, higher likelihood $\not =$ higher interpretability
 \end{center}
 }
@@ -310,29 +300,36 @@ Within a model, higher likelihood $\not =$ higher interpretability
 }
 
 
-\begin{frame}
-  \frametitle{Adding meaning to topic models}
-        \begin{block}{Traditional Topic Models}
-                $ p(w) = \prod_d \prod_n^{N_d} \left( p(w_{d,n} | \phi_{z_{d,n}})
-                  \explain{\alert<3>{topic}}{p(z_{d,n} | \theta_d)} \right) p(\theta_d | \alpha)                 \explain{\alert<2>{topic to words}}{ \prod_k^K
-p(\phi_k | \eta) }$
-        \end{block}
+\frame{
 
-        \begin{block}{Our Model}
-          \vspace{-0.8cm}
-          \begin{align*}
-               p(w) = \prod_d \prod_n^{N_d} & \left( p(w_{d,n} | \pi_{l_{d,n}})
-                 \explain{\alert<6>{meaning and topic}} {p(l_{d,n} | \phi_{d,n} )
-                   p(z_{d,n} | \theta_d)}  \right) p(\theta_d | \alpha) \\
-               &  \explain{\alert<4>{topic to concept}}{\prod_k^K
-                p(\phi_k | \eta)} \explain{\alert<5>{concept to word}}{\prod_c^C \left(
-                  p(\pi_{k,c} | \tau) \right) }
-           \end{align*}
-        \end{block}
+\begin{columns}
+
+\column{.5\linewidth}
+
+\includegraphics[width=.8\linewidth]{general_figures/yuening}
+
+\column{.5\linewidth}
+
+\begin{block}{Interactive Topic Modeling}
+Yuening Hu, Jordan Boyd-Graber, and Brianna Satinoff.  Association for Computational Linguistics, 2011.
+\end{block}
+
+\end{columns}
+
+}
 
 
-\end{frame}
 
+\frame{
+	\frametitle{How to fix it?}
+
+
+	\only<1>{	\includegraphics[width=\linewidth]{interactive_topic_models/constraints_1}     }
+	\only<2>{	\includegraphics[width=\linewidth]{interactive_topic_models/constraints_2}     }
+	\only<3>{	\includegraphics[width=\linewidth]{interactive_topic_models/constraints_3}     }
+
+
+}
 
 
 \input{interactive_topic_models/nyt_soviet_russia}
@@ -342,11 +339,15 @@ p(\phi_k | \eta) }$
 
 \begin{frame}{Real-World Use Cases}
 
-  \begin{itemize}
-    \item GSA
-    \item NSF
-    \item FCC
-   \end{itemize}
+\begin{columns}
+  \column{.3\linewidth}
+  \includegraphics[width=\linewidth]{topic_models/fcc-logo}
+  \column{.3\linewidth}
+  \includegraphics[width=\linewidth]{topic_models/gsa}
+  \column{.3\linewidth}
+  \includegraphics[width=\linewidth]{general_figures/nsf}
+
+\end{columns}
 
 \end{frame}
 
@@ -355,41 +356,20 @@ p(\phi_k | \eta) }$
 \makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_collaborate}}
 \end{frame}
 
+
 \begin{frame}[plain]{}
-\vspace*{-4cm}
- \gfxs{nuremberg_trials}{1.0}
-
-\vspace{-4cm}
-
-\begin{block}{N\"urnberg Trials}
-    \begin{itemize}
-        \item Dozens of defendants
-        \item Judges from four nations (three languages)
-        \item Status quo: speak, then translate
-     \end{itemize}
-
-\end{block}
-
-
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{simtrans/yoda}}
+\begin{center}
+When you at the dark side {\bf look}, careful you must {\bf be}. 
+\end{center}
 \end{frame}
 
 
-\section{Simultaneous Translation}
 
-\begin{frame}{Simultaneous translation now the norm}
-
-  \begin{columns}
-    \column{.5\linewidth}
-       \gfxs{nuremberg_translators}{.9}
-    \column{.5\linewidth}
-       \begin{itemize}
-         \item Rigorous training
-         \item Technological sophistication
-         \item Long way from ``sentence at a time''
-       \end{itemize}
-  \end{columns}
-
+\begin{frame}[plain]{}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{simtrans/nuremberg_trials}}
 \end{frame}
+
 
 \begin{frame}{Why interpretation really hard is}
 
@@ -402,7 +382,7 @@ p(\phi_k | \eta) }$
         \item<4-> How can we learn from trained interpreters?
       \end{itemize}
     \column{.5\linewidth}
-      \gfxs{yoda}{.6}
+    \gfxs{yoda}{1.0}
   \end{columns}
 
   \centering
@@ -418,9 +398,6 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{tabular}
 }
 
-\only<6>{
-  \gfxs{en_ja_example}{.8}
-}
 
 \end{frame}
 
@@ -442,10 +419,201 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
 \end{frame}
 
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+        \includegraphics[width=0.9\linewidth]{general_figures/alvin}
+    \column{.5\linewidth}
+        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_simtrans.pdf}{Don't Until the Final Verb Wait: Reinforcement Learning for Simultaneous Machine Translation}}}
+\underline{\href{http://www.umiacs.umd.edu/~alvin/}{Alvin Grissom II}}, {\bf Jordan Boyd-Graber}, He He, John Morgan, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
+        \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[plain]
+\vspace{-3cm}
+\gfxs{autocomplete}{1.0}
+\pause
+\vspace{-6cm}
+\begin{block}{Predict the Verb}
+  \begin{itemize}
+    \item Predicting the verb ``unlocks'' sentence
+    \item Language models are good at word prediction
+    \item But instead, we'll predict the verb
+  \end{itemize}
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{Language Models of Verbs}
+
+  \only<1>{\gfxs{verb_corpus_1}{.9}}
+  \only<2>{\gfxs{verb_corpus_2}{.9}}
+  \only<3>{\gfxs{verb_corpus_3}{.9}}
+
+\end{frame}
+
+\begin{frame}{Predicting the Verb}
+\begin{itemize}
+  \item Build language model for every verb
+  \item Then, for any input text $x$ we can make a prediction of the verb
+\begin{equation}
+  \arg\max_v p(v) \prod_{i=1}^t p(x_i \g v, x_{i-n+1:i-1})
+\end{equation}
+\pause
+  \item Most of these predictions will be totally wrong (18\%
+    accuracy) \dots
+  \item leading to horrible translations
+\end{itemize}
+\end{frame}
+
+% \begin{frame}{Consensus Translation}
+
+%   \only<1>{\begin{center}
+% ``German in, English out'' black box
+%       \end{center}}
+
+%   \only<2>{\gfxs{consensus_0}{.8}}
+%   \only<3>{\gfxs{consensus_1}{.8}}
+%   \only<4>{\gfxs{consensus_2}{.8}}
+%   \only<5>{\gfxs{consensus_3}{.8}}
+%   \only<6>{\gfxs{consensus_4}{.8}}
+
+% \end{frame}
+
+\begin{frame}{Scoring one Translation}
+  \begin{center}
+    Bilingual Evaluation Understudy (BLEU)
+\end{center}
+  \only<1>{\gfxs{bleu_ex}{.8}}
+  \only<2>{\gfxs{bleu_correlation}{.6}}
+\end{frame}
+
+
+\begin{frame}{Scoring a series of Translations}
+  \begin{center}
+    Bilingual Evaluation Understudy (BLEU)
+\end{center}
+  \only<1>{\gfxs{integral_0}{.95}}
+  \only<2>{\gfxs{integral_1}{.95}}
+\end{frame}
+
+
+
+\begin{frame}{Comparing Policies}
+
+  \only<1-7>{\vspace{4.75cm}}
+  \only<8-14>{\vspace{3.3cm}}
+  \only<15-21>{\vspace{2cm}}
+
+  \only<1,8,15,22>{\gfxs{reward_example_0}{.8}}
+  \only<2,9,16,23>{\gfxs{reward_example_1}{.8}}
+  \only<3,10,17,24>{\gfxs{reward_example_2}{.8}}
+  \only<4,11,18,25>{\gfxs{reward_example_3}{.8}}
+  \only<5,12,19,26>{\gfxs{reward_example_4}{.8}}
+  \only<6,13,20,27>{\gfxs{reward_example_5}{.8}}
+  \only<7,14,21,28>{\gfxs{reward_example_6}{.8}}
+\end{frame}
+
+
+
+
+\begin{frame}{Imitation Learning}
+
+  \begin{columns}
+    \column{.5\linewidth}
+       \gfxs{imitation_fold}{.8}
+       \gfxs{imitation_drive}{.8}
+    \column{.5\linewidth}
+    \begin{itemize}
+      \item Given all the predictions that we make (and the resulting
+        translations) \dots
+      \item Discover the optimal in hindsight policies
+      \item Goal: Teach our algorithm to think on its feet
+      \item Challenge: Represent states in a way that will generalize
+    \end{itemize}
+
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{How do we find a good policy?}
+
+\only<1>{\gfxs{searn_1}{1.0}}
+\only<2>{\gfxs{searn_2}{1.0}}
+\only<3>{\gfxs{searn_3}{1.0}}
+\only<4>{\gfxs{searn_4}{1.0}}
+\only<5>{\gfxs{searn_5}{1.0}}
+\only<6>{\gfxs{searn_6}{1.0}}
+\only<7>{\gfxs{searn_7}{1.0}}
+\only<8>{\gfxs{searn_8}{1.0}}
+\only<9>{\gfxs{searn_9}{1.0}}
+
+\only<9>{
+  \begin{center}
+    \textsc{searn}: \underline{Se}arching to L\underline{earn}
+    (Daum\'e \& Marcu, 2006)
+    \end{center}
+}
+\end{frame}
+
+
+\begin{frame}{Experimental Setup}
+
+  \begin{itemize}
+    \item \textsc{denews} corpus
+      \begin{itemize}
+        \item News snippets
+        \item Some formulaic
+        \item Some surprising
+      \end{itemize}
+    \item Only verb-final sentences
+    \item Some compromises with translation system (to make sure verbs appeared)
+  \end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Comparing Policies}
+
+  \gfxs{cummulative}{.6}
+
+\end{frame}
+
+\begin{frame}{Learned Policy with Accumulated Reward}
+
+  \only<1>{\gfxs{compare_line_batch}{.8}}
+  \only<2>{\gfxs{compare_line_batch_monotone}{.8}}
+  \only<3>{\gfxs{compare_line_batch_monotone_opt}{.8}}
+  \only<4>{\gfxs{compare_line_all}{.8}}
+\end{frame}
+
+
+\begin{frame}{Example Sentence}
+
+  \gfxs{ex_imperfect}{.7}
+
+\end{frame}
+
+
 \begin{frame}{What tricks to interpreters use?}
 
   \begin{columns}
     \column{.5\linewidth}
+        \includegraphics[width=0.8\linewidth]{general_figures/hehe}
+    \column{.5\linewidth}
+    \centering
+        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg/docs/2016_naacl_interpretese.pdf}{Interpretese vs. Translationese: The Uniqueness of Human Strategies in Simultaneous Interpretation}}}
+He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
+\emph{North American Association for Computational Linguistics}, 2016
+        \end{block}
+  \end{columns}
+
   \begin{itemize}
     \item Generalize~\cite{dell92access,cuetos06access}
     \item Summarize
@@ -453,14 +621,6 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
     \item Segmentation~\cite{erik11theory,shimizu13iwslt}
     \item Predictions~\cite{levy2013expectation,momma2015timing}
   \end{itemize}
-    \column{.5\linewidth}
-    \centering
-        \includegraphics[width=0.4\linewidth]{general_figures/hehe}
-        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg/docs/2016_naacl_interpretese.pdf}{Interpretese vs. Translationese: The Uniqueness of Human Strategies in Simultaneous Interpretation}}}
-He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
-\emph{North American Association for Computational Linguistics}, 2016
-        \end{block}
-  \end{columns}
 
 
   % Need pictures / examples
@@ -588,205 +748,6 @@ Aggressiveness based on different right probability thresholds
 \end{frame}
 
 
-\begin{frame}{}
-
-  \begin{columns}
-    \column{.5\linewidth}
-        \includegraphics[width=0.9\linewidth]{general_figures/alvin}
-    \column{.5\linewidth}
-        \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_simtrans.pdf}{Don't Until the Final Verb Wait: Reinforcement Learning for Simultaneous Machine Translation}}}
-\underline{\href{http://www.umiacs.umd.edu/~alvin/}{Alvin Grissom II}}, {\bf Jordan Boyd-Graber}, He He, John Morgan, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
-        \end{block}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[plain]
-\vspace{-4cm}
-\gfxs{autocomplete}{1.0}
-\pause
-\vspace{-6cm}
-\begin{block}{Predict the Verb}
-  \begin{itemize}
-    \item Predicting the verb ``unlocks'' sentence
-    \item Language models are good at word prediction
-    \item But instead, we'll predict the verb
-  \end{itemize}
-\end{block}
-
-\end{frame}
-
-
-\begin{frame}{Language Models of Verbs}
-
-  \only<1>{\gfxs{verb_corpus_1}{.9}}
-  \only<2>{\gfxs{verb_corpus_2}{.9}}
-  \only<3>{\gfxs{verb_corpus_3}{.9}}
-
-\end{frame}
-
-\begin{frame}{Predicting the Verb}
-\begin{itemize}
-  \item Build language model for every verb
-  \item Then, for any input text $x$ we can make a prediction of the verb
-\begin{equation}
-  \arg\max_v p(v) \prod_{i=1}^t p(x_i \g v, x_{i-n+1:i-1})
-\end{equation}
-\pause
-  \item Most of these predictions will be totally wrong (18\%
-    accuracy) \dots
-  \item leading to horrible translations
-\end{itemize}
-\end{frame}
-
-% \begin{frame}{Consensus Translation}
-
-%   \only<1>{\begin{center}
-% ``German in, English out'' black box
-%       \end{center}}
-
-%   \only<2>{\gfxs{consensus_0}{.8}}
-%   \only<3>{\gfxs{consensus_1}{.8}}
-%   \only<4>{\gfxs{consensus_2}{.8}}
-%   \only<5>{\gfxs{consensus_3}{.8}}
-%   \only<6>{\gfxs{consensus_4}{.8}}
-
-% \end{frame}
-
-\begin{frame}{Scoring one Translation}
-  \begin{center}
-    Bilingual Evaluation Understudy (BLEU)
-\end{center}
-  \only<1>{\gfxs{bleu_ex}{.8}}
-  \only<2>{\gfxs{bleu_correlation}{.6}}
-\end{frame}
-
-
-\begin{frame}{Scoring a series of Translations}
-  \begin{center}
-    Bilingual Evaluation Understudy (BLEU)
-\end{center}
-  \only<1>{\gfxs{integral_0}{.95}}
-  \only<2>{\gfxs{integral_1}{.95}}
-\end{frame}
-
-
-
-\begin{frame}{Comparing Policies}
-
-  \only<1-7>{\vspace{4.75cm}}
-  \only<8-14>{\vspace{3.3cm}}
-  \only<15-21>{\vspace{2cm}}
-
-  \only<1,8,15,22>{\gfxs{reward_example_0}{.8}}
-  \only<2,9,16,23>{\gfxs{reward_example_1}{.8}}
-  \only<3,10,17,24>{\gfxs{reward_example_2}{.8}}
-  \only<4,11,18,25>{\gfxs{reward_example_3}{.8}}
-  \only<5,12,19,26>{\gfxs{reward_example_4}{.8}}
-  \only<6,13,20,27>{\gfxs{reward_example_5}{.8}}
-  \only<7,14,21,28>{\gfxs{reward_example_6}{.8}}
-\end{frame}
-
-
-
-
-\begin{frame}{Imitation Learning}
-
-  \begin{columns}
-    \column{.5\linewidth}
-       \gfxs{imitation_fold}{.8}
-       \gfxs{imitation_drive}{.8}
-    \column{.5\linewidth}
-    \begin{itemize}
-      \item Given all the predictions that we make (and the resulting
-        translations) \dots
-      \item Discover the optimal in hindsight policies
-      \item Goal: Teach our algorithm to think on its feet
-      \item Challenge: Represent states in a way that will generalize
-    \end{itemize}
-
-  \end{columns}
-
-\end{frame}
-
-
-\begin{frame}{How do we find a good policy?}
-
-\only<1>{\gfxs{searn_1}{1.0}}
-\only<2>{\gfxs{searn_2}{1.0}}
-\only<3>{\gfxs{searn_3}{1.0}}
-\only<4>{\gfxs{searn_4}{1.0}}
-\only<5>{\gfxs{searn_5}{1.0}}
-\only<6>{\gfxs{searn_6}{1.0}}
-\only<7>{\gfxs{searn_7}{1.0}}
-\only<8>{\gfxs{searn_8}{1.0}}
-\only<9>{\gfxs{searn_9}{1.0}}
-\end{frame}
-
-
-\begin{frame}{How do we find a good policy?}
-
-  \begin{itemize}
-    \item Find optimal policies through dynamic programming $\pi_0
-      \equiv \pi*$
-    \item Represent states $s$ through a feature vector $\vec f(s)$
-      \pause
-    \item Until convergence:
-      \begin{itemize}
-        \item Generate examples of state action pairs: $(\pi_t(s), s)$
-        \item Create a classifier that maps states to actions (an
-          apprentice policy) $h_t: f(s) \mapsto A$ \only<3->{(Loss of
-            classifier is the negative reward)}
-    \item Interpolate learned classifier $\pi_{t+1} = \lambda \pi_t +
-      (1-\lambda) h_t$
-  \end{itemize}
-  \end{itemize}
-
-\only<4->{
-  \begin{center}
-    \textsc{searn}: \underline{Se}arching to L\underline{earn}
-    (Daum\'e \& Marcu, 2006)
-    \end{center}
-}
-\end{frame}
-
-
-\begin{frame}{Experimental Setup}
-
-  \begin{itemize}
-    \item \textsc{denews} corpus
-      \begin{itemize}
-        \item News snippets
-        \item Some formulaic
-        \item Some surprising
-      \end{itemize}
-    \item Only verb-final sentences
-    \item Some compromises with translation system (to make sure verbs appeared)
-  \end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}{Comparing Policies}
-
-  \gfxs{cummulative}{.6}
-
-\end{frame}
-
-\begin{frame}{Learned Policy with Accumulated Reward}
-
-  \only<1>{\gfxs{compare_line_batch}{.8}}
-  \only<2>{\gfxs{compare_line_batch_monotone}{.8}}
-  \only<3>{\gfxs{compare_line_batch_monotone_opt}{.8}}
-  \only<4>{\gfxs{compare_line_all}{.8}}
-\end{frame}
-
-
-\begin{frame}{Example Sentence}
-
-  \gfxs{ex_imperfect}{.7}
-
-\end{frame}
 
 \begin{frame}[plain]
 
@@ -847,7 +808,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \begin{frame}[plain]
   \vspace{-2cm}
 		\includegraphics[width=1.0\linewidth]{qb/jeopardy}
-                \pause
                 \vspace{-8cm}
          \begin{block}{This is {\bf not} Jeopardy \cite{ferruci-10}}
 		\begin{itemize}
@@ -866,24 +826,13 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
   \begin{columns}
     \column{.5\linewidth}
     \gfxq{guess}{0.8}
+  \pause
     \column{.5\linewidth}
     \gfxq{buzzer}{0.8}
   \end{columns}
-  \pause
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{Humans doing Incremental Classification}
-
-	\begin{itemize}
-		\item Thousands of questions are written every year
-		\item Large question databases
-		\item Teams practice on these questions (some online, e.g. IRC)
-		\item How can we learn from this?
-	\end{itemize}
-
-\end{frame}
 
 \begin{frame}{}
 
@@ -908,31 +857,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
   \end{columns}
 \end{frame}
 
-\begin{frame}{Content Model}
-
-\begin{block}{}
-  \begin{center}
-    \vspace{-.5cm}
-    \begin{tabular}{cccc}
-      \alert{content model} & oracle & policy & features \\
-    \end{tabular}
-    \vspace{-.5cm}
-  \end{center}
-\end{block}
-
-
-  \begin{itemize}
-   \item Bayesian generative model with answers as latent state
-         \item Unambiguous Wikipedia pages
-           \item Unigram term weightings (na\"ive Bayes, BM25)
-    \item Maintains posterior distribution over guesses
-    \item Always has a guess of what it should answer
-      \begin{itemize}
-        \item policy will tell us when to trust it
-       \end{itemize}
-
-  \end{itemize}
-\end{frame}
 
 \begin{frame}{Vector Space Model}
 
@@ -957,7 +881,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
     \item Use relationship between questions (``China'' and
       ``Taiwan'')
     \item Use learned features and dimensions, not the words we start with
-    \item Does the order of words matter?
   \end{itemize}
 
 \end{frame}
@@ -1007,19 +930,13 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \end{frame}
 
 
-\begin{frame}{Oracle}
+\begin{frame}{Embedding}
 
-\begin{center}
-  \includegraphics[width=0.8\linewidth]{qb/oracle}
-\end{center}
-
-\begin{itemize}
-  \item As each token is revealed, look at content model's guess
-    \item If it's right, positive instance; otherwise negative
-      \item Nearly optimal policy to buzz whenever correct (upper bound)
-\end{itemize}
+  \gfxq{embedding}{1.0}
 
 \end{frame}
+
+
 
 \begin{frame}{Policy}
 
@@ -1031,6 +948,7 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
     \item At test time, use the same features as for training
       \begin{itemize}
         \item Question text (so far)
+        \item Language model features 
         \item Guess
         \item Posterior distribution
         \item Change in posterior
@@ -1069,6 +987,18 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \end{frame}
 
+\begin{frame}{How to approach this problem \dots}
+
+  \begin{columns}
+    \column{.5\linewidth}
+    \gfxq{guess}{0.8}
+  \pause
+    \column{.5\linewidth}
+    \gfxq{buzzer}{0.8}
+  \end{columns}
+\end{frame}
+
+
 
 
 \begin{frame}
@@ -1101,17 +1031,10 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \end{frame}
 
 
-\begin{frame}{Embedding}
-
-  \gfxq{embedding}{1.0}
-
-\end{frame}
-
-
 \begin{frame}{Examining vectors}
 
   \only<1>{\gfxq{mann}{.65}}
-  \only<2>{\gfxq{cabot}{.6}}
+  % \only<2>{\gfxq{cabot}{.6}}
 
 \end{frame}
 
@@ -1143,44 +1066,71 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \end{frame}
 
+\fsi{qb/hsnct1}{}
+\fsi{qb/jennings}{23. October 2015, Seattle}
+\fsi{qb/jennings_handshake}{300-160}
+
+\begin{frame}{Where we have problems}
+
+\only<1-2>{
+\begin{block}{Out of Date}
+Although he won the California primary in 2000, he distanced himself
+from fellow reform presidential candidate Pat Buchanan by comparing
+him to Attila the Hun. After being called a jackass, he prompted
+Lindsey Graham to destroy his phone by giving out his number during a
+speech. The slogan (*) Make America Great Again has been used by this
+politician, who claimed he didn't like people who were captured as a
+slight to John McCain and kicked off his 2016 presidential bid with
+some inflammatory remarks about Mexicans. For 10 points, name this
+Republican candidate and real estate mogul.
+\end{block} }
+\only<2>{{\bf Chris Christie?}}
+
+\only<3-4>{
+\begin{block}{Out of Touch}
+  This singer recently cancelled the Great Escape Tour, and, in one
+  song, she claims that she will be ``Eating crumpets with the sailors
+  / On acres without the neighbors.'' She collaborated with Jennifer
+  (*) Hudson on the song ``Trouble,'' which was issued in her album
+  update Reclassified. This artist of ``Change Your Life'' was
+  inspired by scenes from the movie Clueless to make the music video
+  for a song in which she collaborated with Charli XCX. For 10 points,
+  name this Australian rapper whose album The New Classic contained
+  ``Fancy.''
+\end{block} }
+\only<4>{{\bf Bruce Springsteen?}}
+
+
+\only<5-6>{
+\begin{block}{Out of its League}
+  A movie by this director contains several scenes set in the
+  Yoshiwara Nightclub. In a movie by this director, a man is
+  recognized by a blind beggar because he is whistling ``In the Hall
+  of the Mountain King.'' One of his movies includes a father who
+  hires the (*) Thin Man to follow his son Freder, while another
+  concerns the hunt for a child murderer portrayed by Peter Lorre. He
+  showed the dichotomy between industrialists and underground workers
+  in a silent film set in the year 2026. For 10 points, name this
+  German director of M and Metropolis.
+\end{block} }
+\only<6>{{\bf Akira Kurosawa?}}
+
+\end{frame}
+
 \begin{frame}[plain]
-
-\gfxq{hsnct1}{1.0}
-
-\end{frame}
-
-\begin{frame}{Experiment 2}
-
-\gfxq{jennings}{.7}
-
-\pause
-
-\vspace{-5cm}
-\gfxq{jennings_handshake}{1.0}
-
-\end{frame}
-
-
-\begin{frame}{Building on this Foundation}
-
-\begin{itemize}
-  \item More data helps
-  \item Improving country pages specifically
-  \item Still weak on popular culture
-  \item Limited set of answers
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[plain]
-
-\only<1>{
 \gfxq{seattle_crowd}{.5}
 \gfxq{chicago_crowd}{.5}
-}
-\only<2>{
-\gfxq{boring_dot_products}{1.0}
-}
+\end{frame}
+
+\fsi{qb/boring_dot_products}{}
+
+\begin{frame}{Think you can do better?}
+
+\begin{center}
+\huge
+http://hcqa.boydgraber.org/
+\end{center}
+
 
 \end{frame}
 
@@ -1253,6 +1203,12 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \only<12>{\makebox[\linewidth]{\includegraphics[page=12,width=\paperwidth]{diplomacy/betrayal-results}}}
 
 \end{frame}
+
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_understand}}
+\end{frame}
+
 
 \begin{frame}{}
 
@@ -1408,72 +1364,8 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
       \only<5>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_3}}%
     \end{figure}
     }
-
-    \only<6>{
-    \begin{block}{Hierarchical Ideal Point Topic Model: Inputs}
-      \begin{itemize}
-        \item A collection of votes $\{v \subtwo ab\}$
-        \item A collection of $D$ speeches $\{\bm w_d\}$, each of which is given by legislator
-            $a_d$
-        \item A collection of $B$ bill text $\{\bm w'_b\}$
-      \end{itemize}
-    \end{block}
-    \begin{center}
-      \includegraphics[width=.75\textwidth]{teaparty/figures/s5/data}%
-    \end{center}
-    }
 }
 
-\frame{
-    \frametitle{Hierarchical Ideal Point Topic Model}
-    \only<1>{
-    \begin{overlayarea}{\linewidth}{3.5cm}
-    \begin{block}{Modeling bill text}
-        \begin{itemize}
-          \item Each bill text $b$ is a mixture over $K$ issues $\vartheta_b$
-          \item Each bill token generated from topic at \redtext{first-level issue node}
-        \end{itemize}
-    \end{block}
-    \end{overlayarea}
-    \vspace{-1.2cm}
-    \begin{center}
-      \includegraphics[width=.8\textwidth]{teaparty/figures/s5/modeling_bills}
-    \end{center}
-    }
-
-    \only<2>{
-    \begin{overlayarea}{\linewidth}{3.5cm}
-    \begin{block}{Hierarchical Ideal Point Topic Model: Generative Process}
-        \begin{itemize}
-          \item Each speech $d$ also has a distribution $\theta_d$ over $K$ issues
-          \item Each issue $k$, each speech $d$ has distribution over frames $\psi \subtwo dk$
-          \item Each speech token from topic at \redtext{second-level frame
-          node}
-        \end{itemize}
-    \end{block}
-    \end{overlayarea}
-    \vspace{-1cm}
-    \begin{center}
-      \includegraphics[width=.8\textwidth]{teaparty/figures/s5/modeling_speeches}
-    \end{center}
-    }
-
-    \only<3->{
-    \begin{overlayarea}{\linewidth}{3.5cm}
-    \begin{block}{Hierarchical Ideal Point Topic Model: Modeling votes}
-        \begin{itemize}
-          \item Legislator $a$ votes `Yea' on bill $b$ with probability $p(v \subtwo ab = \mbox{Yea}) = \Phi(x_b \sum_{k=1}^K \vartheta \subtwo bk \alert<4>{u \subtwo ak} +
-          y_b)$
-          \item \alert<3>{Ideal point} $\alert<5>{u \subtwo ak} \sim \mathcal{N}(\sum_{j=1}^{J_k} \alert<7>{\eta \subtwo kj} \alert<6>{\psi \subthree akj}, \rho)$
-        \end{itemize}
-    \end{block}
-    \end{overlayarea}
-    \vspace{-1cm}
-    \begin{center}
-      \includegraphics[width=.8\textwidth]{teaparty/figures/s5/modeling_idealpoint}
-    \end{center}
-    }
-}
 
 
 \section{Predicting Membership}
@@ -1571,18 +1463,44 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 	\only<4>{\gfx{polarization_4}{.7}}
 \end{frame}
 
+
+% In many ways, we're at a scary crossroads ... are Luddites right to
+% fear ML?
+% 
+% Inform: Important if we're going to trust machine learning
+% algorithms
+% Collaborate: People are afraid that computers are going to steal
+% their jobs and their purpose.  This fear will be less real if we can
+% work together with ML algorithms.
+% Competition: I have a young daughter at home, and I've quickly
+% learned that "play" isn't just about her having fun and preventing
+% boredom.  Play builds important social skills and teaches her how to
+% resolve problems.  Having computers play games, particularly with
+% social components and communication is important for computers to be
+% able to "play well" with others.  
+% Understand: a big part of that understanding is for computers to
+% understand the social and emotional messiness of humans.  ML
+% learning is making our lives easier and also more uncertain.  We
+% often incorrectly anthropomophize computers, but I do believe that
+% our changing world needs ML algorithms that can understand both our
+% gratitude and our fears.
+
 \section{Conclusions}
 
-\begin{frame}{Conclusion}
-
-  \begin{itemize}
-    \item Interpretability: topic models
-    \item Intuitive trainability: games, translation
-    \item Transparency
-    \item Relevance
-  \end{itemize}
-
+\begin{frame}[plain]
+\vspace*{-1pt}
+\only<1>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_outline}}}
+\only<2>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/kill_all_humans}}}
+\only<3>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/tng_poker}}}
+\only<4>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/bennet_robot}}}
+\only<5>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/robot_shake}}}
+\begin{center}
+\only<5>{
+We need ML that understands our gratitude and our fears
+}
+\end{center}
 \end{frame}
+
 
 % \frame{
 %   \frametitle{But wait, there's more!}
@@ -1671,7 +1589,7 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \begin{frame}{References}
 \bibliographystyle{style/acl}
 \tiny
-\bibliography{bib/journal-full,bib/jbg}
+\bibliography{bib/journal-full,bib/jbg,bib/hhe,bib/alvin}
 \end{frame}
 
 
@@ -1758,6 +1676,30 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \only<17>{\gfxs{example_19}{.9}}
 \end{frame}
 
+
+
+\begin{frame}
+  \frametitle{Adding meaning to topic models}
+        \begin{block}{Traditional Topic Models}
+                $ p(w) = \prod_d \prod_n^{N_d} \left( p(w_{d,n} | \phi_{z_{d,n}})
+                  \explain{\alert<3>{topic}}{p(z_{d,n} | \theta_d)} \right) p(\theta_d | \alpha)                 \explain{\alert<2>{topic to words}}{ \prod_k^K
+p(\phi_k | \eta) }$
+        \end{block}
+
+        \begin{block}{Our Model}
+          \vspace{-0.8cm}
+          \begin{align*}
+               p(w) = \prod_d \prod_n^{N_d} & \left( p(w_{d,n} | \pi_{l_{d,n}})
+                 \explain{\alert<6>{meaning and topic}} {p(l_{d,n} | \phi_{d,n} )
+                   p(z_{d,n} | \theta_d)}  \right) p(\theta_d | \alpha) \\
+               &  \explain{\alert<4>{topic to concept}}{\prod_k^K
+                p(\phi_k | \eta)} \explain{\alert<5>{concept to word}}{\prod_c^C \left(
+                  p(\pi_{k,c} | \tau) \right) }
+           \end{align*}
+        \end{block}
+
+
+\end{frame}
 
 
 
