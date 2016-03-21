@@ -230,21 +230,13 @@ If the topics are interpretable, users will consistently choose true intruder
 \frame{
 \frametitle{Interpretability and Likelihood (NYT)}
 
-\providecommand{\graphscale}{0.6}
 
-\begin{columns}
-\column{.84\linewidth}
-  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/mp}}
-  \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/mp_y}\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_mp}\\}
-  % \only<1>{\includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/nyt_x}}
-\column{.15\linewidth}
-  \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/legend}
-\end{columns}
-
-  \includegraphics[scale=\graphscale]{reading_tea_leaves/tasks/held-out}
-  \\
 \begin{center}
-Within a model, higher likelihood $\not =$ higher interpretability
+\only<1>{\includegraphics[width=.8\paperwidth]{reading_tea_leaves/figures/prec_ll_1}}
+\only<2>{\includegraphics[width=.8\paperwidth]{reading_tea_leaves/figures/prec_ll_2}}
+\only<3>{\includegraphics[width=.8\paperwidth]{reading_tea_leaves/figures/prec_ll_3}}
+\only<4>{\includegraphics[width=.8\paperwidth]{reading_tea_leaves/figures/prec_ll_4}}
+\only<4>{\\ Within a model, higher likelihood $\not =$ higher interpretability}
 \end{center}
 }
 
@@ -356,40 +348,17 @@ Yuening Hu, Jordan Boyd-Graber, and Brianna Satinoff.  Association for Computati
 \makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_collaborate}}
 \end{frame}
 
-
-\begin{frame}[plain]{}
-\makebox[\linewidth]{\includegraphics[width=\paperwidth]{simtrans/yoda}}
-\begin{center}
-When you at the dark side {\bf look}, careful you must {\bf be}. 
-\end{center}
-\end{frame}
-
-
-
 \begin{frame}[plain]{}
 \makebox[\linewidth]{\includegraphics[width=\paperwidth]{simtrans/nuremberg_trials}}
 \end{frame}
 
 
-\begin{frame}{Why interpretation really hard is}
-
-  \begin{columns}
-    \column{.5\linewidth}
-      \begin{itemize}
-        \item Many languages are \textsc{sov}
-        \item \alert<2>{German}, Japanese, Farsi, Korean,
-          \alert<3>{Yiddish}
-        \item<4-> How can we learn from trained interpreters?
-      \end{itemize}
-    \column{.5\linewidth}
-    \gfxs{yoda}{1.0}
-  \end{columns}
-
-  \centering
-
-\only<4-5>{
-\vspace{1cm}
-
+\begin{frame}[plain]{}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{simtrans/yoda}}
+\begin{center}
+\only<1>{When you at the dark side {\bf look}, careful you must {\bf
+    be}. }
+\only<2>{
 \begin{tabular}{c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }l}
 ich & bin & mit & dem & Zug & nach & Ulm & {\bf gefahren} \\
 I & am & with & the & train & to & Ulm & {\bf traveled} \\
@@ -397,8 +366,7 @@ I & am & with & the & train & to & Ulm & {\bf traveled} \\
 I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} by train to Ulm \\
 \end{tabular}
 }
-
-
+\end{center}
 \end{frame}
 
 \begin{frame}[plain]{}
@@ -562,21 +530,6 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{frame}
 
 
-\begin{frame}{Experimental Setup}
-
-  \begin{itemize}
-    \item \textsc{denews} corpus
-      \begin{itemize}
-        \item News snippets
-        \item Some formulaic
-        \item Some surprising
-      \end{itemize}
-    \item Only verb-final sentences
-    \item Some compromises with translation system (to make sure verbs appeared)
-  \end{itemize}
-
-\end{frame}
-
 
 
 \begin{frame}{Comparing Policies}
@@ -601,7 +554,7 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 \end{frame}
 
 
-\begin{frame}{What tricks to interpreters use?}
+\begin{frame}{What tricks do interpreters use?}
 
   \begin{columns}
     \column{.5\linewidth}
@@ -615,11 +568,11 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
   \end{columns}
 
   \begin{itemize}
-    \item Generalize~\cite{dell92access,cuetos06access}
-    \item Summarize
+    \item Predictions~\cite{levy2013expectation,momma2015timing}
     \item Passivization
     \item Segmentation~\cite{erik11theory,shimizu13iwslt}
-    \item Predictions~\cite{levy2013expectation,momma2015timing}
+    \item Generalize~\cite{dell92access,cuetos06access}
+    \item Summarize
   \end{itemize}
 
 
@@ -639,100 +592,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2015
         \end{block}
   \end{columns}
-\end{frame}
-
-\begin{frame}{How can we make MT better?}
-
-  \gfxs{en_ja_example}{.9}
-
-  \pause
-
-  \begin{itemize}
-    \item In a perfect world, we'd use interpretation data
-      \pause
-      \item Very rare, and low quality in other ways
-      \pause
-    \item But can we \emph{rewrite} batch translations?
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Are there enough opportunities?}
-
-
-\begin{center}
-\begin{tabular}{lcccc}
-\toprule
-& \alert<2>{verb} & \alert<3>{voice} & \alert<4>{noun} & \alert<5>{clauses} \\
-\midrule
-Applicable \% & \only<2->{39.9} & \only<3->{50.0} & \only<4->{26.4} & \only<5->{4.8} \\
-Accepted \% & \only<2->{22.5} & \only<3->{24.0} & \only<4->{51.2} & \only<5->{38.4} \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\only<2>{
-\begin{itemize*}
-\item[O:] {\bf They announced} that the president will restructure the division.
-\item[R:] The president will restructure the division, {\bf they announced}.
-\end{itemize*}
-}
-
-
-\only<3>{
-  \begin{columns}
-    \column{.4\linewidth}
-
-    \gfxs{rewrite_input}{.9}
-    \column{.55\linewidth}
-    \vspace{-.5cm}
-    \gfxs{rewrite_transform}{.9}
-   \end{columns}
-}
-
-\only<4>{
-\begin{itemize*}
-  \item[O:] the e-mail server of Clinton
-  \item[R:] Clinton's e-mail server
-\end{itemize*}
-}
-
-\only<5>{
-\begin{itemize*}
-\item[O:] \pos{S}$_1$ \pos{conj} \pos{S}$_2$: We should march {\bf because} winter is coming.
-\item[O:] \pos{conj} \pos{S}$_2$, \pos{S}$_1$: {\bf Because} winter is
-  coming, we should march.
-\vspace{1cm}
-\item[R:] \pos{S}$_2$, \pos{conj'} \pos{S}$_1$: Winter is coming, {\bf because of this}, we should march.
-\end{itemize*}
-}
-
-
-\end{frame}
-
-\begin{frame}{}
-
-\gfxs{rewrite_eval}{.8}
 \pause
-We rewrite 32.2\% of
-sentences, reducing the delay from 9.9 words/seg to 6.3 words/seg per
-segment for rewritten sentences and from 7.8 words/seg to 6.7 words/seg overall.
-
-\end{frame}
-
-\begin{frame}{How good are the translations?}
-
-  \gfxs{tradeoff-rw-bleu}{.7}
-
-\begin{center}
-Aggressiveness based on different right probability thresholds
-\cite{fujita-13}
-\end{center}
-
-\end{frame}
-
-\begin{frame}{Why does the quality improve?}
-
 \begin{center}
 \begin{tabular}{ccccc}
 \toprule
@@ -746,6 +606,7 @@ Aggressiveness based on different right probability thresholds
 \end{center}
 
 \end{frame}
+
 
 
 
@@ -767,9 +628,7 @@ Aggressiveness based on different right probability thresholds
 
 \section{Quiz Bowl}
 
-\begin{frame}[plain]
-  \includegraphics[width=1.0\linewidth]{qb/quizbowl}
-\end{frame}
+\fsi{qb/quizbowl}{}
 
 \begin{frame}[t]
 \frametitle{Sample Question}
@@ -823,13 +682,17 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \begin{frame}{How to approach this problem \dots}
 
+    \only<1>{
   \begin{columns}
     \column{.5\linewidth}
     \gfxq{guess}{0.8}
-  \pause
     \column{.5\linewidth}
     \gfxq{buzzer}{0.8}
   \end{columns}
+}
+\only<2>{
+   \gfxq{guess}{0.5}
+}
 \end{frame}
 
 
@@ -838,17 +701,8 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
   \begin{columns}
     \column{.5\linewidth}
-        \includegraphics[width=0.7\linewidth]{general_figures/hehe} \\
         \includegraphics[width=0.7\linewidth]{general_figures/mohit}
     \column{.5\linewidth}
-        \begin{block}{{\bf
-              \href{http://cs.colorado.edu/~jbg//docs/qb_emnlp_2012.pdf}{Besting
-                the Quiz Master: Crowdsourcing Incremental
-                Classification Games}}}
-
-          {\bf Jordan Boyd-Graber}, He He, and Hal {Daum\'{e} III}. \emph{Empirical Methods in Natural Language Processing}, 2012
-        \end{block}
-
         \begin{block}{ {\bf \href{http://cs.colorado.edu/~jbg//docs/2014_emnlp_qb_rnn.pdf}{A Neural Network for Factoid Question Answering over Paragraphs}}}
 \underline{\href{http://cs.umd.edu/~miyyer/}{Mohit Iyyer}}, {\bf Jordan Boyd-Graber}, Leonardo Claudino, Richard Socher, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
         \end{block}
@@ -937,25 +791,69 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \end{frame}
 
 
+\begin{frame}{How to approach this problem \dots}
 
-\begin{frame}{Policy}
-
-
- \begin{itemize}
-    \item Mapping: state $\mapsto$ action
-    \item Use oracle as example actions
-    \item Learned as classifier \cite{langford-05}
-    \item At test time, use the same features as for training
-      \begin{itemize}
-        \item Question text (so far)
-        \item Language model features 
-        \item Guess
-        \item Posterior distribution
-        \item Change in posterior
-      \end{itemize}
-\end{itemize}
-
+    \only<1>{
+  \begin{columns}
+    \column{.5\linewidth}
+    \gfxq{guess}{0.8}
+    \column{.5\linewidth}
+    \gfxq{buzzer}{0.8}
+  \end{columns}
+}
+\only<2>{
+   \gfxq{buzzer}{0.5}
+}
 \end{frame}
+
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.5\linewidth}
+        \includegraphics[width=0.7\linewidth]{general_figures/hehe}
+    \column{.5\linewidth}
+        \begin{block}{{\bf
+              \href{http://cs.colorado.edu/~jbg//docs/qb_emnlp_2012.pdf}{Besting
+                the Quiz Master: Crowdsourcing Incremental
+                Classification Games}}}
+
+          {\bf Jordan Boyd-Graber}, He He, and Hal {Daum\'{e} III}. \emph{Empirical Methods in Natural Language Processing}, 2012
+        \end{block}
+
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Interface}
+
+\begin{columns}
+
+	\column{0.5\linewidth}
+
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{qb/screenshot}
+	\end{center}
+
+	\column{0.5\linewidth}
+
+
+	\only<2>{
+	\begin{itemize}
+		\item 7000 questions: first day
+		\item 43000 questions: two weeks
+		\item 461 unique users
+                \item Imitated \dots
+	\end{itemize}
+        \gfxq{protobowl}{.8}
+	}
+
+
+
+\end{columns}
+\end{frame}
+
 
 
 
@@ -987,48 +885,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \end{frame}
 
-\begin{frame}{How to approach this problem \dots}
-
-  \begin{columns}
-    \column{.5\linewidth}
-    \gfxq{guess}{0.8}
-  \pause
-    \column{.5\linewidth}
-    \gfxq{buzzer}{0.8}
-  \end{columns}
-\end{frame}
-
-
-
-
-\begin{frame}
-\frametitle{Interface}
-
-\begin{columns}
-
-	\column{0.5\linewidth}
-
-	\begin{center}
-		\includegraphics[width=0.8\linewidth]{qb/screenshot}
-	\end{center}
-
-	\column{0.5\linewidth}
-
-
-	\only<2>{
-	\begin{itemize}
-		\item 7000 questions: first day
-		\item 43000 questions: two weeks
-		\item 461 unique users
-                \item Imitated \dots
-	\end{itemize}
-        \gfxq{protobowl}{.8}
-	}
-
-
-
-\end{columns}
-\end{frame}
 
 
 \begin{frame}{Examining vectors}
@@ -1101,28 +957,8 @@ Republican candidate and real estate mogul.
 \only<4>{{\bf Bruce Springsteen?}}
 
 
-\only<5-6>{
-\begin{block}{Out of its League}
-  A movie by this director contains several scenes set in the
-  Yoshiwara Nightclub. In a movie by this director, a man is
-  recognized by a blind beggar because he is whistling ``In the Hall
-  of the Mountain King.'' One of his movies includes a father who
-  hires the (*) Thin Man to follow his son Freder, while another
-  concerns the hunt for a child murderer portrayed by Peter Lorre. He
-  showed the dichotomy between industrialists and underground workers
-  in a silent film set in the year 2026. For 10 points, name this
-  German director of M and Metropolis.
-\end{block} }
-\only<6>{{\bf Akira Kurosawa?}}
-
 \end{frame}
 
-\begin{frame}[plain]
-\gfxq{seattle_crowd}{.5}
-\gfxq{chicago_crowd}{.5}
-\end{frame}
-
-\fsi{qb/boring_dot_products}{}
 
 \begin{frame}{Think you can do better?}
 
@@ -1133,6 +969,14 @@ http://hcqa.boydgraber.org/
 
 
 \end{frame}
+
+
+\begin{frame}[plain]
+\gfxq{seattle_crowd}{.5}
+\gfxq{chicago_crowd}{.5}
+\end{frame}
+
+\fsi{qb/boring_dot_products}{}
 
 % Diplomacy
 
@@ -1184,7 +1028,6 @@ http://hcqa.boydgraber.org/
 \only<19>{\makebox[\linewidth]{\includegraphics[page=19,width=\paperwidth]{diplomacy/betrayal-slides}}}
 \only<20>{\makebox[\linewidth]{\includegraphics[page=20,width=\paperwidth]{diplomacy/betrayal-slides}}}
 \only<21>{\makebox[\linewidth]{\includegraphics[page=21,width=\paperwidth]{diplomacy/betrayal-slides}}}
-\only<22>{\makebox[\linewidth]{\includegraphics[page=22,width=\paperwidth]{diplomacy/betrayal-slides}}}
 \end{frame}
 
 \begin{frame}[plain]
@@ -1200,7 +1043,6 @@ http://hcqa.boydgraber.org/
 \only<9>{\makebox[\linewidth]{\includegraphics[page=9,width=\paperwidth]{diplomacy/betrayal-results}}}
 \only<10>{\makebox[\linewidth]{\includegraphics[page=10,width=\paperwidth]{diplomacy/betrayal-results}}}
 \only<11>{\makebox[\linewidth]{\includegraphics[page=11,width=\paperwidth]{diplomacy/betrayal-results}}}
-\only<12>{\makebox[\linewidth]{\includegraphics[page=12,width=\paperwidth]{diplomacy/betrayal-results}}}
 
 \end{frame}
 
@@ -1337,33 +1179,13 @@ http://hcqa.boydgraber.org/
 }
 
 \frame{
-    \frametitle{Hierarchical Ideal Point Topic Model: Overview}
-    \only<1-5>{
-    \begin{block}{Using both votes and text to learn}
-        \begin{itemize}
-          \item Two-level topic hierarchy:
-            \only<2>{
-            \begin{itemize}
-            \item \alert<2>{First-level nodes map to agenda issues}
-            \item \alert<2>{Second-level nodes map to issue-specific frames}
-	   \end{itemize}}
-            \only<3>{\alert<3>{Use existing labeled data to learn priors for interpretable
-                issues}}
-            \only<4>{ \alert<4>{Ideal points for frames for predictions using text only}}
-
-          \item\alert<5>{Ideal points in multiple interpretable dimensions}
-        \end{itemize}
-    \end{block}
-    \vspace{-.5cm}
-    \begin{figure}
+    \frametitle{Hierarchical Ideal Point Topic Model}
       \centering
-      \only<1>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_1}}%
-      \only<2>{\includegraphics[width=.8\textwidth]{teaparty/figures/s5/output_2}}%
-      \only<3>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_4}}%
-      \only<4>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_5}}%
-      \only<5>{\includegraphics[width=.9\textwidth]{teaparty/figures/s5/output_3}}%
-    \end{figure}
-    }
+      \only<1>{\includegraphics[width=.9\textwidth]{teaparty/figures/healthcare_intuition_1}}%
+      \only<2>{\includegraphics[width=.9\textwidth]{teaparty/figures/healthcare_intuition_2}}%
+      \only<3>{\includegraphics[width=.9\textwidth]{teaparty/figures/healthcare_intuition_3}}%
+      \only<4>{\includegraphics[width=.9\textwidth]{teaparty/figures/healthcare_intuition_4}}%
+      \only<5>{\includegraphics[width=.9\textwidth]{teaparty/figures/healthcare_intuition_5}}%
 }
 
 
@@ -1447,10 +1269,6 @@ http://hcqa.boydgraber.org/
 
 \section{How They Talk}
 
-\begin{frame}{Framing Healthcare}
-	\gfx{health}{.8}
-\end{frame}
-
 \begin{frame}{Framing Macroeconomics}
 	\gfx{macroeconomics}{.8}
 \end{frame}
@@ -1487,19 +1305,13 @@ http://hcqa.boydgraber.org/
 
 \section{Conclusions}
 
-\begin{frame}[plain]
-\vspace*{-1pt}
-\only<1>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/black_box_outline}}}
-\only<2>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/kill_all_humans}}}
-\only<3>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/tng_poker}}}
-\only<4>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/bennet_robot}}}
-\only<5>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/robot_shake}}}
-\begin{center}
-\only<5>{
-We need ML that understands our gratitude and our fears
-}
-\end{center}
-\end{frame}
+
+\fsi{general_figures/black_box_outline}{}
+\fsi{general_figures/kill_all_humans}{}
+\fsi{general_figures/blackbox}{}
+\fsi{general_figures/bennet_robot}{}
+\fsi{general_figures/tng_poker}{}
+\fsi{general_figures/robot_shake}{We need ML that understands our gratitude and our fears}
 
 
 % \frame{
@@ -1589,7 +1401,7 @@ We need ML that understands our gratitude and our fears
 \begin{frame}{References}
 \bibliographystyle{style/acl}
 \tiny
-\bibliography{bib/journal-full,bib/jbg,bib/hhe,bib/alvin}
+\bibliography{bib/journal-full,bib/jbg,bib/hhe,bib/alvin,teaparty/vietan}
 \end{frame}
 
 
