@@ -14,6 +14,17 @@
 
 \pgfdeclareimage[width=\paperwidth]{mybackground}{colorado/boulder.pdf}
 
+\newcommand{\fsi}[2]{
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{#1}}
+\begin{center}
+#2
+\end{center}
+\end{frame}
+}
+
+
 \newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
 \newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
 \newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
@@ -43,17 +54,12 @@
           ]{UCBoulder}
 
 \usecolortheme{ucdblack}
-\title[Thinking on Your Feet]{Thinking on your Feet: \\ Seattle Exhibition Match}
+\title[Thinking on Your Feet]{Thinking on your Feet: \\ Dallas HSNCT Exhibition Match}
 \author{ Jordan Boyd-Graber}
-\date{October 2, 2015}
+\date{May 28, 2016}
 
 \institute[Boulder] % (optional, but mostly needed)
 {University of Colorado Boulder}
-
-\AtBeginSection[] % "Beamer, do the following at the start of every section"
-{ \begin{frame} \frametitle{Outline} % make a frame titled "Outline"
-\tableofcontents[currentsection] % show TOC and highlight current section
-\end{frame} }
 
 \begin{document}
 
@@ -68,15 +74,16 @@
 
 \begin{itemize}
 	\item A computer that plays quiz bowl: \textsc{qanta}
-	\item Facing off against Ken Jennings
-	\pause
+        \item <2->{{\bf Q}uestion {\bf A}nswer is {\bf N}ot a {\bf T}rivial {\bf A}ctivity}
+	\item Facing off against top quiz bowlers
+          \only<3->{
 	\item But first
 	\begin{itemize}
 		\item Who we are
 		\item How \textsc{qanta} works
                 \item Connection to hard real-world problems
 		\item Introducing our opponent
-	\end{itemize}
+	\end{itemize}}
 \end{itemize}
 
 \end{frame}
@@ -112,11 +119,15 @@
 
 
 \begin{frame}[t]
-	\frametitle{Sample Question 1}
+	\frametitle{Sample Question}
 
-With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no moving parts. He did not take interaction with neighbors into account when formulating his theory of} \only<3->{heat capacity, so} \only<4->{Debye adjusted the theory for low temperatures. His} \only<4->{summation convention automatically sums repeated indices in tensor products. His name is attached to the A and B coefficients} \only<5->{for spontaneous and stimulated emission, the subject of one of his multiple groundbreaking 1905 papers. He further developed the model of statistics sent to him by} \only<6->{Bose to describe particles with integer spin. For 10 points, who is this German physicist best known for formulating the} \only<7->{special and general theories of relativity?} \\
-\vspace{1cm}
-\only<8->{ {\bf Albert \underline{Einstein}}}
+One is Monte Carlo if at least half of the possible results for all x in a
+\only<2->{language it says ``yes'' and ``no'' otherwise. One is called} \only<3->{unambiguous if for any $x$ there is at most one accepting computation. One is
+called} \only<4->{oblivious if the position of the} \only<5->{cursor at the $t^{th}$
+step depends only on the $t$ and the length of the input. One is} \only<6->{non-deterministic if its sets of next} \only<7->{states may contain more than one
+element. For ten points, identify this model of} \only<8->{computation named for
+an} \only<9->{English computer scientist.} \\
+\only<10->{{\bf ANSWER: \underline{Turing} Machine (prompt on TM)}}
 
 \end{frame}
 
@@ -148,7 +159,7 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 			\gfxq{mohit_qb}{.5}	
 	\end{columns}
         Other folks: Hal Daum\'e III, Anupam Guha, He He, Brianna
-        Satinoff, Manjhunath Ravi, Danny Bouman
+        Satinoff, Manjhunath Ravi, Danny Bouman, Pedro Rodriguez
 \end{frame}
 
 \section{How QANTA works}
@@ -208,18 +219,19 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \begin{frame}{Guesses Example}
 
 	\begin{block}{Question}
-	The family sees Stone Mountain and has barbequed sandwiches at The Tower, run by Red Sammy, then heads for Florida over the grandmother's objections.
+	This poem was originally published alongside two of its
+        author's translations of passages by Horace and describes ``rivers that move / In majesty, and the complaining brooks''.
 	\end{block}
 	
 	\begin{columns}
 		\column{.5\linewidth}
 		\only<2->{
 		\begin{itemize}
-			\item Cormac McCarthy
-			\item Love in the Time of Cholera
-			\item Miguel Angel Asturias
-			\item Chronicle of a Death Foretold
-			\item \alert<3>{A Good Man Is Hard to Find (short story)}
+			\item The Lotos-Eaters
+			\item Maya Angelou
+			\item \alert<3>{Thanatopsis}
+			\item Do not go gentle into that good night
+			\item Francis Marion
 			\item<2-> {\bf and 195 others!}
 		\end{itemize}
 		}
@@ -232,29 +244,33 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \end{frame}
 
 \begin{frame}{Is a guess right?}
-
+  \vspace{-1cm}
 	\begin{columns}
 	\column{.75\linewidth}
 	\begin{block}{Text}
-	The family sees Stone Mountain and has barbequed sandwiches at The Tower, run by Red Sammy, then heads for Florida over the grandmother's objections.
+          \small
+	The name of a club of Gopher Prarie, this poem inspired by
+        similarly themed poems of Robert Blair and Bishop Porteus was originally published alongside two of its
+        author's translations of passages by Horace and describes ""rivers that move / In majesty, and the complaining brooks"".
 	\end{block}
 	\column{.25\linewidth}
 	\begin{block}{Guess}
-	A Good Man is Hard to Find (short story)
+	Thanatopsis
 	\end{block}
 	\end{columns}
 	
 	\begin{itemize}
-		\item ``Red Sammy'' appears in three questions with this answer and in no other questions
-		\item ``grandmother's objections'' appears in the answer's Wikipedia page
+		\item ``club of Gopher Prarie'' appears in
+                  Thanatopsis's Wikipedia page
+		\item Horace's Wikipedia page links to Thanatopsis's
+                  page (and vice-versa)
+                \item ``Robert Blair and Bishop Porteus'' appears in
+                  questions about Thanatopsis (and in no other questions)
 		\item The guess does not appear in clues
 		\item The question looks like it's about a work
+                  (``This poem'')
 	\end{itemize}
 	
-	\pause
-	
-	We use a classifier (Vowpal Wabbit) to decide when to {\bf buzz} or {\bf wait}
-
 \end{frame}
 
 \begin{frame}[t]{Features (by example)}
@@ -284,7 +300,12 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \end{frame}
 
+\fsi{qb/dron}{Learning from Protobowl}
 
+\fsi{qb/dot_products}{When the numbers get above zero, the system will
+guess!}
+
+\fsi{qb/boring_dot_products}{No peeking this time \dots}
 
 \begin{frame}{It's not all fun and games \dots}
 
@@ -351,22 +372,20 @@ anguage Processing}, 2014
 
 \end{frame}
 
+\fsi{qb/hsnct1}{}
+\fsi{qb/jennings}{23. October 2015, Seattle}
+\fsi{qb/jennings_handshake}{300-160}
 
-\begin{frame}{What's next}
 
-	\begin{itemize}
-		\item 40 questions written by Kurtis Droge
-                  \item Read by Christopher Grubb
-		\item \textsc{qanta} sees a word when I push a button: decides when to answer
-		\pause
+\begin{frame}{}
 
-                \item Our opponent
-                  \gfxq{jennings}{.5}
-	\end{itemize}
+	\begin{center}
+	\begin{Huge}
+	The Match!
+	\end{Huge}
+	\end{center}
 
 \end{frame}
-
-
 
 
 \begin{frame}{Questions and Discussion}
@@ -383,7 +402,7 @@ anguage Processing}, 2014
 \begin{frame}{Postmortem}
 
 \begin{itemize}
-	\item Only most common 5,000 answers
+	\item Only most common 7,000 answers
 	\item Trash and current events: too much churn
 	\item Creative questions
 	\item Common link questions
@@ -391,9 +410,42 @@ anguage Processing}, 2014
 	\item Wordplay
 	\item Computation
 \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Where we have problems}
+
+\only<1-2>{
+\begin{block}{Out of Date}
+Although he won the California primary in 2000, he distanced himself
+from fellow reform presidential candidate Pat Buchanan by comparing
+him to Attila the Hun. After being called a jackass, he prompted
+Lindsey Graham to destroy his phone by giving out his number during a
+speech. The slogan (*) Make America Great Again has been used by this
+politician, who claimed he didn't like people who were captured as a
+slight to John McCain and kicked off his 2016 presidential bid with
+some inflammatory remarks about Mexicans. For 10 points, name this
+Republican candidate and real estate mogul.
+\end{block} }
+\only<2>{{\bf Chris Christie?}}
+
+\only<3-4>{
+\begin{block}{Out of Touch}
+  This singer recently cancelled the Great Escape Tour, and, in one
+  song, she claims that she will be ``Eating crumpets with the sailors
+  / On acres without the neighbors.'' She collaborated with Jennifer
+  (*) Hudson on the song ``Trouble,'' which was issued in her album
+  update Reclassified. This artist of ``Change Your Life'' was
+  inspired by scenes from the movie Clueless to make the music video
+  for a song in which she collaborated with Charli XCX. For 10 points,
+  name this Australian rapper whose album The New Classic contained
+  ``Fancy.''
+\end{block} }
+\only<4>{{\bf Bruce Springsteen?}}
 
 
 \end{frame}
+
 
 \begin{frame}{We want (and need) your help!}
 
@@ -430,7 +482,7 @@ anguage Processing}, 2014
 		\begin{itemize}
                 \item Looking for undergrads/grads/interns
                 \item A great place for natural language
-                  processing (but no UW)
+                  processing
 		\end{itemize}
 \end{columns}
 
@@ -443,28 +495,14 @@ anguage Processing}, 2014
 
         \begin{block}{Collaborators}
           \textsc{naqt}, Hal Daum\'e III (UMD), Anupam Guha (Maryland), Manjhunath Ravi (Colorado), Danny Bouman (UMD UG),
-          Stephanie Hwa (UMD UG)
+          Stephanie Hwa (UMD UG), Pedro Rodriguez (Colorado) 
         \end{block}
-
-	\begin{columns}
 	
-	\column{.3\linewidth}
         \begin{block}{Funders}
         \begin{center}
           \includegraphics[width=0.4\linewidth]{general_figures/nsf}
        \end{center}
         \end{block}
-        
-	\column{.3\linewidth}        
-        \begin{block}{Supporters}
-        	\gfxq{naqt}{.4}
-        \end{block}
-        \column{.3\linewidth}
-        \begin{block}{Host}
-        	\includegraphics[width=.8\linewidth]{general_figures/uw}
-        \end{block}        
-
-        \end{columns}
 }
 
 
