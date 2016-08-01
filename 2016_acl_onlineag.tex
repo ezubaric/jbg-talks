@@ -35,13 +35,17 @@
 
 \newcommand{\abr}[1]{\textsc{#1}}
 \providecommand{\newblock}{\relax}
+\newcommand{\gfx}[2]{\begin{center}
+    \includegraphics[width=#2\linewidth]{onlineag/#1}
+\end{center}
+}
 
 % \newcommand{\printarticle}[1]{\citeauthor{#1}, ``\usebibentry{#1}{title}''}
 \newcommand{\chinese}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
 
-\title[Scalable Bayesian Inference]{ Online Adaptor Grammars with Hybrid Inference}
-\author[Zhai, Boyd-Graber, Cohen]{Ke Zhai, }
-\institute[UMD, Colorado, Edinburgh]{
+\title[Online Adaptor Grammars]{ Online Adaptor Grammars with Hybrid Inference}
+\author[Zhai, Boyd-Graber, Cohen]{Ke Zhai, Jordan Boyd-Graber, Shay Cohen}
+\institute[UMD]{
   University of Maryland, College Park\\
   University of Colorado \\
   University of Edinburgh
@@ -53,10 +57,22 @@
 \begin{frame}[plain]
   \titlepage
   \begin{center}
-    Logos here
-    % \includegraphics[width=0.2\linewidth]{style/figure/UMD_logo_circ}
+    \includegraphics[width=0.2\linewidth]{general_figures/umd_logo}
+    \hphantom{\dots \dots}
+    \includegraphics[width=0.2\linewidth]{general_figures/culogo}
+    \hphantom{\dots \dots}
+    \includegraphics[width=0.2\linewidth]{general_figures/edinburgh}
   \end{center}
 \end{frame}
+
+\begin{frame}[plain]
+
+  \includegraphics[width=1.0\linewidth]{general_figures/ke}
+
+\end{frame}
+
+% Picture of KE
+% Add logos
 
 \input{onlineag/motivation}
 

@@ -8,8 +8,31 @@
 \newcommand{\AgEmpty}[1] { & & #1 }
 \newcommand{\AgRange}[2] {$#1 = 1, \dots, #2$}
 
-\section[InfAG]{Online Adaptor Grammars}
-\label{section:infag}
+
+% This paper: apply hybrid stochastic variational inference to adaptor grammars
+% Outline
+% - Brief review of adaptor grammars
+% - Brief review of hybrid stochastic variational inference
+% - How we put the two together
+% - How well it works
+
+% Adaptor grammars
+% PY Process on top of PCFGS
+% Handy intuition: it caches subtrees
+% compare / contrast two generative processes
+
+% How does it do this
+% CRP metaphor
+
+% Now you can hopefully see why inference is hard
+% Unbounded set of combinatorial objects
+% Sampling is slow and hard (but folks try to make it better)
+% Can we use online inference?
+
+% Online variational inference
+% set of parameters
+% take stochastic gradient step
+% what's the catch: parameters correspond to derviations (unbounded)
 
 \begin{frame}{Why Adaptor Grammars?}
   \begin{center}
