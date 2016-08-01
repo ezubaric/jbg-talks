@@ -1,0 +1,82 @@
+\documentclass[UTF8, compress, notes]{beamer}
+
+\usepackage{etex}
+\usepackage{natbib}
+\usepackage{bibentry}
+
+\nobibliography*
+
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{note page}[plain]
+
+\usecolortheme{umd}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\newif\ifcomment\commentfalse
+%\input{preamble}
+
+\usepackage{natbib}
+\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{xmpmulti}
+
+\usepackage{CJKutf8}
+\usepackage{tabularx}
+\usepackage{times}
+% \usepackage{style/mfirstuc}
+\usepackage{qtree}
+\usepackage[normalem]{ulem}
+\usepackage{xmpmulti}
+
+\newcommand{\abr}[1]{\textsc{#1}}
+\providecommand{\newblock}{\relax}
+
+% \newcommand{\printarticle}[1]{\citeauthor{#1}, ``\usebibentry{#1}{title}''}
+\newcommand{\chinese}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
+
+\title[Scalable Bayesian Inference]{ Online Adaptor Grammars with Hybrid Inference}
+\author[Zhai, Boyd-Graber, Cohen]{Ke Zhai, }
+\institute[UMD, Colorado, Edinburgh]{
+  University of Maryland, College Park\\
+  University of Colorado \\
+  University of Edinburgh
+}
+% \date{June 17, 2013}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+  \begin{center}
+    Logos here
+    % \includegraphics[width=0.2\linewidth]{style/figure/UMD_logo_circ}
+  \end{center}
+\end{frame}
+
+\input{onlineag/motivation}
+
+\input{onlineag/infag}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\begin{frame}[allowframebreaks]{Bibliography}
+  \bibliographystyle{style/icml2013}
+  \tiny
+  \bibliography{bib/journal-full,bib/jbg}
+\end{frame}
+
+% \input{2013_proposal_slide/motivation_addition_1}
+% \input{2013_proposal_slide/mrlda_addition_1}
+% \input{2013_proposal_slide/infvoc_addition_1}
+% \input{2013_proposal_slide/infvoc_addition_2}
+% \input{2013_proposal_slide/infag_addition_1}
+% \input{2014_thesis_slide/infag_addition_1}
+
+% \input{2013_proposal_slide/backup}
+
+\end{document}
