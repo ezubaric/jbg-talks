@@ -24,6 +24,7 @@
 \usepackage{subfigure}
 \usepackage{rotating}
 \usepackage{xmpmulti}
+\usepackage{mathtools}
 
 \usepackage{CJKutf8}
 \usepackage{tabularx}
@@ -33,7 +34,13 @@
 \usepackage[normalem]{ulem}
 \usepackage{xmpmulti}
 
+\newcommand{\tng}[1]{\mbox{\textsc{tng}}_{#1}}
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\h}[2]{\mathbb{H}_{#1}\left[ #2 \right] }
 \newcommand{\abr}[1]{\textsc{#1}}
+\newcommand{\g}{\, | \,}
+\newcommand{\elbo}{\mathcal{L}}
 \providecommand{\newblock}{\relax}
 \newcommand{\gfx}[2]{\begin{center}
     \includegraphics[width=#2\linewidth]{onlineag/#1}

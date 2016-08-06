@@ -16,18 +16,42 @@
 % - How we put the two together
 % - How well it works
 
+\begin{frame}{PCFGs}
+
+         \only<1>{\gfx{pcfg_00}{.7}}
+         \only<2>{\gfx{pcfg_01}{.7}}
+         \only<3>{\gfx{pcfg_02}{.7}}
+         \only<4>{\gfx{pcfg_03}{.7}}
+         \only<5>{\gfx{pcfg_04}{.7}}
+         \only<6>{\gfx{pcfg_05}{.7}}
+
+\end{frame}
+
+
 \begin{frame}{Adaptor Grammars}
 
   \begin{columns}
-    \column{.3\linewidth}
+    \column{.2\linewidth}
        \begin{block}{PCFG}
-         \only<1>{\gfx{pcfg_00}{.9}}
-
+         \gfx{pcfg_05}{.9}
        \end{block}
-    \column{.65\linewidth}
+    \column{.75\linewidth}
         \begin{block}{Adaptor Grammars}
-         \only<7>{\gfx{ag_00}{.9}}
-         \only<19>{\gfx{ag_11}{.9}}
+          \vspace{-.9cm}
+         \only<1>{\gfx{ag_00}{.8}}
+         \only<2>{\gfx{ag_01}{.8}}
+         \only<3>{\gfx{ag_02}{.8}}
+         \only<4>{\gfx{ag_03}{.8}}
+         \only<5>{\gfx{ag_04}{.8}}
+         \only<6>{\gfx{ag_05}{.8}}
+         \only<7>{\gfx{ag_06}{.8}}
+         \only<8>{\gfx{ag_07}{1}}
+         \only<9>{\gfx{ag_08}{1}}
+         \only<10>{\gfx{ag_09}{1}}
+         \only<11>{\gfx{ag_10}{1}}
+         \only<12>{\gfx{ag_11}{1}}
+         \only<13>{\gfx{ag_12}{1}}
+                   \vspace{-.9cm}
       \end{block}
       \end{columns}
 \end{frame}
@@ -465,6 +489,29 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}{Online Objective}
+
+\begin{align}
+\elbo ( \boldsymbol{z}, \boldsymbol{\pi}, \boldsymbol{\theta},
+  \boldsymbol{T}, \boldsymbol{D}; \boldsymbol{a}, \boldsymbol{b},
+  \boldsymbol{\alpha}) = & \explain{Entropy Term}{\h{q}{ q( \boldsymbol{\theta}, \boldsymbol{\pi}, \boldsymbol{T} ) }} \notag \\
+  & +  \sum_{c \in \boldsymbol{N}} \explain{Unadapted Rules}{\mathbb{E}_q [ \log{ p(
+    \boldsymbol{\theta}_c | \boldsymbol{\alpha}_c ) } } \notag \\
+  &  + \sum_{c \in \boldsymbol{M}} \sum_{i=1}^{\infty}
+  \explain{\alert<2>{Adapted Rules}}{\e{q}{ \log{   p ( \pi^{\prime}_{c, i} | a_c, b_c
+    ) } }} \notag \\
+  &  + \sum_{c \in \boldsymbol{M}} \sum_{i=1}^{\infty}
+  \explain{Parse trees}{\e{q}{ \log{ p ( z_{c, i} \g \boldsymbol{\pi},
+    \boldsymbol{\theta} ) } } } \notag \\
+  &  + \sum_{x_d \in \boldsymbol{X}} \explain{Terminals} {\e{q}{\log{ p (
+    x_d, t_d \g \boldsymbol{\pi}, \boldsymbol{\theta}, \boldsymbol{z}) }
+  }} \notag
+\end{align}
+
+Hardest part: maintaining a distribution over an unbounded set
+
+\end{frame}
+
 \begin{frame}{\only<1>{Topic Models with Infinite Vocabulary}\only<2>{Adaptor Grammars}}
   \begin{center}
     \vspace{-6mm}
@@ -483,12 +530,12 @@
       % \resizebox{\linewidth}{!}{
       \begin{tabular}{r c}
         \only<1>{words}\only<2->{\sout{words} \alert{trees}}: &
-        $\textstyle \rho_i \sim G_0$ \\
-        weights: & $\textstyle b_i \sim \mathsf{Beta}(1,
-        \alpha^\beta), ~ \textstyle \beta_i \equiv b_i
+        $ \rho_i \sim G_0$ \\
+        weights: & $ b_i \sim \mathsf{Beta}(1,
+        \alpha^\beta), ~  \beta_i \equiv b_i
         \prod_{j=1}^{i-1} (1-b_j)$ \\
         \only<1>{topic}\only<2->{\sout{topic} \alert{grammaton}}: &
-        $\textstyle G \equiv \sum_i \beta_i \delta_{\rho_i}$
+        $ G \equiv \sum_i \beta_i \delta_{\rho_i}$
       \end{tabular}
     \end{center}
     % }
@@ -507,6 +554,58 @@
     }
   \end{block}
 \end{frame}
+
+\begin{frame}{Best of Both Worlds}
+
+\begin{itemize}
+  \item Sampling to discover new productions
+  \item Update variational parameters
+  \item Pruning to keep set manageable
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Approximate \abr{pcfg}}
+
+\begin{align}
+   \log \theta'_{c \Rightarrow z} =
+  \begin{dcases}
+     \mathbb{E}_q [ \log \pi_{c, i} ], & \mbox{if $\tng{c}(i) = z$}  \\
+     \mathbb{E}_q [ \log \pi_{c, K_c} ] & \hspace{-.3cm} + \hspace{.1cm} \mathbb{E}_q [ \log \theta_{c \Rightarrow z} ], \\
+    & \mbox{otherwise}
+  \end{dcases}
+  \label{eq:approx-pcfg}
+\end{align}
+
+
+\end{frame}
+
+\begin{frame}{Count inside your minibatch}
+
+  \gfx{seating_counts}{.8}
+
+\end{frame}
+
+\begin{frame}{Hybrid Stochastic Gradient Step}
+
+\begin{align}
+   \gamma_{a \rightarrow \beta} = &  \alpha_{a \rightarrow\beta}
+  + \sum_{x_d \in \boldsymbol{X}} g_d(a \rightarrow \beta) \notag + \sum_{b \in \boldsymbol{M}} \sum_{i=1}^{K_b} n(a
+  \rightarrow \beta, z_{b, i}), \notag \\
+   \nu^1_{a, i} = &  1- b_a + \sum_{x_d \in
+    \boldsymbol{X}} f_{d}(a \Rightarrow z_{a,i}) \notag \\
+  &  + \sum_{b \in \boldsymbol{M}} \sum_{k=1}^{K_b} n(a
+  \Rightarrow z_{a, i}, z_{b, k}), \notag \\
+   \nu^2_{a, i} = &  a_a + i \cdot b_a +
+  \sum_{x_d \in \boldsymbol{X}} \sum_{j=1}^{K_a} f_{d}(a \Rightarrow
+  z_{a, j}) \notag \\
+  &  + \sum_{b \in \boldsymbol{M}} \sum_{k=1}^{K_b}
+  \sum_{j=1}^{K_a} n(a \Rightarrow z_{a, j}, z_{b, k}), \notag
+\end{align}
+
+
+\end{frame}
+
 
 \begin{frame}{Word Segmentation $F_1$ Score}
   \vspace{-5mm}
