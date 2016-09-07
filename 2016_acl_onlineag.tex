@@ -1,10 +1,6 @@
 \documentclass[UTF8, compress, notes]{beamer}
 
 \usepackage{etex}
-\usepackage{natbib}
-\usepackage{bibentry}
-
-\nobibliography*
 
 \usetheme{Madrid}
 \setbeamertemplate{navigation symbols}{}
@@ -17,12 +13,12 @@
 \newif\ifcomment\commentfalse
 %\input{preamble}
 
-\usepackage{natbib}
 \usepackage{algorithmic}
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{subfigure}
 \usepackage{rotating}
+\usepackage{url}
 \usepackage{xmpmulti}
 \usepackage{mathtools}
 
@@ -47,7 +43,7 @@
 \end{center}
 }
 
-% \newcommand{\printarticle}[1]{\citeauthor{#1}, ``\usebibentry{#1}{title}''}
+\providecommand{\citename}[1]{#1}
 \newcommand{\chinese}[1]{\begin{CJK}{UTF8}{gbsn}#1\end{CJK}}
 
 \title[Online Adaptor Grammars]{ Online Adaptor Grammars with Hybrid Inference}
@@ -78,19 +74,25 @@
 
 \end{frame}
 
-% Picture of KE
-% Add logos
-
 \input{onlineag/motivation}
 
 \input{onlineag/infag}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-\begin{frame}[allowframebreaks]{Bibliography}
-  \bibliographystyle{style/icml2013}
-  \tiny
-  \bibliography{bib/journal-full,bib/jbg}
+\begin{frame}{}
+
+\begin{center}
+\huge
+Thanks!
+\end{center}
+\end{frame}
+
+
+\begin{frame}{References}
+\bibliographystyle{style/acl}
+\tiny
+\bibliography{bib/journal-full,bib/jbg,bib/hhe,bib/alvin,teaparty/vietan}
 \end{frame}
 
 % \input{2013_proposal_slide/motivation_addition_1}

@@ -28,7 +28,7 @@
 \end{frame}
 
 
-\begin{frame}{Adaptor Grammars}
+\begin{frame}{Adaptor Grammars~\cite{johnson-06}}
 
   \begin{columns}
     \column{.2\linewidth}
@@ -82,10 +82,16 @@
 
     \pause
 
+    % 4 8 12
+    % 2 6 10
+    % 3 7 11
+    % 1 5 9 
+
     \resizebox{.95\linewidth}{!}{
       \begin{tabular}{c | c | c | c}
         \textsc{PCFG}
         & 
+        \uncover<4->{\alert<4>{
         \begin{tabular}{l}
           Word $\mapsto$ Stem Suffix\\
           Word $\mapsto$ Stem\\
@@ -96,8 +102,10 @@
           Char $\mapsto$ ``a''\\
           $\ldots$\\
           Char $\mapsto$ ``z''\\
-        \end{tabular}
+        \end{tabular} 
+        }}
         &
+        \uncover<8->{\alert<8>{
         \begin{tabular}{l}
           Sent $\mapsto$ Doc$^\prime_j$\\
           Doc$^\prime_j$ $\mapsto$ $\#j$\\
@@ -108,7 +116,9 @@
           \ldots\\
           Word $\mapsto$ ``world''\\
         \end{tabular}
+        }}
         &
+        \uncover<12->{\alert<12>{
         \begin{tabular}{l}
           Sent $\mapsto$ Words\\
           Words $\mapsto$ Word Words\\
@@ -120,64 +130,71 @@
           \ldots\\
           Char $\mapsto$ $z$\\
         \end{tabular}
+      }}
         \\
         \hline
         \multirow{3}{*}{input}
         &
+        \only<2->{\alert<2>{
         \multirow{3}{*}{$w$ $a$ $l$ $k$ $e$ $d$}
+        }}
         &
+        \only<6->{\alert<6>{
         $\#2$ ``twitter'' ``shares''
+        }}
         &
+        \only<10->{\alert<10>{
         \multirow{3}{*}{$h$ $o$ $w$ $a$ $r$ $e$ $y$ $o$ $u$}
+        }}
         \\
         &
         &
-        ``ipo'' ``make'' ``smooth''
+        \only<6->{\alert<6>{``ipo'' ``make'' ``smooth''}}
         &
         \\
         &
         &
-        ``market'' ``debut'' \ldots
+        \only<6->{\alert<6>{``market'' ``debut'' \ldots}}
         &
         \\
         \hline
         output
         &
-        % \onslide<2->{
+        \uncover<3->{\alert<3>{
         \begin{tabular}{l}
           \Tree [.Word \qroof{$w$ $a$ $l$ $k$}.Stem \qroof{$e$
             $d$}.Suffix ]
         \end{tabular}
-        % }
+        }}
         &
-        % \onslide<3->{
+        \uncover<7->{\alert<7>{
         \begin{tabular}{l}
           \Tree [.Doc$_2$ $\#2$ [ [ ``twitter'' ].Topic$_3$ $\ldots$
           ].Doc$_2$ ]
         \end{tabular}
-        % }
+        }}
         &
-        % \onslide<4->{
+        \uncover<11->{\alert<11>{
         \begin{tabular}{l}
           \Tree [.Words \qroof{ $h$ $o$ $w$ }.Word [.Words
           \qroof{ $a$ $r$ $e$ }.Word [.Words $\ldots$ ] ] ]
         \end{tabular}
-        % } 
+        }} 
         \\
         \hline
         model
         &
-        % \onslide<2->{
+        \uncover<1->{\alert<1>{
         Stemmer
-        % }
+        }}
         &
-        % \onslide<3->{
+        \uncover<5->{\alert<5>{
         Topic Models
-        % }
+        }}
         &
-        % \onslide<4->{
+        \uncover<9->{\alert<9>{
         Word Segmention
-        % }
+        }}
         \\
       \end{tabular}
     }
@@ -188,13 +205,13 @@
   \vspace{-1mm}
   \begin{block}{Adaptor grammar is slow!}
     \begin{itemize}
-    \item MCMC inference for adaptor grammars~\citep{johnson-06}
+    \item MCMC inference for adaptor grammars~\cite{johnson-06}
       \begin{itemize}
       \item Pro: flexible number of adapted rules
       \item Con: non-trivial to parallelize, a lot of bookkeeping on
         the counts
       \end{itemize}
-    \item Batch mode variational inference~\citep{cohen-10}
+    \item Batch mode variational inference~\cite{cohen-10}
       \begin{itemize}
       \item Pro: intuitive and easy to parallelize
       \item Con: fixed number of adapted rules, require pre-processing step
@@ -472,8 +489,6 @@
           \item Requires no pre-processing step
           \item Discover possible rules to cache on the fly
           \item Possibly infinite number of grammar rules
-          \item Remind you something?
-          \item Infinite vocabulary LDA
           \end{itemize}
         \end{block}
         \vspace{-3mm}
@@ -488,6 +503,77 @@
     \end{center}
   \end{columns}
 \end{frame}
+
+\begin{frame}{Best of Both Worlds}
+
+\begin{itemize}
+  \item Sampling to discover new productions
+  \item Update variational parameters
+  \item Pruning to keep set manageable
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Dealing with Infinite Adaptor Grammars}
+  \begin{center}
+      \includegraphics[width=.9\linewidth]{onlineag/dp_johnny}
+
+  \end{center}
+
+\end{frame}
+
+\begin{frame}{Approximate \abr{pcfg}}
+
+\begin{align}
+   \log \theta'_{c \Rightarrow z} =
+  \begin{dcases}
+     \alert<1>{\e{q}{ \log \pi_{c, i} },} & \mbox{if $\tng{c}(i) = z$}  \\
+     \alert<2> {\e{q}{\log \pi_{c, K_c}}} & + \alert<2>{\e{q}{\log \theta_{c \Rightarrow z} } } \\
+    & \mbox{otherwise}
+  \end{dcases}
+  \label{eq:approx-pcfg}
+\end{align}
+
+\begin{itemize}
+  \item \alert<1>{Create rules for ``cached'' productions}
+  \item \alert<2>{For previously unseen productions, sample
+      proportional to leftover stick}
+  \item Compute inside-outside probabilities
+  \item Sample tree~\cite{johnson-07}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Count inside your minibatch}
+
+  \begin{columns}
+    \column{.7\linewidth}
+      \gfx{seating_counts}{0.85}
+
+    \column{.3\linewidth}
+    Three cases:
+    \begin{itemize}
+      \item Use existing cached production $f$
+      \item Using ``base'' \abr{pcfg} rules $g$
+      \item Create new cached production (could be adapted) $h$
+    \end{itemize}
+    \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Dealing with Infinite Adaptor Grammars}
+  \begin{center}
+      \includegraphics[width=.9\linewidth]{onlineag/dp_johnny}
+
+  \end{center}
+
+\end{frame}
+
+
 
 \begin{frame}{Online Objective}
 
@@ -512,79 +598,6 @@ Hardest part: maintaining a distribution over an unbounded set
 
 \end{frame}
 
-\begin{frame}{\only<1>{Topic Models with Infinite Vocabulary}\only<2>{Adaptor Grammars}}
-  \begin{center}
-    \vspace{-6mm}
-    \only<1>{
-      \includegraphics[width=.9\linewidth]{onlineag/dp_monkey-11}
-    }
-    \only<2->{
-      \includegraphics[width=.9\linewidth]{onlineag/dp_johnny}
-    }
-    \vspace{-6mm}
-  \end{center}
-
-  \begin{block}{\only<1>{Topic Models with Infinite Vocabulary}\only<2->{Adaptor Grammars: Nonparametric \textsc{PCFG}}}
-    % \vspace{-5mm}
-    \begin{center}
-      % \resizebox{\linewidth}{!}{
-      \begin{tabular}{r c}
-        \only<1>{words}\only<2->{\sout{words} \alert{trees}}: &
-        $ \rho_i \sim G_0$ \\
-        weights: & $ b_i \sim \mathsf{Beta}(1,
-        \alpha^\beta), ~  \beta_i \equiv b_i
-        \prod_{j=1}^{i-1} (1-b_j)$ \\
-        \only<1>{topic}\only<2->{\sout{topic} \alert{grammaton}}: &
-        $ G \equiv \sum_i \beta_i \delta_{\rho_i}$
-      \end{tabular}
-    \end{center}
-    % }
-    \vspace{-4mm}
-    \only<1>{
-      \begin{itemize}
-      \item Base distribution $G_0$: $n$-gram model on characters.
-      \item Topic: a distribution over words.
-      \end{itemize}
-    }
-    \only<2->{
-      \begin{itemize}
-      \item Base distribution $G_0$: underlying \textsc{PCFG}.
-      \item Grammaton: a distribution over derivation trees.
-      \end{itemize}
-    }
-  \end{block}
-\end{frame}
-
-\begin{frame}{Best of Both Worlds}
-
-\begin{itemize}
-  \item Sampling to discover new productions
-  \item Update variational parameters
-  \item Pruning to keep set manageable
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Approximate \abr{pcfg}}
-
-\begin{align}
-   \log \theta'_{c \Rightarrow z} =
-  \begin{dcases}
-     \mathbb{E}_q [ \log \pi_{c, i} ], & \mbox{if $\tng{c}(i) = z$}  \\
-     \mathbb{E}_q [ \log \pi_{c, K_c} ] & \hspace{-.3cm} + \hspace{.1cm} \mathbb{E}_q [ \log \theta_{c \Rightarrow z} ], \\
-    & \mbox{otherwise}
-  \end{dcases}
-  \label{eq:approx-pcfg}
-\end{align}
-
-
-\end{frame}
-
-\begin{frame}{Count inside your minibatch}
-
-  \gfx{seating_counts}{.8}
-
-\end{frame}
 
 \begin{frame}{Hybrid Stochastic Gradient Step}
 
@@ -608,10 +621,7 @@ Hardest part: maintaining a distribution over an unbounded set
 
 
 \begin{frame}{Word Segmentation $F_1$ Score}
-  \vspace{-5mm}
-  \begin{columns}
 
-    \column{0.35\linewidth}
     \begin{center}
       % \resizebox{\linewidth}{!}{
       % \begin{tabular}{c | c | l}
@@ -632,7 +642,7 @@ Hardest part: maintaining a distribution over an unbounded set
       % \end{tabular}
       % }
 
-      \resizebox{\linewidth}{!}{
+      \only<1>{
         \begin{tabular}{l}
           \hline
           \AgRule{ \AgNonTerm{Words}{} }{ \AgNonTerm{Word}{} }{} \\
@@ -645,19 +655,22 @@ Hardest part: maintaining a distribution over an unbounded set
         \end{tabular}
       }
 
+      \only<2>{
+      \vspace{2mm}
       \vspace{2mm}
       $h$ $o$ $w$ $a$ $r$ $e$ $y$ $o$ $u$
 
-      \vspace{2mm}
-      \resizebox{\linewidth}{!}{
+
+      \resizebox{.5\linewidth}{!}{
         \Tree [.Words \qroof{ $h$ $o$ $w$ }.Word [.Words \qroof{ $a$ $r$
           $e$ }.Word [.Words \qroof{ $y$ $o$ $u$ }.Word ] ] ]
       }
+    }
     \end{center}
 
-    \column{0.625\linewidth}
+
     \begin{center}
-      \onslide<2->{
+      \only<3>{
         \emph{brent} corpus\\
         % \begin{figure}[!tb]
         \includegraphics[width=1.0\linewidth]{onlineag/brent-Gunigram-log-crop.pdf}
@@ -669,7 +682,7 @@ Hardest part: maintaining a distribution over an unbounded set
         % collocation grammar
       }
 
-      \onslide<3->{
+      \only<4>{
         \vspace{2mm}
         Chinese Word Segmentation\\
         \resizebox{\linewidth}{!}{
@@ -683,22 +696,19 @@ Hardest part: maintaining a distribution over an unbounded set
             \hline
             \multirow{3}{*}{\begin{turn}{90}\shortstack{F$_1$\\Score}\end{turn}}
             & \abr{mcmc} & $71.75$ & $71.04$ & $74.01$ \\
-            & \abr{online} & $72.82$ & $72.14$ & $74.71$ \\
             & \abr{variational} & $69.83$ & $67.82$ & $70.47$ \\
+            & \abr{online} & $72.82$ & $72.14$ & $74.71$ \\
             \hline
           \end{tabular}
         }
       }
     \end{center}
-  \end{columns}
+
 \end{frame}
 
 \begin{frame}{Summary}
   \begin{itemize}
   \item Propose adaptor grammars with online hybrid inference\\
-    \begin{scriptsize}
-      \bibentry{zhai-14c}
-    \end{scriptsize}
     % \begin{itemize}
     % \item faster inference, scalable to larger datasets
     % \item flexible hierarchy, prototyping Bayesian model
@@ -714,6 +724,8 @@ Hardest part: maintaining a distribution over an unbounded set
   %   \item Prototype \textsc{InfVoc} topic model using adaptor grammars
   %   \item Qualitative and quantitative results on the prototyped model
   %   \end{itemize}
-  \item Source code available at my github repo.
+    \item General strategy for online optimization with combinatorial structures
+  \item Source code available at \url{https://github.com/kzhai/PyAdaGram}
   \end{itemize}
 \end{frame}
+
