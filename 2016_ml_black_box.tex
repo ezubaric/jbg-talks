@@ -63,7 +63,8 @@
 }
 
 
-\newif\ifjobtalk\jobtalkfalse
+\newif\ifjobtalk\jobtalktrue
+\newif\iflong\longtrue
 
 \usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
           titleline=true,                    % Show a line below the frame title.
@@ -247,7 +248,10 @@ If the topics are interpretable, users will consistently choose true intruder
     \item A way to get at an evaluation that matches {\bf what we care about}
     \item A necessary step to improving topic models for navigating large datasets~\cite{talley-11}
     \item Others have discovered automatic methods that uncover the same properties~\cite{newman-10,mimno-11}
-    \item And extended the technique to structured topics and phrases~\cite{lindsey-12,weninger-12}
+    \item And extended the technique to structured topics and
+      phrases~\cite{lindsey-12,weninger-12}
+    \item \alert<2>{Extending to multiple users}~\cite{Felt-15}
+      \ifjobtalk (CoNLL Best Paper) \fi
   \end{itemize}
 
 \end{frame}
@@ -306,6 +310,12 @@ If the topics are interpretable, users will consistently choose true intruder
 Yuening Hu, Jordan Boyd-Graber, and Brianna Satinoff.  Association for Computational Linguistics, 2011.
 \end{block}
 
+\ifjobtalk
+\only<2->{ 
+  Trivia: First UMD student, best paper KDD 2016
+}
+\fi
+
 \end{columns}
 
 }
@@ -322,6 +332,42 @@ Yuening Hu, Jordan Boyd-Graber, and Brianna Satinoff.  Association for Computati
 
 
 }
+
+\ifjobtalk
+
+\begin{frame}
+  \frametitle{Adding meaning to topic models}
+        \begin{block}{Traditional Topic Models}
+                $ p(w) = \prod_d \prod_n^{N_d} \left( p(w_{d,n} | \phi_{z_{d,n}})
+                  \explain{\alert<3>{topic}}{p(z_{d,n} | \theta_d)} \right) p(\theta_d | \alpha)                 \explain{\alert<2>{topic to words}}{ \prod_k^K
+p(\phi_k | \eta) }$
+        \end{block}
+
+        \begin{block}{Our Model}
+          \vspace{-0.8cm}
+          \begin{align*}
+               p(w) = \prod_d \prod_n^{N_d} & \left( p(w_{d,n} | \pi_{l_{d,n}})
+                 \explain{\alert<6>{meaning and topic}} {p(l_{d,n} | \phi_{d,n} )
+                   p(z_{d,n} | \theta_d)}  \right) p(\theta_d | \alpha) \\
+               &  \explain{\alert<4>{topic to concept}}{\prod_k^K
+                p(\phi_k | \eta)} \explain{\alert<5>{concept to word}}{\prod_c^C \left(
+                  p(\pi_{k,c} | \tau) \right) }
+           \end{align*}
+        \end{block}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Adding meaning to topic models}
+  \begin{itemize}
+    \item Nested Dirichlet
+      distributions~\cite{boyd-graber-07,andrzejewski-09}
+    \item Retains conjugacy, unlike logistic normal
+    \item Future direction: co-occurence analysis
+    \end{itemize}
+\end{frame}
+\fi
 
 
 \input{interactive_topic_models/nyt_soviet_russia}
@@ -346,7 +392,80 @@ Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi. 
 
 }
 
+\fsi{interactive_topic_models/messy-desk}{Many Documents}
 
+\fsi{interactive_topic_models/file-cabinet}{Sort into Categories}
+
+\begin{frame}{Evaluation}
+
+  \begin{itemize}
+    \item User study
+    \item 40 minutes
+    \item Sort documents into categories
+    \item What information / interface \alert<2>{helps best}
+      \pause
+      \pause
+      \begin{itemize}
+        \item Train a classifier on human examples
+          \only<4->{\alert<4>{(don't tell them how many labels)}}
+        \item Compare classifier labels to expert judgements
+          \only<5->{\alert<5>{(purity)}}
+\only<5>{
+\begin{equation}
+\mbox{purity}(\mathbf{U},\mathbf{G}) = \frac{1}{N}\sum\limits_{l} \max\limits_{j}|U_l \cap G_j|,
+\end{equation}
+}
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Which is more Useful?}
+
+\only<1>{
+  \begin{center}
+    Who should drive?
+  \end{center}
+}
+
+
+\only<2->{
+\begin{columns}
+  \column{.5\linewidth}
+    \begin{block}{Active Learning}
+      \begin{center}
+        \includegraphics[width=.85\linewidth]{interactive_topic_models/active_learning}
+      \end{center}
+    \end{block}
+  \column{.5\linewidth}
+  \pause
+    \begin{block}{Topic Models}
+      \begin{center}
+        \includegraphics[width=.475\linewidth]{interactive_topic_models/nyt_topics}
+      \end{center}
+
+    \end{block}
+
+
+\end{columns}
+}
+
+\end{frame}
+
+\fsi{interactive_topic_models/alto_interface}{}
+\fsi{interactive_topic_models/alto_interface_highlight}{Direct users
+  to document}
+
+
+
+\fsi{interactive_topic_models/alto/user_talk_1}{ Active learning if time is short}
+\fsi{interactive_topic_models/alto/user_talk_2}{ Better than status quo}
+\fsi{interactive_topic_models/alto/user_talk_3}{ Active learning can
+  help topic models }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Topic models help
+  users understand the collection }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Moral: machines and
+  humans together (if you let them) }
 
 \begin{frame}{Real-World Use Cases}
 
@@ -357,8 +476,11 @@ Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi. 
   \includegraphics[width=\linewidth]{topic_models/gsa}
   \column{.3\linewidth}
   \includegraphics[width=\linewidth]{general_figures/nsf}
-
 \end{columns}
+
+\begin{center}
+  \includegraphics[width=.4\linewidth]{interactive_topic_models/disaster}
+\end{center}
 
 \end{frame}
 
@@ -421,6 +543,8 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
         \end{block}
   \end{columns}
 \end{frame}
+
+\iflong
 
 \begin{frame}[plain]
 \vspace{-3cm}
@@ -575,6 +699,7 @@ I & \multicolumn{6}{c}{\emph{(\dots\dots waiting\dots\dots)}} & {\bf traveled} b
 
 \end{frame}
 
+\fi
 
 \begin{frame}{What tricks do interpreters use?}
 
@@ -614,7 +739,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2015
         \end{block}
   \end{columns}
-\pause
+
 \begin{center}
 \begin{tabular}{ccccc}
 \toprule
@@ -674,9 +799,8 @@ He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \em
         \only<9->{ Ivan IV, who made it his capital. For 10 points,
           name this city where Ivan III renovated the
           Kremlin,} \only<10->{the capital of Russia.}\\
-        \vspace{1cm} \only<11->{ {\bf Moscow} (Moskva / Muscovy)}
+        \vspace{.5cm} \only<11->{ {\bf Moscow} (Moskva / Muscovy)}
 
-\ifjobtalk
 \only<12->{
 \vspace{-6cm}
 
@@ -696,7 +820,7 @@ He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \em
 
 \end{block}
 }
-\fi
+
 
 
 \end{frame}
@@ -745,6 +869,10 @@ He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \em
 \underline{\href{http://cs.umd.edu/~miyyer/}{Mohit Iyyer}}, {\bf Jordan Boyd-Graber}, Leonardo Claudino, Richard Socher, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
         \end{block}
 
+        \begin{block}{ {\bf \href{file:///Users/jbg/public_html/docs/2015_acl_dan.pdf}{Deep Unordered Composition Rivals Syntactic Methods for Text Classification}}}
+\underline{\href{http://cs.umd.edu/~miyyer/}{Mohit Iyyer}}, Varun
+Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
+        \end{block}
 
   \end{columns}
 \end{frame}
@@ -819,6 +947,36 @@ He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \em
       \only<6>{\gfxq{warp_training_0}{.8}}
   \end{columns}
 
+\end{frame}
+
+\begin{frame}{Performance (Sentiment Analysis)}
+
+
+\footnotesize
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+Model & RT & SST & SST & IMDB & Time \\
+& & fine & bin & & (s)\\
+\midrule
+\footnotesize DAN & 80.3 & 47.7 & 86.3 & 89.4 & 136\\
+\midrule
+\footnotesize NBOW-RAND & 76.2 & 42.3 & 81.4 & 88.9 & 91 \\
+\footnotesize NBOW & 79.0 & 43.6 & 83.6 & 89.0 & 91 \\
+\footnotesize BiNB & --- & 41.9 & 83.1 & --- & ---\\
+\footnotesize NBSVM-bi & 79.4 & --- & --- & 91.2 & ---\\
+\midrule
+\footnotesize RecNN$^*$ & 77.7 & 43.2 & 82.4 & --- & --- \\
+\footnotesize RecNTN$^*$ & --- & 45.7 & 85.4 & --- & --- \\
+\footnotesize DRecNN & --- & 49.8 & 86.6 & --- & 431\\
+\footnotesize TreeLSTM & --- & \bf 50.6 & 86.9 & --- & --- \\
+\footnotesize DCNN$^*$ & --- & 48.5 & 86.9 & 89.4 & ---\\
+\footnotesize PVEC$^*$ & --- & 48.7 & 87.8 & \bf 92.6 & --- \\
+\footnotesize CNN-MC & \bf 81.1 & 47.4 & \bf 88.1 & --- & 2,452 \\
+\footnotesize WRRBM$^*$ & --- & --- & --- & 89.2 & ---\\
+\bottomrule
+\end{tabular}
+\end{center}
 \end{frame}
 
 
@@ -932,6 +1090,18 @@ He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \em
 
 \end{frame}
 
+\begin{frame}{Helping Understanding}
+
+
+  \begin{center}
+    \includegraphics[width=.8\linewidth]{qb/lucy_and_arthur}
+  \end{center}
+
+  Digital humanities needs plot summaries for distant
+  reading~\cite{iyyer-16} \ifjobtalk (NAACL 2016 Best Paper) \fi
+
+\end{frame}
+
 \begin{frame}{Experiment 1}
 
 		\begin{columns}
@@ -966,6 +1136,8 @@ He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \em
 
 \fsi{qb/nasat}{Humans 345-145}
 \fsi{qb/hsnct_2016}{Humans 190-155}
+
+\fsi{qb/nips_demo}{Can beat most ML researchers \ifjobtalk (NIPS 2015 Best Demo) \fi}
 
 \begin{frame}{Where we have problems}
 
@@ -1282,12 +1454,14 @@ Republican candidate and real estate mogul.
 
 \begin{frame}
   \frametitle{Adding meaning to topic models}
+  \only<-6>{
+
         \begin{block}{Traditional Topic Models}
                 $ p(w) = \prod_d \prod_n^{N_d} \left( p(w_{d,n} | \phi_{z_{d,n}})
                   \explain{\alert<3>{topic}}{p(z_{d,n} | \theta_d)} \right) p(\theta_d | \alpha)                 \explain{\alert<2>{topic to words}}{ \prod_k^K
 p(\phi_k | \eta) }$
         \end{block}
-
+}
         \begin{block}{Our Model}
           \vspace{-0.8cm}
           \begin{align*}
@@ -1300,6 +1474,17 @@ p(\phi_k | \eta) }$
            \end{align*}
         \end{block}
 
+\end{frame}
+
+\begin{frame}{Adding Meaning to Topic Models}
+
+
+  \begin{itemize}
+    \item Nested Dirichlet
+      distributions~\cite{boyd-graber-07,andrzejewski-09}
+    \item Retains conjugacy, unlike logistic normal
+    \item Future direction: \alert<2>{co-occurence analysis}
+    \end{itemize}
 
 \end{frame}
 

@@ -40,6 +40,17 @@
 \author{Jordan Boyd-Graber}
 \date{\today}
 
+\newcommand{\fsi}[2]{
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{#1}}
+\begin{center}
+#2
+\end{center}
+\end{frame}
+}
+
+
 \newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
 \newcommand{\dir}[1]{\mbox{Dir}(#1)}
 \newcommand{\mult}[1]{\mbox{Mult}( #1)}
@@ -795,6 +806,119 @@ Keep computation \alert<4>{fast and consistent} \cite{Hu-12a}
 
 
 \end{frame}
+
+\section{Real-Word Evaluation}
+
+\frame{
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+\includegraphics[width=.8\linewidth]{general_figures/forough}
+
+\column{.5\linewidth}
+
+\begin{block}{ALTO: Active Learning with Topic Overviews for Speeding Label Induction and Document Labeling}
+Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi.  Association for Computational Linguistics, 2016.
+\end{block}
+
+\end{columns}
+
+}
+
+\fsi{interactive_topic_models/messy-desk}{Many Documents}
+
+\fsi{interactive_topic_models/file-cabinet}{Sort into Categories}
+
+\begin{frame}{Evaluation}
+
+  \begin{itemize}
+    \item User study
+    \item 40 minutes
+    \item Sort documents into categories
+    \item What information / interface \alert<2>{helps best}
+      \pause
+      \pause
+      \begin{itemize}
+        \item Train a classifier on human examples
+          \only<4->{\alert<4>{(don't tell them how many labels)}}
+        \item Compare classifier labels to expert judgements
+          \only<5->{\alert<5>{(purity)}}
+\only<5>{
+\begin{equation}
+\mbox{purity}(\mathbf{U},\mathbf{G}) = \frac{1}{N}\sum\limits_{l} \max\limits_{j}|U_l \cap G_j|,
+\end{equation}
+}
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Which is more Useful?}
+
+\only<1>{
+  \begin{center}
+    Who should drive?
+  \end{center}
+}
+
+
+\only<2->{
+\begin{columns}
+  \column{.5\linewidth}
+    \begin{block}{Active Learning}
+      \begin{center}
+        \includegraphics[width=.85\linewidth]{interactive_topic_models/active_learning}
+      \end{center}
+    \end{block}
+  \column{.5\linewidth}
+  \pause
+    \begin{block}{Topic Models}
+      \begin{center}
+        \includegraphics[width=.475\linewidth]{interactive_topic_models/nyt_topics}
+      \end{center}
+
+    \end{block}
+
+
+\end{columns}
+}
+
+\end{frame}
+
+\fsi{interactive_topic_models/alto_interface}{}
+\fsi{interactive_topic_models/alto_interface_highlight}{Direct users
+  to document}
+
+
+
+\fsi{interactive_topic_models/alto/user_talk_1}{ Active learning if time is short}
+\fsi{interactive_topic_models/alto/user_talk_2}{ Better than status quo}
+\fsi{interactive_topic_models/alto/user_talk_3}{ Active learning can
+  help topic models }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Topic models help
+  users understand the collection }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Moral: machines and
+  humans together (if you let them) }
+
+\begin{frame}{Real-World Use Cases}
+
+\begin{columns}
+  \column{.3\linewidth}
+  \includegraphics[width=\linewidth]{topic_models/fcc-logo}
+  \column{.3\linewidth}
+  \includegraphics[width=\linewidth]{topic_models/gsa}
+  \column{.3\linewidth}
+  \includegraphics[width=\linewidth]{general_figures/nsf}
+\end{columns}
+
+\begin{center}
+  \includegraphics[width=.4\linewidth]{interactive_topic_models/disaster}
+\end{center}
+
+\end{frame}
+
 
 \section{Online LDA With Infinite Vocabulary}
 
