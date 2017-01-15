@@ -1,0 +1,58 @@
+
+================================================================
+
+Title:
+
+Big Data Analysis with Topic Models: Human Interaction and Social
+Science Applications
+
+Abstract:
+
+A common information need is to understand large, unstructured
+datasets: millions of e-mails during e-discovery, a decade worth of
+science correspondence, or a day's tweets.  In the last decade, topic
+models have become a common tool for navigating such datasets.  This
+talk investigates the foundational research that allows successful
+tools for these data exploration tasks: how to know when you have an
+effective model of the dataset; how to correct bad models; how to
+measure topic model effectiveness; and how to detect framing and spin
+using these techniques.  After introducing topic models, I argue why
+traditional measures of topic model quality---borrowed from machine
+learning---are inconsistent with how topic models are actually used.
+In response, I describe interactive topic modeling, a technique that
+enables users to impart their insights and preferences to models in a
+principled, interactive way.  I will then address measuring topic
+model effectiveness in real-world tasks.  Finally, I'll discuss
+ongoing collaborations with political scientists to use these
+techniques to detect spin and framing in political and online
+interactions.
+
+================================================================
+
+Title:
+
+Big Data Analysis with Topic Models: Human Interaction, Streaming
+Computation, and Social Science Applications
+
+Abstract:
+
+A common information need is to understand large, unstructured
+datasets: millions of e-mails during e-discovery, a decade worth of
+science correspondence, or a day's tweets.  In the last decade, topic
+models have become a common tool for navigating such datasets.  This
+talk investigates the foundational research that allows successful
+tools for these data exploration tasks: how to know when you have an
+effective model of the dataset; how to correct bad models; how to
+scale to large datasets; and how to detect framing and spin using
+these techniques.  After introducing topic models, I argue why
+traditional measures of topic model quality---borrowed from machine
+learning---are inconsistent with how topic models are actually used.
+In response, I describe interactive topic modeling, a technique that
+enables users to impart their insights and preferences to models in a
+principled, interactive way.  I will then address computational and
+statistical limits to existing approaches and how streaming topic
+models, with an "infinite vocabulary", can be applied to real-world
+online datasets.  Finally, I'll discuss ongoing collaborations with
+political scientists to use these techniques to detect spin and
+framing in political and online interactions.
+

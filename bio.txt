@@ -1,3 +1,20 @@
+
+Jordan Boyd-Graber is an assistant professor in the University of
+Colorado Boulder's Computer Science Department, formerly serving as an
+assistant professor at the University of Maryland. Before joining
+Maryland in 2010, he did his PhD thesis on "Linguistic Extensions of
+Topic Models" with David Blei at Princeton. Jordan's research focus is
+in applying machine learning and Bayesian probabilistic models to
+problems that help us better understand social interaction or the
+human cognitive process. He and his students have won "best of" awards
+at NIPS (2009, 2015), NAACL (2016), and CoNLL (2015), and Jordan won
+the British Computing Society's 2015 Karen Spärk Jones Award. His
+research has been funded by DARPA, IARPA, NSF, NCSES, ARL, NIH, and
+Lockheed Martin and has been featured by CNN, Huffington Post, New
+York Magazine, and the Wall Street Journal.
+
+=============================================
+
 Jordan Boyd-Graber is an assistant professor in the University of
 Colorado Boulder's Computer Science Department, formerly serving as
 an assistant professor at the University of Maryland.  He is a 2010
@@ -22,6 +39,8 @@ Student Paper award honorable mention, a Computing Innovation
 Fellowship (declined), and received the Jorgensen scholarship while an
 undergrad at the California Institute of Technology, where he received
 a BS in computer science and in history in 2004.
+
+=============================================
 
 Dr. Boyd-Graber's specific research contributions to topic modeling include:
 
