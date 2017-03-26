@@ -9,7 +9,7 @@
 \newif\ifhighlevel\highleveltrue
 \newif\iftmreview\tmreviewfalse
 \newif\ifevocation\evocationfalse
-\newif\ifjobtalk\evocationtrue
+\newif\ifjobtalk\jobtalktrue
 \newif\ifsupershortmlslda\supershortmlsldatrue
 
 \documentclass[compress]{beamer}
@@ -250,14 +250,14 @@ Blei, Ng, and Jordan.  Journal of Machine Learning Research, 2003.
 \begin{frame}
 \frametitle{Topic Models in the Real World}
 
-\vspace{-1cm}
+
 
 \begin{columns}
   \column{.5\linewidth}
 \begin{center}
-\includegraphics[width=0.8\linewidth]{topic_models/tobacco_litigation} \\
-\includegraphics[width=0.8\linewidth]{topic_models/nih_topics} \\
-\includegraphics[width=0.7\linewidth]{topic_models/sentiment}
+\includegraphics[width=0.75\linewidth]{topic_models/tobacco_litigation} \\
+\includegraphics[width=0.75\linewidth]{topic_models/nih_topics} \\
+\includegraphics[width=0.65\linewidth]{topic_models/sentiment}
 \end{center}
 
   \column{.5\linewidth}
@@ -323,7 +323,6 @@ Blei, Ng, and Jordan.  Journal of Machine Learning Research, 2003.
 \section{Evaluating Topic Models}
 
 \begin{frame}[plain]
-  \vspace{-2cm}
   \begin{columns}
     \column{.45\linewidth}
     \begin{center}
@@ -348,7 +347,7 @@ Blei, Ng, and Jordan.  Journal of Machine Learning Research, 2003.
   \end{columns}
 
 \only<2->{
-\vspace{-3cm}
+\vspace{-2cm}
 \begin{block}{Reading Tea Leaves}
         How we used to evaluate topic models was wrong; but there is a better
         way using crowdsourcing
@@ -559,13 +558,14 @@ If the topics are interpretable, users will consistently choose true intruder
       phrases~\cite{lindsey-12,weninger-12}
     \item \alert<2>{Extending to multiple users}~\cite{Felt-15}
       \ifjobtalk (CoNLL Best Paper) \fi
+    \item \alert<2>{Extending to deep learning}~\cite{iyyer-16}
+      \ifjobtalk (NAACL Best Paper) \fi
   \end{itemize}
 
 \end{frame}
 
 
 \begin{frame}[plain]
-  \vspace{-2cm}
   \begin{columns}
     \column{.45\linewidth}
     \begin{center}
@@ -590,7 +590,7 @@ If the topics are interpretable, users will consistently choose true intruder
   \end{columns}
 
 \only<2->{
-\vspace{-3cm}
+\vspace{-2cm}
 \begin{block}{Interactive Topic Modeling}
         When a topic model goes bad, a novice user can fix it.
 \end{block}
@@ -621,7 +621,7 @@ Yuening Hu, Jordan Boyd-Graber, Brianna Satinoff, and Alison Smith. Interactive 
 
 \input{interactive_topic_models/nyt_soviet_russia}
 
-\input{interactive_topic_models/nih_topics}
+%\input{interactive_topic_models/nih_topics}
 
 
 \frame{
@@ -666,7 +666,6 @@ Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi. 
 \section{Online LDA With Infinite Vocabulary}
 
 \begin{frame}[plain]
-  \vspace{-2cm}
   \begin{columns}
     \column{.45\linewidth}
     \begin{center}
@@ -691,7 +690,7 @@ Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi. 
   \end{columns}
 
 \only<2->{
-\vspace{-3cm}
+\vspace{-2cm}
 \begin{block}{Infinite Vocabulary Topic Models}
         A model that can handle big, streaming data without assuming a fixed vocabulary
 \end{block}
@@ -1151,7 +1150,7 @@ Transactions of the Association for Computational Linguistics, 2014.
   \end{block}
 \end{frame}
 
-\begin{frame}{Approximate \abr{pcfg}}
+\begin{frame}{Approximate PCFG}
 
 \begin{align}
    \log \theta'_{c \Rightarrow z} =
@@ -1188,38 +1187,6 @@ Transactions of the Association for Computational Linguistics, 2014.
 \begin{frame}{Word Segmentation $F_1$ Score}
 
     \begin{center}
-      % \resizebox{\linewidth}{!}{
-      % \begin{tabular}{c | c | l}
-      %   \hline
-      %   \multirow{9}{*}{\begin{turn}{90}\emph{collocation}\end{turn}} &
-      %   & \AgRule{ \AgNonTerm{Sent}{} }{ \AgNonTerm{Colloc}{} } \\
-      %   & & \AgRule{ \AgNonTerm{Sent}{} }{ \AgNonTerm{Colloc}{} \AgNonTerm{Sent}{} } \\
-      %   & & \AgRule{ \AgAdNonTerm{Colloc}{} }{ \AgNonTerm{Words}{} } \\
-      %   \cline{2-3}
-      %   & \multirow{6}{*}{\begin{turn}{90}\emph{unigram}\end{turn}}
-      %   & \AgRule{ \AgNonTerm{Words}{} }{ \AgNonTerm{Word}{} }{} \\
-      %   & & \AgRule{ \AgNonTerm{Words}{} }{ \AgNonTerm{Word}{} \AgNonTerm{Words}{} }{} \\
-      %   & & \AgRule{ \AgAdNonTerm{Word}{} }{ \AgNonTerm{Chars}{} }{} \\
-      %   & & \AgRule{ \AgNonTerm{Chars}{} }{ \AgNonTerm{Char} }{} \\
-      %   & & \AgRule{ \AgNonTerm{Chars}{} }{ \AgNonTerm{Char}{} \AgNonTerm{Chars}{} }{} \\
-      %   & & \AgRule{ \AgNonTerm{Char}{} }{ \AgNonTerm{$\star$}{} }{} \\
-      %   \hline
-      % \end{tabular}
-      % }
-
-      \only<1>{
-        \begin{tabular}{l}
-          \hline
-          \AgRule{ \AgNonTerm{Words}{} }{ \AgNonTerm{Word}{} }{} \\
-          \AgRule{ \AgNonTerm{Words}{} }{ \AgNonTerm{Word}{} \AgNonTerm{Words}{} }{} \\
-          \AgRule{ \AgAdNonTerm{Word}{} }{ \AgNonTerm{Chars}{} }{} \\
-          \AgRule{ \AgNonTerm{Chars}{} }{ \AgNonTerm{Char} }{} \\
-          \AgRule{ \AgNonTerm{Chars}{} }{ \AgNonTerm{Char}{} \AgNonTerm{Chars}{} }{} \\
-          \AgRule{ \AgNonTerm{Char}{} }{ \AgNonTerm{$\star$}{} }{} \\
-          \hline
-        \end{tabular}
-      }
-
       \only<2>{
       \vspace{2mm}
       \vspace{2mm}
@@ -1281,7 +1248,6 @@ Transactions of the Association for Computational Linguistics, 2014.
 \providecommand{\shlda}{\textsc{ShLDA}}
 
 \begin{frame}[plain]
-  \vspace{-2cm}
   \begin{columns}
     \column{.45\linewidth}
     \begin{center}
@@ -1306,7 +1272,7 @@ Transactions of the Association for Computational Linguistics, 2014.
   \end{columns}
 
 \only<2->{
-\vspace{-3cm}
+\vspace{-2cm}
 \begin{block}{Detecting Framing}
         Using topic models to detect spin
 \end{block}
@@ -1478,6 +1444,28 @@ Mean squared error averaged over 5 folds.
 \end{frame}
 
 
+\frame{
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+\includegraphics[width=.8\linewidth]{general_figures/an}
+
+\column{.5\linewidth}
+
+\begin{block}{ Tea Party in the House: A Hierarchical Ideal Point
+    Topic Model and Its Application to Republican Legislators in the
+    112th Congress}
+Viet-An Nguyen, Jordan Boyd-Graber, Philip Resnik, and Kristina Miler.
+Association for Computational Linguistics, 2015.
+\end{block}
+
+\end{columns}
+
+}
+
+
 
 \begin{frame}{Not everyone has a voting record}
 
@@ -1505,26 +1493,6 @@ Mean squared error averaged over 5 folds.
 
 \end{frame}
 
-\frame{
-
-\begin{columns}
-
-\column{.5\linewidth}
-
-\includegraphics[width=.8\linewidth]{general_figures/an}
-
-\column{.5\linewidth}
-
-\begin{block}{ Tea Party in the House: A Hierarchical Ideal Point
-    Topic Model and Its Application to Republican Legislators in the
-    112th Congress}
-Viet-An Nguyen, Jordan Boyd-Graber, Philip Resnik, and Kristina Miler.
-Association for Computational Linguistics, 2015.
-\end{block}
-
-\end{columns}
-
-}
 
 
 \begin{frame}{Polarization}
@@ -1538,7 +1506,6 @@ Association for Computational Linguistics, 2015.
 %\input{topicshift-an/topicshift-an}
 
 \begin{frame}[plain]
-  \vspace{-2cm}
   \begin{columns}
     \column{.45\linewidth}
     \begin{center}
@@ -1562,7 +1529,7 @@ Association for Computational Linguistics, 2015.
       \end{center}
   \end{columns}
 
-  \vspace{-5cm}
+  \vspace{-4cm}
 
         \begin{block}{Topic models: understanding big data}
 
@@ -1582,8 +1549,8 @@ Association for Computational Linguistics, 2015.
 
   \begin{itemize}
         \item Embedding interactivity in applications
-    \item Further improve inference: computational geometry
-    \item Using morphology in infinite vocabulary topic model
+    \item Visualizations to measure machine learning explainability
+    \item Using morphology in infinite representations
     \item Multilingual analysis
     \end{itemize}
 }
