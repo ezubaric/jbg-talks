@@ -58,7 +58,7 @@
 \title[Thinking on Your Feet]{Thinking on your Feet: Reinforcement Learning for Incremental
 Language Tasks}
 \author{ Jordan Boyd-Graber}
-\date{Fall 2015}
+\date{ 2017}
 
 \institute[Boulder] % (optional, but mostly needed)
 {University of Colorado Boulder}
@@ -140,7 +140,7 @@ Language Tasks}
   \gfxs{pancake_robot}{.4}
   \begin{center}
   \end{center}
-  
+
   \column{.5\linewidth}
   \begin{itemize}
     \item Reinforcement learning
@@ -414,9 +414,21 @@ Model & RT & SST & SST & IMDB & Time \\
   \end{center}
 
   Digital humanities needs plot summaries for distant
-  reading~\cite{iyyer-16} (NAACL 2016 Best Paper) 
+  reading~\cite{iyyer-16} (NAACL 2016 Best Paper)
 
 \end{frame}
+
+\begin{frame}{Helping Understanding}
+
+
+  \begin{center}
+    \includegraphics[width=.8\linewidth]{qb/easy_text_cloze}
+  \end{center}
+
+Comic books (CVPR, 2017)
+
+\end{frame}
+
 
 \begin{frame}{How to approach this problem \dots}
 
@@ -550,16 +562,26 @@ Model & RT & SST & SST & IMDB & Time \\
 
 \begin{frame}{Comparing Models}
 
+  \begin{itemize}
+    \item Single-Player
+    \item Deep Q-Network (DQN): World=Opponent~\cite{mnih-15}
+      \begin{itemize}
+        \item Learn representation of state to estimate $Q$-function
+        \item Generalization of regression-based methods
+        \item Similar to our representation of content
+      \end{itemize}
+    \item Deep Reinforcement Opponent Network (DRON)
+  \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Add more features?}
+\begin{frame}{Add more features: DRON-concat}
 
   \gfxq{dron-concat}{.8}
 
 \end{frame}
 
-\begin{frame}{Mixture of Experts}
+\begin{frame}{Many models, choose which: DRON-MoE}
 
   \only<1>{\gfxq{dron-moe}{.8}}
   \only<2>{\gfxq{dron-moe2}{.8}}
@@ -671,6 +693,27 @@ Republican candidate and real estate mogul.
 
 \fsi{qb/boring_dot_products}{}
 
+\begin{frame}{Learning Interpretability}
+
+  \gfxq{interp_predictions}{.9}
+
+\end{frame}
+
+\begin{frame}{Helping Players Learn}
+
+  \gfxq{improving_players}{.9}
+
+\end{frame}
+
+\begin{frame}{Wanna join in?}
+
+\begin{itemize}
+  \item Shared task at NIPS 2017
+  \item Organizing league for college / high school
+  \item Long tail of questions
+\end{itemize}
+
+\end{frame}
 
 \section{Simultaneous Translation}
 
@@ -970,7 +1013,7 @@ He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \em
   \end{columns}
 \end{frame}
 
-\begin{frame}{How can we make MT better?}
+\begin{frame}{How can we make machine interpretation better?}
 
   \gfxs{en_ja_example}{.9}
 
@@ -1079,13 +1122,26 @@ Aggressiveness based on different right probability thresholds
 \begin{frame}{Future Steps}
 
   \begin{itemize}
-    \item Richer translation model
-    \item Paraphrase database
-    \item Better reward (e.g., MEANT)
     \item Verb prediction through argument structure
+    \item Richer translation model~\cite{oda-15,cho-16}
+    \item Better reward (e.g., MEANT)
+    \item Paraphrase database
+    \item Learning from imperfect feedback
+    \item Centaur translations
   \end{itemize}
 
 \end{frame}
+
+
+\begin{frame}[plain]
+
+\only<1>{ \gfxs{computer-interpreter}{1.0} }
+\only<2>{ \gfxs{computer-interpreter}{1.0}
+\vspace{-5cm}
+\gfxs{centaur-chess}{0.8}}
+
+\end{frame}
+
 
 \section{Conclusions}
 
@@ -1125,7 +1181,7 @@ Aggressiveness based on different right probability thresholds
     \begin{block}{Interactive Machine Learning}
      \centering
         \includegraphics[width=0.4\linewidth]{interactive_topic_models/new_interface} \\
-       \cite{boyd-graber-06b,ma-09,nikolova-09}
+       \cite{Smith-17,Poursabzi-16}
     \end{block}
 
 
@@ -1168,15 +1224,15 @@ Aggressiveness based on different right probability thresholds
         \end{block}
 
 	\begin{columns}
-	
+
 	\column{.5\linewidth}
         \begin{block}{Funders}
         \begin{center}
           \includegraphics[width=0.4\linewidth]{general_figures/nsf}
        \end{center}
         \end{block}
-        
-	\column{.5\linewidth}        
+
+	\column{.5\linewidth}
         \begin{block}{Supporters}
         	\gfxq{naqt}{.4}
         \end{block}
