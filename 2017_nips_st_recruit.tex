@@ -214,26 +214,42 @@
 \only<6>{Requires semantic knowledge}
 \end{frame}
 
-\section{How QANTA works}
+
+\begin{frame}{How the shared task works}
+
+\begin{columns}
+
+  \column{.65\linewidth}
+  \begin{itemize}
+    \item<2-> 1. I’m User #1.  I’d like to play!
+    \item<4-> I’d like to hear the Word~1 of Question 1
+    \item<6-> I’d like to hear the Word~2 of Question 1
+    \item<8-> I’d like to hear the third word of Question 1
+    \item<10-> I’d like to answer Question 1 with \texttt{Barry_Goldwater}
+  \column{.3\linewidth}
+  \gfxq{buzzer}{.8}
+\end{columns}
+
+\begin{columns}
 
 
+  \column{.3\linewidth}
+  \gfxq{bamber}{.8}
 
-\begin{frame}{How to approach this problem \dots}
+  \column{.65\linewidth}
+  \begin{itemize}
+    \item<3-> Hi! Available questions are \texttt{[1,2,3,4]}
+    \item<5-> It's \texttt{Extremism}
+    \item<7-> It's \texttt{in}
+    \item<9-> It's \texttt{the}
+    \item<11-> It's \texttt{defense}
+    \item<13-> Got it, thanks!  You've answered Question 1 at Position
+      3 with \texttt{Barry_Goldwater}
+  \end{itemize}
 
-    \only<1>{
-  \begin{columns}
-    \column{.5\linewidth}
-    \gfxq{guess}{0.8}
-Generate a set of {\bf guesses} (Information Retrieval)
-    \column{.5\linewidth}
-    \gfxq{buzzer}{0.8}
-{\bf Buzz} if confident enough (Deep
-                  Reinforcement Learning)
-  \end{columns}
-}
-\only<2>{
-   \gfxq{guess}{0.5}
-}
+\end{columns}
+
+
 \end{frame}
 
 

@@ -1,4 +1,33 @@
 
+Computational Modeling of Relationships, Spin, and Betrayal
+
+Computational approaches allow us to understand how text encodes
+latent social factors.  My talk focuses on recent work that
+attempts to use unannotated or found annotations to better understand
+relationships in the real world, in fiction, and in games.  First,
+I'll discuss a probabilistic model that attempts to predict the
+political polarization of a speaker based on how they frame policy
+issues.  Based on data from the US congress, we describe the Tea Party
+movement and its relationship to mainstream Republicans.  Next, I'll
+discuss a deep dictionary learning approach to categorize the
+relationships between fictional characters over time.  We'll show that
+this approach improves over topic model baselines in both prediction
+and human interpretability.  Finally, I'll discuss work to detect
+deception in an online game called Diplomacy and which clues can
+predict betrayal.
+
+================================================================
+
+Title: Thinking on your Feet: Reinforcement Learning for Incremental Language Tasks
+
+Abstract: 
+
+In this talk, I'll discuss two real-world language applications that require "thinking on your feet": synchronous machine translation (or "machine simultaneous interpretation") and question answering (when questions are revealed one piece at a time).  In both cases, effective algorithms for these tasks must interrupt the input stream and decide when to provide output.
+
+Synchronous machine translation is when a sentence is being produced one word at a time in a foreign language and we want to produce a translation in English simultaneously (i.e., with as little delay between a foreign language word and its English translation). This is particularly difficult in verb-final languages like German or Japanese, where an English translation can barely begin until the verb is seen. Effective translation thus requires predictions of unseen elements of the sentence (e.g., the main verb in German and Japanese, or relative clauses in Japanese, or post-positions in Japanese). We use reinforcement learning to decide when to trust our verb predictions. It must learn to balance incorrect translation versus timely translations, and must use those predictions to translate the sentence.
+
+For question answering, we use a specially designed dataset that challenges humans: a trivia game called quiz bowl. These questions are written so that they can be interrupted by someone who knows more about the answer; that is, harder clues are at the start of the question and easier clues are at the end of the question. We create a novel neural network system to predict answers from incomplete questions and use reinforcement learning to decide when to guess.  We are able to answer questions earlier in the questions than most college trivia contestants.
+
 ================================================================
 
 Title:
@@ -28,31 +57,3 @@ techniques to detect spin and framing in political and online
 interactions.
 
 ================================================================
-
-Title:
-
-Big Data Analysis with Topic Models: Human Interaction, Streaming
-Computation, and Social Science Applications
-
-Abstract:
-
-A common information need is to understand large, unstructured
-datasets: millions of e-mails during e-discovery, a decade worth of
-science correspondence, or a day's tweets.  In the last decade, topic
-models have become a common tool for navigating such datasets.  This
-talk investigates the foundational research that allows successful
-tools for these data exploration tasks: how to know when you have an
-effective model of the dataset; how to correct bad models; how to
-scale to large datasets; and how to detect framing and spin using
-these techniques.  After introducing topic models, I argue why
-traditional measures of topic model quality---borrowed from machine
-learning---are inconsistent with how topic models are actually used.
-In response, I describe interactive topic modeling, a technique that
-enables users to impart their insights and preferences to models in a
-principled, interactive way.  I will then address computational and
-statistical limits to existing approaches and how streaming topic
-models, with an "infinite vocabulary", can be applied to real-world
-online datasets.  Finally, I'll discuss ongoing collaborations with
-political scientists to use these techniques to detect spin and
-framing in political and online interactions.
-
