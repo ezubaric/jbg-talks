@@ -1,42 +1,46 @@
-% Copyright 2004 by Madhusudan Singh <madhusudan.singh@gmail.com>
+% Copyright 2007 by Marco Barisione
+% Copyright 2011 by Henricus Bouwmeester
 %
 % This file may be distributed and/or modified
 %
 % 1. under the LaTeX Project Public License and/or
 % 2. under the GNU Public License.
-%
-% See the file doc/licenses/LICENSE for more details.
 
+\DeclareOptionBeamer{shadow}[true]{\def\beamer@themerounded@shadow{#1}}
+\ExecuteOptionsBeamer{shadow=false}
+\ProcessOptionsBeamer
 
 \mode<presentation>
 
-\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{CUGold}{RGB}{207,184,124} % #CFB87C
+\definecolor{CUDarkGray}{RGB}{86,90,92}
+\definecolor{CULightGray}{RGB}{162,164,163}
+\definecolor{CUBlue}{RGB}{75,146,219} % #4B92DB
 
-\setbeamercolor{section in toc}{fg=black,bg=white}
-\setbeamercolor{alerted text}{fg=darkred!80!gray}
-\setbeamercolor*{palette primary}{fg=darkred!60!black,bg=gray!30!white}
-\setbeamercolor*{palette secondary}{fg=darkred!70!black,bg=gray!15!white}
-\setbeamercolor*{palette tertiary}{bg=darkred!80!black,fg=gray!10!white}
-\setbeamercolor*{palette quaternary}{fg=darkred,bg=gray!5!white}
+\setbeamercolor*{palette primary}{fg=white,bg=CUGold}
+\setbeamercolor*{palette secondary}{fg=white,bg=CUDarkGray}
+\setbeamercolor*{palette tertiary}{fg=white,bg=CULightGray}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+\setbeamercolor*{palette quinary}{fg=white,bg=CUBlue}
+\setbeamercolor*{palette senary}{fg=CUGold,bg=white}
 
-\setbeamercolor*{sidebar}{fg=darkred,bg=gray!15!white}
-
-\setbeamercolor*{palette sidebar primary}{fg=darkred!10!black}
-\setbeamercolor*{palette sidebar secondary}{fg=white}
-\setbeamercolor*{palette sidebar tertiary}{fg=darkred!50!black}
-\setbeamercolor*{palette sidebar quaternary}{fg=gray!10!white}
-
-%\setbeamercolor*{titlelike}{parent=palette primary}
-\setbeamercolor{titlelike}{parent=palette primary,fg=darkred}
-\setbeamercolor{frametitle}{bg=gray!10!white}
-\setbeamercolor{frametitle right}{bg=gray!60!white}
-
-\setbeamercolor*{block title}{parent=palette primary,fg=darkred}
-\setbeamercolor*{block body}{bg=gray!10!white}
+\setbeamercolor*{frametitle}{bg=CUDarkGray,fg=white}
+\setbeamercolor*{part title}{bg=white,fg=CUGold}
+\setbeamercolor*{item}{fg=CUGold}
 
 \setbeamercolor*{separation line}{}
 \setbeamercolor*{fine separation line}{}
 
+\setbeamercolor*{structure}{fg=CUDarkGray}
+
+\setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+\setbeamercolor{block title alerted}{use=alerted text,fg=alerted text.fg,bg=alerted text.fg!20!bg}
+\setbeamercolor{block title example}{use=example text,fg=example text.fg,bg=example text.fg!20!bg}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!50!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!50!bg}
+
+\setbeamertemplate{blocks}[rounded][shadow=\beamer@themerounded@shadow]
+
 \mode
 <all>
-

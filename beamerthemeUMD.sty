@@ -1,0 +1,71 @@
+% Copyright 2007 by Marco Barisione
+% Copyright 2011 by Henricus Bouwmeester
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+\setbeamercolor{block title alerted}{use=alerted text,fg=alerted text.fg,bg=alerted text.fg!20!bg}
+\setbeamercolor{block title example}{use=example text,fg=example text.fg,bg=example text.fg!20!bg}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!50!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!50!bg}
+
+\definecolor{UMDDarkRed}{rgb}{0.54, 0.0, 0.0}
+\definecolor{UMDRed}{rgb}{0.94, 0.16, 0.14} % UBC Blue (primary)
+\definecolor{CULightGray}{rgb}{1.0, 0.79, 0.05} % UBC Grey (secondary)
+\definecolor{UMDYellow}{rgb}{1.0, 0.79, 0.05} % UBC Grey (secondary)
+
+\setbeamercolor*{structure}{fg=UMDDarkRed}
+\setbeamercolor{palette primary}{bg=UMDDarkRed,fg=white}
+\setbeamercolor{palette secondary}{bg=UMDRed,fg=white}
+\setbeamercolor{palette tertiary}{bg=UMDRed,fg=white}
+\setbeamercolor{palette quaternary}{bg=UMDRed,fg=white}
+\setbeamercolor{structure}{fg=UMDDarkRed} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=UMDRed} % TOC sections
+
+% Override palette coloring with secondary
+\setbeamercolor{subsection in head/foot}{bg=UMDRed,fg=UMDYellow} 
+
+\setbeamercolor*{palette quinary}{fg=white,bg=UMDYellow}
+\setbeamercolor*{palette senary}{fg=UMDYellow,bg=white}
+
+\setbeamercolor*{frametitle}{bg=UMDDarkRed,fg=UMDYellow}
+\setbeamercolor*{part title}{bg=UMDYellow,fg=UMDDarkRed}
+\setbeamercolor*{item}{fg=UMDDarkRed}
+
+
+
+\DeclareOptionBeamer{alternativetitlepage}[true]{\PassOptionsToPackage{alternativetitlepage=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{titlepagelogo}{\PassOptionsToPackage{titlepagelogo=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{headerlogo}{\PassOptionsToPackage{headerlogo=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{bullet}{\PassOptionsToPackage{bullet=#1}{beamerinnerthemefancy}}
+\DeclareOptionBeamer{pageofpages}{\PassOptionsToPackage{pageofpages=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{titleline}[true]{\PassOptionsToPackage{titleline=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{showdate}[true]{\PassOptionsToPackage{showdate=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{watermark}{\PassOptionsToPackage{watermark=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{watermarkheight}{\PassOptionsToPackage{watermarkheight=#1}{beamerouterthemedecolines}}
+\DeclareOptionBeamer{watermarkheightmult}{\PassOptionsToPackage{watermarkheightmult=#1}{beamerouterthemedecolines}}
+
+\ProcessOptionsBeamer
+
+\useinnertheme{fancy}
+\useoutertheme{decolines}
+
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamerfont{title}{size=\fontsize{14}{16}\selectfont}
+\setbeamerfont{headsection}{size=\fontsize{6}{8}\selectfont\bfseries}
+\setbeamerfont{headsubsection}{size=\fontsize{6}{8}\selectfont}
+\setbeamerfont{pagenumber}{size=\fontsize{5}{5}\selectfont}
+\setbeamerfont{date}{size=\fontsize{6}{8}\selectfont}
+\setbeamerfont{frametitle}{size=\fontsize{10}{16}\selectfont\bfseries}
+
+\mode
+<all>
