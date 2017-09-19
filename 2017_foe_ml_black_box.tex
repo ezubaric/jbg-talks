@@ -1,0 +1,588 @@
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+
+\usepackage{booktabs}
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{subfigure}
+\usepackage{colortbl}
+\usepackage{overpic}
+\usepackage{pdfpages}
+
+\usepackage{multirow}
+
+\pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
+
+\newcommand{\slda}[0]{\abr{slda}}
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\lda}[0]{\abr{lda}}
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\itmspace}[0]{\hspace{2cm}}
+\newcommand{\pos}[1]{{\texttt{#1}}}
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\abr}[1]{\textsc{#1} }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+\newcommand{\g}{\, | \,}
+\newcommand{\citename}[1]{#1 }
+\newcommand{\fsi}[2]{
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{#1}}
+\begin{center}
+#2
+\end{center}
+\end{frame}
+}
+
+
+\newcommand{\danquote}[1]{
+
+\begin{flushright}
+\begin{overpic}[width=5.5cm,tics=10]{general_figures/speech_bubble}
+	\put(10,30) { \parbox{4cm}{#1 }}
+\end{overpic}
+\includegraphics[width=1.5cm]{general_figures/milkman_dan}
+\end{flushright}
+}
+
+
+\newcommand{\gfxi}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{interpretability/#1}
+\end{center}
+}
+
+\newcommand{\gfxs}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{simtrans/#1}
+\end{center}
+}
+
+\newcommand{\gfxq}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{qb/#1}
+\end{center}
+}
+
+
+\newif\ifjobtalk\jobtalktrue
+\newif\iflong\longtrue
+
+\usetheme[
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/shell,              % Logo for the fir\
+st page.
+          ]{UMD}
+
+
+\title[]{Humans and Computers Working Together to Measure Machine Learning Interpretability}
+\author{ Jordan Boyd-Graber}
+\date{2017}
+
+\institute[] % (optional, but mostly needed)
+{University of Maryland}
+
+
+%gets rid of bottom navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%gets rid of footer
+%will override 'frame number' instruction above
+%comment out to revert to previous/default definitions
+\setbeamertemplate{footline}{}
+
+\begin{document}
+
+\frame{
+\titlepage
+\tiny
+}
+
+\begin{frame}[plain]
+\vspace*{-1pt}
+\only<1>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_1}}}
+\only<2>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_2}}}
+\only<3>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_3}}}
+\only<4>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_4}}}
+\only<5>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_5}}}
+\only<6>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/blackbox}}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{The Challenge of Big Data}
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+Every second \dots
+\begin{itemize}
+  \item 600 new blog posts appear
+  \item 34,000 tweets are tweeted
+  \item 30 GB of data uploaded to Facebook
+\end{itemize}
+\pause
+
+\begin{block}{Unstructured}
+  No XML, no semantic web, no annotation.  Often just raw text.
+\end{block}
+
+\column{.5\linewidth}
+
+\only<3->{
+Common task: what's going on in this dataset.
+\begin{itemize}
+   \item Intelligence analysts
+   \item Brand monitoring
+   \item Journalists
+   \item Humanists
+\end{itemize}
+}
+\only<4>{
+\centering
+Common solution: topic models
+}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{center}
+\frametitle{What does a Topic Model do?}
+From an \textbf<1>{input corpus} and number of topics \textbf<1>{$K$} $\rightarrow$ \textbf<2>{words to topics} \\
+\only<1>{\includegraphics[width=0.6\linewidth]{reading_tea_leaves/figures/heldout_0} }
+\only<2>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/figures/nyt_topics_wide}}
+%\only<3>{\includegraphics[width=0.9\linewidth]{topic_models/nyt_documents}}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{Evaluating Topic Models}
+
+\begin{columns}
+
+\column{.6\linewidth}
+\begin{block}{ Reading Tea Leaves: How Humans Interpret Topic Models}
+Jonathan Chang, Jordan Boyd-Graber, Chong Wang, Sean Gerrish, and David
+M. Blei. Reading Tea Leaves: How Humans Interpret Topic Models. Neural
+Information Processing Systems, 2009.
+\end{block}
+
+\column{.3\linewidth}
+\includegraphics[width=.8\linewidth]{general_figures/jonathan}
+
+\end{columns}
+
+\end{frame}
+
+
+
+\frame{
+\frametitle{Evaluation}
+\begin{center}
+%\only<1>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/figures/heldout_1} }
+\only<1>{\includegraphics[width=\linewidth]{reading_tea_leaves/figures/heldout_2} }
+%\only<3>{\includegraphics[width=\linewidth]{reading_tea_leaves/figures/heldout_3} }
+\only<2>{\includegraphics[width=\linewidth]{reading_tea_leaves/figures/heldout_4}  \\
+	\large Measures predictive power (likelihood)}
+\end{center}
+}
+
+\begin{frame}{But we don't use topic models for prediction!}
+
+\gfxs{autocomplete}{.8}
+
+\end{frame}
+
+\frame{
+\frametitle{Qualitative Evaluation of the Latent Space}
+
+\begin{center}
+\only<1>{\includegraphics[width=0.9\linewidth]{reading_tea_leaves/topics_from_papers/1} \\ \cite{hofmann-99} }
+\only<2>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/2} \\ \cite{blei-03} }
+\only<3>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/3} \\ \cite{mimno-09} }
+\only<4>{\includegraphics[width=0.7\linewidth]{reading_tea_leaves/topics_from_papers/4}
+  \\ \cite{maskeri-08} }
+\end{center}
+}
+
+\frame{
+  \frametitle{Word Intrusion}
+
+  \begin{itemize}
+    \item Take the highest probability words from a topic
+
+      \begin{block}{Original Topic}
+        dog \\ cat \\ \only<2->{\alert<2->{apple} \\ } horse \\ pig \\ cow
+      \end{block}
+
+\only<2->{    \item \alert<2>{Intruder: high probability word from another topic}}
+\pause
+  \end{itemize}
+}
+
+\frame{
+\frametitle{Interpretability and Likelihood}
+
+
+\begin{center}
+\only<1>{\includegraphics[width=.8\paperwidth]{reading_tea_leaves/figures/prec_ll_1}}
+\only<2>{\includegraphics[width=.8\paperwidth]{reading_tea_leaves/figures/prec_ll_2}}
+\only<3>{\includegraphics[width=.8\paperwidth]{reading_tea_leaves/figures/prec_ll_3}}
+\only<4>{\includegraphics[width=.8\paperwidth]{reading_tea_leaves/figures/prec_ll_4}}
+\only<4>{\\ Within a model, higher likelihood $\not =$ higher interpretability}
+\end{center}
+}
+
+\begin{frame}{What about Supervised Models?}
+
+\begin{center}
+  \includegraphics[width=.7\paperwidth]{svm/no-spam}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{LIME}
+
+  \gfxi{lime_local}{.7}
+
+Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin.  ``Why Should
+I Trust You?'' Explaining the Predictions of Any Classifier.  KDD
+2016. \\
+
+LIME: Local Interpretable Model-Agnostic Explanations
+
+\end{frame}
+
+\begin{frame}{What's an Explanation}
+
+  \only<1>{\gfxi{lime_explanation}{.9}}
+  \only<2>{\gfxi{lime_image_explain}{.9}}
+\end{frame}
+
+
+
+\begin{frame}{What makes good Explanation?}
+
+  \begin{itemize}
+    \item Interpretable: Humans can Understand
+    \item Faithful: Describes Model
+    \item Model Agnostic: Generalize to Many Models
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Method}
+  \gfxi{lime_distance_weight}{.5}
+
+  \begin{itemize}
+    \item Sample points around $x_i$
+    \item Use complex model to predict labels for each sample
+    \item Weigh samples according to distance to $x_i$
+        \item Learn new simple model on weighted samples
+        \item Use simple model to explain
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Is this a good Classifier?}
+
+  \only<1>{\gfxi{lime_wolf}{.8}}
+  \only<2>{\gfxi{lime_wolf_trust}{.8}}
+
+\end{frame}
+
+\begin{frame}{Improving ML Algorithms}
+
+  \only<1>{\gfxi{lime_fe_overview}{.9}}
+  \only<2>{\gfxi{mt_task}{.9}}
+  \only<3>{\gfxi{mt_results}{.9}}
+\end{frame}
+
+\frame{
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+\includegraphics[width=.8\linewidth]{general_figures/forough}
+
+\column{.5\linewidth}
+
+\begin{block}{ALTO: Active Learning with Topic Overviews for Speeding Label Induction and Document Labeling}
+Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi.  Association for Computational Linguistics, 2016.
+\end{block}
+
+\end{columns}
+
+}
+
+
+
+\fsi{interactive_topic_models/alto_interface}{}
+\fsi{interactive_topic_models/alto_interface_highlight}{Direct users
+  to document}
+
+
+
+\fsi{interactive_topic_models/alto/user_talk_1}{ Active learning if time is short}
+\fsi{interactive_topic_models/alto/user_talk_2}{ Better than status quo}
+\fsi{interactive_topic_models/alto/user_talk_3}{ Active learning can
+  help topic models }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Topic models help
+  users understand the collection }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Moral: machines and
+  humans together (if you let them) }
+
+
+
+\fsi{general_figures/kill_all_humans}{}
+\fsi{general_figures/tng_poker}{}
+\fsi{qb/quizbowl}{}
+
+
+
+
+% TODO add more questions here
+
+\begin{frame}[t]
+	\frametitle{Sample Question}
+
+        The Swiss-Italian architect Pietro Antonio Solari
+        \only<2->{built several fortified towers in this city, which
+          often vied for power with its northern rival Tver. A ruler
+          of this city prevailed in the} \only<3->{Great Stand on the
+          Ugra River. A prince from this city was nicknamed for
+          winning a battle on the} \only<4->{Don river. Partly because
+          a ruler of this city married} \only<5->{Sophia Palaiologina,
+          the niece of the last Byzantine Emperor, this city styled
+          itself the} \only<6->{``Third Rome'' after the fall of
+          Constantinople. Another prince of this city stopped paying
+          tribute to the} \only<7->{Mongols in 1476, ending the
+          ``Tatar yoke.''} \only<8->{The Grand Duchy headquartered in
+          this city came to an end in 1547 with the ascension of}
+        \only<9->{ Ivan IV, who made it his capital. For 10 points,
+          name this city where Ivan III renovated the
+          Kremlin,} \only<10->{the capital of Russia.}\\
+        \vspace{.5cm} \only<11->{ {\bf Moscow} (Moskva / Muscovy)}
+
+
+
+\end{frame}
+
+
+\begin{frame}[plain]
+  \vspace{-2cm}
+		\includegraphics[width=1.0\linewidth]{qb/jeopardy}
+                \pause
+                \vspace{-8cm}
+         \begin{block}{This is {\bf not} Jeopardy}
+		\begin{itemize}
+                        \item Jeopardy: must decide to answer {\bf once}, after
+                          complete question
+                        \item Quiz Bowl: decide after each word
+		\end{itemize}
+
+	\end{block}
+
+\end{frame}
+
+
+
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.4\linewidth}
+        \includegraphics[width=0.7\linewidth]{general_figures/mohit}
+    \column{.6\linewidth}
+        \begin{block}{ {\bf \href{http://umiacs.umd.edu/~jbg//docs/2014_emnlp_qb_rnn.pdf}{A Neural Network for Factoid Question Answering over Paragraphs}}}
+\underline{\href{http://cs.umd.edu/~miyyer/}{Mohit Iyyer}}, {\bf Jordan Boyd-Graber}, Leonardo Claudino, Richard Socher, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
+        \end{block}
+
+        \begin{block}{ {\bf \href{file:///Users/jbg/public_html/docs/2015_acl_dan.pdf}{Deep Unordered Composition Rivals Syntactic Methods for Text Classification}}}
+\underline{\href{http://cs.umd.edu/~miyyer/}{Mohit Iyyer}}, Varun
+Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
+        \end{block}
+
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Experiment 1}
+
+		\begin{columns}
+			\column{.25\linewidth}
+				\gfxq{colby_jeo}{1.0}
+                                Colby Burnett:
+                                \$375,000
+			\column{.25\linewidth}
+				\gfxq{ben_jeo}{1.0}
+                                Ben Ingram:
+                                \$427,534
+			\column{.25\linewidth}
+				\gfxq{alex_jeo}{1.0}
+                                Alex Jacobs: \$151,802
+			\column{.25\linewidth}
+				\gfxq{kristin_jeo}{1.0}
+                                Kristin Sausville: \$95,201
+		\end{columns}
+
+                \pause
+
+
+                \begin{center}
+                End result: 200-200 tie!
+                \end{center}
+
+\end{frame}
+
+\fsi{qb/hsnct1}{}
+\fsi{qb/nasat}{Humans 345-145}
+\fsi{qb/hsnct_2017}{Computer 260-215}
+
+
+\begin{frame}[plain]
+\gfxq{seattle_crowd}{.5}
+\gfxq{chicago_crowd}{.5}
+\end{frame}
+
+\fsi{qb/boring_dot_products}{}
+
+\fsi{simtrans/centaur-chess}{Centaur Chess}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Measuring Interpretability}
+
+  \only<1>{\gfxq{qb_centaur_1}{.9}}
+  \only<2>{\gfxq{qb_centaur_2}{.9}}
+  \only<3>{\gfxq{qb_centaur_3}{.9}}
+  \only<4>{\gfxq{qb_centaur_6}{.9}}
+
+\end{frame}
+
+
+\begin{frame}{Demo}
+
+
+\end{frame}
+
+\begin{frame}{Improvement through Reinforcement Learning}
+
+  \only<1>{\gfxq{rl_centaur_2}{.9}}
+  \only<2>{\gfxq{rl_centaur_3}{.9}}
+  \only<3>{\gfxq{rl_centaur_4}{.9}}
+  \only<4>{\gfxq{rl_centaur_5}{.9}}
+  \only<5>{\gfxq{rl_centaur_6}{.9}}
+
+\end{frame}
+
+
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.4\linewidth}
+        \includegraphics[width=0.8\linewidth]{general_figures/hehe} \\
+        \includegraphics[width=0.8\linewidth]{general_figures/alvin}
+    \column{.6\linewidth}
+
+        \begin{block}{ {\bf \href{http://umiacs.umd.edu/~jbg//docs/2015_emnlp_rewrite.pdf}{Syntax-based Rewriting for Simultaneous Machine Translation}}}
+He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2015
+        \end{block}
+
+        \begin{block}{ {\bf \href{http://umiacs.umd.edu/~jbg/docs/2016_naacl_interpretese.pdf}{Interpretese vs. Translationese: The Uniqueness of Human Strategies in Simultaneous Interpretation}}}
+He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
+\emph{North American Association for Computational Linguistics}, 2016
+        \end{block}
+
+  \end{columns}
+
+
+\end{frame}
+
+\begin{frame}{Simultaneous Interpretation is Hard!}
+
+  \begin{columns}
+    \column{.5\linewidth}
+  \begin{itemize}
+    \item Exhausting for humans
+    \item Computers not trusted
+    \item Differential strengths
+    \item Same word-by-word characteristic
+  \end{itemize}
+
+  \column{.5\linewidth}
+ \gfxs{computer-interpreter}{1.0}
+ \end{columns}
+\end{frame}
+
+
+\fsi{general_figures/blackbox}{}
+\fsi{general_figures/bennet_robot}{}
+
+
+
+\frame{
+
+	\frametitle{Thanks}
+
+        \begin{block}{Collaborators}
+          \textsc{naqt}, Hal Daum\'e III (UMD), Leah Findlater (UMD), Kevin Seppi
+          (BYU), Eric Ringger
+        \end{block}
+
+	\begin{columns}
+
+	\column{.75\linewidth}
+        \begin{block}{Funders}
+        \begin{center}
+          \includegraphics[width=0.2\linewidth]{general_figures/nsf}
+          \includegraphics[width=0.2\linewidth]{general_figures/darpa}
+          \includegraphics[width=0.2\linewidth]{general_figures/arl}
+          \includegraphics[width=0.2\linewidth]{general_figures/iarpa}
+       \end{center}
+        \end{block}
+
+	\column{.3\linewidth}
+        \begin{block}{Supporters}
+        	\gfxq{naqt}{1.0}
+        \end{block}
+
+        \end{columns}
+}
+
+
+
+
+\begin{frame}{References}
+\bibliographystyle{style/acl}
+\tiny
+\bibliography{bib/journal-full,bib/jbg,bib/hhe,bib/alvin,teaparty/vietan}
+\end{frame}
+
+
+
+\end{document}
