@@ -1,4 +1,20 @@
 
+
+Jordan Boyd-Graber is an associate professor in the University of
+Maryland's Computer Science Department, iSchool, UMIACS, and Language
+Science Center. Jordan's research focus is in applying machine
+learning and Bayesian probabilistic models to problems that help us
+better understand social interaction or the human cognitive
+process. He and his students have won "best of" awards at NIPS (2009,
+2015), NAACL (2016), and CoNLL (2015), and Jordan won the British
+Computing Society's 2015 Karen Spärk Jones Award and a 2017 NSF CAREER
+award.
+
+His work on computational social science includes work on topic shift, relationships, framing, and betrayal and and has been featured by CNN, Huffington Post, New York Magazine, and the Wall Street Journal. Boyd-Graber has made methodological contributions to variational inference, evaluation of probabilistic models, reinforcement learning for text data, and deep learning approaches for vision and language. 
+
+
+=============================================
+
 Jordan Boyd-Graber is an assistant professor in the University of
 Colorado Boulder's Computer Science Department (a Colorado native),
 formerly serving as an assistant professor at the University of

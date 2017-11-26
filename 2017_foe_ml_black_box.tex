@@ -111,7 +111,19 @@ st page.
 \only<3>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_3}}}
 \only<4>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_4}}}
 \only<5>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/ml_intro_5}}}
-\only<6>{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/blackbox}}}
+\only<6->{\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/blackbox}}}
+\only<7>{
+
+\vspace{-5cm}
+\begin{block}{Takeaways}
+  \begin{itemize}
+    \item ML should be interpretable
+    \item We should measure interpretability
+    \item Interpretability should reflect the world we want
+  \end{itemize}
+\end{block}
+
+}
 \end{frame}
 
 
@@ -147,7 +159,7 @@ Common task: what's going on in this dataset.
 }
 \only<4>{
 \centering
-Common solution: topic models
+Common solution: unsupervised machine learning (topic models)
 }
 
 \end{columns}
@@ -247,7 +259,11 @@ Information Processing Systems, 2009.
 \begin{frame}{What about Supervised Models?}
 
 \begin{center}
-  \includegraphics[width=.7\paperwidth]{svm/no-spam}
+  \only<1>{  \includegraphics[width=.9\paperwidth]{interpretability/lime_fe_cartoon_1}
+  }
+  \only<2>{  \includegraphics[width=.9\paperwidth]{interpretability/lime_fe_cartoon_2}
+  }
+  \only<3>{  \includegraphics[width=.9\paperwidth]{interpretability/lime_fe_cartoon_3}  }
 \end{center}
 
 \end{frame}
@@ -286,11 +302,9 @@ LIME: Local Interpretable Model-Agnostic Explanations
   \gfxi{lime_distance_weight}{.5}
 
   \begin{itemize}
-    \item Sample points around $x_i$
-    \item Use complex model to predict labels for each sample
-    \item Weigh samples according to distance to $x_i$
-        \item Learn new simple model on weighted samples
-        \item Use simple model to explain
+    \item Complicated model predicts ``near'' example
+    \item Simple model explains \bf{local} variation
+    \item Explains what complicated model focused on
   \end{itemize}
 
 \end{frame}
@@ -298,56 +312,28 @@ LIME: Local Interpretable Model-Agnostic Explanations
 
 \begin{frame}{Is this a good Classifier?}
 
-  \only<1>{\gfxi{lime_wolf}{.8}}
-  \only<2>{\gfxi{lime_wolf_trust}{.8}}
+  \only<1>{\gfxi{lime_wolf}{1.0}}
+  \only<2>{\gfxi{lime_wolf_trust}{1.0}}
 
 \end{frame}
 
 \begin{frame}{Improving ML Algorithms}
 
-  \only<1>{\gfxi{lime_fe_overview}{.9}}
-  \only<2>{\gfxi{mt_task}{.9}}
-  \only<3>{\gfxi{mt_results}{.9}}
+  \only<1>{  \includegraphics[width=.9\paperwidth]{interpretability/lime_fe_cartoon_3}
+  }
+  \only<2>{  \includegraphics[width=.9\paperwidth]{interpretability/lime_fe_cartoon_4}
+  }
+  \only<3>{  \includegraphics[width=.9\paperwidth]{interpretability/lime_fe_cartoon_5}  }
+  \only<4>{  \includegraphics[width=.9\paperwidth]{interpretability/lime_fe_cartoon_6}
+  }
+
+  \only<5>{\gfxi{mt_task}{1.0}}
+  \only<6>{\gfxi{mt_results}{1.0}}
 \end{frame}
-
-\frame{
-
-\begin{columns}
-
-\column{.5\linewidth}
-
-\includegraphics[width=.8\linewidth]{general_figures/forough}
-
-\column{.5\linewidth}
-
-\begin{block}{ALTO: Active Learning with Topic Overviews for Speeding Label Induction and Document Labeling}
-Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi.  Association for Computational Linguistics, 2016.
-\end{block}
-
-\end{columns}
-
-}
-
-
-
-\fsi{interactive_topic_models/alto_interface}{}
-\fsi{interactive_topic_models/alto_interface_highlight}{Direct users
-  to document}
-
-
-
-\fsi{interactive_topic_models/alto/user_talk_1}{ Active learning if time is short}
-\fsi{interactive_topic_models/alto/user_talk_2}{ Better than status quo}
-\fsi{interactive_topic_models/alto/user_talk_3}{ Active learning can
-  help topic models }
-\fsi{interactive_topic_models/alto/user_talk_4}{ Topic models help
-  users understand the collection }
-\fsi{interactive_topic_models/alto/user_talk_4}{ Moral: machines and
-  humans together (if you let them) }
-
 
 
 \fsi{general_figures/kill_all_humans}{}
+\fsi{general_figures/enslave_humans}{}
 \fsi{general_figures/tng_poker}{}
 \fsi{qb/quizbowl}{}
 
@@ -484,11 +470,6 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \end{frame}
 
 
-\begin{frame}{Demo}
-
-
-\end{frame}
-
 \begin{frame}{Improvement through Reinforcement Learning}
 
   \only<1>{\gfxq{rl_centaur_2}{.9}}
@@ -540,8 +521,23 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 \end{frame}
 
 
-\fsi{general_figures/blackbox}{}
-\fsi{general_figures/bennet_robot}{}
+\begin{frame}
+
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{general_figures/blackbox}}
+\only<2>{
+
+\vspace{-5cm}
+\begin{block}{Takeaways}
+  \begin{itemize}
+    \item ML should be interpretable
+    \item We should measure interpretability
+    \item Interpretability should reflect the world we want
+  \end{itemize}
+\end{block}
+
+}
+\end{frame}
+
 
 
 
@@ -575,6 +571,44 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 }
 
 
+
+\frame{
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+\includegraphics[width=.8\linewidth]{general_figures/forough}
+
+\column{.5\linewidth}
+
+\begin{block}{ALTO: Active Learning with Topic Overviews for Speeding Label Induction and Document Labeling}
+Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi.  Association for Computational Linguistics, 2016.
+\end{block}
+
+\end{columns}
+
+}
+
+
+
+\fsi{interactive_topic_models/alto_interface}{}
+\fsi{interactive_topic_models/alto_interface_highlight}{Direct users
+  to document}
+
+
+
+\fsi{interactive_topic_models/alto/user_talk_1}{ Active learning if time is short}
+\fsi{interactive_topic_models/alto/user_talk_2}{ Better than status quo}
+\fsi{interactive_topic_models/alto/user_talk_3}{ Active learning can
+  help topic models }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Topic models help
+  users understand the collection }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Moral: machines and
+  humans together (if you let them) }
+
+
+\fsi{qb/viz_first_draft}{Andrea Lin}
 
 
 \begin{frame}{References}
