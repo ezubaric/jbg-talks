@@ -104,3 +104,21 @@ techniques to detect spin and framing in political and online
 interactions.
 
 ================================================================
+
+Opening the Black Box of Machine Learning: Interactive, Interpretable Interfaces for Exploring Linguistic Tasks
+
+Abstract: Machine learning is ubiquitous, but most users treat it as a
+black box: a handy tool that suggests purchases, flags spam, or
+autocompletes text. I present qualities that ubiquitous machine
+learning should have to allow for a future filled with fruitful,
+natural interactions with humans: interpretability, interactivity, and
+an understanding of human qualities. After introducing these
+properties, I present machine learning applications that begin to
+fulfill these desirable properties. I begin with a traditional
+information processing task---making sense and categorizing large
+document collections---and show that machine learning methods can
+provide interpretable, efficient techniques to categorize large
+document collections with a human in the loop. From there, I turn to
+language-based games that require machines and humans to compete and
+cooperate and discuss how this can improve and measure
+interpretability in machine learning.
