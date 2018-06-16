@@ -1,0 +1,504 @@
+
+\newif\ifcrossling\crosslingtrue
+\newif\ifitmtree\itmtreetrue
+\newif\iflong\longfalse
+\newif\ifevaluation\evaluationfalse
+\newif\ifconjugacy\conjugacyfalse
+\newif\ifnonpar\nonparfalse
+\newif\ifling\lingfalse
+\newif\ifgibbsex\gibbsexfalse
+\newif\ifhighlevel\highlevelfalse
+\newif\iftmreview\tmreviewfalse
+\newif\ifevocation\evocationfalse
+\newif\ifsupershortmlslda\supershortmlsldatrue
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+
+\definecolor{green}{rgb}{0,.3,0}
+
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{listings}
+\usepackage{environ}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{overpic}
+
+\usepackage{multirow}
+
+\usetheme[
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/shell,              % Logo for the fir\
+st page.
+          ]{UMD}
+
+
+\title[]{Scalable and Efficient Probabilistic Topic Model Inference
+  for Textual Data}
+\author{M\r{a}ns Magnusson}
+\date{Jordan Boyd-Graber}
+
+\institute[UMD] % (optional, but mostly needed)
+{Linköpings universitet}
+
+
+%gets rid of bottom navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%gets rid of footer
+%will override 'frame number' instruction above
+%comment out to revert to previous/default definitions
+\setbeamertemplate{footline}{}
+
+
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\dir}[1]{\mbox{Dir}(#1)}
+\newcommand{\mult}[1]{\mbox{Mult}( #1)}
+\newcommand{\Beta}[1]{\mbox{Beta}( #1)}
+\newcommand{\G}[1]{\Gamma \left( \textstyle #1 \right)}
+\newcommand{\LG}[1]{\log \Gamma \left( \textstyle #1 \right)}
+\newcommand{\WN}[0]{\textsc{WordNet}}
+\newcommand{\itmspace}[0]{\hspace{2cm}}
+\newcommand{\abr}[1]{\textsc{#1}}
+\newcommand{\lda}[0]{\abr{lda}}
+\newcommand{\slda}[0]{\abr{slda}}
+
+\newcommand{\digam}[1]{\Psi \left( \textstyle #1 \right) }
+\newcommand{\ddigam}[1]{\Psi' \left( \textstyle #1 \right) }
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+\newcommand{\D}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\elbo}{\mathcal{L}}
+
+
+\newcommand{\citename}[1]{\emph{#1} }
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\Dir}{\mathrm{Dir}}
+\newcommand{\Mult}{\mathrm{Mult}}
+\newcommand{\g}[1]{\Gamma \left( #1 \right)}
+\newcommand{\paragraph}[1]{ \vskip 1cm {\bf \large #1}}
+
+\NewEnviron{smalign}{
+\vspace{-.6cm}
+\begin{small}
+\begin{align}
+  \BODY
+\end{align}
+\end{small}
+\vspace{-.6cm}
+}
+
+
+\providecommand{\graphscale}{0.6}
+
+\newcommand{\danquote}[1]{
+
+\begin{flushright}
+\begin{overpic}[width=5.5cm,tics=10]{general_figures/speech_bubble}
+	\put(10,30) { \parbox{4cm}{#1 }}
+\end{overpic}
+\includegraphics[width=1.5cm]{general_figures/milkman_dan}
+\end{flushright}
+}
+
+
+\AtBeginSection[] % "Beamer, do the following at the start of every section"
+{ \begin{frame}
+
+\frametitle{Outline} % make a frame titled "Outline"
+\tableofcontents[currentsection] % show TOC and highlight current section
+\end{frame} }
+
+\lstset{language=Python,basicstyle=\tiny}
+
+\DeclareMathSymbol{\R}{\mathbin}{AMSb}{"52}
+
+%\setbeamertemplate{footline}{\hspace*{.5cm}\scriptsize{\insertauthor
+
+\begin{document}
+
+\frame{
+\titlepage
+\tiny
+}
+
+
+\section{Topic Model Introduction}
+
+\input{topic_models/intro}
+
+%\section{Definition and Derivation}
+
+\input{topic_models/definition}
+
+\section{Inference}
+
+\input{topic_models/gibbs_sampling}
+
+
+\begin{frame}
+\frametitle{Previous solutions}
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+\begin{block}{\alert<2>{Gibbs Sampling}}
+
+\begin{itemize}
+\item Approximately distributed LDA~\cite{newman2009distributed} \\
+\item Use sparse $\mathbf{n}$ and $\mathbf{v}$ \cite{yao2009efficient}
+\item Metropolis-Hastings, Alias tables. \cite{yuan2015lightlda}.
+\end{itemize}
+
+\end{block}
+
+\column{.5\linewidth}
+
+\begin{block}{Variational Inference}
+
+\begin{itemize}
+  \item Parallelize e-step, distribute m-step~\cite{zhai-12}
+  \item Online~\cite{hoffman-10}
+\end{itemize}
+
+\end{block}
+
+\end{columns}
+
+\begin{block}{Others \dots}
+  Spectral~\cite{Nguyen:Hu:Boyd-Graber-2014}, NMF
+\end{block}
+
+%Don't tackle the whole problem.
+%- Very efficient sparse collapsed samplers (still serial) Light-LDA and Sparse-LDA
+%- AD-LDA, ignore that the sampler is serial
+
+\end{frame}
+
+\section{Parallel, efficient, and correct samplers}
+
+
+\begin{frame}
+\frametitle{Partially collapsed sampler with Alias tables}
+\framesubtitle{Concurrency \cite{magnusson2017sparse}}
+
+
+\begin{itemize}
+\item Two step sampler, do not integrate out $\beta$:
+\begin{enumerate}
+    \item Sample $z_{id}$ in parallel over documents as
+    \[
+    p(z_{id}=k|w_{id},\mathbf{z}_{\lnot i,d},\beta_{\cdot,w_{id}})\propto\beta_{k,w_i}\cdot{(\mathbf{n}^{\lnot i}_{d,k}+\alpha)}\,.
+    \]
+%    \[
+%    p(z_{id}=k|w_{id},\mathbf{z}_{\lnot i})\propto\underbrace{\frac{\mathbf{n}_{k,w_{id}}^{\lnot i}+\lambda}{\sum_v^V \mathbf{n}_{k,v}^{\lnot i}+\lambda}}_{\phi_{k,w_i}}\cdot\underbrace{\frac{\mathbf{v}^{\lnot i}_{d,k}+\alpha}{\sum_k^K \mathbf{v}_{d,k}^{\lnot i}+\alpha}}_{\theta_{d,k}}
+%    \]
+    \item Sample $\beta_{k}$ in parallel over topics as
+\[
+\beta_k \sim \text{Dir}(\mathbf{v}_{k,\cdot}+\lambda)\,.
+\]
+\end{enumerate}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Partially collapsed sampler with Alias tables}
+\framesubtitle{Efficiency (\cite{magnusson2017sparse} inspired by \cite{li2014reducing})}
+
+\begin{itemize}
+\item Sampling is dominated by sampling $\mathbf{z}$
+\begin{eqnarray*}
+p(z_{id}=k|\cdot) & \propto & \beta_{k,w_{i}}\cdot\left(\mathbf{n}^{\lnot i}_{d,k}+\alpha\right)\\
+ & = & \underbrace{\beta_{k,w_{i}}\mathbf{n}^{\lnot i}_{d,k}}_{a}+\underbrace{\beta_{k,w_{i}}\alpha}_{b}
+\end{eqnarray*}
+
+\item Need to compute the normalization constant per $z_i$
+\begin{eqnarray*}
+\sigma_i & = \underbrace{\sum^{K_{d}}\beta_{k,w_{i}}\mathbf{n}^{\lnot i}_{d,k}}_{\sigma_{i,a}} +  \underbrace{\sum^{K}\beta_{k,w_{i}}\alpha}_{\sigma_{i,b}}
+\end{eqnarray*}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Partially collapsed sampler with Alias tables}
+\framesubtitle{Efficiency}
+
+
+\begin{itemize}
+
+\item Sample a topic indicator $z_i$:
+\begin{enumerate}
+\item Draw a $u_i \sim U(1,\sigma_i)$
+\item \texttt{If} $u_i < \sigma_a$ \\
+Sample $k$ from Alias table ($\propto \beta_{k,w_{i}}\alpha$)
+\item \texttt{Else} \\ Sample from existing topics  in document ($\propto \beta_{k,w_{i}}\mathbf{n}^{\lnot i}_{d,k}$)
+\end{enumerate}
+
+\item Amortized complexity $\sim O(\sum^N_i K_{d(i)})$, where $d(i)$ is the document of topic indicator $i$.
+
+\item Good! \\ $N_d$ does not grow with corpus size (but $K$ does).
+
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{Polya-Urn approximation}
+\framesubtitle{\cite{Terenin2018}}
+
+\begin{itemize}
+    \item \emph{Problem}: \\ $\mathbf{\beta}$ is dense and $K \times V$
+    \item \emph{Solution}: \\ Approximate a Dirichlet with a Poisson Polya Urn.
+%    \item Converge to the same distribution as $N \rightarrow \infty$
+    \begin{enumerate}
+        \item $\mathbf{\beta}$ becomes sparse (less memory needed)
+        \item Sampling $\mathbf{\beta}$ is faster \\ using Poisson draws using Alias tables
+        \item Sampling $\mathbf{z}$ is faster \\ Only need to iterate over topics that exist in document and non-zero elements in $\mathbf{\beta}$
+    \end{enumerate}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Large corpora sampling speed}
+\framesubtitle{PUBMED corpus, $K=100$ (left) and $K=1000$ (right)}
+
+\includegraphics[width=0.52\textwidth]{magnusson/pubmed_algo-pubmed-100.png}\includegraphics[width=0.52\textwidth]{magnusson/pubmed_algo-pubmed-1000.png}
+
+% Large scale samplers
+
+\end{frame}
+
+\section{Topic Model Application: Framing}
+
+\begin{frame}
+\frametitle{Problem: Detecting Framing and Polarization}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{magnusson/jimmie2010.jpg}
+    \caption{Jimmie \r{A}kesson at the 2010 election.}
+\end{figure}
+
+% Research problems - what happens when the Sweden democrats enter the Swedish parliament
+
+% - Immigration is the most prioritized policy area
+% Enter 2010, what is the effect in the parliament? Effect on discourse?
+
+\end{frame}
+
+% How?
+
+
+
+\begin{frame}
+\frametitle{How do we monitor?}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{magnusson/Riksdagsbiblioteket_2.JPG}
+
+    \includegraphics[width=0.6\textwidth]{magnusson/triolith1_1200x410.jpg}
+\end{figure}
+
+% Corpus size - 300 000 speeches 100m tokens.
+
+\end{frame}
+
+
+\begin{frame}{Message Matters}
+
+\begin{itemize}
+  \item People make radically different decisions based on how information is
+  presented~\cite{tversky-92}
+  \item Politicians and marketers do this too
+\begin{columns}
+\column{.45\linewidth}
+\begin{block}{Gain frame}
+    Flossing your teeth daily removes particles of food in the mouth, avoiding bacteria, which promotes great breath.
+\end{block}
+\column{.49\linewidth}
+\begin{block}{Loss frame}
+    If you do not floss your teeth daily, particles of food remain in the mouth, collecting bacteria, which causes bad breath.
+\end{block}
+
+\end{columns}
+\pause
+  \item Can we discover this automatically in political contexts?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Example}
+
+    What are your thoughts on the issue of {\bf immigration}?
+    \begin{figure}
+    \centering
+      \includegraphics[width=\textwidth]{teaparty/figures/framing}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{How can topic models help?}
+
+\begin{center}
+\includegraphics[width=0.7\linewidth]{shlda/ideology_topics} \\
+\cite{nguyen-13}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+% \frametitle{Example of framing}
+
+\begin{quote}
+\footnotesize
+``Kom inte och prata med mig om flyktingpolitik och att hj\"{a}lpa flyktingar!
+Om man sedan i n\"{a}sta andetag p\r{a}st\r{a}r att den flyktinginvandring som
+vi har av solidariska sk\"{a}l ocks\r{a} handlar om att r\"{a}dda v\"{a}lf\"{a}rden l\r{a}ngsiktigt
+tycker jag att det \"{a}r ett d\r{a}ligt s\"{a}tt att r\"{a}dda v\"{a}lf\"{a}rden p\r{a}, f\"{o}r
+det inneb\"{a}r stora kostnader f\"{o}r Sverige i dag. Det inneb\"{a}r s\r{a} stora
+kostnader att det faktiskt begr\"{a}nsar v\r{a}r m\"{o}jlighet att uppr\"{a}tth\r{a}lla
+och utveckla v\"{a}lf\"{a}rden.''
+
+\bigskip{}
+
+\footnotesize
+``{[}Vi{]} st\r{a}r bakom en reglerad invandring. Det betyder att ett
+ja \"{a}r ett ja och ett nej \"{a}r ett nej. Men det inneb\"{a}r ocks\r{a} en human
+asylpolitik och att verkst\"{a}llighet av myndigheternas beslut, som polisen
+i det h\"{a}r fallet har att ut\"{o}va, ska vara i enlighet med b\r{a}de nationella
+och internationella normer.''
+
+\end{quote}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Perspective topic model with word seed}
+
+\begin{itemize}
+    \item Perspectives (by party)
+    \item Word seeds (for one topic)
+    \begin{itemize}
+        \item flyktingpolitik (refugee policy),
+        \item ``flykting (refugee),
+        \item asyl (asylum),
+        \item migrationsverket (migration board),
+        \item invandringspolitik (immigration policy),
+        \item invandrare (immigrant) and
+        \item integrationspolitik (integration policy)
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+% What?
+\begin{frame}
+\frametitle{Result: Immigration topic}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{magnusson/immigration_topics}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Result: Agenda}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{magnusson/year_debate_topic_prop_tp.png}
+    \caption{Immigration topic in Riksdagen 1994-2017}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Result: Frames}
+
+% latex table generated in R 3.3.2 by xtable 1.8-2 package
+% Thu Aug  3 22:54:27 2017
+\begin{table}[ht]
+\centering
+\begin{tabular}{lll}
+  \hline
+Party & Top words (translated from Swedish)\\
+  \hline
+  \footnotesize	(s) &   \footnotesize	applies, must, asylum seeker, Swedish Migration Agency* \\
+  \footnotesize	(m) & \footnotesize Swedish Migration Agency*, Kalle Larsson, labour migration \\
+  \footnotesize	(c) &  \footnotesize Sweden Democrats, here, society, come, Centre Party \\
+  \footnotesize (l) & \footnotesize immigrant*, migration minister, refugee policy*, Liberal Party \\
+  \footnotesize (v) & \footnotesize day, government, apply, rights, human, right, asylum* \\
+  \footnotesize (kd) & \footnotesize Christian Democrats, Barbro Holmberg, generous \\
+  \footnotesize (mp) & \footnotesize back, refugees, immensly, children, Europe, send, UNHCR \\
+  \footnotesize (sd) & \footnotesize Sweden, will, immigrant*, politics, shall, immigration, Swedish \\
+  \hline
+\end{tabular}
+\caption{Top perspective words by party.}
+\label{tab:perspective_topic_types_eng}
+\end{table}
+
+\end{frame}
+
+
+\begin{frame}{Not all \dots}
+
+\begin{itemize}
+  \item Further contributions to efficiency
+  \item Supervised models for large label sets
+  \item Importance of preprocessing
+  \item Software Engineering
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Questions}
+
+  \begin{itemize}
+    \item Why Gibbs sampling?
+      \pause
+    \item Framing / polarization across languages and nations?
+      \pause
+    \item Importance of interpretability
+      \pause
+    \item Should all words be uncollapsed?
+      \pause
+    \item How important is it to be correct?
+      \pause
+    \item Relationship between latency and throughput
+      \pause
+    \item Beyond LDA \dots
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\bibliographystyle{apalike}
+\tiny
+\bibliography{bib/journal-full,bib/jbg,magnusson/references}
+\end{frame}
+
+\end{document}

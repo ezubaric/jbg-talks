@@ -1,0 +1,44 @@
+\begin{tikzpicture}%[x=1.7cm,y=1.8cm]
+
+  % Nodes
+
+  \node[obs] (W) {$w_{id}$};
+  \node[latent, left=of W] (Z) {$z_{id}$};
+  \node[latent, left=of Z]    (theta)  {$\theta_d$};
+  \node[const, left=of theta] (alpha) {$\alpha$};
+  \node[latent, right=of W] (phi)  {$\phi_k$}; %
+  \node[const, right=of phi]  (beta) {$\beta$}; %
+
+
+  % Factors
+%  \factor[above=of X]     {X-f}     {Multi} {} {} ; %
+%  \factor[above=of T]     {T-f}     {left:Multi} {} {} ; %
+%  \factor[above=of theta] {theta-f} {left:Dir} {} {} ; %
+
+  % More nodes
+
+%  \factor[above=of phi] {phi-f} {right:Dir} {} {} ; %
+
+  \edge {alpha}  {theta} ; %
+  \edge {theta}  {Z} ; % 
+  \edge {Z}  {W} ; %
+  \edge {beta}  {phi} ; %
+  \edge {phi}  {W} ; %
+%  \factoredge {atheta} {theta-f} {theta} ; %
+%  \factoredge {phi}    {X-f}     {X} ; %
+%  \factoredge {aphi}   {phi-f}   {phi} ; %
+
+%  \gate {X-gate} {(X-f)(X-f-caption)} {T}
+
+  \plate {plate1} { %
+    (W)%(X-gate) %
+    (Z)%(T-f)(T-f-caption) %
+  } {$\forall 1 \leq i \leq N_d$}; %
+  \plate {} { %
+    (plate1) %
+    (theta)%(theta-f)(theta-f-caption) %
+  } {$\forall d \in \mathcal{D}$} ; %
+  \plate {} { %
+    (phi)%(phi-f)(phi-f-caption) %
+  } {$\forall k \in \mathcal{K}$} ; %
+\end{tikzpicture}

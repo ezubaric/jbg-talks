@@ -1,3 +1,5 @@
+\iflong
+
 \frame
 {
   \frametitle{Matrix Factorization Approach}
@@ -25,17 +27,23 @@
 
 }
 
+\fi
+
 \begin{frame}
 
-\frametitle{Alternative: Generative Model}
+\frametitle{Generative Model \iflong (Alternative) \fi}
 
 \begin{itemize}
   \item How your data came to be
   \item Sequence of Probabilistic Steps
   \item Posterior Inference
+    \pause
+   \item Latent Dirichlet Allocation~\cite{blei-03}
 \end{itemize}
 
 \end{frame}
+
+\iflong
 
 \begin{frame}
 	\frametitle{Multinomial Distribution}
@@ -77,15 +85,15 @@
 \includegraphics[width=0.6\linewidth]{topic_models/dirichlet_1} \\
 \begin{tabular}{ccc}
 $\vec \alpha = \left(1, 1, 1 \right)$ &
-$\vec \alpha = \left(2, 2, 2 \right)$ & 
+$\vec \alpha = \left(2, 2, 2 \right)$ &
 $\vec \alpha = \left(10, 10, 10 \right)$  \\
 \end{tabular} }
 
 \only<3>{
 \includegraphics[width=0.6\linewidth]{topic_models/dirichlet_2} \\
 \begin{tabular}{ccc}
-$\vec \alpha = \left(2, 10, 2 \right)$ & 
-$\vec \alpha = \left(2, 2, 10 \right)$ & 
+$\vec \alpha = \left(2, 10, 2 \right)$ &
+$\vec \alpha = \left(2, 2, 10 \right)$ &
 $\vec \alpha = \left(\frac{4}{5}, \frac{4}{5}, \frac{4}{5} \right)$  \\
 \end{tabular} }
 
@@ -95,8 +103,8 @@ $\vec \alpha = \left(\frac{4}{5}, \frac{4}{5}, \frac{4}{5} \right)$  \\
 
 \end{frame}
 
-
 \fi
+
 \ifconjugacy
 
 \begin{frame}
@@ -148,36 +156,10 @@ $\vec \alpha = \left(\frac{4}{5}, \frac{4}{5}, \frac{4}{5} \right)$  \\
 \item<4-> Choose the observed word $w_n$ from the distribution $\beta_{z_n}$.
 \end{itemize}
 
-\only<5->{We use statistical inference to uncover the most likely unobserved variables given observed data.}
+\only<5->{Statistical inference uncovers most likely unobserved variables}
 }
 
 \fi
-
-\begin{frame}
-\frametitle{Topic Models: What's Important}
-\begin{itemize}
-\item Topic models \only<2>{(latent variables)}
-\begin{itemize}
-\ifhighlevel
-	\item Topics to words
-	\item Documents to topics
-\else
-	\item Topics to words---multinomial distribution
-	\item Documents to topics---multinomial distribution
-\fi
-\end{itemize}
-\item Focus in this talk: statistical methods
-  \begin{itemize}
-    \item Model: story of how your data came to be
-    \item Latent variables: missing pieces of your story
-    \item Statistical inference: filling in those missing pieces
-  \end{itemize}
-\item We use latent Dirichlet allocation (LDA)~\cite{blei-03}, a fully Bayesian
-  version of pLSI~\cite{hofmann-99}, probabilistic version of
-  LSA~\cite{landauer-97}
-\end{itemize}
-
-\end{frame}
 
 \ifevaluation
 
