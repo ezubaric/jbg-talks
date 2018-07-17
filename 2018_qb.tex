@@ -621,6 +621,17 @@ Republican candidate and real estate mogul.
 \end{frame}
 
 
+\fsi{qb/augment/screenshot_all}{Interface}
+
+\fsi{qb/augment/screenshot_guesses}{Guesses}
+
+\fsi{qb/augment/screenshot_highlight}{Highlight}
+
+\fsi{qb/augment/screenshot_evidence}{Evidence}
+
+\fsi{qb/augment/coefs}
+
+
 \begin{frame}{Improvement through Reinforcement Learning}
 
   \only<1>{\gfxq{rl_centaur_2}{.9}}
@@ -631,7 +642,26 @@ Republican candidate and real estate mogul.
 
 \end{frame}
 
+\begin{frame}{Can we improve QA systems?}
 
+\begin{columns}
+  \column{.6\linewidth}
+     \gfxq{trick/pyramid}{.9}
+     \column{.4\linewidth}
+     \begin{itemize}
+       \item Questions should be pyramidal
+       \item But for whom?
+         \begin{itemize}
+           \item Quotes
+           \item Reusing clues
+         \end{itemize}
+         \item Adversarial writing
+         \item Improve questions
+     \end{itemize}
+\end{columns}
+\end{frame}
+
+\fsi{qb/trick/revealed_accuracy}{}
 
 \begin{frame}{}
 
@@ -692,110 +722,6 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 \only<17>{\gfxs{example_19}{.9}}
 \end{frame}
 
-\begin{frame}{Are there enough opportunities?}
-
-
-\begin{center}
-\begin{tabular}{lcccc}
-\toprule
-& \alert<2>{verb} & \alert<3>{voice} & \alert<4>{noun} & \alert<5>{clauses} \\
-\midrule
-Applicable \% & \only<2->{39.9} & \only<3->{50.0} & \only<4->{26.4} & \only<5->{4.8} \\
-Accepted \% & \only<2->{22.5} & \only<3->{24.0} & \only<4->{51.2} & \only<5->{38.4} \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\only<2>{
-\begin{itemize*}
-\item[O:] {\bf They announced} that the president will restructure the division.
-\item[R:] The president will restructure the division, {\bf they announced}.
-\end{itemize*}
-}
-
-
-\only<3>{
-  \begin{columns}
-    \column{.4\linewidth}
-
-    \gfxs{rewrite_input}{.9}
-    \column{.55\linewidth}
-    \vspace{-.5cm}
-    \gfxs{rewrite_transform}{.9}
-   \end{columns}
-}
-
-\only<4>{
-\begin{itemize*}
-  \item[O:] the e-mail server of Clinton
-  \item[R:] Clinton's e-mail server
-\end{itemize*}
-}
-
-\only<5>{
-\begin{itemize*}
-\item[O:] \pos{S}$_1$ \pos{conj} \pos{S}$_2$: We should march {\bf because} winter is coming.
-\item[O:] \pos{conj} \pos{S}$_2$, \pos{S}$_1$: {\bf Because} winter is
-  coming, we should march.
-\vspace{1cm}
-\item[R:] \pos{S}$_2$, \pos{conj'} \pos{S}$_1$: Winter is coming, {\bf because of this}, we should march.
-\end{itemize*}
-}
-
-
-\end{frame}
-
-\begin{frame}{}
-
-\gfxs{rewrite_eval}{.8}
-\pause
-We rewrite 32.2\% of
-sentences, reducing the delay from 9.9 words/seg to 6.3 words/seg per
-segment for rewritten sentences and from 7.8 words/seg to 6.7 words/seg overall.
-
-\end{frame}
-
-\begin{frame}{How good are the translations?}
-
-  \gfxs{tradeoff-rw-bleu}{.7}
-
-\begin{center}
-Aggressiveness based on different right probability thresholds
-\cite{fujita-13}
-\end{center}
-
-\end{frame}
-
-\begin{frame}{Why does the quality improve?}
-
-\begin{center}
-\begin{tabular}{ccccc}
-\toprule
-& \multicolumn{3}{c}{Translation} & \\
-\cmidrule{2-4}
-& \abr{gd} & \abr{rw} & \abr{rw+gd} & Gold ref \\
-\midrule
-\# of verbs & 1971 & 2050 & {\bf 2224} & 2731 \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\end{frame}
-
-\begin{frame}{Future Steps}
-
-  \begin{itemize}
-    \item Verb prediction through argument structure \only<2->{(entity
-        / coref)}
-    \item Richer translation model~\cite{oda-15,cho-16}
-    \item Better reward (e.g., MEANT)  \only<3->{(richer answer space)}
-    \item Paraphrase database
-    \item Learning from imperfect feedback  \only<4->{(player clues)}
-    \item Centaur translations  \only<5->{(centaur QB)}
-  \end{itemize}
-
-\end{frame}
-
 \begin{frame}{Human-Computer Question Answering}
 
   \begin{itemize}
@@ -814,44 +740,6 @@ Aggressiveness based on different right probability thresholds
        \item Adversarial authoring
      \end{itemize}
   \end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}{How the shared task works}
-
-\begin{columns}
-  \column{.3\linewidth}
-  \gfxq{bamber}{.5}
-
-  \column{.65\linewidth}
-  \begin{itemize}
-    \item<3-> Hi! Available questions are \texttt{[1,2,3,4]}
-    \item<5-> It's \texttt{Extremism}
-    \item<7-> It's \texttt{in}
-    \item<9-> It's \texttt{the}
-    \item<11-> Got it!  You've answered Question 1 at Position
-      3 with \texttt{Barry\_Goldwater}
-  \end{itemize}
-
-\end{columns}
-
-
-\begin{columns}
-
-  \column{.65\linewidth}
-  \begin{itemize}
-    \item<2-> I'm User~1.  I’d like to play!
-    \item<4-> I’d like to hear Word~1 of Question 1
-    \item<6-> I’d like to hear Word~2 of Question 1
-    \item<8-> I’d like to hear Word~3 of Question 1
-    \item<10-> I’d like to answer Question 1 with
-      \texttt{Barry\_Goldwater}
-    \end{itemize}
-  \column{.3\linewidth}
-  \only<2->{\gfxq{buzzer}{.5}}
-\end{columns}
 
 \end{frame}
 
@@ -1046,6 +934,148 @@ Aggressiveness based on different right probability thresholds
 
 \end{frame}
 
+
+
+\begin{frame}{How the shared task works}
+
+\begin{columns}
+  \column{.3\linewidth}
+  \gfxq{bamber}{.5}
+
+  \column{.65\linewidth}
+  \begin{itemize}
+    \item<3-> Hi! Available questions are \texttt{[1,2,3,4]}
+    \item<5-> It's \texttt{Extremism}
+    \item<7-> It's \texttt{in}
+    \item<9-> It's \texttt{the}
+    \item<11-> Got it!  You've answered Question 1 at Position
+      3 with \texttt{Barry\_Goldwater}
+  \end{itemize}
+
+\end{columns}
+
+
+\begin{columns}
+
+  \column{.65\linewidth}
+  \begin{itemize}
+    \item<2-> I'm User~1.  I’d like to play!
+    \item<4-> I’d like to hear Word~1 of Question 1
+    \item<6-> I’d like to hear Word~2 of Question 1
+    \item<8-> I’d like to hear Word~3 of Question 1
+    \item<10-> I’d like to answer Question 1 with
+      \texttt{Barry\_Goldwater}
+    \end{itemize}
+  \column{.3\linewidth}
+  \only<2->{\gfxq{buzzer}{.5}}
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Are there enough opportunities?}
+
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+& \alert<2>{verb} & \alert<3>{voice} & \alert<4>{noun} & \alert<5>{clauses} \\
+\midrule
+Applicable \% & \only<2->{39.9} & \only<3->{50.0} & \only<4->{26.4} & \only<5->{4.8} \\
+Accepted \% & \only<2->{22.5} & \only<3->{24.0} & \only<4->{51.2} & \only<5->{38.4} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\only<2>{
+\begin{itemize*}
+\item[O:] {\bf They announced} that the president will restructure the division.
+\item[R:] The president will restructure the division, {\bf they announced}.
+\end{itemize*}
+}
+
+
+\only<3>{
+  \begin{columns}
+    \column{.4\linewidth}
+
+    \gfxs{rewrite_input}{.9}
+    \column{.55\linewidth}
+    \vspace{-.5cm}
+    \gfxs{rewrite_transform}{.9}
+   \end{columns}
+}
+
+\only<4>{
+\begin{itemize*}
+  \item[O:] the e-mail server of Clinton
+  \item[R:] Clinton's e-mail server
+\end{itemize*}
+}
+
+\only<5>{
+\begin{itemize*}
+\item[O:] \pos{S}$_1$ \pos{conj} \pos{S}$_2$: We should march {\bf because} winter is coming.
+\item[O:] \pos{conj} \pos{S}$_2$, \pos{S}$_1$: {\bf Because} winter is
+  coming, we should march.
+\vspace{1cm}
+\item[R:] \pos{S}$_2$, \pos{conj'} \pos{S}$_1$: Winter is coming, {\bf because of this}, we should march.
+\end{itemize*}
+}
+
+
+\end{frame}
+
+\begin{frame}{}
+
+\gfxs{rewrite_eval}{.8}
+\pause
+We rewrite 32.2\% of
+sentences, reducing the delay from 9.9 words/seg to 6.3 words/seg per
+segment for rewritten sentences and from 7.8 words/seg to 6.7 words/seg overall.
+
+\end{frame}
+
+\begin{frame}{How good are the translations?}
+
+  \gfxs{tradeoff-rw-bleu}{.7}
+
+\begin{center}
+Aggressiveness based on different right probability thresholds
+\cite{fujita-13}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Why does the quality improve?}
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+& \multicolumn{3}{c}{Translation} & \\
+\cmidrule{2-4}
+& \abr{gd} & \abr{rw} & \abr{rw+gd} & Gold ref \\
+\midrule
+\# of verbs & 1971 & 2050 & {\bf 2224} & 2731 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Future Steps}
+
+  \begin{itemize}
+    \item Verb prediction through argument structure \only<2->{(entity
+        / coref)}
+    \item Richer translation model~\cite{oda-15,cho-16}
+    \item Better reward (e.g., MEANT)  \only<3->{(richer answer space)}
+    \item Paraphrase database
+    \item Learning from imperfect feedback  \only<4->{(player clues)}
+    \item Centaur translations  \only<5->{(centaur QB)}
+  \end{itemize}
+
+\end{frame}
 
 
 \end{document}
