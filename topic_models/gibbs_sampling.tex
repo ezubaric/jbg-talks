@@ -61,7 +61,8 @@ p(z_{d,n} | \theta_d) p(w_{d,n} | \beta_{z_{d,n}})
 p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{ p(z_{d,n} = k, {\bm z}_{-d,n} | {\bm w}, \alpha, \lambda)} { p({\bm z}_{-d,n} | {\bm w},\alpha, \lambda)}
 \end{equation*}
 \pause
-\item The topics and per-document topic proportions are integrated out / marginalized
+\item The topics and per-document topic proportions are integrated out
+  / marginalized / collapsed
 \item Let $n_{d,i}$ be the number of words taking topic $i$ in document $d$.  Let $v_{k,w}$ be the number of times word $w$ is used in topic $k$.
 \end{itemize}
 
@@ -151,8 +152,10 @@ p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \al
 \else
 \fi
 
+
+
 \begin{frame}{Gibbs Sampling Equation}
-  
+
 \begin{equation}
 \alert<5>{\frac{\alert<1>{n_{d, k}} +  \alert<3>{\alpha_k}}{ \sum_{i}^{K} { n_{d,i} +\alpha_i}}} \alert<6>{\frac{\alert<2>{v_{k, w_{d,n}}} + \alert<4>{\lambda_{w_{d,n}}}}{ \sum_{i} { v_{k,i} + \lambda_{i} }}}
 \end{equation}
@@ -168,6 +171,9 @@ p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \al
 \end{itemize}
 
 \end{frame}
+
+
+\ifgibbsex
 
 \begin{frame}
   \frametitle{Sample Document}
@@ -284,7 +290,11 @@ p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \al
 \end{center}
 \end{frame}
 
+\fi
+
 \begin{frame}
+
+
 
 \begin{block}{Algorithm}
 \begin{enumerate}
@@ -304,7 +314,7 @@ p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \al
 
 \begin{frame}
 
-\frametitle{Implementation}
+\frametitle{Na\"ive Implementation}
 
 \begin{block}{Algorithm}
 \begin{enumerate}
@@ -322,7 +332,7 @@ p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \al
 
 \end{frame}
 
-
+\iflong
 \begin{frame}
 \frametitle{Desiderata}
 \begin{itemize}
@@ -334,6 +344,7 @@ p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \al
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}
 	\frametitle{Available implementations}
 
@@ -343,3 +354,4 @@ p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \al
 		\item Topicmod (http://code.google.com/p/topicmod)
 	\end{itemize}
 \end{frame}
+\fi
