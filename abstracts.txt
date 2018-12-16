@@ -1,5 +1,7 @@
 
-Jordan Boyd-Graber (UMD) will be presenting work entitled "Cooperative and Competitive Machine Learning through Question Answering":
+Sorry for the delay, and thanks for the reminder!
+
+Jordan Boyd-Graber (UMD) will be presenting work entitled "Cooperative and Competitive Human-Machine Learning through Question Answering":
 
 Abstract:
 My research goal is to create machine learning algorithms that are
@@ -10,13 +12,9 @@ bowl. These questions are written so that they can be interrupted by
 someone who knows more about the answer; that is, harder clues are at
 the start of the question and easier clues are at the end of the
 question: a player must decide when it has enough information to "buzz
-in". Our system to answer quiz bowl questions depends on two parts: a
-system to identify the answer to questions and to determine when to
-buzz.  We discuss how deep averaging networks---fast neural bag of
-words models---can help us answer questions quickly using diverse
-training data (previous questions, raw text of novels, Wikipedia
-pages) to determine the right answer and how deep reinforcement
-learning can help us determine when to buzz.
+in". After arguing in favor of this task compared to other question 
+answering formats, we describe our question answering system: 
+how and when to buzz using deep learning and reinforcement learning.
 
 More importantly, however, this setting also helps us build systems to
 adapt in cooperation and competition with humans.  In competition, we
@@ -30,7 +28,50 @@ simultaneous machine translation.
 
 Finally, I'll discuss opportunities for broader participation through
 open human-computer competitions:
-http://hcqa.boydgraber.org/
+http://qanta.org/
+
+Jordan Boyd-Graber is an associate professor in the University of
+Maryland's Computer Science Department, iSchool, UMIACS, and Language
+Science Center. Jordan's research focus is in applying machine
+learning and Bayesian probabilistic models to problems that help us
+better understand social interaction or the human cognitive
+process. He and his students have won "best of" awards at NIPS (2009,
+2015), NAACL (2016), and CoNLL (2015), and Jordan won the British
+Computing Society's 2015 Karen Spärk Jones Award and a 2017 NSF CAREER
+award. His research has been funded by DARPA, IARPA, NSF, NCSES, ARL,
+NIH, and Lockheed Martin and has been featured by CNN, Huffington
+Post, New York Magazine, and the Wall Street Journal.
+
+====================
+
+Jordan Boyd-Graber (UMD) will be presenting work entitled "Cooperative and Competitive Machine Learning through Question Answering":
+
+Abstract:
+My research goal is to create machine learning algorithms that are
+interpretable to humans, that can understand human strengths and
+weaknesses, and can help humans improve themselves.  In this talk,
+I'll discuss how we accomplish this through a trivia game called quiz
+bowl. These questions are written so that they can be interrupted by
+someone who knows more about the answer; that is, harder clues are at
+the start of the question and easier clues are at the end of the
+question: a player must decide when it has enough information to "buzz
+in". After arguing in favor of this task compared to other question 
+answering formats, we describe our question answering system: 
+how and when to buzz using deep learning and reinforcement learning.
+
+More importantly, however, this setting also helps us build systems to
+adapt in cooperation and competition with humans.  In competition, we
+are also able to understand the skill sets of our competitors to
+adjust our strategy to optimize our performance against players using
+a deep mixture of experts opponent model.  The game of quiz bowl also
+allows opportunities to better understand interpretability in deep
+learning models to *help* human players perform better with machine
+cooperation.  This cooperation helps us with a related task,
+simultaneous machine translation.
+
+Finally, I'll discuss opportunities for broader participation through
+open human-computer competitions:
+http://qanta.org/
 
 Jordan Boyd-Graber is an associate professor in the University of
 Maryland's Computer Science Department, iSchool, UMIACS, and Language

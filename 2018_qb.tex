@@ -58,7 +58,7 @@ st page.
 %\usecolortheme{ucdblack}
 \title[HCQA]{Cooperative and Competitive Machine Learning through Question Answering}
 \author{ Jordan Boyd-Graber et al.}
-\date{2017}
+\date{2018}
 
 \institute[Maryland] % (optional, but mostly needed)
 {University of Maryland}
@@ -73,15 +73,24 @@ st page.
 \fsi{qb/turing}{Turing Test: Definition of AI (Image from Wall Street
   International)}
 
-\fsi{qb/jeopardy}{Question Answering as Yardstick (IBM)}
+\fsi{qb/jeopardy}{IBM Watson: QA Solved?}
+
+\fsi{qb/klingon}{ Not just an academic question for me \dots }
+
+\begin{frame}{Is Jeopardy! the right venue?}
+  \begin{center}
+  \href{https://www.youtube.com/embed/fgEoiGQmbgk?start=86&autoplay=1}{ghoBE'!}
+  \end{center}
+    \gfxq{final_jeopardy}{1.0}
+\end{frame}
 
 \fsi{qb/jennings_handshake}{Quiz Bowl as Question Answering ``Gold Standard''}
 
-\begin{frame}{But First \dots a Recent History of Question Answering}
+\begin{frame}{What is a good question?}
 
 \begin{columns}
 \column{.5\linewidth}
-\gfxq{siri}{.8}
+\gfxq{siri}{.6}
 \column{.5\linewidth}
 \begin{itemize}
   \item Reason across sentences
@@ -98,14 +107,13 @@ st page.
 
 \fsi{qb/triviaqa}{TriviaQA: Joshi et al., 2017 (Experts)}
 
-\fsi{qb/jeopardy}{IBM Watson: Buzzer Oddity}
 
 \fsi{qb/human_reading}{SQuAD: Ignore Knowledge}
 
 \fsi{qb/squad_2}{Test uncertainty (Rajpurkar et al., 2018)}
 
 \begin{frame}
-	\frametitle{Humans doing Incremental Classification}
+	\frametitle{This isn't new!}
 	\begin{columns}
 
 	\column{.5\linewidth}
@@ -274,19 +282,7 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 
 
 
-\begin{frame}{How can we do better?}
-
-  \begin{itemize}
-    \item Use relationship between questions (``China'' and
-      ``Taiwan'')
-    \item Use learned features and dimensions, not the words we start with
-  \end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}{Deep Averaging Networks}
+\begin{frame}{Non-linear improvement: Deep Averaging Networks}
 
   \only<1>{\gfxq{dan_1}{.8}}
   \only<2>{\gfxq{dan_2}{.6}}
@@ -294,9 +290,6 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
   \only<4>{\gfxq{dan_4}{.6}}
 
 \end{frame}
-
-
-
 
 \begin{frame}{Training}
 
@@ -326,36 +319,6 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
       \only<6>{\gfxq{warp_training_0}{.8}}
   \end{columns}
 
-\end{frame}
-
-\begin{frame}{Performance (Sentiment Analysis)}
-
-
-\footnotesize
-\begin{center}
-\begin{tabular}{cccccc}
-\toprule
-Model & RT & SST & SST & IMDB & Time \\
-& & fine & bin & & (s)\\
-\midrule
-\footnotesize DAN & 80.3 & 47.7 & 86.3 & 89.4 & 136\\
-\midrule
-\footnotesize NBOW-RAND & 76.2 & 42.3 & 81.4 & 88.9 & 91 \\
-\footnotesize NBOW & 79.0 & 43.6 & 83.6 & 89.0 & 91 \\
-\footnotesize BiNB & --- & 41.9 & 83.1 & --- & ---\\
-\footnotesize NBSVM-bi & 79.4 & --- & --- & 91.2 & ---\\
-\midrule
-\footnotesize RecNN$^*$ & 77.7 & 43.2 & 82.4 & --- & --- \\
-\footnotesize RecNTN$^*$ & --- & 45.7 & 85.4 & --- & --- \\
-\footnotesize DRecNN & --- & 49.8 & 86.6 & --- & 431\\
-\footnotesize TreeLSTM & --- & \bf 50.6 & 86.9 & --- & --- \\
-\footnotesize DCNN$^*$ & --- & 48.5 & 86.9 & 89.4 & ---\\
-\footnotesize PVEC$^*$ & --- & 48.7 & 87.8 & \bf 92.6 & --- \\
-\footnotesize CNN-MC & \bf 81.1 & 47.4 & \bf 88.1 & --- & 2,452 \\
-\footnotesize WRRBM$^*$ & --- & --- & --- & 89.2 & ---\\
-\bottomrule
-\end{tabular}
-\end{center}
 \end{frame}
 
 
@@ -436,30 +399,6 @@ Model & RT & SST & SST & IMDB & Time \\
 \end{columns}
 \end{frame}
 
-
-
-
-
-\begin{frame}{How can this fail?}
-
-  \only<1>{\gfxq{opponent_fail1}{.8}}
-  \only<2>{\gfxq{opponent_fail2}{.8}}
-  \only<3>{\gfxq{opponent_fail3}{.8}}
-  \only<4>{\gfxq{opponent_fail4}{.8}}
-  \only<5>{\gfxq{opponent_fail5}{.8}}
-  \only<6>{\gfxq{opponent_fail6}{.8}}
-  \only<7>{\gfxq{opponent_fail7}{.8}}
-
-\end{frame}
-
-\begin{frame}{Can we do better?}
-
-  \only<1>{\gfxq{dqn_overview2}{.8}}
-  \only<2>{\gfxq{dqn_overview3}{.8}}
-  \only<3>{\gfxq{dqn_overview4}{.8}}
-
-\end{frame}
-
 \begin{frame}{Not all opponents are equal}
 
   \gfxq{player_profile}{.9}
@@ -469,20 +408,7 @@ Model & RT & SST & SST & IMDB & Time \\
 
 \end{frame}
 
-\begin{frame}{Comparing Models}
 
-  \begin{itemize}
-    \item Single-Player
-    \item Deep Q-Network (DQN): World=Opponent~\cite{mnih-15}
-      \begin{itemize}
-        \item Learn representation of state to estimate $Q$-function
-        \item Generalization of regression-based methods
-        \item Similar to our representation of content
-      \end{itemize}
-    \item Deep Reinforcement Opponent Network (DRON)
-  \end{itemize}
-
-\end{frame}
 
 
 \begin{frame}{Many models, choose which: DRON-MoE}
@@ -537,81 +463,35 @@ Model & RT & SST & SST & IMDB & Time \\
 \fsi{qb/hsnct1}{}
 \fsi{qb/jennings}{23. October 2015, Seattle}
 \fsi{qb/jennings_handshake}{300-160}
-\fsi{qb/nasat}{Humans 345-145}
-\fsi{qb/hsnct_2017}{Computer 260-215}
+\fsi{qb/nasat}{Humans 345-145 (vs. OUSIA)}
+\fsi{qb/hsnct_2017}{QANTA 260-215}
 
 
+\fsi{qb/seattle_crowd}{Question Answering is Not a Trivial Activity}
+\fsi{qb/chicago_crowd}{http://qanta.org}
 
-\begin{frame}{Where we have problems}
+\fsi{qb/boring_dot_products}{Boring Dot Products}
 
-\only<1-2>{
-\begin{block}{Out of Date}
-Although he won the California primary in 2000, he distanced himself
-from fellow reform presidential candidate Pat Buchanan by comparing
-him to Attila the Hun. After being called a jackass, he prompted
-Lindsey Graham to destroy his phone by giving out his number during a
-speech. The slogan (*) Make America Great Again has been used by this
-politician, who claimed he didn't like people who were captured as a
-slight to John McCain and kicked off his 2016 presidential bid with
-some inflammatory remarks about Mexicans. For 10 points, name this
-Republican candidate and real estate mogul.
-\end{block} }
-\only<2>{{\bf Chris Christie?}}
+\fsi{general_figures/blackbox}{}
 
-\only<3-4>{
-\begin{block}{Out of Touch}
-  This singer recently cancelled the Great Escape Tour, and, in one
-  song, she claims that she will be ``Eating crumpets with the sailors
-  / On acres without the neighbors.'' She collaborated with Jennifer
-  (*) Hudson on the song ``Trouble,'' which was issued in her album
-  update Reclassified. This artist of ``Change Your Life'' was
-  inspired by scenes from the movie Clueless to make the music video
-  for a song in which she collaborated with Charli XCX. For 10 points,
-  name this Australian rapper whose album The New Classic contained
-  ``Fancy.''
-\end{block} }
-\only<4>{{\bf Bruce Springsteen?}}
+\fsi{interpretability/lime_explanation}{LIME: Ribeiro et al. (2016)}
 
-\end{frame}
+\fsi{interpretability/lime_image_explain}{LIME: Ribeiro et al. (2016)}
 
+\fsi{interpretability/mt_task}{LIME: Ribeiro et al. (2016)}
 
+\fsi{interpretability/mt_results}{What can humans do for ML?}
 
-
-\begin{frame}{Matching Entites Across Sentences}
-
-\begin{block}{\only<2->{Magic Flute}}
-
-    At its premiere, \alert<3>{the librettist of this opera} portrayed
-    \alert<4>{a character who asks for a glass of wine with his dying wish}. \alert<4>{That
-    character} in this opera is instructed to ring some bells to summon
-    his love. At its beginning, \alert<5>{a man} who claims to have killed a (*)
-    serpent has a padlock put on \alert<5>{his} mouth because of \alert<5>{his} lying. The
-    plot of this opera concerns a series of tests that \alert<5>{Tamino} must
-    undergo to rescue Tamina from Sorastro. For 10 points, name this
-    Wolfgang Mozart opera titled for \alert<6>{an enchanted woodwind instrument}.
-\end{block}
-
-
-
-\only<3-4>{{\bf Not all references are named (\alert<3>{Emanuel
-      Schikaneder}, \alert<4>{Papageno})}}
-\only<5>{Need to be able to match pronouns across sentences (or have
-  deep world knowledge)}
-\only<6>{Requires semantic knowledge}
-\end{frame}
-
-
-
-\begin{frame}[plain]
-\gfxq{seattle_crowd}{.5}
-\gfxq{chicago_crowd}{.5}
-\end{frame}
-
-\fsi{qb/boring_dot_products}{}
-
+\fsi{general_figures/kill_all_humans}{}
+\fsi{general_figures/bennet_robot}{}
+\fsi{general_figures/tng_poker}{}
 \fsi{simtrans/centaur-chess}{Centaur Chess}
 
-\begin{frame}{Measuring Interpretability}
+
+
+
+
+\begin{frame}{Team-Based Interpretability}
 
   \only<1>{\gfxq{qb_centaur_1}{.9}}
   \only<2>{\gfxq{qb_centaur_2}{.9}}
@@ -623,13 +503,51 @@ Republican candidate and real estate mogul.
 
 \fsi{qb/augment/screenshot_all}{Interface}
 
-\fsi{qb/augment/screenshot_guesses}{Guesses}
+\fsi{qb/augment/screenshot_guesses}{}
 
-\fsi{qb/augment/screenshot_highlight}{Highlight}
+\fsi{qb/augment/screenshot_highlight}{{\bf Highlighting}}
 
-\fsi{qb/augment/screenshot_evidence}{Evidence}
+\fsi{qb/augment/screenshot_evidence}{}
 
-\fsi{qb/augment/coefs}
+\begin{frame}{Experts vs. Novices}
+
+ \begin{block}{Experts}
+   Trivia experts, familiar with task, enjoy the task
+ \end{block}
+
+ \begin{block}{Mechanical Turkers}
+   Mechanical Turkers: easily overwhelmed, need the help
+ \end{block}
+
+\end{frame}
+
+\fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
+\fsi{qb/augment/tools_buzz}{Hights help experts}
+
+\begin{frame}{Regression Analysis}
+    For each triple (player, question, interpretations), we predict the outcome
+    (correct answer or not) with a logistic regression. The features include:
+    \begin{itemize}
+        \item player ID
+        \item question ID
+        \item buzzing position
+        \item enabled interpretations: individual and combinations
+    \end{itemize}
+
+    \pause
+
+    \begin{block}{Coefficients tell story!}
+      \begin{itemize}
+        \item {\bf Big, Positive}: Help
+        \item {\bf Big, Negative}: Hurt
+        \item {\bf Small}: Neutral
+      \end{itemize}
+    \end{block}
+
+\end{frame}
+
+
+\fsi{qb/augment/coefs}{Highlighting for experts, Evidence for novice}
 
 
 \begin{frame}{Improvement through Reinforcement Learning}
@@ -660,6 +578,80 @@ Republican candidate and real estate mogul.
      \end{itemize}
 \end{columns}
 \end{frame}
+
+\begin{frame}{Exposing QA Systems to Question Writers}
+
+\begin{itemize}
+  \item QANTA interface: writing questions
+  \item Players try to write questions that are difficult for QANTA
+  \item Different system plays against it
+    \gfxq{trick/ousia}{.4}
+  \item Play against top players
+    \gfxq{trick/reston}{.3}
+\end{itemize}
+
+\end{frame}
+
+
+\fsi{qb/trick/brahms_0}{\href{http://write.qanta.org}{http://write.qanta.org}}
+\fsi{qb/trick/brahms_1}{}
+\fsi{qb/trick/brahms_2}{}
+\fsi{qb/trick/brahms_3}{}
+\fsi{qb/trick/brahms_4}{}
+\fsi{qb/trick/brahms_5}{}
+
+\begin{frame}{Competition}
+
+  \gfxq{trick/pace}{.8}
+
+  \begin{itemize}
+    \item Warmup: 4/5 questions for computer
+    \item Actual Match: much different!
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Where we have problems}
+
+\only<1-2>{
+\begin{block}{Common Link}
+Gamblers of this profession appear in works titled The Alchemist and The Bet respectively.  One member of this profession is named Metzger, and aids Oedipa Maas in Thomas Pynchon's The Crying of Lot 49.  In Yukio Mishima's Sea of Fertility Tetralogy, one of these named Shigekuni Honda identifies the reincarnated Kiyoaki.  Elmer Gantry joins this profession after retiring from football, and in Great Expectations one named Jaggers sends money to Pip.  For ten points, name this profession, which includes Bernard from Death of a Salesman and Atticus Finch.
+\end{block} }
+\only<2>{{\bf Kidney?}}
+
+\only<3-4>{
+\begin{block}{Out of Touch}
+On "The Critic", this man was replaced by a drunken animatronic bear from the Country Bear Jamboree but nobody seemed to notice.  This man was edited to appear in the film "Contact", which prompted an angry statement from Mike McCurry.  He was portrayed by Dennis Quaid in "The Special Relationship", who ate McDonald's every day to prepare for the role.  A fictionalized version of this man named Henry Burton, a charismatic Southern governor running for the Democratic nomination, is portrayed by John Travolta in "Primary Colors".  For ten points, name this American president who played the saxophone on an appearance on the Arsenio Hall Show.
+\end{block} }
+\only<4>{{\bf Samuel L. Jackson?}}
+
+\end{frame}
+
+
+\begin{frame}{Matching Entites Across Sentences}
+
+\begin{block}{\only<2->{Magic Flute}}
+
+    At its premiere, \alert<3>{the librettist of this opera} portrayed
+    \alert<4>{a character who asks for a glass of wine with his dying wish}. \alert<4>{That
+    character} in this opera is instructed to ring some bells to summon
+    his love. At its beginning, \alert<5>{a man} who claims to have killed a (*)
+    serpent has a padlock put on \alert<5>{his} mouth because of \alert<5>{his} lying. The
+    plot of this opera concerns a series of tests that \alert<5>{Tamino} must
+    undergo to rescue Tamina from Sorastro. For 10 points, name this
+    Wolfgang Mozart opera titled for \alert<6>{an enchanted woodwind instrument}.
+\end{block}
+
+
+
+\only<3-4>{{\bf Not all references are named (\alert<3>{Emanuel
+      Schikaneder}, \alert<4>{Papageno})}}
+\only<5>{Need to be able to match pronouns across sentences (or have
+  deep world knowledge)}
+\only<6>{Requires semantic knowledge}
+\end{frame}
+
 
 \fsi{qb/trick/revealed_accuracy}{}
 
@@ -722,6 +714,8 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 \only<17>{\gfxs{example_19}{.9}}
 \end{frame}
 
+\fsi{simtrans/interpreter-screenshot}{Same human-computer cooperation}
+
 \begin{frame}{Human-Computer Question Answering}
 
   \begin{itemize}
@@ -732,27 +726,27 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
     \item Knowledge and language comprehension needed to do well
     \item Simple approaches work well if you have the whole question
     \item Good competition for QA systems
-      \pause
-    \item Can get much harder
-     \begin{itemize}
-       \item Speech
-       \item Specialized knowledge
-       \item Adversarial authoring
-     \end{itemize}
+    %   \pause
+    % \item Can get much harder
+    %  \begin{itemize}
+    %    \item Speech
+    %    \item Specialized knowledge
+    %    \item Adversarial authoring
+    %  \end{itemize}
   \end{itemize}
 
 \end{frame}
 
 
-\begin{frame}{Stay tuned \dots}
+\begin{frame}{Future \dots}
 
   \begin{itemize}
-    \item Clearly dominating computer team
-    \item Playing against human team December 8 in Long Beach
+    \item Computers dominate on ``normal'' questions
+    \item Not so much on adversarial questions
     \item Infrastructure for future events / courses
       \begin{itemize}
         \item Build it break it fix it
-        \item HS / college competitions (DC area first)
+        \item \alert<2>{Tell your friends:} Competition (December 15, College Park)
       \end{itemize}
   \end{itemize}
 
@@ -766,7 +760,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 
 		\begin{itemize}
 			\item Code: \url{http://github.com/Pinafore/qb}
-                        \item Shared Task \url{hcqa.boydgraber.org}
+                        \item Shared Task \url{http://qanta.org}
 		\end{itemize}
 
 \end{frame}
@@ -877,6 +871,19 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
         \end{columns}
 }
 
+\begin{frame}[plain]
+
+        \begin{center}
+          \includegraphics[width=0.4\linewidth]{general_figures/twitter} \\
+\huge
+http://qanta.org \\
+http://boydgraber.org
+       \end{center}
+
+
+
+\end{frame}
+
 \begin{frame}{References}
 \bibliographystyle{style/acl}
 \tiny
@@ -884,6 +891,43 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 \end{frame}
 
 
+
+
+\begin{frame}{How can this fail?}
+
+  \only<1>{\gfxq{opponent_fail1}{.8}}
+  \only<2>{\gfxq{opponent_fail2}{.8}}
+  \only<3>{\gfxq{opponent_fail3}{.8}}
+  \only<4>{\gfxq{opponent_fail4}{.8}}
+  \only<5>{\gfxq{opponent_fail5}{.8}}
+  \only<6>{\gfxq{opponent_fail6}{.8}}
+  \only<7>{\gfxq{opponent_fail7}{.8}}
+
+\end{frame}
+
+\begin{frame}{Can we do better?}
+
+  \only<1>{\gfxq{dqn_overview2}{.8}}
+  \only<2>{\gfxq{dqn_overview3}{.8}}
+  \only<3>{\gfxq{dqn_overview4}{.8}}
+
+\end{frame}
+
+
+\begin{frame}{Comparing Models}
+
+  \begin{itemize}
+    \item Single-Player
+    \item Deep Q-Network (DQN): World=Opponent~\cite{mnih-15}
+      \begin{itemize}
+        \item Learn representation of state to estimate $Q$-function
+        \item Generalization of regression-based methods
+        \item Similar to our representation of content
+      \end{itemize}
+    \item Deep Reinforcement Opponent Network (DRON)
+  \end{itemize}
+
+\end{frame}
 
 
 \begin{frame}[plain]
@@ -1076,6 +1120,39 @@ Aggressiveness based on different right probability thresholds
   \end{itemize}
 
 \end{frame}
+
+\begin{frame}{Where we have problems}
+
+\only<1-2>{
+\begin{block}{Out of Date}
+Although he won the California primary in 2000, he distanced himself
+from fellow reform presidential candidate Pat Buchanan by comparing
+him to Attila the Hun. After being called a jackass, he prompted
+Lindsey Graham to destroy his phone by giving out his number during a
+speech. The slogan (*) Make America Great Again has been used by this
+politician, who claimed he didn't like people who were captured as a
+slight to John McCain and kicked off his 2016 presidential bid with
+some inflammatory remarks about Mexicans. For 10 points, name this
+Republican candidate and real estate mogul.
+\end{block} }
+\only<2>{{\bf Chris Christie?}}
+
+\only<3-4>{
+\begin{block}{Out of Touch}
+  This singer recently cancelled the Great Escape Tour, and, in one
+  song, she claims that she will be ``Eating crumpets with the sailors
+  / On acres without the neighbors.'' She collaborated with Jennifer
+  (*) Hudson on the song ``Trouble,'' which was issued in her album
+  update Reclassified. This artist of ``Change Your Life'' was
+  inspired by scenes from the movie Clueless to make the music video
+  for a song in which she collaborated with Charli XCX. For 10 points,
+  name this Australian rapper whose album The New Classic contained
+  ``Fancy.''
+\end{block} }
+\only<4>{{\bf Bruce Springsteen?}}
+
+\end{frame}
+
 
 
 \end{document}
