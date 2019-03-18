@@ -12,7 +12,15 @@
 \newif\ifjobtalk\jobtalktrue
 \newif\ifsupershortmlslda\supershortmlsldatrue
 
-\documentclass[compress]{beamer}
+\documentclass[xcolor=dvipsnames]{beamer}
+
+
+\usetheme[
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/shell,              % Logo for the fir\
+st page.
+          ]{UMD}
 
 %\usepackage{beamerthemesplit}
 \usepackage{xmpmulti}
@@ -34,16 +42,6 @@
 
 \usepackage{multirow}
 
-\usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
-          titleline=true,                    % Show a line below the frame title.
-          showdate=true,                     % show the date on the title page
-          alternativetitlepage=true,         % Use the fancy title page.
-          titlepagelogo=general_figures/culogo,              % Logo for the first page.
-          % Logo for the header on first page.
-          headerlogo=general_figures/boulder_cs,
-          ]{UCBoulder}
-
-\usecolortheme{ucdblack}
 
 %\useoutertheme{infolines}
 %\usetheme{Boadilla}
@@ -51,11 +49,11 @@
 % \usecolortheme{umd}
 \title{Framing, Relationships, and Betrayal}
 \author{Jordan Boyd-Graber}
-\date{28. February 2017}
+\date{\today}
 
 
 \institute[] % (optional, but mostly needed)
-{University of Colorado Boulder}
+{University of Maryland}
 
 
 \newcommand{\fsi}[2]{
