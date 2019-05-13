@@ -33,6 +33,24 @@ st page.
 \newcommand*{\tdiamond}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[diamond,fill=#1,scale=0.7] (X) {};}
 \newcommand*{\ttriangle}[1]{\tikz[anchor=base,baseline=-1.5pt] \node[regular polygon,regular polygon sides=3,fill=#1,scale=0.6] (X) {};}
 
+\newcommand{\schedule}[0]{
+\begin{frame}{Exhibition Schedule (Approximate)}
+
+  \begin{itemize}
+     \item[11:00] Heads Up, Let People Leave, Setup
+     \item[11:10] Presentation
+     \item[11:20] Faculty vs. Computer
+     \item[11:35] MAQT vs. Computer
+     \item[11:50] Questions
+     \item[12:00] Free for All: Take on the System!
+  \end{itemize}
+
+  Find out more at {\bf qanta.org}.  We're looking for sponsors for
+  prizes/events for human-computer question answering competitions at high school /
+  college level.
+
+\end{frame}
+}
 
 
 \newcommand{\fsi}[2]{
@@ -76,6 +94,9 @@ st page.
 {University of Maryland}
 
 \begin{document}
+
+
+\schedule{}
 
 \frame{
 \titlepage
@@ -357,22 +378,19 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \fsi{qb/hcqa}{Best Human Trivia Players {\bf Soundly} Defeated,
   December 2017 \\ (OUSIA)}
 
-
-
 \fsi{qb/seattle_crowd}{Question Answering is Not a Trivial Activity}
 \fsi{qb/chicago_crowd}{http://qanta.org}
 
 \fsi{qb/boring_dot_products}{Boring Dot Products}
 
-\fsi{general_figures/blackbox}{}
+\fsi{general_figures/blackbox}{What's Left?}
 
 
 \fsi{general_figures/kill_all_humans}{}
 \fsi{general_figures/tng_poker}{}
 \fsi{simtrans/centaur-chess}{Centaur Chess}
 
-
-\begin{frame}{Can we improve QA systems?}
+\begin{frame}{Can we improve QA systems and keep the fun going?}
 
 \begin{columns}
   \column{.6\linewidth}
@@ -391,19 +409,6 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \end{columns}
 \end{frame}
 
-\begin{frame}{What do we mean by ``adversarial''?}
-
-  \gfxq{trick/flow_chart_horizontal_label}{1.0}
-
-  \begin{itemize}
-    \item Round 1: Only IR interpretations
-    \item Round 2: IR and RNN (influence functions) interpretations
-      \pause
-    \item Another reason we need to have good explanations of QA
-  \end{itemize}
-
-\end{frame}
-
 \fsi{qb/trick/brahms_0}{\href{http://write.qanta.org}{http://write.qanta.org}}
 \fsi{qb/trick/brahms_1}{}
 \fsi{qb/trick/brahms_2}{}
@@ -411,29 +416,7 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \fsi{qb/trick/brahms_4}{}
 \fsi{qb/trick/brahms_5}{}
 
-
-
-
-\begin{frame}{Competition}
-
-  \gfxq{trick/pace}{.8}
-
-\begin{itemize}
-  \item December 15: Seven top human teams, fourteen computer teams
-  \item Top four teams from each ``division'' faced off against each
-    other
-    \pause
-  \item All computer teams lost to human teams
-    \pause
-  \item But two games were really close; strongest system was based on BERT
-  \item YouTube video series soon! \dots
-\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}{Simultaneous Interpretation is Hard!}
+\begin{frame}{But First\dots Not all Fun and Games: Simultaneous Interpretation}
 
   \begin{columns}
     \column{.5\linewidth}
@@ -449,8 +432,7 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
  \end{columns}
 \end{frame}
 
-\fsi{simtrans/interpreter-screenshot}{Same human-computer cooperation}
-
+\schedule{}
 
 \begin{frame}{Exhibition Match!}
 
@@ -460,27 +442,13 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
     \gfxq{final_jeopardy}{.8}
     \column{.5\linewidth}
     \gfxq{maqt}{.8}
-    \gfxq{maqt_naqt_d2}{.8}        
+    \gfxq{maqt_naqt_d2}{.8}
   \end{columns}
 
 \end{frame}
 
-\begin{frame}{Exhibition Schedule (Approximate)}
+\schedule{}
 
-  \begin{itemize}
-     \item[11:00] Brief Intro, Let People Leave, Setup
-     \item[11:10] Presentation
-     \item[11:20] Faculty vs. Computer
-     \item[11:35] MAQT vs. Computer
-     \item[11:50] Questions
-     \item[12:00] Free for all!
-  \end{itemize}
-
-  Find out more at {\bf qanta.org}.  Looking for sponsors for
-  human-computer question answering competitions at high school /
-  college level.
-
-\end{frame}
 
 % Hard but not really a good question: F3 Q24
 
