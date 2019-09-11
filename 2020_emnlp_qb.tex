@@ -78,10 +78,7 @@ st page.
 
 \begin{document}
 
-\frame{
-\titlepage
-\tiny
-}
+% \frame{\titlepage}
 
 
 
@@ -112,22 +109,35 @@ st page.
 
 \begin{frame}{Sabotaged by IR}
 
-  \begin{itemize}
-  \item when did the states secede during the civil war: Border states (American Civil War)
-  \item who wears number 2 for the dallas cowboys: Jeff Heath (American football)
-  \item how many countries participated for the first time in the 2014 olympic winter games in sochi: 2014 Winter Paralympics
-  \item game of thrones season 7 number of episoded: List of Teen Wolf episodes
-  \end{itemize}
+  \rowcolors{2}{gray!25}{white}
+  \begin{small}
+  \begin{tabular}{p{7cm}p{3cm}}
+    \toprule
+    Question & Page \\
+    \hline
+ when did the states secede during the civil war &  Border states (American Civil War) \\
+ who wears number 2 for the dallas cowboys &  Jeff Heath (American football) \\
+ how many countries participated for the first time in the 2014 olympic winter games in sochi & 2014 Winter Paralympics \\
+ game of thrones season 7 number of episoded &  List of Teen Wolf episodes \\
+ \bottomrule
+  \end{tabular}
+  \end{small}
 
 \end{frame}
 
 \begin{frame}{Good for Search, Bad for QA}
 
   Title of page is answer, annotators didn't find span:
-  \begin{itemize}
-  \item who plays the goblin king in the hobbit
-  \item who does the voice of fart in rick and morty
-  \end{itemize}
+  \rowcolors{2}{gray!25}{white}
+  \begin{tabular}{p{7cm}p{3cm}}
+    \toprule
+    Question & Page \\
+    \hline
+  who plays the goblin king in the hobbit &  Barry Humphries  \\
+  who does the voice of fart in rick and morty & Jemaine Clement   \\
+ \bottomrule
+  \end{tabular}
+  
 
 \end{frame}
 
@@ -256,11 +266,12 @@ st page.
     \alert<5>{where does new york drinking water come from} & the New Croton Reservoir  \\
     \bottomrule
   \end{tabular}
+  \end{small}
   
   \only<1>{Song is ``One Bad Apple {\bf doesn't} spoil the bunch''}
   \only<2>{First attested use is \textit{Pliny the Elder 's Naturalis Historia}, but perhaps not origin\dots}
   \only<3>{State capitalism, public ownership, etc. all mentioned}
-  \only<4>{Why a single day for this question (most other ``when'' questions are year)}
+  \only<4>{Why a single day (most other ``when'' questions are year)}
   \only<5>{New Croton Reservoir in Westchester and Putnam counties . The Catskill Aqueduct , completed in 1916 , is significantly larger than New Croton and brings water from two reservoirs in the eastern Catskill Mountains . The Delaware Aqueduct , completed in 1945 , taps tributaries of the Delaware River in the western Catskill Mountains}
 \end{frame}
 
