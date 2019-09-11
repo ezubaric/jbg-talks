@@ -85,7 +85,7 @@ st page.
 
 
 
-\begin{frame}{Questions Should be Unambiguous}
+\begin{frame}{Ambiguous Questions}
   \rowcolors{2}{gray!25}{white}
   \begin{small}
   \begin{tabular}{p{7cm}p{3cm}}
@@ -95,7 +95,7 @@ st page.
     \alert<1>{when {\bf do} the walking dead comics come out} & 2003 \\
     \alert<2>{when was the last time michigan won the championship} & 1989 \\
     \alert<3>{what year did the us hockey team won the olympics} & 1960 and 1980 \\
-    \alert<4>{who won the national championship in volleyball 2017} & Ohio State \\
+    \alert<4>{who won the national championship in volleyball} & Dalveer Bhandari \\
     \alert<5>{where does puerto rico's power come from} & Puerto Rico Electric Power Authority \\
     \bottomrule
   \end{tabular}
@@ -103,14 +103,35 @@ st page.
   \begin{block}{Assumptions\dots}
   \only<1>{Is asker is talking about first release?}
   \only<2>{NCAA Division I Men's Football}
-  \only<3-4>{Men's competition}
+  \only<3>{Men's competition}
+  \only<4>{Indian Supreme Court}
   \only<5>{Electric power}
   \only<6>{Bias for Men's sports, especially football.  Ambiguity is arbitrarily resolved by search engine result.}
   \end{block}
 \end{frame}
 
+\begin{frame}{Sabotaged by IR}
 
-\begin{frame}{Questions Should Not Depend on Who / When}
+  \begin{itemize}
+  \item when did the states secede during the civil war: Border states (American Civil War)
+  \item who wears number 2 for the dallas cowboys: Jeff Heath (American football)
+  \item how many countries participated for the first time in the 2014 olympic winter games in sochi: 2014 Winter Paralympics
+  \item game of thrones season 7 number of episoded: List of Teen Wolf episodes
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Good for Search, Bad for QA}
+
+  Title of page is answer, annotators didn't find span:
+  \begin{itemize}
+  \item who plays the goblin king in the hobbit
+  \item who does the voice of fart in rick and morty
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Questions Depends on Who / When}
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{p{8cm}p{2cm}}
     \toprule
@@ -119,6 +140,7 @@ st page.
     can i buy wine in kentucky on sunday & --- \\
     where am i on the steelers waiting list & --- \\
     when is the real housewives on & --- \\
+    who has majority in the house and senate & --- \\
     \bottomrule
   \end{tabular}  
 
@@ -133,7 +155,7 @@ st page.
 \end{frame}
 
 
-\begin{frame}{Question / Answer Pairs Should be Correct}
+\begin{frame}{Incorrect}
 
   \begin{block}{what is the formula for chromium(ii) sulfate}
     Chromium(II) sulfate refers to inorganic compounds with the chemical formula CrSO$_4 \cdot n$ H$_2$O.
@@ -143,7 +165,7 @@ st page.
 
 \end{frame}
 
-\begin{frame}{Question / Answer Pairs Should be Correct}
+\begin{frame}{Incorrect}
 
   \begin{block}{when does the turn of the screw take place?}
     In October {\bf 1898} the novella appeared with the short story
@@ -182,10 +204,77 @@ st page.
   \begin{block}{
       \only<1>{when were the winnie the pooh books written}
       \only<2>{what are the names of the hunger games}
-      \only<3>{}
+      \only<3>{who was fighting in the civil war in england and about what}
     }
 
+    \only<1>{1926 ) , and this was followed by The House at Pooh Corner ( 1928 ) . Milne also included a poem about the bear in the children 's verse book When We Were Very Young ( 1924 ) and many more in Now We Are Six ( 1927}
+    
+    \only<2>{The Hunger Games ( 2012 ) set records for the opening day and the biggest opening weekend for a non-sequel film . The Hunger Games : Catching Fire ( 2013 ) set the record for biggest opening weekend in the month of November . The Hunger Games : Mockingjay -- Part 1 ( 2014 ) had the largest opening day and weekend of 2014 . The films , including The Hunger Games : Mockingjay -- Part 2}
+
+    \only<3>{Parliamentarians ( `` Roundheads '' ) and Royalists ( `` Cavaliers '' ) over , principally , the manner of England 's government}
 
   \end{block}
+
+\end{frame}
+
+
+\begin{frame}{Compound Questions}
+
+  In contrast to previous example, usually unanswerable:
+
+  \begin{itemize}
+  \item who fought in the war of 1812 and who won
+  \item who is at war with syria and why
+  \item who founded the new york colony and why
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Homework}
+
+  \begin{itemize}
+  \item which term is used to identify having official power to act
+  \item paleomagnetism is a dating method based on changes in the earth's polarity as demonstrated by
+  \item explain the most dangerous aspect of copy editing
+  \item the primary reason for the creation of federal whistleblower statutes was to
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Dealing with Ambiguity / Specificity / Errors}
+
+  \rowcolors{2}{gray!25}{white}
+  \begin{small}
+  \begin{tabular}{p{7cm}p{3cm}}
+    \toprule
+    Question & Gold Answer \\
+    \hline
+    \alert<1>{who sang one bad apple spoils the bunch} & --- \\
+    \alert<2>{where did the expression with a grain of salt come from} & --- \\
+    \alert<3>{what type of economic system was utilized in the soviet union} &  communism \\
+    \alert<4>{when was the movie the wizard of oz made} & August 25 , 1939 \\
+    \alert<5>{where does new york drinking water come from} & the New Croton Reservoir  \\
+    \bottomrule
+  \end{tabular}
+  
+  \only<1>{Song is ``One Bad Apple {\bf doesn't} spoil the bunch''}
+  \only<2>{First attested use is \textit{Pliny the Elder 's Naturalis Historia}, but perhaps not origin\dots}
+  \only<3>{State capitalism, public ownership, etc. all mentioned}
+  \only<4>{Why a single day for this question (most other ``when'' questions are year)}
+  \only<5>{New Croton Reservoir in Westchester and Putnam counties . The Catskill Aqueduct , completed in 1916 , is significantly larger than New Croton and brings water from two reservoirs in the eastern Catskill Mountains . The Delaware Aqueduct , completed in 1945 , taps tributaries of the Delaware River in the western Catskill Mountains}
+\end{frame}
+
+\begin{frame}{Not a Question}
+
+  \begin{itemize}
+  \item defeat of the spanish armada by the british
+  \item surface area in many kinds of organs is important because the amount of surface determines
+  \item just to keep you satisfied marvin gaye lyrics
+  \item uncle kracker it's good to be me
+  \item fear the walking dead season 1 episode 4 explained
+  \end{itemize}
+
+\end{frame}
+
 
 \end{document}
