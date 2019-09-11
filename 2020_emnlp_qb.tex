@@ -1,0 +1,170 @@
+\documentclass[xcolor=table]{beamer}
+
+
+\usetheme[
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/shell,              % Logo for the fir\
+st page.
+          ]{UMD}
+
+%\usetheme{Rochester}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+
+\usepackage{color, colortbl}
+\usepackage{booktabs}
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{tikz}
+\usepackage{subfigure}
+\usepackage{colortbl}
+
+\usepackage{multirow}
+
+\usetikzlibrary{shapes.geometric}
+\definecolor{xred}{HTML}{DB4437}
+\definecolor{xyellow}{HTML}{F4B400}
+\definecolor{xgreen}{HTML}{0F9D58}
+
+\newcommand*{\tcircle}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[circle,fill=#1,scale=0.9] (X) {};}
+\newcommand*{\tsquare}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[fill=#1,scale=1.2] (X) {};}
+\newcommand*{\tdiamond}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[diamond,fill=#1,scale=0.7] (X) {};}
+\newcommand*{\ttriangle}[1]{\tikz[anchor=base,baseline=-1.5pt] \node[regular polygon,regular polygon sides=3,fill=#1,scale=0.6] (X) {};}
+
+
+
+\newcommand{\fsi}[2]{
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{#1}}
+\begin{center}
+#2
+\end{center}
+\end{frame}
+}
+
+\newcommand{\abr}[1]{\textsc{#1} }
+\newcommand{\pos}[1]{{\texttt{#1}}}
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+\newcommand{\g}{\, | \,}
+\newcommand{\citename}[1]{#1 }
+
+\newcommand{\gfxs}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{simtrans/#1}
+\end{center}
+}
+
+\newcommand{\gfxq}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{qb/#1}
+\end{center}
+}
+
+
+
+%\usecolortheme{ucdblack}
+\title[HCQA]{Cooperative and Competitive Machine Learning through Question Answering}
+\author{ Jordan Boyd-Graber et al.}
+\date{2018}
+
+\institute[Maryland] % (optional, but mostly needed)
+{University of Maryland}
+
+\begin{document}
+
+\frame{
+\titlepage
+\tiny
+}
+
+
+
+\begin{frame}{Questions Should be Unambiguous}
+  \rowcolors{2}{gray!25}{white}
+  \begin{small}
+  \begin{tabular}{p{7cm}p{3cm}}
+    \toprule
+    Question & Gold Answer \\
+    \hline
+    \alert<1>{when {\bf do} the walking dead comics come out} & 2003 \\
+    \alert<2>{when was the last time michigan won the championship} & 1989 \\
+    \alert<3>{what year did the us hockey team won the olympics} & 1960 and 1980 \\
+    \alert<4>{who won the national championship in volleyball 2017} & Ohio State \\
+    \alert<5>{where does puerto rico's power come from} & Puerto Rico Electric Power Authority \\
+    \bottomrule
+  \end{tabular}
+  \end{small}
+  \begin{block}{Assumptions\dots}
+  \only<1>{Is asker is talking about first release?}
+  \only<2>{NCAA Division I Men's Football}
+  \only<3-4>{Men's competition}
+  \only<5>{Electric power}
+  \only<6>{Bias for Men's sports, especially football.  Ambiguity is arbitrarily resolved by search engine result.}
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{Questions Should Not Depend on Who / When}
+  \rowcolors{2}{gray!25}{white}
+  \begin{tabular}{p{8cm}p{2cm}}
+    \toprule
+    Question & Gold Answer \\
+    \hline
+    can i buy wine in kentucky on sunday & --- \\
+    where am i on the steelers waiting list & --- \\
+    when is the real housewives on & --- \\
+    \bottomrule
+  \end{tabular}  
+
+  \pause
+
+  \begin{block}{Answerable Questions\dots}
+  But depend on which county of Kentucky you're in,
+  when you paid for your season pass, and the local network
+  syndicating Real Housewives.
+  \end{block}
+  
+\end{frame}
+
+
+\begin{frame}{Question / Answer Pairs Should be Correct}
+
+  \begin{block}{when does the turn of the screw take place?}
+    In October {\bf 1898} the novella appeared with the short story
+    "Covering End" in a volume titled The Two Magics, published by
+    Macmillan in New York City and by Heinemann in London
+  \end{block}
+
+  \pause On \alert<2>{Christmas Eve}, an unnamed narrator listens to
+  Douglas, a friend, read a manuscript written by a former
+  \alert<3>{governess whom Douglas claims to have known and who is now
+    dead}. The manuscript tells the story of how the young governess
+  is hired by a man who has become responsible for his young nephew
+  and niece after the deaths of their parents.
+
+\end{frame}
+
+\begin{frame}{Tricky Highlighting}
+ 
+  \rowcolors{2}{gray!25}{white}
+  \begin{tabular}{p{8cm}p{2cm}}
+    \toprule
+    Question & Gold Answers \\
+    \hline
+    what is the name of the skin between your nostrils & septum, 
+    the nasal septum \\
+    how many times has lake placid hosted the winter olympics & twice \\
+    is fortnite and fortnite battle royale the same & yes, no \\
+    
+    \bottomrule
+  \end{tabular}
+
+\end{frame}
+
+\end{document}
