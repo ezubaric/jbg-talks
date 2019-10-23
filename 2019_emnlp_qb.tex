@@ -76,11 +76,92 @@ st page.
 \institute[Maryland] % (optional, but mostly needed)
 {University of Maryland}
 
+
+\newcommand{\gfx}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{qb/#1}
+\end{center}
+}
+
+
 \begin{document}
 
 % \frame{\titlepage}
 
+\frame{
+  \titlepage
+}
 
+\fsi{qb/asms}{Arkansas School for Mathematics and Sciences}
+
+\fsi{qb/caltech}{California Institute of Technology}
+
+\fsi{qb/princeton}{Princeton University}
+
+\fsi{qb/pub_quiz}{Princeton Pub Quiz}
+
+\fsi{qb/naqt_jbg_1}{Affiliations, Courtesy of National Academic Quiz Tournaments}
+
+%\fsi{qb/naqt_jbg_2}{Statistics}
+
+\fsi{qb/boulder}{University of Colorado Boulder}
+
+\fsi{qb/maqt}{University of Maryland}
+
+\gfx{final_jeopardy}{1.0}
+
+\fsi{qb/mturk_qa}{Get QA Pairs}
+
+\fsi{qb/mrqa_tweet}{Recruiting Participants}
+
+\fsi{qb/ai2_leaderboard}{Declaring a Winner}
+
+\fsi{qb/byu_college_bowl}{This isn't new\dots}
+
+\fsi{qb/hsnct}{In fact, it has become routine}
+
+\begin{frame}{Outline}
+
+  \begin{block}{Supposition}
+    Much of computer question answering resembles competitive human question answering.
+  \end{block}
+
+  \only<2>{\gfx{changemymind}{.65}}
+
+  \only<3->{
+    \begin{itemize}
+    \item Dataset
+      \begin{itemize}
+        \item Have fun (or else)
+        \item Be fair
+        \item Discriminate skill
+      \end{itemize}
+    \item Questions
+      \begin{itemize}
+      \item Precise
+      \item Avoid assumptions
+      \end{itemize}
+    \item The virtues of quiz bowl
+    \end{itemize}
+  }
+  
+\end{frame}
+
+\begin{frame}{Metrics}
+
+  \begin{itemize}
+  \item \abr{qa} tasks have become more complicated
+    \begin{itemize}
+    \item \squad{} 2.0: Abstaining worth the same as correct answer
+    \end{itemize}
+  \item But have embraced a single metric for leaderboard/papers
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Question Answering}
+
+\end{frame}
 
 \begin{frame}{Ambiguous Questions}
   \rowcolors{2}{gray!25}{white}
@@ -274,6 +355,8 @@ st page.
   \only<4>{Why a single day (most other ``when'' questions are year)}
   \only<5>{New Croton Reservoir in Westchester and Putnam counties . The Catskill Aqueduct , completed in 1916 , is significantly larger than New Croton and brings water from two reservoirs in the eastern Catskill Mountains . The Delaware Aqueduct , completed in 1945 , taps tributaries of the Delaware River in the western Catskill Mountains}
 \end{frame}
+
+\fsi{qb/voorhees}{I'm not the first\dots}
 
 \begin{frame}{Not a Question}
 
