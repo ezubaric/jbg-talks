@@ -21,6 +21,7 @@ st page.
 \usepackage{tikz}
 \usepackage{subfigure}
 \usepackage{colortbl}
+\usepackage[normalem]{ulem}
 
 \usepackage{multirow}
 
@@ -537,15 +538,15 @@ A painting by this artist  \tsquare{xred} presents a tree as a cupboard with two
 & &  \textbf{Trusting}&  \textbf{Suspicious} \\
 \toprule
 \multirow{2}{*}{ \rotatebox[origin=r]{90}{\textbf{Betrayer Veracity}}} & \textbf{Honest}
-& \textbf{Straightforward}
+& \alert<2>{\textbf{Straightforward}}
 \only<2->{Salut! Just checking in, letting you know the embassy is open, and if you decide to move in a direction I might be able to get involved in, we can probably come to a reasonable arrangement on cooperation.  Bonne journee!}
-& \textbf{Cassandra}
+& \alert<5>{\textbf{Cassandra}}
 \only<5->{I don't care if we target T first or A first. I'll let you decide. But I want to work as your partner. \dots I literally will not message anyone else until you and I have a plan. I want it to be clear to you that you're the ally I want.}
 \\
 & \textbf{Deception}
-& \textbf{Deceived}
+& \alert<4>{\textbf{Deceived}}
 \only<4->{You, sir, are a terrific ally. This was more than you needed to do, but makes me feel like this is really a long term thing! Thank you.}
-&  \textbf{Caught}
+& \alert<3>{\textbf{Caught}}
 \only<3->{So, is it worth us having a discussion this turn? I sincerely wanted to work something out with you last turn, but I took silence to be an ominous sign.}
 \\
 
@@ -672,25 +673,8 @@ Okay, I’m so sorry. I got distracted again. Will you allow me a build this tur
 
   \column{.5\linewidth}
 
-   \begin{block}{Computational Political Science}
-     \centering
-     \includegraphics[width=0.8\linewidth]{teaparty/figures/framing} \\
-     \cite{nguyen-13b,nguyen-15}
-   \end{block}
 
-
-
-    \begin{block}{Computer Vision}
-    \centering
-        \includegraphics[width=0.5\linewidth]{general_figures/comics} \\
-        \cite{Hu-12b,iyyer-17}
-    \end{block}
-
-
-  \column{.5\linewidth}
-
-
-    \begin{block}{Buy my book!}
+    \begin{block}{\sout{Buy} Read my book!}
       \begin{center}
         \includegraphics[width=0.3\linewidth]{general_figures/applications_of_tm}
       \cite{boyd-graber-17}
@@ -705,6 +689,23 @@ Okay, I’m so sorry. I got distracted again. Will you allow me a build this tur
        \cite{Smith-17,Poursabzi-16}
     \end{block}
 
+
+
+  \column{.5\linewidth}
+
+   \begin{block}{Computational Political Science}
+     \centering
+     \includegraphics[width=0.8\linewidth]{teaparty/figures/framing} \\
+     \cite{nguyen-13b,nguyen-15}
+   \end{block}
+
+
+
+    \begin{block}{Computer Vision}
+    \centering
+        \includegraphics[width=0.5\linewidth]{general_figures/comics} \\
+        \cite{Hu-12b,iyyer-17}
+    \end{block}
 
 
 
