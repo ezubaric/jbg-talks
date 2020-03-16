@@ -277,184 +277,7 @@ Yuening Hu, Jordan Boyd-Graber, Brianna Satinoff, and Alison Smith. Interactive 
 
 \input{interactive_topic_models/nyt_soviet_russia}
 
-%\input{interactive_topic_models/nih_topics}
-
-
-\begin{frame}{The Problem}
-
-  \begin{center}
-    \includegraphics[width=.7\linewidth]{infvoc/batch} \\
-    Batch algorithms can't scale
-  \end{center}
-
-\end{frame}
-
-\begin{frame}{One Solution: Parallelization}
-  \begin{center}
-    \includegraphics[width=.7\linewidth]{infvoc/parallel} \\
-    Throw more computers at the problem \\
-    For topic models, \textsc{Mr Lda}~\cite{zhai-12}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Another Solution: Streaming Algorithms}
-  \begin{center}
-    \only<1>{ \includegraphics[width=.8\linewidth]{infvoc/streaming-0}}
-    \only<2>{ \includegraphics[width=.8\linewidth]{infvoc/streaming-1}}
-    \only<3>{ \includegraphics[width=.8\linewidth]{infvoc/streaming-2}}
-    \only<4>{ \includegraphics[width=.8\linewidth]{infvoc/streaming-3}}
-    \only<5>{ \includegraphics[width=.8\linewidth]{infvoc/streaming-4}}
-    \only<6>{ \includegraphics[width=.8\linewidth]{infvoc/streaming-5}}
-    \only<7>{ \includegraphics[width=.8\linewidth]{infvoc/streaming-6}}
-    \only<8>{ \includegraphics[width=.8\linewidth]{infvoc/streaming-7}}
-    \\
-    Handle the data as they come
-  \end{center}
-\end{frame}
-
-
-\begin{frame}{Online Algorithms and Fixed Vocabularies}
-
-\begin{block}{}
-\begin{itemize}
-\item proper nouns, e.g., ``sch\"{a}uble''
-\item words being invented, e.g., ``crowdsourcing''
-\item words cross languages, e.g., ``Gangnam''
-\item words cross topics, e.g., ``vuvuzelas'' (\textit{music}
-  $\rightarrow$ \textit{sports}), etc
-\end{itemize}
-\end{block}
-\pause
-\begin{columns}
-
-\column{.5\linewidth}
-
-\centering
-\includegraphics[width=.5\linewidth]{infvoc/psy}
-
-
-\column{.5\linewidth}
-
-\begin{itemize}
-  \item Hard-to-detect errors: \{``style'', ``korea'',
-    ``download'', ``youtube''\}
-\pause
-      \item Our approach: an infinite vocabulary
-\end{itemize}
-
-
-\end{columns}
-
-\end{frame}
-
-% Nonparametric models
-
-\begin{frame}{The Infinite Dirichlet Process}
-  \only<1>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-1} }
-  \only<2>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-2} }
-  \only<3>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-3} }
-  \only<4>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-5} }
-  \only<5>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-6} }
-  \only<6>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-7} }
-  \only<7>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-8} }
-  \only<8>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-9} }
-  \only<9>{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-10} }
-  \only<10->{ \includegraphics[width=.95\linewidth]{infvoc/dp_monkey-11} \\}
-  \only<11->{Example of Bayesian nonparametrics \cite{ferguson-73,sethuraman-94}}
-\end{frame}
-
-% Our model
-
-\begin{frame}{Infinite Vocabulary Topic Model}
-
-  \begin{columns}
-     \column{.44\linewidth}
-     \begin{itemize}
-       \item Each topic $\theta_k \sim \mbox{DP}(\alpha, G_0)$
-       \item Infinite collection of atoms and weights
-     \begin{itemize}
-       \item For each word, ``stick breaks'' \alert<2>{$b_{k, w} \sim \mbox{Beta}(1,\alpha)$}
-       \item Each atom gets weight \alert<3>{$\beta_{k, w} = \prod_{j=1}^{w} (1 - b_j)$}
-       \item Atom identity drawn from base distribution $\rho_k \sim G_0$
-     \end{itemize}
-     \end{itemize}
-     \column{.55\linewidth}
-       \includegraphics[width=1.0\linewidth]{infvoc/dp_monkey-topics}
-  \end{columns}
-
-\end{frame}
-
-% Comics
-
-\begin{frame}{Inference}
-
-We can't optimize the joint likelihood
-\begin{align}
-& \textstyle p( \boldsymbol{W}, \boldsymbol{\rho}, \boldsymbol{\beta},
-\boldsymbol{\theta}, \boldsymbol{z} ) = \prod_{k=1}^K
-\left[ \prod_{t=1}^{\infty} p( \rho_{kt} | G_0 ) \cdot p( \beta_{kt}
-| \alpha^{\beta} ) \right] \notag \\
-& \textstyle \left[ \prod_{d=1}^{D} p( \boldsymbol{\theta}_d | \alpha^{\theta} )
-\prod_{n=1}^{N_d} p( z_{dn} | \boldsymbol{\theta}_d ) p( \omega_{dn} |
-z_{dn}, \boldsymbol{\beta}_{z_{dn}} ) \right] . \notag
-\end{align}
-\pause
-so we optimize a lower bound of the objective based on a variational distribution $q$,
-\begin{align}
-\textstyle \log p(\boldsymbol{W}) \geq {\e{q(\boldsymbol{Z})}{\log p(\boldsymbol{W},\boldsymbol{Z})} - \e{q(\boldsymbol{Z})}{q}} = \elbo,
-\label{eq:elbo-vague}
-\end{align}
-which we optimize $\elbo(\boldsymbol{Z})$ using gradient steps.
-\end{frame}
-
-
-
-\begin{frame}{Incorporating New Words}
-%\begin{center}
-%\begin{figure}
-  \only<1>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_1}}
-  \only<2>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_2}}
-  \only<3>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_3}}
-  \only<4>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_4}}
-  \only<5>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_5}}
-  \only<6>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_6}}
-  \only<7>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_7}}
-  \only<8>{\includegraphics[width=\linewidth]{infvoc/new_words_highlight_8}}
-%\end{figure}
-%\end{center}
-\begin{center}
-\vspace{-5mm}
-An example topic from \textit{20 newsgroups} under our model.
-Numbers preceeding words are ranks in topic.
-\end{center}
-
-\end{frame}
-
-
-\begin{frame}{Do the topics make sense?}
-
-\centering
-       \only<1>{\includegraphics[width=1.0\linewidth]{infvoc/coherence_0}}
-       \only<2>{\includegraphics[width=1.0\linewidth]{infvoc/coherence_1}}
-       \only<3>{\includegraphics[width=1.0\linewidth]{infvoc/coherence_2}}
-       \only<4>{\includegraphics[width=1.0\linewidth]{infvoc/coherence_3}}
-
-\begin{columns}
-\column{.5\linewidth}
-\begin{itemize}
-  \item Finite topic models
-  \item ``Dynamic'' topic models
-\end{itemize}
-
-\column{.5\linewidth}
-\begin{itemize}
-  \item Hashed vocabulary
-  \item Other inference techniques
-\end{itemize}
-\end{columns}
-
-
-\end{frame}
+\input{interactive_topic_models/nih_topics}
 
 
 \frame{
@@ -463,314 +286,290 @@ Numbers preceeding words are ranks in topic.
 
 \column{.5\linewidth}
 
-\begin{block}{Online Adaptor Grammars with Hybrid Inference}
-Ke Zhai, Jordan Boyd-Graber, and Shay B. Cohen.
-Transactions of the Association for Computational Linguistics, 2014.
-\end{block}
+\includegraphics[width=.8\linewidth]{general_figures/forough}
 
 \column{.5\linewidth}
 
-\includegraphics[width=.8\linewidth]{general_figures/ke}
+\begin{block}{ALTO: Active Learning with Topic Overviews for Speeding Label Induction and Document Labeling}
+Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi.  Association for Computational Linguistics, 2016.
+\end{block}
 
 \end{columns}
 
 }
 
-\begin{frame}{Unsupervised Text Analysis}
+\fsi{interactive_topic_models/messy-desk}{Many Documents}
 
-  \begin{columns}
-    \column{.3\linewidth}
-      \gfxag{chinese}{.9}
-    \column{.3\linewidth}
-      \gfxag{white_house}{.9}
-    \column{.3\linewidth}
-       \begin{center}
-         \includegraphics[width=.9\linewidth]{topic_models/nyt_topics}
-       \end{center}
-  \end{columns}
+\fsi{interactive_topic_models/file-cabinet}{Sort into Categories}
 
+\begin{frame}{Evaluation}
+
+  \begin{itemize}
+    \item User study
+    \item 40 minutes
+    \item Sort documents into categories
+    \item What information / interface \alert<2>{helps best}
+      \pause
+      \pause
+      \begin{itemize}
+        \item Train a classifier on human examples
+          \only<4->{\alert<4>{(don't tell them how many labels)}}
+        \item Compare classifier labels to expert judgements
+          \only<5->{\alert<5>{(purity)}}
+\only<5>{
+\begin{equation}
+\mbox{purity}(\mathbf{U},\mathbf{G}) = \frac{1}{N}\sum\limits_{l} \max\limits_{j}|U_l \cap G_j|,
+\end{equation}
+}
+      \end{itemize}
+  \end{itemize}
 
 \end{frame}
 
+\begin{frame}{Which is more Useful?}
 
-\begin{frame}{PCFGs}
-
-         \only<1>{\gfxag{pcfg_00}{.7}}
-         \only<2>{\gfxag{pcfg_01}{.7}}
-         \only<3>{\gfxag{pcfg_02}{.7}}
-         \only<4>{\gfxag{pcfg_03}{.7}}
-         \only<5>{\gfxag{pcfg_04}{.7}}
-         \only<6>{\gfxag{pcfg_05}{.7}}
-
-\end{frame}
-
-
-\begin{frame}{Adaptor Grammars~\cite{johnson-06}}
-
-  \begin{columns}
-    \column{.2\linewidth}
-       \begin{block}{PCFG}
-         \gfxag{pcfg_05}{.9}
-       \end{block}
-    \column{.75\linewidth}
-        \begin{block}{Adaptor Grammars}
-          \vspace{-.9cm}
-         \only<1>{\gfxag{ag_00}{.8}}
-         \only<2>{\gfxag{ag_01}{.8}}
-         \only<3>{\gfxag{ag_02}{.8}}
-         \only<4>{\gfxag{ag_03}{.8}}
-         \only<5>{\gfxag{ag_04}{.8}}
-         \only<6>{\gfxag{ag_05}{.8}}
-         \only<7>{\gfxag{ag_06}{.8}}
-         \only<8>{\gfxag{ag_07}{1}}
-         \only<9>{\gfxag{ag_08}{1}}
-         \only<10>{\gfxag{ag_09}{1}}
-         \only<11>{\gfxag{ag_10}{1}}
-         \only<12>{\gfxag{ag_11}{1}}
-         \only<13>{\gfxag{ag_12}{1}}
-                   \vspace{-.9cm}
-      \end{block}
-      \end{columns}
-\end{frame}
-
-
-\begin{frame}{Why Adaptor Grammars?}
+\only<1>{
   \begin{center}
-      Adaptor grammars $\equiv$ flexible ways of expressing
-      probabilistic models
-    \vspace{2mm}
-
-    \pause
-
-    % 4 8 12
-    % 2 6 10
-    % 3 7 11
-    % 1 5 9
-
-    \resizebox{.95\linewidth}{!}{
-      \begin{tabular}{c | c | c | c}
-        \textsc{PCFG}
-        &
-        \uncover<4->{\alert<4>{
-        \begin{tabular}{l}
-          Word $\mapsto$ Stem Suffix\\
-          Word $\mapsto$ Stem\\
-          \underline{Stem} $\mapsto$ Chars\\
-          \underline{Suffix} $\mapsto$ Chars\\
-          Chars $\mapsto$ Char Chars\\
-          Chars $\mapsto$ Char\\
-          Char $\mapsto$ ``a''\\
-          $\ldots$\\
-          Char $\mapsto$ ``z''\\
-        \end{tabular}
-        }}
-        &
-        \uncover<8->{\alert<8>{
-        \begin{tabular}{l}
-          Sent $\mapsto$ Doc$^\prime_j$\\
-          Doc$^\prime_j$ $\mapsto$ $\#j$\\
-          Doc$^\prime_j$ $\mapsto$ Doc$^\prime_j$ Doc$_j$\\
-          Doc$_j$ $\mapsto$ Topic$_i$\\
-          \underline{Topic}$_i$ $\mapsto$ Word\\
-          Word $\mapsto$ ``hello''\\
-          \ldots\\
-          Word $\mapsto$ ``world''\\
-        \end{tabular}
-        }}
-        &
-        \uncover<12->{\alert<12>{
-        \begin{tabular}{l}
-          Sent $\mapsto$ Words\\
-          Words $\mapsto$ Word Words\\
-          Words $\mapsto$ Word\\
-          \underline{Word} $\mapsto$ Chars\\
-          Chars $\mapsto$ Char Chars\\
-          Chars $\mapsto$ Char\\
-          Char $\mapsto$ $a$\\
-          \ldots\\
-          Char $\mapsto$ $z$\\
-        \end{tabular}
-      }}
-        \\
-        \hline
-        \multirow{3}{*}{input}
-        &
-        \only<2->{\alert<2>{
-        \multirow{3}{*}{$w$ $a$ $l$ $k$ $e$ $d$}
-        }}
-        &
-        \only<6->{\alert<6>{
-        $\#2$ ``twitter'' ``shares''
-        }}
-        &
-        \only<10->{\alert<10>{
-        \multirow{3}{*}{$h$ $o$ $w$ $a$ $r$ $e$ $y$ $o$ $u$}
-        }}
-        \\
-        &
-        &
-        \only<6->{\alert<6>{``ipo'' ``make'' ``smooth''}}
-        &
-        \\
-        &
-        &
-        \only<6->{\alert<6>{``market'' ``debut'' \ldots}}
-        &
-        \\
-        \hline
-        output
-        &
-        \uncover<3->{\alert<3>{
-        \begin{tabular}{l}
-          \Tree [.Word \qroof{$w$ $a$ $l$ $k$}.Stem \qroof{$e$
-            $d$}.Suffix ]
-        \end{tabular}
-        }}
-        &
-        \uncover<7->{\alert<7>{
-        \begin{tabular}{l}
-          \Tree [.Doc$_2$ $\#2$ [ [ ``twitter'' ].Topic$_3$ $\ldots$
-          ].Doc$_2$ ]
-        \end{tabular}
-        }}
-        &
-        \uncover<11->{\alert<11>{
-        \begin{tabular}{l}
-          \Tree [.Words \qroof{ $h$ $o$ $w$ }.Word [.Words
-          \qroof{ $a$ $r$ $e$ }.Word [.Words $\ldots$ ] ] ]
-        \end{tabular}
-        }}
-        \\
-        \hline
-        model
-        &
-        \uncover<1->{\alert<1>{
-        Stemmer
-        }}
-        &
-        \uncover<5->{\alert<5>{
-        Topic Models
-        }}
-        &
-        \uncover<9->{\alert<9>{
-        Word Segmention
-        }}
-        \\
-      \end{tabular}
-    }
+    Who should drive?
   \end{center}
+}
+
+
+\only<2->{
+\begin{columns}
+  \column{.5\linewidth}
+    \begin{block}{Active Learning}
+      \begin{center}
+        \includegraphics[width=.85\linewidth]{interactive_topic_models/active_learning}
+      \end{center}
+    \end{block}
+  \column{.5\linewidth}
+  \pause
+    \begin{block}{Topic Models}
+      \begin{center}
+        \includegraphics[width=.475\linewidth]{interactive_topic_models/nyt_topics}
+      \end{center}
+
+    \end{block}
+
+
+\end{columns}
+}
+
 \end{frame}
 
-\begin{frame}{Adaptor Grammars for Large Data?}
-  \vspace{-1mm}
-  \begin{block}{Adaptor grammar is slow!}
-    \begin{itemize}
-    \item MCMC inference for adaptor grammars~\cite{johnson-06}
-      \begin{itemize}
-      \item Pro: flexible number of adapted rules
-      \item Con: non-trivial to parallelize, a lot of bookkeeping on
-        the counts
-      \end{itemize}
-    \item Batch mode variational inference~\cite{cohen-10}
-      \begin{itemize}
-      \item Pro: intuitive and easy to parallelize
-      \item Con: fixed number of adapted rules, require pre-processing step
-      \end{itemize}
+\fsi{interactive_topic_models/alto_interface}{}
+\fsi{interactive_topic_models/alto_interface_highlight}{Direct users
+  to document}
+
+
+
+\fsi{interactive_topic_models/alto/user_talk_1}{ Active learning if time is short}
+\fsi{interactive_topic_models/alto/user_talk_2}{ Better than status quo}
+\fsi{interactive_topic_models/alto/user_talk_3}{ Active learning can
+  help topic models }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Topic models help
+  users understand the collection }
+\fsi{interactive_topic_models/alto/user_talk_4}{ Moral: machines and
+  humans together (if you let them) }
+
+
+
+\frame{
+  \frametitle{Ongoing and Future Work}
+
+  \begin{itemize}
+        \item Embedding interactivity in applications
+    \item Visualizations to measure machine learning explainability
+    \item Using morphology in infinite representations
+    \item Multilingual analysis
     \end{itemize}
-  \end{block}
+}
+
+\frame{
+  \frametitle{But wait, there's more!}
+
+\begin{columns}
+
+  \column{.5\linewidth}
+    \begin{block}{Question Answering}
+    \centering
+        \includegraphics[width=0.5\linewidth]{qb/jennings_handshake} \\
+     \small
+       \cite{iyyer-15,He:Boyd-Graber:Daume-III-2016}
+    \end{block}
+
+
+    \begin{block}{Machine Translation}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{simtrans/computer-interpreter} \\
+      \cite{Hu:Zhai:Eidelman:Boyd-Graber-2014,II:He:Boyd-Graber:Morgan-2014}
+       \end{center}
+    \vspace{-.4cm}
+    \end{block}
+
+  \column{.5\linewidth}
+
+
+
+    \begin{block}{Assistive Technology}
+     \centering
+        \includegraphics[width=0.4\linewidth]{evocation/figures/jordan_at_adler}
+        \\
+     \small
+       \cite{boyd-graber-06b,ma-09,nikolova-09}
+    \end{block}
+
+
+
+
+   \begin{block}{Computational Biology}
+     \centering
+     \includegraphics[width=0.4\linewidth]{general_figures/protein} \\
+     \small
+     \cite{nguyen-13b,hu-13:coalescent}
+   \end{block}
+
+
+\end{columns}
+
+}
+
+
+
+
+
+\frame{
+
+	\frametitle{Thanks}
+
+        \begin{block}{Collaborators}
+          Yuening Hu (UMD), Ke Zhai (UMD), Viet-An Nguyen (UMD), Dave Blei
+          (Princeton), Jonathan Chang (Facebook), Philip Resnik (UMD), Christiane Fellbaum (Princeton), Jerry
+          Zhu (Wisconsin), Sean Gerrish (Sift), Chong Wang (CMU), Dan Osherson
+          (Princeton), Sinead Williamson (CMU)
+        \end{block}
+
+        \begin{block}{Funders}
+        \end{block}
+        \begin{center}
+          \includegraphics[width=0.2\linewidth]{general_figures/nsf}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/arl}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/iarpa}
+          \hspace{0.5cm}
+          \includegraphics[width=0.2\linewidth]{general_figures/lockheed-martin}
+       \end{center}
+
+}
+
+
+
+
+\begin{frame}{References}
+\bibliographystyle{style/acl}
+\tiny
+\bibliography{bib/journal-full,bib/jbg,bib/vietan}
 \end{frame}
 
-\begin{frame}{Approximate PCFG}
 
-\begin{align}
-   \log \theta'_{c \Rightarrow z} =
-  \begin{dcases}
-     \alert<1>{\e{q}{ \log \pi_{c, i} },} & \mbox{if $\tng{c}(i) = z$}  \\
-     \alert<2> {\e{q}{\log \pi_{c, K_c}}} & + \alert<2>{\e{q}{\log \theta_{c \Rightarrow z} } } \\
-    & \mbox{otherwise}
-  \end{dcases}
-  \label{eq:approx-pcfg}
-\end{align}
+
+\begin{frame}{Latent Dirichlet Allocation: A Generative Model}
 
 \begin{itemize}
-  \item \alert<1>{Create rules for ``cached'' productions}
-  \item \alert<2>{For previously unseen productions, sample
-      proportional to leftover stick}
-  \item Compute inside-outside probabilities
-  \item Sample tree~\cite{johnson-07}
+\item Focus in this talk: statistical methods
+  \begin{itemize}
+    \item Model: story of how your data came to be
+    \item Latent variables: missing pieces of your story
+    \item Statistical inference: filling in those missing pieces
+  \end{itemize}
+\item We use latent Dirichlet allocation (LDA)~\cite{blei-03}, a fully Bayesian
+  version of pLSI~\cite{hofmann-99}, probabilistic version of
+  LSA~\cite{landauer-97}
 \end{itemize}
 
 \end{frame}
 
+\frame
+{
+  \frametitle{Latent Dirichlet Allocation: A Generative Model}
 
+\begin{center}
+\only<1>{ \includegraphics[scale=0.4]{topic_models/lda1.pdf} }
+\only<2>{ \includegraphics[scale=0.4]{topic_models/lda2.pdf} }
+\only<3>{ \includegraphics[scale=0.4]{topic_models/lda3.pdf} }
+\only<4->{ \includegraphics[scale=0.4]{topic_models/lda4.pdf} }
+\end{center}
 
-\begin{frame}{Dealing with Infinite Adaptor Grammars}
-  \begin{center}
-      \includegraphics[width=.9\linewidth]{onlineag/dp_johnny}
+\begin{itemize}
+\item<1-> For each topic $k \in \{1, \dots, K\}$, draw a multinomial distribution $\beta_k$ from a Dirichlet distribution with parameter $\lambda$
+\item<2-> For each document $d \in \{1, \dots, M\}$, draw a multinomial distribution $\theta_d$ from a Dirichlet distribution with parameter $\alpha$
+\item<3-> For each word position $n \in \{1, \dots, N\}$, select a hidden topic $z_n$ from the multinomial distribution parameterized by $\theta$.
+\item<4-> Choose the observed word $w_n$ from the distribution $\beta_{z_n}$.
+\end{itemize}
 
-  \end{center}
+\only<5->{We use statistical inference to uncover the most likely unobserved variables given observed data.}
+}
 
-\end{frame}
+\begin{frame}
 
-
-
-\begin{frame}{Word Segmentation $F_1$ Score}
-
-    \begin{center}
-      \only<2>{
-      \vspace{2mm}
-      \vspace{2mm}
-      $h$ $o$ $w$ $a$ $r$ $e$ $y$ $o$ $u$
-
-
-      \resizebox{.5\linewidth}{!}{
-        \Tree [.Words \qroof{ $h$ $o$ $w$ }.Word [.Words \qroof{ $a$ $r$
-          $e$ }.Word [.Words \qroof{ $y$ $o$ $u$ }.Word ] ] ]
-      }
-    }
-    \end{center}
-
-
-    \begin{center}
-      \only<3>{
-        \emph{brent} corpus\\
-        % \begin{figure}[!tb]
-        \includegraphics[width=1.0\linewidth]{onlineag/brent-Gunigram-log-crop.pdf}
-        % \end{figure}
-        % unigram grammar
-        % \begin{figure}[!tb]
-        %   \includegraphics[width=1.0\linewidth]{onlineag/brent-Gcollocation-log-crop.pdf}
-        % \end{figure}
-        % collocation grammar
-      }
-
-      \only<4>{
-        \vspace{2mm}
-        Chinese Word Segmentation\\
-        \resizebox{\linewidth}{!}{
-          \begin{tabular}{ c | c | c c c }
-            \multicolumn{2}{c|}{} & \emph{ctb7} & \emph{pku} & \emph{cityu} \\
-            \hline
-            \multirow{3}{*}{\begin{turn}{90}\shortstack{Data\\Facts}\end{turn}}
-            & \# sentenses & $162k$ & $183k$ & $207k$ \\
-            & \# word types & $57k$ & $53k$ & $64k$ \\
-            & \# char types & $4.5k$ & $4.6k$ & $5k$ \\
-            \hline
-            \multirow{3}{*}{\begin{turn}{90}\shortstack{F$_1$\\Score}\end{turn}}
-            & \abr{mcmc} & $71.75$ & $71.04$ & $74.01$ \\
-            & \abr{variational} & $69.83$ & $67.82$ & $70.47$ \\
-            & \abr{online} & $72.82$ & $72.14$ & $74.71$ \\
-            \hline
-          \end{tabular}
-        }
-      }
-    \end{center}
+	\includegraphics[width=1.0\linewidth]{mrlda/lda_graphmod_nyt}
 
 \end{frame}
 
-% Interpretability results
 
-%\input{mlslda/mlslda}
+\begin{frame}{SHLDA Model}
+                    \centering
+    \includegraphics[width=.5\linewidth]{shlda/shLDA}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Infvoc Classification Accuracy}
+
+\begin{table}[tb]
+\centering
+%\begin{footnotesize}
+\begin{tabular}{ c | c | c | c | c}
+%\hline
+%\multicolumn{4}{c|}{model settings} & accuracy $\%$ \\
+\hline
+\multirow{10}{*}{ \begin{sideways}{\visible<1->{$S=155$}}\end{sideways}} &
+\multirow{9}{*}{\begin{sideways}{\visible<1->{$\tau_0=64$
+      $\kappa=0.6$}}\end{sideways}} & \visible<3->{\textit{infvoc}} &
+\visible<3->{$\alpha^\beta=3k$ $T=40k$ $U=10$} & \visible<3->{$52.683$} \\
+\cline{3-5}
+& & \visible<1->{\textit{fixvoc}} & \visible<1->{vb-dict} & \visible<1->{$45.514$} \\
+& & \visible<4->{\textit{fixvoc}} & \visible<4->{vb-null} & \visible<4->{$49.390$} \\
+& & \visible<4->{\textit{fixvoc}} & \visible<4->{hybrid-dict} & \visible<4->{$46.720$} \\
+& & \visible<4->{\textit{fixvoc}} & \visible<4->{hybrid-null} & \visible<4->{$50.474$} \\
+\cline{3-5}
+& & \visible<2->{\textit{fixvoc-hash}} & \visible<2->{vb-dict} & \visible<2->{$52.525$} \\
+& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{vb-full $T=30k$} & \visible<4->{$51.653$} \\
+& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{hybrid-dict} & \visible<4->{$50.948$} \\
+& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{hybrid-full $T=30k$} & \visible<4->{$50.948$} \\
+\cline{2-5}
+& \multicolumn{3}{c|}{\visible<5->{\textit{dtm-dict} $tcv=0.001$}} & \visible<5->{$62.845$} \\
+\hline
+\end{tabular}
+%\end{footnotesize}
+\caption{Classification accuracy based on $50$ topic features
+  extracted from \textit{20 newsgroups} data.}
+% \label{tbl:20-news-class}
+\end{table}
+
+\only<2->{
+\begin{center}
+Topics learned with \textit{hashing} are no longer interpretable, they
+can only be used as features.
+\end{center}}
+
+\end{frame}
+
+\input{topic_models/gibbs_sampling.tex}
+
+\input{interactive_topic_models/itm_appendix}
 
 
 \section{SHLDA: Detecting Framing}
@@ -1074,201 +873,6 @@ Association for Computational Linguistics, 2015.
 
 \end{frame}
 
-\frame{
-  \frametitle{Ongoing and Future Work}
-
-  \begin{itemize}
-        \item Embedding interactivity in applications
-    \item Visualizations to measure machine learning explainability
-    \item Using morphology in infinite representations
-    \item Multilingual analysis
-    \end{itemize}
-}
-
-\frame{
-  \frametitle{But wait, there's more!}
-
-\begin{columns}
-
-  \column{.5\linewidth}
-    \begin{block}{Question Answering}
-    \centering
-        \includegraphics[width=0.5\linewidth]{qb/jennings_handshake} \\
-     \small
-       \cite{iyyer-15,He:Boyd-Graber:Daume-III-2016}
-    \end{block}
-
-
-    \begin{block}{Machine Translation}
-      \begin{center}
-        \includegraphics[width=0.5\linewidth]{simtrans/computer-interpreter} \\
-      \cite{Hu:Zhai:Eidelman:Boyd-Graber-2014,II:He:Boyd-Graber:Morgan-2014}
-       \end{center}
-    \vspace{-.4cm}
-    \end{block}
-
-  \column{.5\linewidth}
-
-
-
-    \begin{block}{Assistive Technology}
-     \centering
-        \includegraphics[width=0.4\linewidth]{evocation/figures/jordan_at_adler}
-        \\
-     \small
-       \cite{boyd-graber-06b,ma-09,nikolova-09}
-    \end{block}
-
-
-
-
-   \begin{block}{Computational Biology}
-     \centering
-     \includegraphics[width=0.4\linewidth]{general_figures/protein} \\
-     \small
-     \cite{nguyen-13b,hu-13:coalescent}
-   \end{block}
-
-
-\end{columns}
-
-}
-
-
-
-
-
-\frame{
-
-	\frametitle{Thanks}
-
-        \begin{block}{Collaborators}
-          Yuening Hu (UMD), Ke Zhai (UMD), Viet-An Nguyen (UMD), Dave Blei
-          (Princeton), Jonathan Chang (Facebook), Philip Resnik (UMD), Christiane Fellbaum (Princeton), Jerry
-          Zhu (Wisconsin), Sean Gerrish (Sift), Chong Wang (CMU), Dan Osherson
-          (Princeton), Sinead Williamson (CMU)
-        \end{block}
-
-        \begin{block}{Funders}
-        \end{block}
-        \begin{center}
-          \includegraphics[width=0.2\linewidth]{general_figures/nsf}
-          \hspace{0.5cm}
-          \includegraphics[width=0.2\linewidth]{general_figures/arl}
-          \hspace{0.5cm}
-          \includegraphics[width=0.2\linewidth]{general_figures/iarpa}
-          \hspace{0.5cm}
-          \includegraphics[width=0.2\linewidth]{general_figures/lockheed-martin}
-       \end{center}
-
-}
-
-
-
-
-\begin{frame}{References}
-\bibliographystyle{style/acl}
-\tiny
-\bibliography{bib/journal-full,bib/jbg,bib/vietan}
-\end{frame}
-
-
-
-\begin{frame}{Latent Dirichlet Allocation: A Generative Model}
-
-\begin{itemize}
-\item Focus in this talk: statistical methods
-  \begin{itemize}
-    \item Model: story of how your data came to be
-    \item Latent variables: missing pieces of your story
-    \item Statistical inference: filling in those missing pieces
-  \end{itemize}
-\item We use latent Dirichlet allocation (LDA)~\cite{blei-03}, a fully Bayesian
-  version of pLSI~\cite{hofmann-99}, probabilistic version of
-  LSA~\cite{landauer-97}
-\end{itemize}
-
-\end{frame}
-
-\frame
-{
-  \frametitle{Latent Dirichlet Allocation: A Generative Model}
-
-\begin{center}
-\only<1>{ \includegraphics[scale=0.4]{topic_models/lda1.pdf} }
-\only<2>{ \includegraphics[scale=0.4]{topic_models/lda2.pdf} }
-\only<3>{ \includegraphics[scale=0.4]{topic_models/lda3.pdf} }
-\only<4->{ \includegraphics[scale=0.4]{topic_models/lda4.pdf} }
-\end{center}
-
-\begin{itemize}
-\item<1-> For each topic $k \in \{1, \dots, K\}$, draw a multinomial distribution $\beta_k$ from a Dirichlet distribution with parameter $\lambda$
-\item<2-> For each document $d \in \{1, \dots, M\}$, draw a multinomial distribution $\theta_d$ from a Dirichlet distribution with parameter $\alpha$
-\item<3-> For each word position $n \in \{1, \dots, N\}$, select a hidden topic $z_n$ from the multinomial distribution parameterized by $\theta$.
-\item<4-> Choose the observed word $w_n$ from the distribution $\beta_{z_n}$.
-\end{itemize}
-
-\only<5->{We use statistical inference to uncover the most likely unobserved variables given observed data.}
-}
-
-\begin{frame}
-
-	\includegraphics[width=1.0\linewidth]{mrlda/lda_graphmod_nyt}
-
-\end{frame}
-
-
-\begin{frame}{SHLDA Model}
-                    \centering
-    \includegraphics[width=.5\linewidth]{shlda/shLDA}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Infvoc Classification Accuracy}
-
-\begin{table}[tb]
-\centering
-%\begin{footnotesize}
-\begin{tabular}{ c | c | c | c | c}
-%\hline
-%\multicolumn{4}{c|}{model settings} & accuracy $\%$ \\
-\hline
-\multirow{10}{*}{ \begin{sideways}{\visible<1->{$S=155$}}\end{sideways}} &
-\multirow{9}{*}{\begin{sideways}{\visible<1->{$\tau_0=64$
-      $\kappa=0.6$}}\end{sideways}} & \visible<3->{\textit{infvoc}} &
-\visible<3->{$\alpha^\beta=3k$ $T=40k$ $U=10$} & \visible<3->{$52.683$} \\
-\cline{3-5}
-& & \visible<1->{\textit{fixvoc}} & \visible<1->{vb-dict} & \visible<1->{$45.514$} \\
-& & \visible<4->{\textit{fixvoc}} & \visible<4->{vb-null} & \visible<4->{$49.390$} \\
-& & \visible<4->{\textit{fixvoc}} & \visible<4->{hybrid-dict} & \visible<4->{$46.720$} \\
-& & \visible<4->{\textit{fixvoc}} & \visible<4->{hybrid-null} & \visible<4->{$50.474$} \\
-\cline{3-5}
-& & \visible<2->{\textit{fixvoc-hash}} & \visible<2->{vb-dict} & \visible<2->{$52.525$} \\
-& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{vb-full $T=30k$} & \visible<4->{$51.653$} \\
-& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{hybrid-dict} & \visible<4->{$50.948$} \\
-& & \visible<4->{\textit{fixvoc-hash}} & \visible<4->{hybrid-full $T=30k$} & \visible<4->{$50.948$} \\
-\cline{2-5}
-& \multicolumn{3}{c|}{\visible<5->{\textit{dtm-dict} $tcv=0.001$}} & \visible<5->{$62.845$} \\
-\hline
-\end{tabular}
-%\end{footnotesize}
-\caption{Classification accuracy based on $50$ topic features
-  extracted from \textit{20 newsgroups} data.}
-% \label{tbl:20-news-class}
-\end{table}
-
-\only<2->{
-\begin{center}
-Topics learned with \textit{hashing} are no longer interpretable, they
-can only be used as features.
-\end{center}}
-
-\end{frame}
-
-\input{topic_models/gibbs_sampling.tex}
-
-\input{interactive_topic_models/itm_appendix}
 
 
 \end{document}
