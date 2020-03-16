@@ -1,5 +1,12 @@
+\documentclass[xcolor=dvipsnames]{beamer}
 
-\documentclass[compress]{beamer}
+
+\usetheme[
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/shell,              % Logo for the fir\
+st page.
+          ]{UMD}
 
 %\usepackage{beamerthemesplit}
 \usepackage{xmpmulti}
@@ -21,24 +28,18 @@
 
 \usepackage{multirow}
 
-\usetheme[bullet=circle,                     % Use circles instead of squares for bullets.
-          titleline=true,                    % Show a line below the frame title.
-          showdate=true,                     % show the date on the title page
-          alternativetitlepage=true,         % Use the fancy title page.
-          titlepagelogo=general_figures/culogo,              % Logo for the first page.
-          % Logo for the header on first page.
-          headerlogo=general_figures/boulder_cs,
-          ]{UCBoulder}
-
-\usecolortheme{ucdblack}
 
 %\useoutertheme{infolines}
 %\usetheme{Boadilla}
 %\usetheme{Singapore}
 % \usecolortheme{umd}
-\title{Big Data Analysis with Topic Models: Human Interaction, Streaming Computation, and Social Science Applications}
+\title{Big Data Science with Topic Models: Human Interaction, Streaming Computation, and Social Science Applications}
 \author{Jordan Boyd-Graber}
-\date{27. January 2017}
+\date{2020}
+
+\providecommand{\shlda}{\textsc{ShLDA}}
+
+\newcommand{\ignore}[1]{}
 
 \newcommand{\fsi}[2]{
 \begin{frame}[plain]
@@ -457,360 +458,11 @@ Numbers preceeding words are ranks in topic.
 \end{frame}
 
 
-\frame{
-
-\begin{columns}
-
-\column{.5\linewidth}
-
-\begin{block}{Online Adaptor Grammars with Hybrid Inference}
-Ke Zhai, Jordan Boyd-Graber, and Shay B. Cohen.
-Transactions of the Association for Computational Linguistics, 2014.
-\end{block}
-
-\column{.5\linewidth}
-
-\includegraphics[width=.8\linewidth]{general_figures/ke}
-
-\end{columns}
-
-}
-
-\begin{frame}{Unsupervised Text Analysis}
-
-  \begin{columns}
-    \column{.3\linewidth}
-      \gfxag{chinese}{.9}
-    \column{.3\linewidth}
-      \gfxag{white_house}{.9}
-    \column{.3\linewidth}
-       \begin{center}
-         \includegraphics[width=.9\linewidth]{topic_models/nyt_topics}
-       \end{center}
-  \end{columns}
-
-
-\end{frame}
-
-
-\begin{frame}{PCFGs}
-
-         \only<1>{\gfxag{pcfg_00}{.7}}
-         \only<2>{\gfxag{pcfg_01}{.7}}
-         \only<3>{\gfxag{pcfg_02}{.7}}
-         \only<4>{\gfxag{pcfg_03}{.7}}
-         \only<5>{\gfxag{pcfg_04}{.7}}
-         \only<6>{\gfxag{pcfg_05}{.7}}
-
-\end{frame}
-
-
-\begin{frame}{Adaptor Grammars~\cite{johnson-06}}
-
-  \begin{columns}
-    \column{.2\linewidth}
-       \begin{block}{PCFG}
-         \gfxag{pcfg_05}{.9}
-       \end{block}
-    \column{.75\linewidth}
-        \begin{block}{Adaptor Grammars}
-          \vspace{-.9cm}
-         \only<1>{\gfxag{ag_00}{.8}}
-         \only<2>{\gfxag{ag_01}{.8}}
-         \only<3>{\gfxag{ag_02}{.8}}
-         \only<4>{\gfxag{ag_03}{.8}}
-         \only<5>{\gfxag{ag_04}{.8}}
-         \only<6>{\gfxag{ag_05}{.8}}
-         \only<7>{\gfxag{ag_06}{.8}}
-         \only<8>{\gfxag{ag_07}{1}}
-         \only<9>{\gfxag{ag_08}{1}}
-         \only<10>{\gfxag{ag_09}{1}}
-         \only<11>{\gfxag{ag_10}{1}}
-         \only<12>{\gfxag{ag_11}{1}}
-         \only<13>{\gfxag{ag_12}{1}}
-                   \vspace{-.9cm}
-      \end{block}
-      \end{columns}
-\end{frame}
-
-
-\begin{frame}{Why Adaptor Grammars?}
-  \begin{center}
-      Adaptor grammars $\equiv$ flexible ways of expressing
-      probabilistic models
-    \vspace{2mm}
-
-    \pause
-
-    % 4 8 12
-    % 2 6 10
-    % 3 7 11
-    % 1 5 9
-
-    \resizebox{.95\linewidth}{!}{
-      \begin{tabular}{c | c | c | c}
-        \textsc{PCFG}
-        &
-        \uncover<4->{\alert<4>{
-        \begin{tabular}{l}
-          Word $\mapsto$ Stem Suffix\\
-          Word $\mapsto$ Stem\\
-          \underline{Stem} $\mapsto$ Chars\\
-          \underline{Suffix} $\mapsto$ Chars\\
-          Chars $\mapsto$ Char Chars\\
-          Chars $\mapsto$ Char\\
-          Char $\mapsto$ ``a''\\
-          $\ldots$\\
-          Char $\mapsto$ ``z''\\
-        \end{tabular}
-        }}
-        &
-        \uncover<8->{\alert<8>{
-        \begin{tabular}{l}
-          Sent $\mapsto$ Doc$^\prime_j$\\
-          Doc$^\prime_j$ $\mapsto$ $\#j$\\
-          Doc$^\prime_j$ $\mapsto$ Doc$^\prime_j$ Doc$_j$\\
-          Doc$_j$ $\mapsto$ Topic$_i$\\
-          \underline{Topic}$_i$ $\mapsto$ Word\\
-          Word $\mapsto$ ``hello''\\
-          \ldots\\
-          Word $\mapsto$ ``world''\\
-        \end{tabular}
-        }}
-        &
-        \uncover<12->{\alert<12>{
-        \begin{tabular}{l}
-          Sent $\mapsto$ Words\\
-          Words $\mapsto$ Word Words\\
-          Words $\mapsto$ Word\\
-          \underline{Word} $\mapsto$ Chars\\
-          Chars $\mapsto$ Char Chars\\
-          Chars $\mapsto$ Char\\
-          Char $\mapsto$ $a$\\
-          \ldots\\
-          Char $\mapsto$ $z$\\
-        \end{tabular}
-      }}
-        \\
-        \hline
-        \multirow{3}{*}{input}
-        &
-        \only<2->{\alert<2>{
-        \multirow{3}{*}{$w$ $a$ $l$ $k$ $e$ $d$}
-        }}
-        &
-        \only<6->{\alert<6>{
-        $\#2$ ``twitter'' ``shares''
-        }}
-        &
-        \only<10->{\alert<10>{
-        \multirow{3}{*}{$h$ $o$ $w$ $a$ $r$ $e$ $y$ $o$ $u$}
-        }}
-        \\
-        &
-        &
-        \only<6->{\alert<6>{``ipo'' ``make'' ``smooth''}}
-        &
-        \\
-        &
-        &
-        \only<6->{\alert<6>{``market'' ``debut'' \ldots}}
-        &
-        \\
-        \hline
-        output
-        &
-        \uncover<3->{\alert<3>{
-        \begin{tabular}{l}
-          \Tree [.Word \qroof{$w$ $a$ $l$ $k$}.Stem \qroof{$e$
-            $d$}.Suffix ]
-        \end{tabular}
-        }}
-        &
-        \uncover<7->{\alert<7>{
-        \begin{tabular}{l}
-          \Tree [.Doc$_2$ $\#2$ [ [ ``twitter'' ].Topic$_3$ $\ldots$
-          ].Doc$_2$ ]
-        \end{tabular}
-        }}
-        &
-        \uncover<11->{\alert<11>{
-        \begin{tabular}{l}
-          \Tree [.Words \qroof{ $h$ $o$ $w$ }.Word [.Words
-          \qroof{ $a$ $r$ $e$ }.Word [.Words $\ldots$ ] ] ]
-        \end{tabular}
-        }}
-        \\
-        \hline
-        model
-        &
-        \uncover<1->{\alert<1>{
-        Stemmer
-        }}
-        &
-        \uncover<5->{\alert<5>{
-        Topic Models
-        }}
-        &
-        \uncover<9->{\alert<9>{
-        Word Segmention
-        }}
-        \\
-      \end{tabular}
-    }
-  \end{center}
-\end{frame}
-
-\begin{frame}{Adaptor Grammars for Large Data?}
-  \vspace{-1mm}
-  \begin{block}{Adaptor grammar is slow!}
-    \begin{itemize}
-    \item MCMC inference for adaptor grammars~\cite{johnson-06}
-      \begin{itemize}
-      \item Pro: flexible number of adapted rules
-      \item Con: non-trivial to parallelize, a lot of bookkeeping on
-        the counts
-      \end{itemize}
-    \item Batch mode variational inference~\cite{cohen-10}
-      \begin{itemize}
-      \item Pro: intuitive and easy to parallelize
-      \item Con: fixed number of adapted rules, require pre-processing step
-      \end{itemize}
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-\begin{frame}{Approximate PCFG}
-
-\begin{align}
-   \log \theta'_{c \Rightarrow z} =
-  \begin{dcases}
-     \alert<1>{\e{q}{ \log \pi_{c, i} },} & \mbox{if $\tng{c}(i) = z$}  \\
-     \alert<2> {\e{q}{\log \pi_{c, K_c}}} & + \alert<2>{\e{q}{\log \theta_{c \Rightarrow z} } } \\
-    & \mbox{otherwise}
-  \end{dcases}
-  \label{eq:approx-pcfg}
-\end{align}
-
-\begin{itemize}
-  \item \alert<1>{Create rules for ``cached'' productions}
-  \item \alert<2>{For previously unseen productions, sample
-      proportional to leftover stick}
-  \item Compute inside-outside probabilities
-  \item Sample tree~\cite{johnson-07}
-\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}{Dealing with Infinite Adaptor Grammars}
-  \begin{center}
-      \includegraphics[width=.9\linewidth]{onlineag/dp_johnny}
-
-  \end{center}
-
-\end{frame}
-
-
-
-\begin{frame}{Word Segmentation $F_1$ Score}
-
-    \begin{center}
-      \only<2>{
-      \vspace{2mm}
-      \vspace{2mm}
-      $h$ $o$ $w$ $a$ $r$ $e$ $y$ $o$ $u$
-
-
-      \resizebox{.5\linewidth}{!}{
-        \Tree [.Words \qroof{ $h$ $o$ $w$ }.Word [.Words \qroof{ $a$ $r$
-          $e$ }.Word [.Words \qroof{ $y$ $o$ $u$ }.Word ] ] ]
-      }
-    }
-    \end{center}
-
-
-    \begin{center}
-      \only<3>{
-        \emph{brent} corpus\\
-        % \begin{figure}[!tb]
-        \includegraphics[width=1.0\linewidth]{onlineag/brent-Gunigram-log-crop.pdf}
-        % \end{figure}
-        % unigram grammar
-        % \begin{figure}[!tb]
-        %   \includegraphics[width=1.0\linewidth]{onlineag/brent-Gcollocation-log-crop.pdf}
-        % \end{figure}
-        % collocation grammar
-      }
-
-      \only<4>{
-        \vspace{2mm}
-        Chinese Word Segmentation\\
-        \resizebox{\linewidth}{!}{
-          \begin{tabular}{ c | c | c c c }
-            \multicolumn{2}{c|}{} & \emph{ctb7} & \emph{pku} & \emph{cityu} \\
-            \hline
-            \multirow{3}{*}{\begin{turn}{90}\shortstack{Data\\Facts}\end{turn}}
-            & \# sentenses & $162k$ & $183k$ & $207k$ \\
-            & \# word types & $57k$ & $53k$ & $64k$ \\
-            & \# char types & $4.5k$ & $4.6k$ & $5k$ \\
-            \hline
-            \multirow{3}{*}{\begin{turn}{90}\shortstack{F$_1$\\Score}\end{turn}}
-            & \abr{mcmc} & $71.75$ & $71.04$ & $74.01$ \\
-            & \abr{variational} & $69.83$ & $67.82$ & $70.47$ \\
-            & \abr{online} & $72.82$ & $72.14$ & $74.71$ \\
-            \hline
-          \end{tabular}
-        }
-      }
-    \end{center}
-
-\end{frame}
-
 % Interpretability results
 
 %\input{mlslda/mlslda}
 
-
-\section{SHLDA: Detecting Framing}
-
-\providecommand{\shlda}{\textsc{ShLDA}}
-
-\begin{frame}[plain]
-  \begin{columns}
-    \column{.45\linewidth}
-    \begin{center}
-      \includegraphics[width=\linewidth]{cognitive/crowdsourcing_off}
-      \end{center}
-    \column{.45\linewidth}
-    \begin{center}
-      \includegraphics[width=\linewidth]{cognitive/user_off}
-      \end{center}
-
-  \end{columns}
-
-  \begin{columns}
-    \column{.45\linewidth}
-    \begin{center}
-      \includegraphics[width=\linewidth]{cognitive/algorithms_off}
-      \end{center}
-    \column{.45\linewidth}
-    \begin{center}
-      \includegraphics[width=\linewidth]{cognitive/framing_on}
-      \end{center}
-  \end{columns}
-
-\only<2->{
-\vspace{-2cm}
-\begin{block}{Detecting Framing}
-        Using topic models to detect spin
-\end{block}
-}
-
-
-\end{frame}
-
+\ignore{
 
 \frame{
 
@@ -1074,6 +726,8 @@ Association for Computational Linguistics, 2015.
 
 \end{frame}
 
+}
+
 \frame{
   \frametitle{Ongoing and Future Work}
 
@@ -1218,6 +872,358 @@ Association for Computational Linguistics, 2015.
 \end{frame}
 
 
+\providecommand{\dirfunc}[3]{ \frac{ \prod_{#1}^{#2} \g{ #3 } } { \g{ \sum_{#1}^{#2} #3 }}}
+\providecommand{\dirnum}[4]{ \frac{\g{ #3 }}{#4} \prod_{#1}^{#2} }
+\providecommand{\dirden}[3]{ \g{ \sum_{#1}^{#2} #3 } }
+
+\begin{frame}
+\frametitle{Inference}
+
+\begin{itemize}
+\item We are interested in posterior distribution
+\begin{equation}
+p(Z | X, \Theta)
+\end{equation}
+\pause
+\item Here, latent variables are topic assignments $z$ and topics $\theta$.  $X$ is the words (divided into documents), and $\Theta$ are hyperparameters to Dirichlet distributions: $\alpha$ for topic proportion, $\lambda$ for topics.
+\begin{equation}
+p({\bm z}, {\bm \beta}, {\bm \theta} | {\bm w}, \alpha, \lambda)
+\end{equation}
+\pause
+\begin{align*}
+p({\bm w}, {\bm z}, {\bm \theta}, {\bm \beta} & | \alpha, \lambda) = \\
+& \prod_{k} p(\beta_k | \lambda) \prod_{d} p(\theta_d | \alpha) \prod_{n}
+p(z_{d,n} | \theta_d) p(w_{d,n} | \beta_{z_{d,n}})
+\end{align*}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Gibbs Sampling}
+\begin{itemize}
+\item A form of Markov Chain Monte Carlo
+\item Chain is a sequence of random variable states
+\item Given a state $\{z_1, \dots z_N\}$ given certain technical conditions, drawing $z_k \sim p(z_1, \dots z_{k-1}, z_{k+1}, \dots z_N | X, \Theta)$ for all $k$ (repeatedly) results in a Markov Chain whose stationary distribution \emph{is} the posterior.
+\item For notational convenience, call ${\bm z}$ with $z_{d,n}$ removed ${\bm z}_{-d,n}$
+\end{itemize}
+\end{frame}
+
+\frame{
+	\frametitle{Inference}
+	\begin{center}
+\only<1> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
+\only<2> {\includegraphics[width=.8\linewidth]{topic_models/inference_4}}
+\only<3> {\includegraphics[width=.8\linewidth]{topic_models/inference_5}}
+\only<4> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
+\only<5> {\includegraphics[width=.8\linewidth]{topic_models/inference_6}}
+\only<6> {\includegraphics[width=.8\linewidth]{topic_models/inference_7}}
+\only<7> {\includegraphics[width=.8\linewidth]{topic_models/inference_3}}
+	\end{center}
+}
+
+
+
+\begin{frame}
+\frametitle{Gibbs Sampling}
+\begin{itemize}
+\item For LDA, we will sample the topic assignments
+\item Thus, we want:
+\begin{equation*}
+p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{ p(z_{d,n} = k, {\bm z}_{-d,n} | {\bm w}, \alpha, \lambda)} { p({\bm z}_{-d,n} | {\bm w},\alpha, \lambda)}
+\end{equation*}
+\pause
+\item The topics and per-document topic proportions are integrated out
+  / marginalized / collapsed
+\item Let $n_{d,i}$ be the number of words taking topic $i$ in document $d$.  Let $v_{k,w}$ be the number of times word $w$ is used in topic $k$.
+\end{itemize}
+
+
+\begin{equation*}
+= \frac{ \int_{\theta_d} \left( \prod_{i \not = k} \theta_d^{\alpha_i + n_{d,i} - 1} \right)\theta_d^{\alpha_k + n_{d,i} } d\theta_d \int_{\beta_{k}}    \left( \prod_{i \not = w_{d,n}} \beta_{k,i} ^{ \lambda_i + v_{k,i} - 1} \right) \beta_{k, w_{d,n}}^{\lambda_i + v_{k,i}} d\beta_k } { \int_{\theta_d} \left( \prod_{i} \theta_d^{\alpha_i + n_{d,i} - 1} \right) d\theta_d \int_{\beta_{k}}    \left( \prod_{i} \beta_{k,i} ^{ \lambda_i + v_{k,i} - 1} \right) d\beta_k }
+\end{equation*}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Gibbs Sampling}
+\begin{itemize}
+\item For LDA, we will sample the topic assignments
+\item The topics and per-document topic proportions are integrated out / marginalized / Rao-Blackwellized
+\item Thus, we want:
+\begin{equation*}
+p(z_{d,n} = k | {\bm z}_{-d,n}, {\bm w}, \alpha, \lambda) = \frac{n_{d, k} + \alpha_k}{ \sum_{i}^{K} { n_{d,i} + \alpha_i}} \frac{v_{k, w_{d,n}} + \lambda_{w_{d,n}}}{ \sum_{i} { v_{k,i} + \lambda_{i} }}
+\end{equation*}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{Gibbs Sampling}
+\begin{itemize}
+\item Integral is normalizer of Dirichlet distribution
+\begin{equation*}
+\int_{\beta_{k}}    \left( \prod_{i} \beta_{k,i} ^{ \lambda_i + v_{k,i} - 1} \right) d\beta_k = \dirfunc{i}{V}{\beta_i + v_{k,i}}
+\end{equation*}
+\pause
+\item So we can simplify
+\end{itemize}
+\begin{footnotesize}
+\begin{align*}
+& \frac{ \int_{\theta_d} \left( \prod_{i \not = k} \theta_d^{\alpha_i + n_{d,i}
+      - 1} \right)\theta_d^{\alpha_k + n_{d,i} } d\theta_d \int_{\beta_{k}}
+  \left( \prod_{i \not = w_{d,n}} \beta_{k,i} ^{ \lambda_i + v_{k,i} - 1}
+  \right) \beta_{k, w_{d,n}}^{\lambda_i + v_{k,i}} d\beta_k } { \int_{\theta_d}
+  \left( \prod_{i} \theta_d^{\alpha_i + n_{d,i} - 1} \right) d\theta_d
+  \int_{\beta_{k}}    \left( \prod_{i} \beta_{k,i} ^{ \lambda_i + v_{k,i} - 1}
+  \right) d\beta_k } = \\
+& \frac{
+  \dirnum{i \not = k}{K}{\alpha_k + n_{d,k} + 1}{ \g{\sum_{i}^{K} \alpha_i +
+      n_{d,i} + 1} } \g{\alpha_k + n_{d,k}}  }
+{ \dirfunc{i}{K}{\alpha_i + n_{d,i}} }
+% -----------------------------------
+\frac{
+ \dirnum{i \not = w_{d,n}}{V}{\lambda_{w_{d,n}} + v_{k,w_{d,n}} + 1}{ \g{\sum_{i}^{V} \lambda_i + v_{k,i} + 1} } \g{\lambda_k + v_{k,w_{d,n}}}
+}{ \dirfunc{i}{V}{\lambda_i + v_{k,i}} } \\
+% -----------------------------------
+\end{align*}
+\end{footnotesize}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Gamma Function Identity}
+	\begin{equation}
+		z = \frac{\Gamma(z + 1)}{\Gamma(z)}
+	\end{equation}
+\end{block}
+
+\begin{footnotesize}
+\begin{align*}
+& \frac{
+  \dirnum{i \not = k}{K}{\alpha_k + n_{d,k} + 1}{ \g{\sum_{i}^{K} \alpha_i +
+      n_{d,i} + 1} } \g{\alpha_k + n_{d,k}}  }
+{ \dirfunc{i}{K}{\alpha_i + n_{d,i}} }
+% -----------------------------------
+\frac{
+ \dirnum{i \not = w_{d,n}}{V}{\lambda_{w_{d,n}} + v_{k,w_{d,n}} + 1}{ \g{\sum_{i}^{V} \lambda_i + v_{k,i} + 1} } \g{\lambda_k + v_{k,w_{d,n}}}
+}{ \dirfunc{i}{V}{\lambda_i + v_{k,i}} } \\
+% -----------------------------------
+& = \frac{n_{d, k} + \alpha_k}{ \sum_{i}^{K} { n_{d,i} + \alpha_i}} \frac{v_{k, w_{d,n}} + \lambda_{w_{d,n}}}{ \sum_{i} { v_{k,i} + \lambda_{i} }}
+\end{align*}
+\end{footnotesize}
+
+\end{frame}
+
+
+
+\begin{frame}{Gibbs Sampling Equation}
+
+\begin{equation}
+\alert<5>{\frac{\alert<1>{n_{d, k}} +  \alert<3>{\alpha_k}}{ \sum_{i}^{K} { n_{d,i} +\alpha_i}}} \alert<6>{\frac{\alert<2>{v_{k, w_{d,n}}} + \alert<4>{\lambda_{w_{d,n}}}}{ \sum_{i} { v_{k,i} + \lambda_{i} }}}
+\end{equation}
+
+\begin{itemize}
+  \item \alert<1>{Number of times document $d$ uses topic $k$}
+  \item \alert<2>{Number of times topic $k$ uses word type $w_{d,n}$}
+  \item \alert<3>{Dirichlet parameter for document to topic
+      distribution}
+  \item \alert<4>{Dirichlet parameter for topic to word distribution}
+  \item \alert<5>{How much this document likes topic $k$}
+  \item \alert<6>{How much this topic likes word $w_{d,n}$}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Sample Document}
+    \includegraphics[width=\linewidth]{topic_models/mimno_001}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sample Document}
+    \includegraphics[width=\linewidth]{topic_models/mimno_001}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Randomly Assign Topics}
+    \includegraphics[width=\linewidth]{topic_models/mimno_002}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Randomly Assign Topics}
+    \includegraphics[width=\linewidth]{topic_models/mimno_003}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Total Topic Counts}
+    \includegraphics[width=\linewidth]{topic_models/mimno_004}
+
+\pause
+
+\vspace{-4cm}
+
+\begin{block}{Sampling Equation}
+	\begin{equation*}
+          \frac{n_{d, k} + \alpha_k}{ \sum_{i}^{K} { n_{d,i} + \alpha_i}} \frac{\alert<3>{v_{k, w_{d,n}}} + \lambda_{w_{d,n}}}{ \sum_{i} { \alert<3>{v_{k,i}} + \lambda_{i} }}
+	\end{equation*}
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{We want to sample this word \dots}
+    \only<1>{\includegraphics[width=\linewidth]{topic_models/mimno_005}}
+    \only<2>{\includegraphics[width=\linewidth]{topic_models/mimno_006}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Decrement its count}
+    \includegraphics[width=\linewidth]{topic_models/mimno_007}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is the conditional distribution for this topic?}
+    \includegraphics[width=\linewidth]{topic_models/mimno_008}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Part 1: How much does this document like each topic?}
+    \includegraphics[width=\linewidth]{topic_models/mimno_008}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Part 1: How much does this document like each topic?}
+    \includegraphics[width=\linewidth]{topic_models/mimno_009}
+
+    \pause
+    \vspace{-5cm}
+    \begin{block}{Sampling Equation}
+	\begin{equation*}
+          \frac{\alert<3>{n_{d, k}} + \alpha_k}{ \sum_{i}^{K} { \alert<3>{n_{d,i}} + \alpha_i}} \frac{v_{k, w_{d,n}} + \lambda_{w_{d,n}}}{ \sum_{i} { v_{k,i} + \lambda_{i} }}
+	\end{equation*}
+     \end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Part 2: How much does each topic like the word?}
+    \includegraphics[width=\linewidth]{topic_models/mimno_010}
+
+\pause
+
+\vspace{-4cm}
+
+\begin{block}{Sampling Equation}
+	\begin{equation*}
+          \frac{n_{d, k} + \alpha_k}{ \sum_{i}^{K} { n_{d,i} + \alpha_i}} \frac{\alert<3>{v_{k, w_{d,n}}} + \lambda_{w_{d,n}}}{ \sum_{i} { \alert<3>{v_{k,i}} + \lambda_{i} }}
+	\end{equation*}
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Geometric interpretation}
+    \only<1>{\includegraphics[width=\linewidth]{topic_models/mimno_011}}
+    \only<2>{\includegraphics[width=\linewidth]{topic_models/mimno_012}}
+    \only<3>{\includegraphics[width=\linewidth]{topic_models/mimno_013}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Update counts}
+    \only<1>{\includegraphics[width=\linewidth]{topic_models/mimno_014}}
+    \only<2>{\includegraphics[width=\linewidth]{topic_models/mimno_015}}
+    \only<3>{\includegraphics[width=\linewidth]{topic_models/mimno_016}}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Details: how to sample from a distribution}
+
+\begin{center}
+  \includegraphics[width=.8\linewidth]{topic_models/sampling_from_distribution}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+
+
+
+\begin{block}{Algorithm}
+\begin{enumerate}
+\item For each iteration $i$:
+\begin{enumerate}
+\item For each document $d$ and word $n$ currently assigned to $z_{old}$:
+\begin{enumerate}
+\item Decrement $n_{d,z_{old}}$ and $v_{z_{old}, w_{d,n}}$
+\item Sample $z_{new} = k$ with probability proportional to $\frac{n_{d, k} + \alpha_k}{ \sum_{i}^{K} { n_{d,i} + \alpha_i}} \frac{v_{k, w_{d,n}} + \lambda_{w_{d,n}}}{ \sum_{i} { v_{k,i} + \lambda_{i}}}$
+\item Increment $n_{d,z_{new}}$ and $v_{z_{new}, w_{d,n}}$
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Na\"ive Implementation}
+
+\begin{block}{Algorithm}
+\begin{enumerate}
+\item For each iteration $i$:
+\begin{enumerate}
+\item For each document $d$ and word $n$ currently assigned to $z_{old}$:
+\begin{enumerate}
+\item Decrement $n_{d,z_{old}}$ and $v_{z_{old}, w_{d,n}}$
+\item Sample $z_{new} = k$ with probability proportional to $\frac{n_{d, k} + \alpha_k}{ \sum_{i}^{K} { n_{d,i} + \alpha_i}} \frac{v_{k, w_{d,n}} + \lambda_{w_{d,n}}}{ \sum_{i} { v_{k,i} + \lambda_{i}}}$
+\item Increment $n_{d,z_{new}}$ and $v_{z_{new}, w_{d,n}}$
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Desiderata}
+\begin{itemize}
+\item Hyperparameters: Sample them too (slice sampling)
+\item Initialization: Random
+\item Sampling: Until likelihood converges
+\item Lag / burn-in: Difference of opinion on this
+\item Number of chains: Should do more than one
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Available implementations}
+
+	\begin{itemize}
+		\item Mallet (http://mallet.cs.umass.edu)
+		\item LDAC (http://www.cs.princeton.edu/~blei/lda-c)
+		\item Topicmod (http://code.google.com/p/topicmod)
+	\end{itemize}
+\end{frame}
+
+
 \begin{frame}{SHLDA Model}
                     \centering
     \includegraphics[width=.5\linewidth]{shlda/shLDA}
@@ -1266,9 +1272,9 @@ can only be used as features.
 
 \end{frame}
 
-\input{topic_models/gibbs_sampling.tex}
+% \input{topic_models/gibbs_sampling.tex}
 
-\input{interactive_topic_models/itm_appendix}
+% \input{interactive_topic_models/itm_appendix}
 
 
 \end{document}
