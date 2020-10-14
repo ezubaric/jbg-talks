@@ -2,6 +2,15 @@
 
 Sorry for the delay, and thanks for the reminder!
 
+
+Title:
+Questioning Artificial Intelligence
+
+The end goal of Artificial Intelligence is a parlor game an
+``imitation game'' that has become known as the Turing Test.
+Likewise, many of the 
+
+
 Title:
 Big Data Analysis with Topic Models: Evaluation, Interaction, and Multilingual Extensions
 
