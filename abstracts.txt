@@ -3,12 +3,28 @@
 Sorry for the delay, and thanks for the reminder!
 
 
-Title:
-Questioning Artificial Intelligence
+Artificial Intelligence isn't a game show (but it should be)
 
-The end goal of Artificial Intelligence is a parlor game an
-``imitation game'' that has become known as the Turing Test.
-Likewise, many of the 
+
+Artificial intelligence is viewed as a goal in science (let's build
+intelligent machines) and in education (let's train software engineers
+to build smart assistants).
+
+Despite the serious implications for policy and for education, the
+most widely-accepted view of the end goal of Artificial Intelligence
+is a parlor game: a trivial "imitation game" (known today as
+the Turing Test).
+
+Likewise, many of the watersheds in the public understanding of AI
+progress have been in games like chess or go.  Sometimes, they're a
+literal game show like Jeopardy!
+
+After discussing why existing game show exhibitions have given an
+innacurate impression of how well we're doing with question
+answering, I'll discuss how we can use the skills and strategies of high school
+trivia competitions to improve the science of AI, communicate the
+limitations of AI, and to broaden participation in computer science
+and artificial intelligence.
 
 
 Title:
