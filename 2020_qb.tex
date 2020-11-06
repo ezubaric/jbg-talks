@@ -148,6 +148,8 @@ In the United Kingdom and several other Commonwealth countries including Austral
 
 \fsi{qb/jeopardy}{IBM Watson: QA Solved!}
 
+\fsi{qb/kennings-goat}{2020}
+
 \begin{frame}{But is Jeopardy! about Knowledge?}
 
   \begin{columns}
@@ -184,6 +186,22 @@ In the United Kingdom and several other Commonwealth countries including Austral
   
 \end{frame}
 
+\begin{frame}{To the Jeopardy! pedants\dots}
+
+  \begin{itemize}
+  \item I know that ``questions'' are technically called answers, but
+    easier for the rest of the talk to call them questions
+  \item While you can buzz in again after a short lockout, it's the
+    kiss of death if somebody else can buzz in then
+  \item Yes, Ken Jennings and Brad Rutter are the best players to ever play Jeopardy!
+    No, I'm not forgetting anybody.
+
+    \gfxq{holzhauer}{.5}
+    
+  \end{itemize}
+
+\end{frame}
+
 \begin{frame}{What does Jeopardy! do well?}
   \begin{itemize}
     \item State specificity of the answer required
@@ -200,7 +218,7 @@ In the United Kingdom and several other Commonwealth countries including Austral
   \end{itemize}
 \end{frame}
 
-\begin{frame}{But trivia questions are unnatural!}
+\begin{frame}{Google's Natural Questions}
   \only<1>{\gfxq{natural_questions}{1.0}}
   \only<2>{\gfxq{abraham}{1.0}}
 
@@ -225,6 +243,8 @@ In the United Kingdom and several other Commonwealth countries including Austral
   \end{itemize}
 \end{frame}
 
+\fsi{qb/hcqa_ambigqa}{}
+
 \begin{frame}{Ambiguous Questions}
   \rowcolors{2}{gray!25}{white}
   \begin{small}
@@ -247,6 +267,7 @@ In the United Kingdom and several other Commonwealth countries including Austral
   \only<6>{Bias for Men's sports, especially football.  Ambiguity is arbitrarily resolved by search engine result.}
   \end{block}
 \end{frame}
+
 
 
 
@@ -335,36 +356,29 @@ Different QA runs very seldom return exactly the same answer strings, and it is 
 	\end{columns}
 
 \end{frame}
-
 \begin{frame}[t]
-  \frametitle{Sample Question}
+	\frametitle{Sample Question}
 
-\small
-\only<2->{This man wrote a ballet in which 60 white nymphs perform the
-  Rainbow Dance, so named because different colored lights are focused
-  on them---\only<3->{that ballet Alethes and Iris was never produced
-    because the theater manager was convinced it would cause a
-    fire. He invented the first \only<4->{cow catcher and campaigned
-      for passage of an act against "street nuisances" like outdoor
-      musicians, who he claimed wasted a quarter of his life. He
-      responded to \only<5->{William Whewell's statement that no
-        scientific explanation of the universe was possible in his
-        \only<6->{"Ninth Bridgewater Treatise," which attacked the
-          eight previous treatises funded by the Earl of
-          Bridgewater. He also wrote about the influence of
-          aristocrats on science in his \only<7->{Reflections on the
-            Decline of Science in England . This author of the memoir
-            \only<8->{Passages From the Life of a Philosopher improved
-              on \only<9->{Jacquard's invention of punched cards by
-                proposing a device which incorporated an
-                \only<10->{input, storage system, processor, control
-                  unit, and output device. FTP, name this inventor of
-                  the \only<11->{Analytic Engine and the Difference
-                    Engine.}}}}}}}}}}
-
-\only<12->{ {\bf Charles Babbage}}
+        The Swiss-Italian architect Pietro Antonio Solari
+        \only<2->{built several fortified towers in this city, which
+          often vied for power with its northern rival Tver. A ruler
+          of this city prevailed in the} \only<3->{Great Stand on the
+          Ugra River. A prince from this city was nicknamed for
+          winning a battle on the} \only<4->{Don river. Partly because
+          a ruler of this city married} \only<5->{Sophia Palaiologina,
+          the niece of the last Byzantine Emperor, this city styled
+          itself the} \only<6->{``Third Rome'' after the fall of
+          Constantinople. Another prince of this city stopped paying
+          tribute to the} \only<7->{Mongols in 1476, ending the
+          ``Tatar yoke.''} \only<8->{The Grand Duchy headquartered in
+          this city came to an end in 1547 with the ascension of}
+        \only<9->{ Ivan IV, who made it his capital. For 10 points,
+          name this city where Ivan III renovated the
+          Kremlin,} \only<10->{the capital of Russia.}\\
+        \vspace{.5cm} \only<11->{ {\bf Moscow} (Moskva / Muscovy)}
 
 \end{frame}
+
 
 \begin{frame}
 	\frametitle{Question Structure Enables Compeition}
@@ -416,8 +430,6 @@ Different QA runs very seldom return exactly the same answer strings, and it is 
 \end{frame}
 
 
-\fsi{qb/jennings_handshake}{}
-
 \begin{frame}{Can we improve QA systems?}
 
 \begin{columns}
@@ -431,10 +443,24 @@ Different QA runs very seldom return exactly the same answer strings, and it is 
            \item Quotes
            \item Reusing clues
          \end{itemize}
-         \item Adversarial writing
-         \item Improve questions
      \end{itemize}
 \end{columns}
+\end{frame}
+
+\fsi{qb/jennings_handshake}{}
+
+
+\begin{frame}{Trick me if you can\dots}
+
+  \begin{itemize}
+  \item Trivia writers create questions
+  \item {\bf Current} explain why they answer (and when)
+  \item Trivia writers make questions go from hard to easy (for both
+    humans and computers)
+    \pause
+    \item \only<2>{PROFIT!} \only<3>{Better questions!}
+  \end{itemize}
+
 \end{frame}
 
 % \begin{frame}{What do we mean by ``adversarial''?}
