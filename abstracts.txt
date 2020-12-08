@@ -1,213 +1,477 @@
+1.	the 1920s are often referred to as the jazz age. what is the source of this term	'F. Scott Fitzgerald'
+1922 collection of short stories
+		UCL/Facebook (500MB): F. Scott Fitzgerald
+		FAIR (6GB): F. Scott Fitzgerald
+		Microsoft (Unl.): the roaring twenties
+		NAVER (500MB): the roaring twenties
+		Brno (6GB): American author F. Scott Fitzgerald
+		Ousia (6GB): American author F. Scott Fitzgerald
+		Facebook (Unl.): African and European music
+2.	what does it mean to cross over the rainbow bridge	'Heaven'
 
+		UCL/Facebook (500MB): Rainbow Bridge
+		FAIR (6GB): a rainbow
+		Microsoft (Unl.): toll
+		NAVER (500MB): niagara river gorge
+		Brno (6GB): to heaven
+		Ousia (6GB): a world-famous tourist site
+		Facebook (Unl.): footbridge
+3.	who did the mountain kill in game of thrones	'Aegon', 'Princess Elia', 'Rhaenys', 'the Targaryen royal family', 'her children Rhaenys and Aegon'
+Oberyn Martell (The Red Viper of Dorne)
+		UCL/Facebook (500MB): Stannis
+		FAIR (6GB): Oberyn Martell
+		Microsoft (Unl.): the targaryen royal family
+		NAVER (500MB): oberyn martell
+		Brno (6GB): Oberyn Martell
+		Ousia (6GB): the Targaryen royal family
+		Facebook (Unl.): Elia
+4.	german author of faust in which the main character makes a pact with the devil	'Johann Wolfgang von Goethe'
 
-Sorry for the delay, and thanks for the reminder!
+		UCL/Facebook (500MB): Johann Wolfgang von Goethe
+		FAIR (6GB): Johann Georg Faust
+		Microsoft (Unl.): johann wolfgang von goethe
+		NAVER (500MB): johann georg faust
+		Brno (6GB): Johann Georg Faust
+		Ousia (6GB): Johann Wolfgang von Goethe
+		Facebook (Unl.): Johann Wolfgang von Goethe
+5.	who does the voice of marlin in finding nemo	'Albert Lawrence Brooks'
 
+		UCL/Facebook (500MB): Albert Lawrence Brooks
+		FAIR (6GB): Albert Lawrence Brooks
+		Microsoft (Unl.): albert lawrence brooks
+		NAVER (500MB): albert lawrence brooks
+		Brno (6GB): Albert Lawrence Brooks
+		Ousia (6GB): Albert Lawrence Brooks
+		Facebook (Unl.): Albert Lawrence Brooks
+6.	paired chromosomes in a cell that share the similar set of genes are called	'homologous chromosomes, or homologs', 'homologous chromosomes'
 
-Artificial Intelligence isn't a game show (but it should be)
+		UCL/Facebook (500MB): two
+		FAIR (6GB): homologous
+		Microsoft (Unl.): homologous chromosomes
+		NAVER (500MB): chromatids
+		Brno (6GB): homologous
+		Ousia (6GB): homologous chromosomes
+		Facebook (Unl.): homologous chromosomes
+7.	which us president was the first to be born in a hospital	'James Earl Carter Jr.', 'Carter'
 
+		UCL/Facebook (500MB): Martin Van Buren
+		FAIR (6GB): Jimmy Carter
+		Microsoft (Unl.): james earl carter jr.
+		NAVER (500MB): abraham lincoln
+		Brno (6GB): James Earl Carter Jr.
+		Ousia (6GB): James Earl Carter Jr.
+		Facebook (Unl.): Jimmy Carter
+8.	which byzantine ruler instituted the policy of iconoclasm	'Leo III the Isaurian', 'Emperor Leo III'
 
-Artificial intelligence is viewed as a goal in science (let's build
-intelligent machines) and in education (let's train software engineers
-to build smart assistants).
+		UCL/Facebook (500MB): Justinian
+		FAIR (6GB): Emperor Leo III
+		Microsoft (Unl.): emperor leo iii
+		NAVER (500MB): leo iii the isaurian
+		Brno (6GB): Emperor Leo III
+		Ousia (6GB): Leo III the Isaurian
+		Facebook (Unl.): Emperor Leo III
+9.	who is the only u s president to hold a phd	'Woodrow Wilson'
 
-Despite the serious implications for policy and for education, the
-most widely-accepted view of the end goal of Artificial Intelligence
-is a parlor game: a trivial "imitation game" (known today as
-the Turing Test).
+		UCL/Facebook (500MB): Woodrow Wilson
+		FAIR (6GB): Woodrow Wilson
+		Microsoft (Unl.): dwight d. eisenhower
+		NAVER (500MB): john f. kennedy
+		Brno (6GB): Thomas Woodrow Wilson
+		Ousia (6GB): Ronald Wilson Reagan
+		Facebook (Unl.): Woodrow Wilson
+10.	who made up the names of santa's reindeer	'Clement Clarke Moore', 'Clement C. Moore'
 
-Likewise, many of the watersheds in the public understanding of AI
-progress have been in games like chess or go.  Sometimes, they're a
-literal game show like Jeopardy!
+		UCL/Facebook (500MB): Donner
+		FAIR (6GB): Clement Clarke Moore
+		Microsoft (Unl.): clement clarke moore
+		NAVER (500MB): clement clarke moore
+		Brno (6GB): Clement Clarke Moore
+		Ousia (6GB): Clement Clarke Moore
+		Facebook (Unl.): Clement Clarke Moore
+11.	who is the man in black the dark tower	'Randall Flagg'
+Randall Flagg, Walter O'Dim, Rudin Filaro, Raymond Fiegler, Richard Fannin, Walter Hodji, Walter Farden, The Walkin' Dude, The Covenant Man and Marten Broadcloak
+		UCL/Facebook (500MB): Walter Padick
+		FAIR (6GB): Matthew McConaughey
+		Microsoft (Unl.): matthew mcconaughey
+		NAVER (500MB): matthew mcconaughey
+		Brno (6GB): Walter Padick
+		Ousia (6GB): Matthew McConaughey
+		Facebook (Unl.): Matthew McConaughey
+12.	where is eminent domain located in the constitution	'the Fifth Amendment'
 
-After discussing why existing game show exhibitions have given an
-innacurate impression of how well we're doing with question
-answering, I'll discuss how we can use the skills and strategies of high school
-trivia competitions to improve the science of AI, communicate the
-limitations of AI, and to broaden participation in computer science
-and artificial intelligence.
+		UCL/Facebook (500MB): The Fifth Amendment
+		FAIR (6GB): The Fifth Amendment
+		Microsoft (Unl.): the fifth amendment
+		NAVER (500MB): bill of rights
+		Brno (6GB): The Fifth Amendment
+		Ousia (6GB): the Fifth Amendment
+		Facebook (Unl.): Fifth Amendment
+13.	who wrote you're a grand ol flag	'George M. Cohan'
 
+		UCL/Facebook (500MB): George M. Cohan
+		FAIR (6GB): George M. Cohan
+		Microsoft (Unl.): george m. cohan
+		NAVER (500MB): george m. cohan
+		Brno (6GB): George M. Cohan
+		Ousia (6GB): George M. Cohan
+		Facebook (Unl.): George M. Cohan
+14.	who said there are old pilots and there are bold pilots	'E. Hamilton Lee'
 
-Title:
-Big Data Analysis with Topic Models: Evaluation, Interaction, and Multilingual Extensions
+		UCL/Facebook (500MB): Oscar
+		FAIR (6GB): Barry Goldwater
+		Microsoft (Unl.): charles lindbergh
+		NAVER (500MB): the wright brothers
+		Brno (6GB): James Harold Doolittle
+		Ousia (6GB): E. Hamilton Lee
+		Facebook (Unl.): Barry Goldwater
+15.	kimi no na wa what does it mean	'Your Name', 'Your Name.'
 
-Abstract:
+		UCL/Facebook (500MB): Iceman
+		FAIR (6GB): Your Name
+		Microsoft (Unl.): like a wild flower
+		NAVER (500MB): death poems
+		Brno (6GB): togetherness, harmony
+		Ousia (6GB): harmony; peace
+		Facebook (Unl.): Your name is...
+16.	who provided the final evidence that dna is genetic material	'Alfred Hershey', 'Martha Chase'
+Hershey-Chase experiment
+		UCL/Facebook (500MB): Frederick Griffith
+		FAIR (6GB): Martha Chase
+		Microsoft (Unl.): martha chase
+		NAVER (500MB): martha cowles chase
+		Brno (6GB): Alfred Hershey and Martha Chase
+		Ousia (6GB): Alfred Hershey
+		Facebook (Unl.): Martha Chase
+17.	when did the first us astronauts land on the moon	'20 July 1969'
 
-A common information need is to understand large, unstructured
-datasets: millions of e-mails during e-discovery, a decade worth of
-science correspondence, or a day's tweets.  In the last decade, topic
-models have become a common tool for navigating such datasets even
-across languages.  This talk investigates the foundational research
-that allows successful tools for these data exploration tasks: how to
-know when you have an effective model of the dataset; how to correct
-bad models; how to measure topic model effectiveness; and how to
-detect framing and spin using these techniques.  After introducing
-topic models, I argue why traditional measures of topic model
-quality---borrowed from machine learning---are inconsistent with how
-topic models are actually used.  In response, I describe interactive
-topic modeling, a technique that enables users to impart their
-insights and preferences to models in a principled, interactive way.
-I will then address measuring topic model effectiveness in real-world
-tasks.
+		UCL/Facebook (500MB): 13 September 1959
+		FAIR (6GB): 20 July 1969
+		Microsoft (Unl.): July 1969
+		NAVER (500MB): 20 July 1969
+		Brno (6GB): 20 July 1969
+		Ousia (6GB): July 20, 1969
+		Facebook (Unl.): 20 July 1969
+18.	who wrote most of the bill of rights	'James Madison'
 
+		UCL/Facebook (500MB): James Madison
+		FAIR (6GB): James Madison
+		Microsoft (Unl.): james madison
+		NAVER (500MB): james madison
+		Brno (6GB): James Madison
+		Ousia (6GB): James Madison
+		Facebook (Unl.): James Madison
+19.	who is the protagonist in she stoops to conquer	'Miss Kate Hardcastle', 'Kate', 'Charles Marlow'
 
-Jordan Boyd-Graber (UMD) will be presenting work entitled "Cooperative and Competitive Human-Machine Learning through Question Answering":
+		UCL/Facebook (500MB): Oliver Goldsmith
+		FAIR (6GB): Kate Hardcastle
+		Microsoft (Unl.): kate
+		NAVER (500MB): john o'keeffe
+		Brno (6GB): Kate
+		Ousia (6GB): Tony Lumpkin
+		Facebook (Unl.): Charles Marlow
+20.	who was made the nawab of bengal after the battle of plassey	'Mir Qasim', 'Mir Jafar'
+Qasim was briefly nawab but British didn't like him
+		UCL/Facebook (500MB): Mir Jafar
+		FAIR (6GB): Mir Jafar
+		Microsoft (Unl.): mir qasim
+		NAVER (500MB): mir qasim
+		Brno (6GB): Mir Jafar
+		Ousia (6GB): Alwardi Khan
+		Facebook (Unl.): Mir Qasim
+21.	where does rna polymerase occur in the cell	'nucleus'
+nucleolus also acceptable
+		UCL/Facebook (500MB): within the nucleus
+		FAIR (6GB): nucleus
+		Microsoft (Unl.): nucleus
+		NAVER (500MB): nucleus
+		Brno (6GB): nucleus
+		Ousia (6GB): the nucleus
+		Facebook (Unl.): nucleus
+22.	who played the good witch of the south in the wiz	'Lena Horne'
 
-Abstract:
-My research goal is to create machine learning algorithms that are
-interpretable to humans, that can understand human strengths and
-weaknesses, and can help humans improve themselves.  In this talk,
-I'll discuss how we accomplish this through a trivia game called quiz
-bowl. These questions are written so that they can be interrupted by
-someone who knows more about the answer; that is, harder clues are at
-the start of the question and easier clues are at the end of the
-question: a player must decide when it has enough information to "buzz
-in". After arguing in favor of this task compared to other question 
-answering formats, we describe our question answering system: 
-how and when to buzz using deep learning and reinforcement learning.
+		UCL/Facebook (500MB): Lena Horne
+		FAIR (6GB): Lena Horne
+		Microsoft (Unl.): lena horne
+		NAVER (500MB): thelma carpenter
+		Brno (6GB): Lena Horne
+		Ousia (6GB): Lena Horne
+		Facebook (Unl.): Lena Horne
+23.	who won the heisman two years in a row	'Archie Griffin'
 
-More importantly, however, this setting also helps us build systems to
-adapt in cooperation and competition with humans.  In competition, we
-are also able to understand the skill sets of our competitors to
-adjust our strategy to optimize our performance against players using
-a deep mixture of experts opponent model.  The game of quiz bowl also
-allows opportunities to better understand interpretability in deep
-learning models to *help* human players perform better with machine
-cooperation.  This cooperation helps us with a related task,
-simultaneous machine translation.
+		UCL/Facebook (500MB): Ohio State's Archie Griffin
+		FAIR (6GB): Archie Griffin
+		Microsoft (Unl.): archie griffin
+		NAVER (500MB): cam newton
+		Brno (6GB): Griffin
+		Ousia (6GB): Ohio State
+		Facebook (Unl.): Archie Griffin
+24.	who is the first governor in kwara state	'David Bamigboye'
 
-Finally, I'll discuss opportunities for broader participation through
-open human-computer competitions:
-http://qanta.org/
+		UCL/Facebook (500MB): David Bamigboye
+		FAIR (6GB): Mohammed Lawal
+		Microsoft (Unl.): alhaji adamu atta
+		NAVER (500MB): alhaji adamu atta
+		Brno (6GB): Alhaji Mohammed Alabi
+		Ousia (6GB): Adamu Atta
+		Facebook (Unl.): Abdulfatah Ahmed
+25.	who wrote the 1963 play barefoot in the park	'Neil Simon'
 
-Jordan Boyd-Graber is an associate professor in the University of
-Maryland's Computer Science Department, iSchool, UMIACS, and Language
-Science Center. Jordan's research focus is in applying machine
-learning and Bayesian probabilistic models to problems that help us
-better understand social interaction or the human cognitive
-process. He and his students have won "best of" awards at NIPS (2009,
-2015), NAACL (2016), and CoNLL (2015), and Jordan won the British
-Computing Society's 2015 Karen Spärk Jones Award and a 2017 NSF CAREER
-award. His research has been funded by DARPA, IARPA, NSF, NCSES, ARL,
-NIH, and Lockheed Martin and has been featured by CNN, Huffington
-Post, New York Magazine, and the Wall Street Journal.
+		UCL/Facebook (500MB): Neil Simon
+		FAIR (6GB): Neil Simon
+		Microsoft (Unl.): neil simon
+		NAVER (500MB): neil simon
+		Brno (6GB): Neil Simon
+		Ousia (6GB): Neil Simon
+		Facebook (Unl.): Neil Simon
+26.	what is the giraffe's name on peppa pig	'Gerald Giraffe', 'Leo Templer', 'Zeus Jahn-Vilnur', 'Posher Ra Ra'
 
-====================
+		UCL/Facebook (500MB): George
+		FAIR (6GB): Arafa
+		Microsoft (Unl.): george
+		NAVER (500MB): samson
+		Brno (6GB): George
+		Ousia (6GB): George
+		Facebook (Unl.): Gerald Giraffe
+27.	worst case time complexity for insertion in bst	'O(n)'
 
-Jordan Boyd-Graber (UMD) will be presenting work entitled "Cooperative and Competitive Machine Learning through Question Answering":
+		UCL/Facebook (500MB): o of n
+		FAIR (6GB): O(log n)
+		Microsoft (Unl.): o( n )
+		NAVER (500MB): 24 hours or less
+		Brno (6GB): O(n)
+		Ousia (6GB): O("n")
+		Facebook (Unl.): O(n)
+28.	most tackles in a career in nfl history	'Jessie Tuggle', '1,640'
+Ray Lewis should probably be accepted, since records before 1994 are sketchy
+		UCL/Facebook (500MB): Jessie Tuggle
+		FAIR (6GB): Jessie Tuggle
+		Microsoft (Unl.): 2,049
+		NAVER (500MB): michael strahan
+		Brno (6GB): nan
+		Ousia (6GB): 2,049
+		Facebook (Unl.): 1,561
+29.	how many united states presidents were born in illinois	'One'
+Ronald Reagan
+		UCL/Facebook (500MB): two
+		FAIR (6GB): Three
+		Microsoft (Unl.): three
+		NAVER (500MB): three
+		Brno (6GB): Three
+		Ousia (6GB): Three
+		Facebook (Unl.): Three
+30.	when was the first version of a star is born made	'1937'
 
-Abstract: My research goal is to create machine learning algorithms
-that are interpretable to humans, that can understand human strengths
-and weaknesses, and can help humans improve themselves.  In this talk,
-I'll discuss how we accomplish this through a trivia game called quiz
-bowl. These questions are written so that they can be interrupted by
-someone who knows more about the answer (unlike, say, Jeopardy!); that
-is, harder clues are at the start of the question and easier clues are
-at the end of the question: a player must decide when it has enough
-information to "buzz in". Our system determines the right answer, uses
-deep reinforcement to determine when to buzz, and can beat the best
-humans at the game.
+		UCL/Facebook (500MB): 1937
+		FAIR (6GB): 1937
+		Microsoft (Unl.): 1937
+		NAVER (500MB): April 20, 1937
+		Brno (6GB): 1937
+		Ousia (6GB): 1937
+		Facebook (Unl.): 1937
+31.	when was the last time uk won eurovision	'1997'
+Love Shine a Light by Katrina and the Waves
+		UCL/Facebook (500MB): 1997
+		FAIR (6GB): 1997
+		Microsoft (Unl.): 1997
+		NAVER (500MB): 2018
+		Brno (6GB): 1997
+		Ousia (6GB): 1976
+		Facebook (Unl.): 1997
+32.	when did lebron start playing in the nba	'2003'
 
-More importantly, this setting also helps us build systems to adapt in
-cooperation and competition with humans.  If we give humans access to
-the predictions of our question answering system, we can craft
-adversarial that remain natural for humans to answer but very
-challenging for computer.  The game of quiz bowl also allows
-opportunities to better understand interpretability in deep learning
-models to *help* human players perform better with machine
-cooperation.  This cooperation helps us with a related task,
-simultaneous machine translation.
+		UCL/Facebook (500MB): 2003
+		FAIR (6GB): 2003
+		Microsoft (Unl.): 2003
+		NAVER (500MB): 2003
+		Brno (6GB): 2003
+		Ousia (6GB): 2003
+		Facebook (Unl.): 2003
+33.	how many schools are in the big 10	'14'
 
-Finally, I'll discuss opportunities for broader participation through
-open human-computer competitions:
-http://qanta.org/
+		UCL/Facebook (500MB): 14
+		FAIR (6GB): 14
+		Microsoft (Unl.): 14
+		NAVER (500MB): fourteen
+		Brno (6GB): 14
+		Ousia (6GB): 14
+		Facebook (Unl.): 14
+34.	how many languages are printed in indian currency	'17'
 
-Jordan Boyd-Graber is an associate professor in the University of
-Maryland's Computer Science Department, iSchool, UMIACS, and Language
-Science Center. Jordan's research focus is in applying machine
-learning and Bayesian probabilistic models to problems that help us
-better understand social interaction or the human cognitive
-process. He and his students have won "best of" awards at UAI (2018),
-NIPS (2009, 2015), NAACL (2016), and CoNLL (2015), and Jordan won the
-British Computing Society's 2015 Karen Spärk Jones Award and a 2017
-NSF CAREER award. His research has been funded by DARPA, IARPA, NSF,
-NCSES, ARL, NIH, and Lockheed Martin and has been featured by CNN,
-Huffington Post, New York Magazine, and the Wall Street Journal.
+		UCL/Facebook (500MB): 17
+		FAIR (6GB): 17
+		Microsoft (Unl.): 22
+		NAVER (500MB): 22
+		Brno (6GB): 17
+		Ousia (6GB): 17
+		Facebook (Unl.): 17
+35.	what is the name of the russian intelligence agency	'SVR RF'
+FSB is also acceptable
+		UCL/Facebook (500MB): Mossad
+		FAIR (6GB): Foreign Intelligence Service
+		Microsoft (Unl.): svr
+		NAVER (500MB): novichok
+		Brno (6GB): FSB
+		Ousia (6GB): Foreign Intelligence Service of the Russian Federation
+		Facebook (Unl.): Foreign Intelligence Service
+36.	what connects the two hemispheres of the brian	'the corpus callosum'
 
-===========================================
+		UCL/Facebook (500MB): the Equator
+		FAIR (6GB): corpus callosum
+		Microsoft (Unl.): corpus callosum
+		NAVER (500MB): corpus callosum
+		Brno (6GB): corpus callosum
+		Ousia (6GB): The temporoparietal junction
+		Facebook (Unl.): corpus callosum
+37.	rods and cones are a type of sensory receptor called	'photoreceptor', 'photoreceptors'
 
-Computational Modeling of Relationships, Spin, and Betrayal
+		UCL/Facebook (500MB): the vestibular system
+		FAIR (6GB): photoreceptor cells
+		Microsoft (Unl.): photoreceptor cell
+		NAVER (500MB): photoreceptors
+		Brno (6GB): photoreceptor cells
+		Ousia (6GB): Photoreceptor cell
+		Facebook (Unl.): photoreceptor cells
+38.	what do they buy in breakfast at tiffany's	'a typewriter ribbon'
 
-Computational approaches allow us to understand how text encodes
-latent social factors.  My talk focuses on recent work that
-attempts to use unannotated or found annotations to better understand
-relationships in the real world, in fiction, and in games.  First,
-I'll discuss a probabilistic model that attempts to predict the
-political polarization of a speaker based on how they frame policy
-issues.  Based on data from the US congress, we describe the Tea Party
-movement and its relationship to mainstream Republicans.  Next, I'll
-discuss a deep dictionary learning approach to categorize the
-relationships between fictional characters over time.  We'll show that
-this approach improves over topic model baselines in both prediction
-and human interpretability.  Finally, I'll discuss work to detect
-deception in an online game called Diplomacy and which clues can
-predict betrayal.
+		UCL/Facebook (500MB): Home
+		FAIR (6GB): a typewriter ribbon
+		Microsoft (Unl.): a typewriter ribbon
+		NAVER (500MB): paper bag
+		Brno (6GB): a typewriter ribbon
+		Ousia (6GB): Cracker Jack ring
+		Facebook (Unl.): shoes
+39.	what is he on the periodic table of elements	'Hexadlium'
+Helium
+		UCL/Facebook (500MB): Dmitri Mendeleev
+		FAIR (6GB): Helium
+		Microsoft (Unl.): hydrogen
+		NAVER (500MB): dmitri mendeleev
+		Brno (6GB): Helium
+		Ousia (6GB): atomic number 30
+		Facebook (Unl.): He
+40.	who composed the classical music piece el amor brujo	'Manuel de Falla', 'Gregorio Martínez Sierra'
+Sierra is librettist
+		UCL/Facebook (500MB): Abraham Mateo
+		FAIR (6GB): Manuel de Falla
+		Microsoft (Unl.): manuel de falla
+		NAVER (500MB): antonio carlos jobim
+		Brno (6GB): Manuel de Falla
+		Ousia (6GB): Manuel de Falla
+		Facebook (Unl.): Manuel de Falla
+41.	who is the longest serving current head of state	'Elizabeth II'
 
-================================================================
+		UCL/Facebook (500MB): George H.W. Bush
+		FAIR (6GB): Elizabeth II
+		Microsoft (Unl.): donald trump
+		NAVER (500MB): george washington
+		Brno (6GB): Donald Trump
+		Ousia (6GB): Teodoro Obiang
+		Facebook (Unl.): Elizabeth II
+42.	who is the author of the beautiful ones are not yet born	'Ayi Kwei Armah', 'Ghanaian writer Ayi Kwei Armah'
 
-Title: Thinking on your Feet: Reinforcement Learning for Incremental Language Tasks
+		UCL/Facebook (500MB): Ayi Kwei Armah
+		FAIR (6GB): Ayi Kwei Armah
+		Microsoft (Unl.): ayi kwei armah
+		NAVER (500MB): emma darwin
+		Brno (6GB): Prince
+		Ousia (6GB): Ayi Kwei Armah
+		Facebook (Unl.): Ayi Kwei Armah
+43.	who played chief of staff on west wing	'John Spencer', 'Allison Janney'
 
-Abstract: 
+		UCL/Facebook (500MB): Josh Lyman
+		FAIR (6GB): John Spencer
+		Microsoft (Unl.): john spencer
+		NAVER (500MB): bradley whitford
+		Brno (6GB): John Spencer
+		Ousia (6GB): John Spencer
+		Facebook (Unl.): John Spencer
+44.	who was the us president when president cory gave her speech	'Jimmy Carter', 'U.S. President Jimmy Carter'
 
-In this talk, I'll discuss two real-world language applications that require "thinking on your feet": synchronous machine translation (or "machine simultaneous interpretation") and question answering (when questions are revealed one piece at a time).  In both cases, effective algorithms for these tasks must interrupt the input stream and decide when to provide output.
+		UCL/Facebook (500MB): Woodrow Wilson
+		FAIR (6GB): Richard Martinez
+		Microsoft (Unl.): george w. bush
+		NAVER (500MB): abraham lincoln in the top spot, with george washington
+		Brno (6GB): George Washington
+		Ousia (6GB): Jimmy Carter
+		Facebook (Unl.): Barack Obama
+45.	what type of involuntary servitude is not considered illegal under the 13th amendment	'punishment for a crime'
 
-Synchronous machine translation is when a sentence is being produced one word at a time in a foreign language and we want to produce a translation in English simultaneously (i.e., with as little delay between a foreign language word and its English translation). This is particularly difficult in verb-final languages like German or Japanese, where an English translation can barely begin until the verb is seen. Effective translation thus requires predictions of unseen elements of the sentence (e.g., the main verb in German and Japanese, or relative clauses in Japanese, or post-positions in Japanese). We use reinforcement learning to decide when to trust our verb predictions. It must learn to balance incorrect translation versus timely translations, and must use those predictions to translate the sentence.
+		UCL/Facebook (500MB): two
+		FAIR (6GB): punishment for a crime
+		Microsoft (Unl.): peonage
+		NAVER (500MB): chattel slavery
+		Brno (6GB): chattel slavery
+		Ousia (6GB): penal labor
+		Facebook (Unl.): psychological coercion
+46.	when did china stop its one child policy	'2015', 'the end of 2015'
 
-For question answering, we use a specially designed dataset that challenges humans: a trivia game called quiz bowl. These questions are written so that they can be interrupted by someone who knows more about the answer; that is, harder clues are at the start of the question and easier clues are at the end of the question. We create a novel neural network system to predict answers from incomplete questions and use reinforcement learning to decide when to guess.  We are able to answer questions earlier in the questions than most college trivia contestants.
+		UCL/Facebook (500MB): 1979
+		FAIR (6GB): 2015
+		Microsoft (Unl.): the end of 2015
+		NAVER (500MB): January 1, 2016
+		Brno (6GB): 2015
+		Ousia (6GB): end of 2015
+		Facebook (Unl.): 2015
+47.	based on population what is the largest military base in the united states	'Ramstein AB, in Germany'
+Fort Bragg (260,000)
+		UCL/Facebook (500MB): Fort Lewis
+		FAIR (6GB): Fort Bragg
+		Microsoft (Unl.): fort bragg
+		NAVER (500MB): washington
+		Brno (6GB): Fort Hood
+		Ousia (6GB): Fort Bragg
+		Facebook (Unl.): Fort Bragg
+48.	who was the king in the man in the iron mask	'Louis XIV', 'King Louis XIV of France', 'King Louis XIV'
 
-================================================================
+		UCL/Facebook (500MB): Richard Chamberlain
+		FAIR (6GB): Louis Hayward
+		Microsoft (Unl.): louis xiv
+		NAVER (500MB): louis xiv
+		Brno (6GB): Louis XIV
+		Ousia (6GB): Louis XIII
+		Facebook (Unl.): King Louis XIV
+49.	what is the second largest city in ethiopia	'Gondar'
+Bahir Dar probably overtook Gondar
+		UCL/Facebook (500MB): Addis Ababa
+		FAIR (6GB): Dire Dawa
+		Microsoft (Unl.): addis ababa
+		NAVER (500MB): addis ababa
+		Brno (6GB): Dire Dawa
+		Ousia (6GB): Dire Dawa
+		Facebook (Unl.): Addis Ababa
+50.	who said i'll make mincemeat out of you	'Klondike Kat'
 
-Title:
+		UCL/Facebook (500MB): The J.M. Smucker Company
+		FAIR (6GB): Savoir-Faire
+		Microsoft (Unl.): shang
+		NAVER (500MB): ewen montagu
+		Brno (6GB): nan
+		Ousia (6GB): Candyman
+		Facebook (Unl.): Klondike
+51.	what is wilson's first name in grey's anatomy	'Jo', 'Josephine "Jo"'
+Brooke Stadler is also acceptable
+		UCL/Facebook (500MB): English
+		FAIR (6GB): Jo
+		Microsoft (Unl.): miranda bailey
+		NAVER (500MB): ellis
+		Brno (6GB): Miranda Bailey
+		Ousia (6GB): James
+		Facebook (Unl.): Chandra
+52.	who is the guy with arrows in avengers	'Hawkeye'
+Trick Shot is also acceptable
+		UCL/Facebook (500MB): Thor
+		FAIR (6GB): Hawkeye
+		Microsoft (Unl.): trick shot
+		NAVER (500MB): hawkeye
+		Brno (6GB): Yondu
+		Ousia (6GB): Golden Archer
+		Facebook (Unl.): Trick Shot
+53.	how many 5 star generals are there in the us	'Nine'
 
-Big Data Analysis with Topic Models: Human Interaction and Social
-Science Applications
-
-Abstract:
-
-A common information need is to understand large, unstructured
-datasets: millions of e-mails during e-discovery, a decade worth of
-science correspondence, or a day's tweets.  In the last decade, topic
-models have become a common tool for navigating such datasets.  This
-talk investigates the foundational research that allows successful
-tools for these data exploration tasks: how to know when you have an
-effective model of the dataset; how to correct bad models; how to
-measure topic model effectiveness; and how to detect framing and spin
-using these techniques.  After introducing topic models, I argue why
-traditional measures of topic model quality---borrowed from machine
-learning---are inconsistent with how topic models are actually used.
-In response, I describe interactive topic modeling, a technique that
-enables users to impart their insights and preferences to models in a
-principled, interactive way.  I will then address measuring topic
-model effectiveness in real-world tasks.  Finally, I'll discuss
-ongoing collaborations with political scientists to use these
-techniques to detect spin and framing in political and online
-interactions.
-
-================================================================
-
-Opening the Black Box of Machine Learning: Interactive, Interpretable Interfaces for Exploring Linguistic Tasks
-
-Abstract: Machine learning is ubiquitous, but most users treat it as a
-black box: a handy tool that suggests purchases, flags spam, or
-autocompletes text. I present qualities that ubiquitous machine
-learning should have to allow for a future filled with fruitful,
-natural interactions with humans: interpretability, interactivity, and
-an understanding of human qualities. After introducing these
-properties, I present machine learning applications that begin to
-fulfill these desirable properties. I begin with a traditional
-information processing task---making sense and categorizing large
-document collections---and show that machine learning methods can
-provide interpretable, efficient techniques to categorize large
-document collections with a human in the loop. From there, I turn to
-language-based games that require machines and humans to compete and
-cooperate and discuss how this can improve and measure
-interpretability in machine learning.
+		UCL/Facebook (500MB): Nine
+		FAIR (6GB): Nine
+		Microsoft (Unl.): nine
+		NAVER (500MB): none
+		Brno (6GB): Nine
+		Ousia (6GB): Nine
+		Facebook (Unl.): Nine
