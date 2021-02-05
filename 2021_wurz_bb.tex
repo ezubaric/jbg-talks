@@ -536,34 +536,6 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
 \fsi{qb/augment/tools_buzz}{Hights help experts}
 
-\begin{frame}{Regression Analysis}
-    For each triple (player, question, interpretations), we predict the outcome
-    (correct answer or not) with a logistic regression. The features include:
-    \begin{itemize}
-        \item player ID
-        \item question ID
-        \item buzzing position
-        \item enabled interpretations: individual and combinations
-    \end{itemize}
-
-    \pause
-
-    \begin{block}{Coefficients tell story!}
-      \begin{itemize}
-        \item {\bf Big, Positive}: Help
-        \item {\bf Big, Negative}: Hurt
-        \item {\bf Small}: Neutral
-      \end{itemize}
-    \end{block}
-
-\end{frame}
-
-
-\fsi{qb/augment/coefs_0}{Everything helps: Evidence for novies,
-  Highlight for experts}
-\fsi{qb/augment/coefs_1}{Synergistic effects}
-\fsi{qb/augment/coefs_2}{Highlight and evidence help experts most}
-\fsi{qb/augment/coefs_3}{For novices, less synergy}
 
 \begin{frame}{Improvement through Reinforcement Learning}
 
@@ -593,6 +565,27 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
      \end{itemize}
 \end{columns}
 \end{frame}
+
+
+\frame{
+
+\begin{columns}
+
+\column{.5\linewidth}
+
+\includegraphics[width=.8\linewidth]{general_figures/eric}
+
+\column{.5\linewidth}
+
+\begin{block}{Trick Me If You Can: Human-in-the-loop Generation of Adversarial Question Answering Examples}
+
+Eric Wallace, Pedro Rodriguez, Shi Feng, Ikuya Yamada, and Jordan Boyd-Graber. Transactions of the Association of Computational Linguistics, 2019.
+\end{block}
+
+\end{columns}
+
+}
+
 
 \begin{frame}{What do we mean by ``adversarial''?}
 
@@ -779,7 +772,75 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 \end{columns}
 
 }
-      
+
+
+\begin{frame}{Close, but \dots}
+An army that took its name from this geographical feature had a
+British doctor, James Paroissien, as its Surgeon General, and recent
+scholarship by Peter Blanchard revealed its use of slaves. That army
+crossed this geographical feature according  \ttriangle{BrickRed} to
+Thomas Maitland’s  \tcircle{BrickRed} plans at Uspallata and Los
+Patos. Spanish forces under Rafael Maroto were defeated in the
+foothills of these mountains by an army led by José de San Martín and
+Bernardo O'Higgins.  \tsquare{BrickRed} For 10 points, name this mountain
+range of South America that played a role  \ttriangle{Goldenrod} in the
+independence of Chile. \tdiamond{gray}  \tcircle{gray}  \tsquare{gray}
+
+\ttriangle{BrickRed} Angel Falls
+\tcircle{BrickRed} Mountain
+\tsquare{BrickRed} Battle of Chacabuco
+\tdiamond{gray} Battle of Chacabuco
+\tcircle{gray} Mountain
+\tsquare{gray} Battle of Chacabuco \\
+\pause
+\textbf{Answer}: Andes\\
+
+\end{frame}
+
+
+\begin{frame}{Linguistics FTW}
+
+  The main character of a story by \alert<2>{this author opens Crime and Punishment} to a
+random page, but finds it to be a copy of The Brother Karamazov, and equates
+himself with Monsieur Bovary. This author wrote a story in which the priest
+Naigu undergoes a boiling treatment to decrease the size of his nose. This
+author of "Cogwheels" wrote about two people who steal to survive near the
+southern gate of Kyoto in a story that features inconsistent accounts from a
+woodcutter, a priest, a widow, and the ghost of a samurai. For 10 points, name
+this author of "Rashomon" and namesake of a Japanese literary prize. \\
+\only<3->{\textbf{Answer}: Ryunosuke Akutagawa}
+\end{frame}
+
+
+
+\begin{frame}{Regression Analysis}
+    For each triple (player, question, interpretations), we predict the outcome
+    (correct answer or not) with a logistic regression. The features include:
+    \begin{itemize}
+        \item player ID
+        \item question ID
+        \item buzzing position
+        \item enabled interpretations: individual and combinations
+    \end{itemize}
+
+    \pause
+
+    \begin{block}{Coefficients tell story!}
+      \begin{itemize}
+        \item {\bf Big, Positive}: Help
+        \item {\bf Big, Negative}: Hurt
+        \item {\bf Small}: Neutral
+      \end{itemize}
+    \end{block}
+
+\end{frame}
+
+
+\fsi{qb/augment/coefs_0}{Everything helps: Evidence for novies,
+  Highlight for experts}
+\fsi{qb/augment/coefs_1}{Synergistic effects}
+\fsi{qb/augment/coefs_2}{Highlight and evidence help experts most}
+\fsi{qb/augment/coefs_3}{For novices, less synergy}
 
 
 
