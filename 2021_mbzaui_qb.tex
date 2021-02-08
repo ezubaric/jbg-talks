@@ -1,4 +1,4 @@
-\documentclass[xcolor=dvipsnames]{beamer}
+\documentclass[xcolor=dvipsnames,xcolor=table]{beamer}
 
 
 \usetheme[
@@ -63,6 +63,35 @@ st page.
 \begin{center}
 	\includegraphics[width=#2\linewidth]{qb/#1}
 \end{center}
+}
+
+
+
+\newenvironment{variableblock}[2]{%
+  \setbeamercolor{block body}{#2}
+  \begin{block}{#1}}{\end{block}}
+
+
+\newcommand{\goodbad}[2]{
+
+\begin{columns}
+
+  \column{.5\linewidth}
+
+\begin{variableblock}{Good}{bg=PineGreen,fg=white}
+  #1
+\end{variableblock}
+
+
+  \column{.5\linewidth}
+
+\begin{variableblock}{Bad}{bg=BrickRed,fg=white}
+  #2
+\end{variableblock}
+
+
+\end{columns}
+
 }
 
 
@@ -761,6 +790,47 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 
 \end{frame}
 
+
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.4\linewidth}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{general_figures/shi}
+        \end{center}
+    \column{.6\linewidth}
+    \begin{block}{\href{http://umiacs.umd.edu/~jbg//docs/2018_emnlp_rs.pdf}{Pathologies of Neural Models Make Interpretation Difficult}}
+      \underline{\href{http://users.umiacs.umd.edu/~shifeng/}{Shi Feng}}, \underline{\href{http://www.ericswallace.com/}{Eric Wallace}}, Alvin Grissom II, \underline{\href{https://www.entilzha.io/}{Pedro Rodriguez}}, Mohit Iyyer, and {\bf Jordan Boyd-Graber}.  \emph{Empirical Methods in Natural Language Processing}, 2018
+        \end{block}
+
+  \end{columns}
+\end{frame}
+
+\begin{frame}{How to highlight words?}
+
+To interpret a model prediction on an input sequence of $n$
+words~$\vec{w}=\langle\vec{w}_1, \vec{w}_2, \ldots
+\vec{w}_n\rangle$, we approximate the classifier $f$ with a linear
+function of $w_i$ derived from the first-order Taylor expansion. The
+importance of $w_i$, with embedding $\vec{v}_i$, is the derivative
+of $f$ with respect to the one-hot vector: 
+\begin{equation} \frac{\partial f}{\partial w_i} \
+   = \frac{\partial f}{\partial \vec{v}_i}\frac{\partial \vec{v}_i}{\partial w_i} \ 
+   = \frac{\partial f}{\partial \vec{v}_i} \cdot \vec{v}_i. 
+\end{equation} 
+This simulates how model predictions change when a particular word's embedding is set to the zero vector---it approximates word removal~\cite{ebrahimi2017hotflip,wallace2018Neighbors}.  
+
+\end{frame}
+
+
+\begin{frame}{Neural Models are Brittle}
+
+  \gfxq{pathologies_what_company}{.8}
+
+\end{frame}
+
+
 \begin{frame}{Can we improve QA systems?}
 
 \begin{columns}
@@ -778,6 +848,16 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
          \item Improve questions
      \end{itemize}
 \end{columns}
+\end{frame}
+
+
+\begin{frame}{Adversarial Examples}
+
+  \gfxq{turtle_rifle}{0.9}
+
+  Athalye, Engstrom, Ilyas, and \alert<2>{Kwok}.  Synthesizing Robust Adversarial
+  Examples.  \emph{ICML}, 2018.
+
 \end{frame}
 
 \begin{frame}{What do we mean by ``adversarial''?}
@@ -824,89 +904,6 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 
 % Hard but not really a good question: F3 Q24
 
-\begin{frame}{Impossible Until the End}
-\alert<3>{Ritchie Watson commended this play's historical accuracy for
-  getting the price for a dozen eggs right---ten cents---to defend
-  against Elizabeth Hardwick’s contention that it was a sentimental
-  history.} \alert<4>{At the end of this play, a man wonders why a wheelchair is
-at the top of a staircase, and} \alert<5>{Alexandra announces that she is leaving
-her mother. Leo is pressured into stealing a set of valuable railroad
-bonds in this drama. In this play, which takes its title from the Song
-of Solomon,} Regina Hubbard schemes  \tdiamond{xgreen}
-\tcircle{xgreen} to obtain a majority share in a cotton mill. For 10
-points,  \tsquare{xgreen}  \ttriangle{xgreen} name this play by
-Lillian Hellman. \\
-
-\pause
-
-\textbf{Answer}: The\ Little\ Foxes\\
-
-\only<3>{Academic literature}
-\only<4>{Vague plot summary}
-\only<5>{Avoid last names}
-
-\end{frame}
-
-% Tricky and hard: F3 Question 25
-
-\begin{frame}{Tricky and impossible for current systems}
-In Our Town, a character  \ttriangle{xred} with this given name explains Grover’s Corners’ place in the universe. In The Crucible, a character  \tcircle{xred} with this first name contends that the girls’ actions are part of their “silly seasons” and is the wife of Francis Nurse. A novel with this name, which conducts hidden messages to Rommel in The English Patient, is titled for a character who is killed in a boating accident at Manderley. For 10 points, give this name of a Daphne du Maurier  \tdiamond{xyellow}  \tsquare{xgreen} gothic novel which is also the first name of Miss Sharp, the protagonist of William Thackeray's Vanity Fair. \tcircle{gray}  \ttriangle{gray}
-
-
-\ttriangle{xred} Thornton Wilder
-\tcircle{xred} Richard
-\tcircle{gray} Richard
-\ttriangle{gray} Thornton Wilder \\
-\textbf{Answer}: Rebecca\\
-\end{frame}
-
-% Tricky and hard: F3 Question 29
-
-\begin{frame}{Close, but \dots}
-An army that took its name from this geographical feature had a
-British doctor, James Paroissien, as its Surgeon General, and recent
-scholarship by Peter Blanchard revealed its use of slaves. That army
-crossed this geographical feature according  \ttriangle{xred} to
-Thomas Maitland’s  \tcircle{xred} plans at Uspallata and Los
-Patos. Spanish forces under Rafael Maroto were defeated in the
-foothills of these mountains by an army led by José de San Martín and
-Bernardo O'Higgins.  \tsquare{xred} For 10 points, name this mountain
-range of South America that played a role  \ttriangle{xyellow} in the
-independence of Chile. \tdiamond{gray}  \tcircle{gray}  \tsquare{gray}
-
-\ttriangle{xred} Angel Falls
-\tcircle{xred} Mountain
-\tsquare{xred} Battle of Chacabuco
-\tdiamond{gray} Battle of Chacabuco
-\tcircle{gray} Mountain
-\tsquare{gray} Battle of Chacabuco \\
-\pause
-\textbf{Answer}: Andes\\
-
-\end{frame}
-
-% Showing strength of QB format: Packet F3 Question 30
-
-\begin{frame}{Showing the strength of quiz bowl format}
-A painting by this artist  \tsquare{xred} presents a tree as a cupboard with two doors, behind which are a white sphere and a miniature lighted house. A series of three paintings by this man shows a daytime sky with cumulus clouds above a dark house illuminated by a lamppost. This artist of Blood Will Tell and The Empire of Lights depicted a clock set to 12:43  \tcircle{xgreen} as a locomotive speeds out of a fireplace and a man in  \tsquare{xyellow} a bowler hat with an  \ttriangle{xgreen} apple in front of his face. For 10 points, name this Belgian surrealist painter  \tdiamond{xgreen} of the Son of Man and Time Transfixed.
-
-\tsquare{xred} Argon \\
-\pause
-\textbf{Answer}: René\ Magritte\\
-\end{frame}
-
-% Why it's a good learning framework: Packet F3 Question 31
-
-
-\begin{frame}{Our QA Systems are Crazy}
-
-\only<1-2>{
-\begin{block}{Out of Touch}
-On "The Critic", this man was replaced by a drunken animatronic bear from the Country Bear Jamboree but nobody seemed to notice.  This man was edited to appear in the film "Contact", which prompted an angry statement from Mike McCurry.  He was portrayed by Dennis Quaid in "The Special Relationship", who ate McDonald's every day to prepare for the role.  A fictionalized version of this man named Henry Burton, a charismatic Southern governor running for the Democratic nomination, is portrayed by John Travolta in "Primary Colors".  For ten points, name this American president who played the saxophone on an appearance on the Arsenio Hall Show.
-\end{block} }
-\only<2>{{\bf Samuel L. Jackson?}}
-
-\end{frame}
 
 
 \begin{frame}{Matching Entites Across Sentences}
@@ -932,6 +929,19 @@ On "The Critic", this man was replaced by a drunken animatronic bear from the Co
 \only<6>{Requires semantic knowledge}
 \end{frame}
 
+
+\begin{frame}{Linguistics FTW}
+
+  The main character of a story by \alert<2>{this author opens Crime and Punishment} to a
+random page, but finds it to be a copy of The Brother Karamazov, and equates
+himself with Monsieur Bovary. This author wrote a story in which the priest
+Naigu undergoes a boiling treatment to decrease the size of his nose. This
+author of "Cogwheels" wrote about two people who steal to survive near the
+southern gate of Kyoto in a story that features inconsistent accounts from a
+woodcutter, a priest, a widow, and the ghost of a samurai. For 10 points, name
+this author of "Rashomon" and namesake of a Japanese literary prize. \\
+\only<3->{\textbf{Answer}: Ryunosuke Akutagawa}
+\end{frame}
 
 
 \begin{frame}{}
@@ -994,6 +1004,140 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 \end{frame}
 
 \fsi{simtrans/interpreter-screenshot}{Same human-computer cooperation}
+
+\begin{frame}{Ongoing Work: Modeling Questions}
+  \gfxq{leaderboard_model}{.8}
+
+  \begin{enumerate*}
+  \item For each subject $j$:
+  \begin{enumerate*}
+    \item Draw skill $\theta_j \sim \mathcal{N}(\mu_\theta, \tau_\theta^{-1})$
+  \end{enumerate*}
+  \item For each item $i$:
+  \begin{enumerate*}
+    \item Draw difficulty $\beta_i \sim\mathcal{N}(\mu_\beta, \tau_\beta^{-1})$
+    \item Draw discriminability $\gamma_i \sim \mathcal{N}(\mu_\gamma, \tau_\gamma^{-1})$
+    \item Draw $\lambda_i \sim \text{U}[0,1]$
+  \end{enumerate*}
+  \item Draw subject $i$ response on item $j$,\\$r_{ij} \sim p_{ij}(r_{ij} \mid \theta_j, \beta_i, \lambda_i )=$
+    \begin{equation}
+      p_{ij}(r_{ij}=1|\theta_j)=\frac{\lambda_i}{1+e^{-\gamma_i(\theta_j-\beta_i)}}.
+      \label{eq:isicle:ours}
+    \end{equation}
+    For \pl{1}, $\gamma_i$ and $\lambda_i$ are fixed to 1.0, while for
+    \pl{2}, only $\lambda_i$ is fixed.\footnote{In psychometrics, \pl{1}~is called a Rasch~\citep{rasch1960studies} or 1 parameter logistic (1PL) model, \pl{2}~is a 2PL model, and \pl{3}~is a 4PL model with guessing set to zero.}
+\end{enumerate*}
+
+
+\begin{frame}{Improving Leaderboards}
+  \only<1>{\gfxq{leaderboard_fit}{.8}}
+  \only<2>{\gfxq{leaderboard_active}{.8}}
+\end{frame}
+
+\begin{frame}{Educational Applications}
+  \begin{center}
+    http://karl.qanta.org
+  \end{center}
+  \gfxq{karl}{0.9}
+
+\end{frame}
+
+
+\begin{frame}{Improving Representation}
+        \begin{tabular}{c l rr rr rr rr}
+        % \hline
+        % \multicolumn{2}{c}{\small{\textbf{Demography}}}  & \textbf{\nq} & \textbf{\qb} & \textbf{\squad} & \textbf{\triviaqa} \\
+        \hspace{15pt} & \multirow{2}{*}{\textbf{Value}} %{\small{\textbf{Value}}}  
+            & \multicolumn{2}{c}{\textbf{\nq}} 
+            & \multicolumn{2}{c}{\textbf{\qb}}  
+            & \multicolumn{2}{c}{\textbf{\squad}}  
+            & \multicolumn{2}{c}{\textbf{\triviaqa}} \\ 
+        
+        & 
+            & \hspace{5pt}\textbf{Train} & \textbf{Dev} 
+            & \hspace{5pt}\textbf{Train} & \textbf{Dev} 
+            & \hspace{5pt}\textbf{Train} & \textbf{Dev} 
+            & \hspace{5pt}\textbf{Train} & \textbf{Dev}\\ 
+        
+        \toprule
+        \multirow{3}{*}{\rotatebox[origin=c]{90}{\textbf{Gender}}}
+            & Male    
+                &  \textbf{75.67} &  \textbf{76.33} 
+                &  \textbf{91.77} &  \textbf{91.63} 
+                &  \textbf{87.82} &  \textbf{95.15} 
+                &  \textbf{83.76} &  \textbf{83.32} \\
+               
+            & Female          
+                &  27.47 &  27.56 
+                &  10.29 &   9.87 
+                &  13.44 &   5.20 
+                &  20.54 &  20.29 \\
+                
+                % &   0.31 &   0.35 &   0.27 &   0.30
+            % & Other           &   0.12 &   0.00 &   0.09 &   0.12 \\
+            & No Gender
+                &   0.31  &   0.47
+        		&   0.35  &   0.39
+        		&   0.27  &   0.00
+        		&   0.30  &   0.35 \\
+        \midrule
+        \multirow{3}{*}{\rotatebox[origin=c]{90}{\textbf{Country}}}
+            & US
+                & \textbf{59.62}	& \textbf{58.66}
+        		& \textbf{29.70}	& \textbf{26.28}
+        		& \textbf{32.74}	& \textbf{24.93}
+        		& 31.32	& 30.91
+                \\
+            
+            & UK
+        		& 15.76	& 15.78
+        		& 17.92	& 17.68
+        		& 19.66	& 16.83
+        		& \textbf{41.92}	& \textbf{41.32}
+        		\\
+            
+            & France
+        		& 1.79	& 1.18
+        		& 10.06	& 10.34
+        		& 7.76	& 10.57
+        		& 4.37	& 4.84
+        		\\
+            
+
+        \midrule
+        \multirow{4}{*}{\rotatebox[origin=c]{90}{\textbf{Field}}}
+            & Film/TV
+				& \textbf{39.19}	& \textbf{37.93}
+				& 3.16	& 1.89
+				& 10.72	& 1.32
+				& 20.64	& \textbf{20.75}
+				\\
+            
+            & Writing 
+				& 7.40	& 6.95
+				& \textbf{36.62}	& \textbf{36.39}
+				& 10.46	& 6.70
+				& 18.41	& 18.05
+				\\
+				
+            & Politics 
+				& 11.98	& 10.84
+				& 24.02	& 24.86
+				& \textbf{36.97}	& \textbf{46.61}
+				& \textbf{21.18}	& 20.72
+				\\
+				
+            & Science/Tech
+				& 3.61	& 4.71
+				& 8.93	& 7.50
+				& 13.67	& 29.60
+				& 5.43	& 5.54
+				\\
+				
+				
+\bottomrule \end{tabular}
+\end{frame}
+
 
 \begin{frame}{Human-Computer Question Answering}
 
@@ -1208,6 +1352,91 @@ http://boydgraber.org
 
 \end{frame}
 
+
+
+\begin{frame}{Impossible Until the End}
+\alert<3>{Ritchie Watson commended this play's historical accuracy for
+  getting the price for a dozen eggs right---ten cents---to defend
+  against Elizabeth Hardwick’s contention that it was a sentimental
+  history.} \alert<4>{At the end of this play, a man wonders why a wheelchair is
+at the top of a staircase, and} \alert<5>{Alexandra announces that she is leaving
+her mother. Leo is pressured into stealing a set of valuable railroad
+bonds in this drama. In this play, which takes its title from the Song
+of Solomon,} Regina Hubbard schemes  \tdiamond{xgreen}
+\tcircle{xgreen} to obtain a majority share in a cotton mill. For 10
+points,  \tsquare{xgreen}  \ttriangle{xgreen} name this play by
+Lillian Hellman. \\
+
+\pause
+
+\textbf{Answer}: The\ Little\ Foxes\\
+
+\only<3>{Academic literature}
+\only<4>{Vague plot summary}
+\only<5>{Avoid last names}
+
+\end{frame}
+
+% Tricky and hard: F3 Question 25
+
+\begin{frame}{Tricky and impossible for current systems}
+In Our Town, a character  \ttriangle{xred} with this given name explains Grover’s Corners’ place in the universe. In The Crucible, a character  \tcircle{xred} with this first name contends that the girls’ actions are part of their “silly seasons” and is the wife of Francis Nurse. A novel with this name, which conducts hidden messages to Rommel in The English Patient, is titled for a character who is killed in a boating accident at Manderley. For 10 points, give this name of a Daphne du Maurier  \tdiamond{xyellow}  \tsquare{xgreen} gothic novel which is also the first name of Miss Sharp, the protagonist of William Thackeray's Vanity Fair. \tcircle{gray}  \ttriangle{gray}
+
+
+\ttriangle{xred} Thornton Wilder
+\tcircle{xred} Richard
+\tcircle{gray} Richard
+\ttriangle{gray} Thornton Wilder \\
+\textbf{Answer}: Rebecca\\
+\end{frame}
+
+% Tricky and hard: F3 Question 29
+
+\begin{frame}{Close, but \dots}
+An army that took its name from this geographical feature had a
+British doctor, James Paroissien, as its Surgeon General, and recent
+scholarship by Peter Blanchard revealed its use of slaves. That army
+crossed this geographical feature according  \ttriangle{xred} to
+Thomas Maitland’s  \tcircle{xred} plans at Uspallata and Los
+Patos. Spanish forces under Rafael Maroto were defeated in the
+foothills of these mountains by an army led by José de San Martín and
+Bernardo O'Higgins.  \tsquare{xred} For 10 points, name this mountain
+range of South America that played a role  \ttriangle{xyellow} in the
+independence of Chile. \tdiamond{gray}  \tcircle{gray}  \tsquare{gray}
+
+\ttriangle{xred} Angel Falls
+\tcircle{xred} Mountain
+\tsquare{xred} Battle of Chacabuco
+\tdiamond{gray} Battle of Chacabuco
+\tcircle{gray} Mountain
+\tsquare{gray} Battle of Chacabuco \\
+\pause
+\textbf{Answer}: Andes\\
+
+\end{frame}
+
+% Showing strength of QB format: Packet F3 Question 30
+
+\begin{frame}{Showing the strength of quiz bowl format}
+A painting by this artist  \tsquare{xred} presents a tree as a cupboard with two doors, behind which are a white sphere and a miniature lighted house. A series of three paintings by this man shows a daytime sky with cumulus clouds above a dark house illuminated by a lamppost. This artist of Blood Will Tell and The Empire of Lights depicted a clock set to 12:43  \tcircle{xgreen} as a locomotive speeds out of a fireplace and a man in  \tsquare{xyellow} a bowler hat with an  \ttriangle{xgreen} apple in front of his face. For 10 points, name this Belgian surrealist painter  \tdiamond{xgreen} of the Son of Man and Time Transfixed.
+
+\tsquare{xred} Argon \\
+\pause
+\textbf{Answer}: René\ Magritte\\
+\end{frame}
+
+% Why it's a good learning framework: Packet F3 Question 31
+
+
+\begin{frame}{Our QA Systems are Crazy}
+
+\only<1-2>{
+\begin{block}{Out of Touch}
+On "The Critic", this man was replaced by a drunken animatronic bear from the Country Bear Jamboree but nobody seemed to notice.  This man was edited to appear in the film "Contact", which prompted an angry statement from Mike McCurry.  He was portrayed by Dennis Quaid in "The Special Relationship", who ate McDonald's every day to prepare for the role.  A fictionalized version of this man named Henry Burton, a charismatic Southern governor running for the Democratic nomination, is portrayed by John Travolta in "Primary Colors".  For ten points, name this American president who played the saxophone on an appearance on the Arsenio Hall Show.
+\end{block} }
+\only<2>{{\bf Samuel L. Jackson?}}
+
+\end{frame}
 
 \begin{frame}{Comparing Models}
 
