@@ -125,17 +125,17 @@ st page.
 \begin{frame}{How Machines Answer Computers Today and how to Improve}
 
   \begin{itemize}
-  \item Good and bad of  
+  \item Good and bad of
       \begin{itemize}
       \item SQuAD
       \item Jeopardy!
       \item Natural Questions
-      \end{itemize}        
-    \item What we can learn from game shows and trivia nerds
+      \end{itemize}
+    \item What we can learn from human \abr{qa} (game shows and trivia nerds)
     \item A better \textsc{qa} task / dataset
       \item How to make it challenging for computers
       \item What a question answering gameshow might look like
-      \end{itemize}            
+      \end{itemize}
 \end{frame}
 
 %\fsi{general_figures/tng_poker}{}
@@ -145,7 +145,7 @@ st page.
 
   \only<1>{\gfxq{squad_ex}{.7}}
   \only<2>{\gfxq{squad_leader}{.8}}
-  
+
   \only<3>{  \goodbad{Very scalable annotation
 process that can cheaply generate
 large numbers of questions per
@@ -169,7 +169,7 @@ In the United Kingdom and several other Commonwealth countries including Austral
     \end{block}
 
     }
-  
+
 \end{frame}
 
 \fsi{qb/human_reading}{SQuAD: Ignore Knowledge}
@@ -182,12 +182,12 @@ In the United Kingdom and several other Commonwealth countries including Austral
   \begin{columns}
     \column{.25\linewidth}
     \gfxq{planet_money}{.75}
-    \gfxq{jennings}{.7}  
+    \gfxq{jennings}{.7}
     \gfxq{kenny_malone}{.7}
     \column{.7\linewidth}
 
     From \href{file:///Users/jbg/repositories/jbg-talks/qb/jennings-buzzer.mp3}{Planet Money} \\
-    
+
     \small
 
     {\bf JENNINGS:} The deal with the buzzer is this. The buzzer is
@@ -202,15 +202,15 @@ In the United Kingdom and several other Commonwealth countries including Austral
     {\bf MALONE:} OK. To some degree, "Jeopardy!" is kind of a video game, and a \alert<2>{crappy video game where it's, like, light goes on, press button} - that's it.
 
     \pause
-    
+
     {\bf JENNINGS:} (Laughter) Yeah.
 
     {\bf MALONE:} Is that true?
 
     {\bf JENNINGS:} I do like to think of it as a \alert<3>{beautiful art} and not a really crappy video game.
-    
+
   \end{columns}
-  
+
 \end{frame}
 
 
@@ -225,7 +225,7 @@ In the United Kingdom and several other Commonwealth countries including Austral
     No, I'm not forgetting anybody.
 
     \gfxq{holzhauer}{.5}
-    
+
   \end{itemize}
 
 \end{frame}
@@ -236,11 +236,9 @@ In the United Kingdom and several other Commonwealth countries including Austral
 % Add in some trivia / QB image
 
 
+%\fsi{qb/squad}{SQuAD: Rajpurkar et al., 2016 (Reason)}
 
-
-\fsi{qb/squad}{SQuAD: Rajpurkar et al., 2016 (Reason)}
-
-\fsi{qb/triviaqa}{TriviaQA: Joshi et al., 2017 (Experts)}
+%\fsi{qb/triviaqa}{TriviaQA: Joshi et al., 2017 (Experts)}
 
 
 \begin{frame}{Google's Natural Questions}
@@ -290,7 +288,7 @@ In the United Kingdom and several other Commonwealth countries including Austral
 
 \begin{frame}{Ambiguous Questions}
   \begin{small}
-  \rowcolors{2}{gray!25}{white}    
+  \rowcolors{2}{gray!25}{white}
   \begin{tabular}{p{7cm}p{3cm}}
     \toprule
     Question & Gold Answer \\
@@ -308,7 +306,7 @@ In the United Kingdom and several other Commonwealth countries including Austral
   \only<3>{Men's competition}
   \only<4>{Indian Supreme Court}
   \only<5>{Electric power}
-  \only<6>{Bias for Men's sports, especially football.  Ambiguity is arbitrarily resolved by search engine result.}
+  \only<6>{Bias in favor of men, English-speaking world.  Ambiguity is arbitrarily resolved by search engine result.}
   \end{block}
 \end{frame}
 
@@ -352,45 +350,6 @@ In the United Kingdom and several other Commonwealth countries including Austral
       \end{frame}
 
 
-
-
-\begin{frame}{The problem of ambiguity and annotation error}
-  \only<1>{\gfxq{error_and_difficulty_0}{1.0}}
-  \only<2>{\gfxq{error_and_difficulty_1}{1.0}}
-  \only<3>{\gfxq{error_and_difficulty_2}{1.0}}
-  \only<4>{\gfxq{error_and_difficulty_3}{1.0}}
-
-\end{frame}
-
-
-\begin{frame}{Trivia games know this!}
-
-  \begin{block}{You should not assume a finite set of answers are enough!}
-Different QA runs very seldom return exactly the same answer strings, and it is quite difficult to determine automatically whether the difference between a new string and a judged string is significant with respect to the correctness of the answer. (Voorhees, 2008)
-\end{block}
-
-\begin{itemize}
-\item Low-level staffers can rule based on common sense
-\item Larger issues require escalation
-\item Annual tournaments have ``adjudication board''
-\item Process maximizes fairness
-\end{itemize}
-
-\href{file:///Users/jbg/repositories/jbg-talks/qb/endoscope.mov}{Jeopardy Example}
-
-\end{frame}
-
-\fsi{qb/jeopardy_adjudication_1}{}
-\fsi{qb/jeopardy_adjudication_2}{}
-\fsi{qb/jeopardy_adjudication_3}{}
-\fsi{qb/jeopardy_adjudication_4}{}      
-\fsi{qb/jeopardy_adjudication_0}{}
-
-
-\fsi{qb/efficient_qa.jpg}{NeurIPS 2020: Efficient QA (https://go.umd.edu/2020eqa)}
-
-
-
 \begin{frame}[t]
 	\frametitle{Sample Question}
 
@@ -415,8 +374,47 @@ Different QA runs very seldom return exactly the same answer strings, and it is 
 \end{frame}
 
 
+
+\begin{frame}{The problem of ambiguity and annotation error}
+  \only<1>{\gfxq{error_and_difficulty_0}{1.0}}
+  \only<2>{\gfxq{error_and_difficulty_1}{1.0}}
+  \only<3>{\gfxq{error_and_difficulty_2}{1.0}}
+  \only<4>{\gfxq{error_and_difficulty_3}{1.0}}
+
+\end{frame}
+
+
+\begin{frame}{How to correctly deal with ambiguity}
+
+  \begin{block}{You should not assume a finite set of answers are enough!}
+Different QA runs very seldom return exactly the same answer strings, and it is quite difficult to determine automatically whether the difference between a new string and a judged string is significant with respect to the correctness of the answer. (Voorhees, 2008)
+\end{block}
+
+\begin{itemize}
+\item Low-level staffers can rule based on common sense
+\item Larger issues require escalation
+\item Annual tournaments have ``adjudication board''
+\item Process maximizes fairness
+\end{itemize}
+
+\href{file:///Users/jbg/repositories/jbg-talks/qb/endoscope.mov}{Jeopardy Example}
+
+\end{frame}
+
+\fsi{qb/jeopardy_adjudication_1}{}
+\fsi{qb/jeopardy_adjudication_2}{}
+\fsi{qb/jeopardy_adjudication_3}{}
+\fsi{qb/jeopardy_adjudication_4}{}
+\fsi{qb/jeopardy_adjudication_0}{}
+
+
+\fsi{qb/efficient_qa.jpg}{NeurIPS 2020: Efficient QA (https://go.umd.edu/2020eqa)}
+
+
+
+
 \begin{frame}
-	\frametitle{Question Structure Enables Compeition}
+	\frametitle{Question Structure Enables Discriminability}
 
 	\begin{columns}
 		\column{.5\linewidth}
@@ -489,6 +487,17 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \end{frame}
 
 
+\begin{frame}{Non-linear improvement: Deep Averaging Networks}
+
+  \only<1>{\gfxq{dan_1}{.8}}
+  \only<2>{\gfxq{dan_2}{.6}}
+  \only<3>{\gfxq{dan_3}{.6}}
+  \only<4>{\gfxq{dan_4}{.6}}
+
+\end{frame}
+
+
+
 % \begin{frame}{Training}
 
 %   \begin{columns}
@@ -532,7 +541,7 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 
   \only<1>{\gfxq{elmo_idea}{.9}}
   \only<2>{\gfxq{elmo_paper}{.9}}
-  
+
 
 \end{frame}
 
@@ -812,12 +821,12 @@ words~$\vec{w}=\langle\vec{w}_1, \vec{w}_2, \ldots
 \vec{w}_n\rangle$, we approximate the classifier $f$ with a linear
 function of $w_i$ derived from the first-order Taylor expansion. The
 importance of $w_i$, with embedding $\vec{v}_i$, is the derivative
-of $f$ with respect to the one-hot vector: 
+of $f$ with respect to the one-hot vector:
 \begin{equation} \frac{\partial f}{\partial w_i} \
-   = \frac{\partial f}{\partial \vec{v}_i}\frac{\partial \vec{v}_i}{\partial w_i} \ 
-   = \frac{\partial f}{\partial \vec{v}_i} \cdot \vec{v}_i. 
-\end{equation} 
-This simulates how model predictions change when a particular word's embedding is set to the zero vector---it approximates word removal~\cite{ebrahimi2017hotflip,wallace2018Neighbors}.  
+   = \frac{\partial f}{\partial \vec{v}_i}\frac{\partial \vec{v}_i}{\partial w_i} \
+   = \frac{\partial f}{\partial \vec{v}_i} \cdot \vec{v}_i.
+\end{equation}
+This simulates how model predictions change when a particular word's embedding is set to the zero vector---it approximates word removal~\cite{ebrahimi2017hotflip,wallace2018Neighbors}.
 
 \end{frame}
 
@@ -895,7 +904,7 @@ This simulates how model predictions change when a particular word's embedding i
   \item All computer teams lost to human teams
     \pause
   \item But two games were really close; strongest system was based on BERT
-  \item YouTube video series soon! \dots
+  \item \href{http://events.qanta.org}{http://events.qanta.org}
 \end{itemize}
 
 \end{frame}
@@ -1045,32 +1054,32 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
         \begin{tabular}{c l rr rr rr rr}
         % \hline
         % \multicolumn{2}{c}{\small{\textbf{Demography}}}  & \textbf{\nq} & \textbf{\qb} & \textbf{\squad} & \textbf{\triviaqa} \\
-        \hspace{15pt} & \multirow{2}{*}{\textbf{Value}} %{\small{\textbf{Value}}}  
-            & \multicolumn{2}{c}{\textbf{\nq}} 
-            & \multicolumn{2}{c}{\textbf{\qb}}  
-            & \multicolumn{2}{c}{\textbf{\squad}}  
-            & \multicolumn{2}{c}{\textbf{\triviaqa}} \\ 
-        
-        & 
-            & \hspace{5pt}\textbf{Train} & \textbf{Dev} 
-            & \hspace{5pt}\textbf{Train} & \textbf{Dev} 
-            & \hspace{5pt}\textbf{Train} & \textbf{Dev} 
-            & \hspace{5pt}\textbf{Train} & \textbf{Dev}\\ 
-        
+        \hspace{15pt} & \multirow{2}{*}{\textbf{Value}} %{\small{\textbf{Value}}}
+            & \multicolumn{2}{c}{\textbf{\nq}}
+            & \multicolumn{2}{c}{\textbf{\qb}}
+            & \multicolumn{2}{c}{\textbf{\squad}}
+            & \multicolumn{2}{c}{\textbf{\triviaqa}} \\
+
+        &
+            & \hspace{5pt}\textbf{Train} & \textbf{Dev}
+            & \hspace{5pt}\textbf{Train} & \textbf{Dev}
+            & \hspace{5pt}\textbf{Train} & \textbf{Dev}
+            & \hspace{5pt}\textbf{Train} & \textbf{Dev}\\
+
         \toprule
         \multirow{3}{*}{\rotatebox[origin=c]{90}{\textbf{Gender}}}
-            & Male    
-                &  \textbf{75.67} &  \textbf{76.33} 
-                &  \textbf{91.77} &  \textbf{91.63} 
-                &  \textbf{87.82} &  \textbf{95.15} 
+            & Male
+                &  \textbf{75.67} &  \textbf{76.33}
+                &  \textbf{91.77} &  \textbf{91.63}
+                &  \textbf{87.82} &  \textbf{95.15}
                 &  \textbf{83.76} &  \textbf{83.32} \\
-               
-            & Female          
-                &  27.47 &  27.56 
-                &  10.29 &   9.87 
-                &  13.44 &   5.20 
+
+            & Female
+                &  27.47 &  27.56
+                &  10.29 &   9.87
+                &  13.44 &   5.20
                 &  20.54 &  20.29 \\
-                
+
                 % &   0.31 &   0.35 &   0.27 &   0.30
             % & Other           &   0.12 &   0.00 &   0.09 &   0.12 \\
             & No Gender
@@ -1086,21 +1095,21 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
         		& \textbf{32.74}	& \textbf{24.93}
         		& 31.32	& 30.91
                 \\
-            
+
             & UK
         		& 15.76	& 15.78
         		& 17.92	& 17.68
         		& 19.66	& 16.83
         		& \textbf{41.92}	& \textbf{41.32}
         		\\
-            
+
             & France
         		& 1.79	& 1.18
         		& 10.06	& 10.34
         		& 7.76	& 10.57
         		& 4.37	& 4.84
         		\\
-            
+
 
         \midrule
         \multirow{4}{*}{\rotatebox[origin=c]{90}{\textbf{Field}}}
@@ -1110,21 +1119,21 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 				& 10.72	& 1.32
 				& 20.64	& \textbf{20.75}
 				\\
-            
-            & Writing 
+
+            & Writing
 				& 7.40	& 6.95
 				& \textbf{36.62}	& \textbf{36.39}
 				& 10.46	& 6.70
 				& 18.41	& 18.05
 				\\
-				
-            & Politics 
+
+            & Politics
 				& 11.98	& 10.84
 				& 24.02	& 24.86
 				& \textbf{36.97}	& \textbf{46.61}
 				& \textbf{21.18}	& 20.72
 				\\
-				
+
             & Science/Tech
 				& 3.61	& 4.71
 				& 8.93	& 7.50

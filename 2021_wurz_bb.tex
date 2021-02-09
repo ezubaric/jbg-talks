@@ -12,10 +12,17 @@
 \usepackage{colortbl}
 \usepackage{overpic}
 \usepackage{pdfpages}
+\usepackage{tikz}
 
 \usepackage{multirow}
 
 \pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
+
+\newcommand*{\tcircle}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[circle,fill=#1,scale=0.9] (X) {};}
+\newcommand*{\tsquare}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[fill=#1,scale=1.2] (X) {};}
+\newcommand*{\tdiamond}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[diamond,fill=#1,scale=0.7] (X) {};}
+\newcommand*{\ttriangle}[1]{\tikz[anchor=base,baseline=-1.5pt] \node[regular polygon,regular polygon sides=3,fill=#1,scale=0.6] (X) {};}
+
 
 \newcommand{\slda}[0]{\abr{slda}}
 \newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
@@ -629,6 +636,18 @@ Eric Wallace, Pedro Rodriguez, Shi Feng, Ikuya Yamada, and Jordan Boyd-Graber. T
 
 \end{frame}
 
+\begin{frame}{Linguistics FTW}
+
+  The main character of a story by \alert<2>{this author opens Crime and Punishment} to a
+random page, but finds it to be a copy of The Brother Karamazov, and equates
+himself with Monsieur Bovary. This author wrote a story in which the priest
+Naigu undergoes a boiling treatment to decrease the size of his nose. This
+author of "Cogwheels" wrote about two people who steal to survive near the
+southern gate of Kyoto in a story that features inconsistent accounts from a
+woodcutter, a priest, a widow, and the ghost of a samurai. For 10 points, name
+this author of "Rashomon" and namesake of a Japanese literary prize. \\
+\only<3->{\textbf{Answer}: Ryunosuke Akutagawa}
+\end{frame}
 
 
 \begin{frame}{}
@@ -774,42 +793,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 }
 
 
-\begin{frame}{Close, but \dots}
-An army that took its name from this geographical feature had a
-British doctor, James Paroissien, as its Surgeon General, and recent
-scholarship by Peter Blanchard revealed its use of slaves. That army
-crossed this geographical feature according  \ttriangle{BrickRed} to
-Thomas Maitland’s  \tcircle{BrickRed} plans at Uspallata and Los
-Patos. Spanish forces under Rafael Maroto were defeated in the
-foothills of these mountains by an army led by José de San Martín and
-Bernardo O'Higgins.  \tsquare{BrickRed} For 10 points, name this mountain
-range of South America that played a role  \ttriangle{Goldenrod} in the
-independence of Chile. \tdiamond{gray}  \tcircle{gray}  \tsquare{gray}
 
-\ttriangle{BrickRed} Angel Falls
-\tcircle{BrickRed} Mountain
-\tsquare{BrickRed} Battle of Chacabuco
-\tdiamond{gray} Battle of Chacabuco
-\tcircle{gray} Mountain
-\tsquare{gray} Battle of Chacabuco \\
-\pause
-\textbf{Answer}: Andes\\
-
-\end{frame}
-
-
-\begin{frame}{Linguistics FTW}
-
-  The main character of a story by \alert<2>{this author opens Crime and Punishment} to a
-random page, but finds it to be a copy of The Brother Karamazov, and equates
-himself with Monsieur Bovary. This author wrote a story in which the priest
-Naigu undergoes a boiling treatment to decrease the size of his nose. This
-author of "Cogwheels" wrote about two people who steal to survive near the
-southern gate of Kyoto in a story that features inconsistent accounts from a
-woodcutter, a priest, a widow, and the ghost of a samurai. For 10 points, name
-this author of "Rashomon" and namesake of a Japanese literary prize. \\
-\only<3->{\textbf{Answer}: Ryunosuke Akutagawa}
-\end{frame}
 
 
 

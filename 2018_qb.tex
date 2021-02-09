@@ -319,7 +319,7 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 
 \end{frame}
 
-\begin{frame}{Training}
+\begin{frame}{DAN Training}
 
   \begin{columns}
     \column{.5\linewidth}
@@ -1285,6 +1285,35 @@ Republican candidate and real estate mogul.
 
 \end{frame}
 
+\begin{frame}{DAN Training}
+
+  \begin{columns}
+    \column{.5\linewidth}
+      \begin{itemize}
+        \item Initialize embeddings from \textsc{word2vec}
+        \item Randomly initialize composition matrices
+        \item Update using \textsc{warp}
+          \begin{itemize}
+            \item Randomly choose an instance
+            \only<2->{\item Look where it lands}
+            \only<4->{\item Has a correct answer}
+            \only<5->{\item Wrong answers may be closer}
+            \only<6->{\item Push away wrong answers
+            \item Bring correct answers closer}
+          \end{itemize}
+      \end{itemize}
+
+    \column{.5\linewidth}
+
+      \only<1>{\gfxq{warp_training_5}{.8}}
+      \only<2>{\gfxq{warp_training_4}{.8}}
+      \only<3>{\gfxq{warp_training_3}{.8}}
+      \only<4>{\gfxq{warp_training_2}{.8}}
+      \only<5>{\gfxq{warp_training_1}{.8}}
+      \only<6>{\gfxq{warp_training_0}{.8}}
+  \end{columns}
+
+\end{frame}
 
 
 \end{document}
