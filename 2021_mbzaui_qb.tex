@@ -28,6 +28,10 @@ st page.
 \definecolor{xyellow}{HTML}{F4B400}
 \definecolor{xgreen}{HTML}{0F9D58}
 
+\newcommand{\nq}{\abr{nq}}
+\newcommand{\qb}{\abr{qb}}
+\newcommand{\squad}{\abr{sq}\small{u}\abr{ad}}
+\newcommand{\triviaqa}{\abr{t}\small{rivia}\abr{qa}}
 \newcommand*{\tcircle}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[circle,fill=#1,scale=0.9] (X) {};}
 \newcommand*{\tsquare}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[fill=#1,scale=1.2] (X) {};}
 \newcommand*{\tdiamond}[1]{\tikz[anchor=base,baseline=-2.5pt] \node[diamond,fill=#1,scale=0.7] (X) {};}
@@ -266,9 +270,27 @@ In the United Kingdom and several other Commonwealth countries including Austral
 
 \fsi{qb/hcqa_ambigqa}{}
 
+
+
+\begin{frame}{}
+
+  \begin{columns}
+    \column{.4\linewidth}
+        \includegraphics[width=0.8\linewidth]{general_figures/ben}
+    \column{.6\linewidth}
+
+
+
+        \begin{block}{ {\bf \href{http://umiacs.umd.edu/~jbg//docs/2020_acl_trivia.pdf}{What Question Answering can Learn from Trivia Nerds} }}
+{\bf Jordan Boyd-Graber} and Benjamin B\"orschinger.  \emph{Association for Computational Linguistics}, 2020
+        \end{block}
+
+  \end{columns}
+\end{frame}
+
 \begin{frame}{Ambiguous Questions}
-  \rowcolors{2}{gray!25}{white}
   \begin{small}
+  \rowcolors{2}{gray!25}{white}    
   \begin{tabular}{p{7cm}p{3cm}}
     \toprule
     Question & Gold Answer \\
@@ -279,8 +301,9 @@ In the United Kingdom and several other Commonwealth countries including Austral
     \alert<5>{where does puerto rico's power come from} & Puerto Rico Electric Power Authority \\
     \bottomrule
   \end{tabular}
-  \end{small}
-  \begin{block}{Assumptions\dots}
+\end{small}
+
+\begin{block}{Assumptions\dots}
   \only<2>{NCAA Division I Men's Football}
   \only<3>{Men's competition}
   \only<4>{Indian Supreme Court}
@@ -340,14 +363,6 @@ In the United Kingdom and several other Commonwealth countries including Austral
 \end{frame}
 
 
-\fsi{qb/jeopardy_adjudication_0}{}
-\fsi{qb/jeopardy_adjudication_1}{}
-\fsi{qb/jeopardy_adjudication_2}{}
-\fsi{qb/jeopardy_adjudication_3}{}
-\fsi{qb/jeopardy_adjudication_4}{}      
-
-
-
 \begin{frame}{Trivia games know this!}
 
   \begin{block}{You should not assume a finite set of answers are enough!}
@@ -365,39 +380,15 @@ Different QA runs very seldom return exactly the same answer strings, and it is 
 
 \end{frame}
 
-
-\begin{frame}[t]
-  \frametitle{Sample Question}
-
-\small
-\only<2->{This man wrote a ballet in which 60 white nymphs perform the
-  Rainbow Dance, so named because different colored lights are focused
-  on them---\only<3->{that ballet Alethes and Iris was never produced
-    because the theater manager was convinced it would cause a
-    fire. He invented the first \only<4->{cow catcher and campaigned
-      for passage of an act against "street nuisances" like outdoor
-      musicians, who he claimed wasted a quarter of his life. He
-      responded to \only<5->{William Whewell's statement that no
-        scientific explanation of the universe was possible in his
-        \only<6->{"Ninth Bridgewater Treatise," which attacked the
-          eight previous treatises funded by the Earl of
-          Bridgewater. He also wrote about the influence of
-          aristocrats on science in his \only<7->{Reflections on the
-            Decline of Science in England . This author of the memoir
-            \only<8->{Passages From the Life of a Philosopher improved
-              on \only<9->{Jacquard's invention of punched cards by
-                proposing a device which incorporated an
-                \only<10->{input, storage system, processor, control
-                  unit, and output device. FTP, name this inventor of
-                  the \only<11->{Analytic Engine and the Difference
-                    Engine.}}}}}}}}}}
-
-\only<12->{ {\bf Charles Babbage}}
+\fsi{qb/jeopardy_adjudication_1}{}
+\fsi{qb/jeopardy_adjudication_2}{}
+\fsi{qb/jeopardy_adjudication_3}{}
+\fsi{qb/jeopardy_adjudication_4}{}      
+\fsi{qb/jeopardy_adjudication_0}{}
 
 
+\fsi{qb/efficient_qa.jpg}{NeurIPS 2020: Efficient QA (https://go.umd.edu/2020eqa)}
 
-
-\end{frame}
 
 
 \begin{frame}[t]
@@ -495,7 +486,6 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
   \only<8>{\gfxq{unigram_models_7}{.8}}
   \only<9>{\gfxq{unigram_models_8}{.8}}
 
-
 \end{frame}
 
 
@@ -536,6 +526,15 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 
 \end{frame}
 
+\fsi{qb/delft_intuition}{\underline{\href{http://users.umiacs.umd.edu/~chenz/}{Chen Zhao}}, Chenyan Xiong, Xin Qian, and {\bf Jordan Boyd-Graber}.  {\bf \href{http://umiacs.umd.edu/~jbg//docs/2020_www_delft.pdf}{Complex Factoid Question Answering with a Free-Text Knowledge Graph}}.  \emph{The Web Conference}, 2020.}
+
+\begin{frame}{What Mohit did afterward\dots}
+
+  \only<1>{\gfxq{elmo_idea}{.9}}
+  \only<2>{\gfxq{elmo_paper}{.9}}
+  
+
+\end{frame}
 
 \begin{frame}{How to approach this problem \dots}
 
@@ -669,7 +668,6 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \end{frame}
 
 \fsi{qb/hsnct1}{}
-\fsi{qb/jennings}{23. October 2015, Seattle}
 \fsi{qb/jennings_handshake}{300-160}
 % \fsi{qb/hsnct_2016}{330-60} % Not sure of exact score, double check
 \fsi{qb/nasat}{Humans 345-145 (vs. OUSIA)}
@@ -1005,9 +1003,10 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 
 \fsi{simtrans/interpreter-screenshot}{Same human-computer cooperation}
 
-\begin{frame}{Ongoing Work: Modeling Questions}
-  \gfxq{leaderboard_model}{.8}
+\begin{frame}{Ongoing Work: Modeling Questions and Systems}
+  \gfxq{leaderboard_model}{.7}
 
+  \begin{footnotesize}
   \begin{enumerate*}
   \item For each subject $j$:
   \begin{enumerate*}
@@ -1019,18 +1018,17 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
     \item Draw discriminability $\gamma_i \sim \mathcal{N}(\mu_\gamma, \tau_\gamma^{-1})$
     \item Draw $\lambda_i \sim \text{U}[0,1]$
   \end{enumerate*}
-  \item Draw subject $i$ response on item $j$,\\$r_{ij} \sim p_{ij}(r_{ij} \mid \theta_j, \beta_i, \lambda_i )=$
+  \item Draw subject $i$ response on item $j$, $r_{ij} \sim p_{ij}(r_{ij} \mid \theta_j, \beta_i, \lambda_i )=$
     \begin{equation}
       p_{ij}(r_{ij}=1|\theta_j)=\frac{\lambda_i}{1+e^{-\gamma_i(\theta_j-\beta_i)}}.
       \label{eq:isicle:ours}
     \end{equation}
-    For \pl{1}, $\gamma_i$ and $\lambda_i$ are fixed to 1.0, while for
-    \pl{2}, only $\lambda_i$ is fixed.\footnote{In psychometrics, \pl{1}~is called a Rasch~\citep{rasch1960studies} or 1 parameter logistic (1PL) model, \pl{2}~is a 2PL model, and \pl{3}~is a 4PL model with guessing set to zero.}
-\end{enumerate*}
-
+  \end{enumerate*}
+  \end{footnotesize}
+\end{frame}
 
 \begin{frame}{Improving Leaderboards}
-  \only<1>{\gfxq{leaderboard_fit}{.8}}
+  \only<1>{\gfxq{leaderboard_fit}{.75}}
   \only<2>{\gfxq{leaderboard_active}{.8}}
 \end{frame}
 
@@ -1133,31 +1131,9 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 				& 13.67	& 29.60
 				& 5.43	& 5.54
 				\\
-				
-				
 \bottomrule \end{tabular}
 \end{frame}
 
-
-\begin{frame}{Human-Computer Question Answering}
-
-  \begin{itemize}
-    \item Pit machine learning algorithms against humans
-    \item Fun task for human participants
-    \item Good system for discriminating depth and confidence of
-      algorithms
-    \item Knowledge and language comprehension needed to do well
-    \item Simple approaches work well if you have the whole question
-    \item Good competition for QA systems
-    \item Can get much harder
-      \begin{itemize}
-        \item Speech
-       \item Specialized knowledge
-        \item Adversarial authoring
-      \end{itemize}
-  \end{itemize}
-
-\end{frame}
 
 
 \begin{frame}{Future \dots}
@@ -1165,13 +1141,13 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
   \begin{itemize}
     \item Computers dominate on ``normal'' questions
     \item Not so much on adversarial questions
-    \item Stronger QA systems (e.g., Google's!)
+    \item Need to expand explanations
       \begin{itemize}
-        \item Need more thought on how to explain
-        \item Expose QA system to more users
+        \item Measured on real-world tasks
+        \item With more diverse users
         \item Increase the breadth of resources
-        \item Multilingual
-      \end{itemize}
+        \end{itemize}
+      \item Multilingual and multicultural
   \end{itemize}
 
 \end{frame}
@@ -1231,7 +1207,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
     \begin{block}{Interactive Machine Learning}
      \centering
         \includegraphics[width=0.4\linewidth]{interactive_topic_models/new_interface} \\
-       \cite{Smith-17,Poursabzi-16}
+       \cite{Poursabzi-16, Yuan-20:cold,Yuan-20:refinement}
     \end{block}
 
 
@@ -1243,7 +1219,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
         \begin{large}
           $p_{\mbox{topic}}(e | f)$ \\
          \end{large}
-      \cite{eidelman-12,hu-14}
+      \cite{eidelman-12,hu-14,Yuan-18}
        \end{center}
     \vspace{-.3cm}
     \end{block}
@@ -1252,7 +1228,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
     \begin{block}{Sentiment / Internal State}
     \centering
         \includegraphics[width=0.4\linewidth]{general_figures/diplomacy} \\
-        \cite{niculae-15,sayeed-12,boyd-graber-10}
+        \cite{niculae-15,peskov-20}
     \end{block}
 
 
@@ -1326,7 +1302,7 @@ http://boydgraber.org
 \begin{frame}{References}
 \bibliographystyle{style/acl}
 \tiny
-\bibliography{bib/journal-full,bib/jbg}
+\bibliography{bib/journal-full,bib/jbg,bib/pedro}
 \end{frame}
 
 
