@@ -93,9 +93,6 @@ st page.
   \titlepage{} 
 \end{frame}
 
-\fsi{general_figures/enslave_humans}{}
-\fsi{general_figures/kill_all_humans}{}
-
 \fsi{qb/starcraft}{Image: DeepMind}
 \fsi{qb/DeepBlue}{Peter Morgan/Reuters}
 
@@ -239,8 +236,8 @@ When folks say that a college professor is like a sphinx, they don't usually mea
 
 \begin{frame}{}
 
-  \only<1>{\gfxcm{matrix}{1.0}}
-  \only<2>{\gfxcm{library}{1.0}}  
+  \only<1>{When I talk to companies\dots \\ \gfxcm{matrix}{1.0}}
+  \only<2>{When companies talk to me\dots \\ \gfxcm{library}{1.0}}  
 \end{frame}
 
 \begin{frame}{Ignore the Distinction at Your Peril}
@@ -360,24 +357,6 @@ When folks say that a college professor is like a sphinx, they don't usually mea
   \only<2>{\gfxq{abraham}{1.0}}
 
   Kwiatkowski et al., 2019
-\end{frame}
-
-\begin{frame}{How Natural Questions is Built}
-  \begin{itemize}
-  \item Take frequent questions from Google
-  \item Filter out bad stuff
-  \item Put it through a search engine (restricted to Wikipedia)
-    \item Have multiple annotators look for an answer span (\textit{a la} SQuAD)
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{This is Great!}
-  \begin{itemize}
-  \item Real questions from real people
-  \item \emph{Someone else} verifies that there is an answer
-  \item Question independent of source: much more variation
-    \item Relatively big dataset
-  \end{itemize}
 \end{frame}
 
 \fsi{qb/hcqa_ambigqa}{}
@@ -784,7 +763,7 @@ this author of "Rashomon" and namesake of a Japanese literary prize. \\
 \end{frame}
 
 \fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
-\fsi{qb/augment/tools_buzz}{Hights help experts}
+\fsi{qb/augment/tools_buzz}{Higlights help experts}
 
 
 \begin{frame}{Improvement through Reinforcement Learning}
@@ -798,31 +777,22 @@ this author of "Rashomon" and namesake of a Japanese literary prize. \\
 \end{frame}
 
 
-\begin{frame}{Opportunities for Education}
-
-  \begin{itemize}
-  \item Undergrads can build their own systems
-  \item Contributions outside of computer science
-  \item How smart humans are, how dumb computers are
-  \item A fun spectacle!
-  \end{itemize}
-
-\end{frame}
 
 \begin{frame}{So much left to do!}
 
   \begin{itemize}
   \item Annual evaluations
-  \item Better representation: 90\% of SQuAD questions about men
-  \item Multilingual: Need to actually represent culture and langauge
-  \item Combine with speech recognition
+  \item Better representation: 90\% of SQuAD questions about men (Manchester)
+  \item Next generation of adversarial questions (Manchester)
+  \item Multilingual: Need to actually represent culture and langauge (Cranfield)
+  \item Combine with speech recognition 
   \end{itemize}
   
 \end{frame}
 
 \begin{frame}{Imitation Game}
 
-  I believe that in about fifty years’ time it will be possible to programme computers, with a storage capacity of about 109, to make them play the imitation game so well that an average interrogator will not have more than 70 percent chance of making the right identification after five minutes of questioning. … I believe that at the end of the century the use of words and general educated opinion will have altered so much that one will be able to speak of machines thinking without expecting to be contradicted.
+  I believe that in about fifty years’ time it will be possible to programme computers, with a storage capacity of about 109, to make them play the imitation game so well that an average interrogator will not have more than 70 percent chance of making the right identification after five minutes of questioning. \dots I believe that at the \alert<2>{end of the century} the use of words and general educated opinion will have altered so much that \alert<2>{one will be able to speak of machines thinking without expecting to be contradicted}.
 
 \end{frame}
 
@@ -833,8 +803,9 @@ this author of "Rashomon" and namesake of a Japanese literary prize. \\
 
   \begin{itemize}
   \item Bring community together
+  \item Opportunity for education: simple to build competitive system
   \item Force people to look at the data
-  \item Fair human comparisons
+  \item Fair human comparisons (and understand AI weaknesses)
   \item Slowly increase the difficulty
   \end{itemize}
 
