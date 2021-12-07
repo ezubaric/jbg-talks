@@ -2,6 +2,23 @@
 Sorry for the delay, and thanks for the reminder!
 
 
+Title: Manchester vs. Cranfield: Why do we do question answering and
+how can we do it better?
+
+In this talk, I will examine why researchers are interested in
+question answering.  I introduce the distinction between the
+Manchester (exploration of intelligence) vs. Cranfield (serving the
+user) paradigms.  After outlining this distinction, I will then argue
+for why the Manchester paradigm can reveal the shortfalls of existing
+QA systems from how we find answers to how we sort systems on
+leaderboards, drawing on the best practices of the human question
+answering (i.e., trivia) community.  Finally, I'll outline how
+Cranfield-style systems can better measure the interpretability of
+machine learning systems through explicitly optimizing a user-centric
+metric, which allows the creation of user-specific explanations of
+artificial intelligence.
+
+
 Title: Comparing and Augmenting Human and Computer Intelligence through Natural
 Language Question Answering
 
