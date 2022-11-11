@@ -128,8 +128,28 @@ st page.
 \end{frame}
 
 
+\begin{frame}{Interpretability is Big!}
+  \includegraphics[width=0.9\paperwidth]{general_figures/doshi-velez_kim}
+
+  \begin{itemize}
+  \item Understanding: Debugging
+  \item Trust: Does the user believe the system
+  \item Simulation:Can the user recreate the system
+  \item Safety / Ethics: Does the system protect/hurt people
+  \item Mismatched Objectives: How do you balance with accuracy
+    \only<2->{\item Augmentation}
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics[width=0.5\paperwidth]{general_figures/interpretability_hierarchy}
+    \end{center}
+\end{frame}
+
+
+\fsi{general_figures/chenhao_tutorial}{If you want to know more}
+
 \begin{frame}
-\frametitle{The Challenge of Big Data}
+\frametitle{Unsupervised Methods: Dealing with the Deluge}
 
 \begin{columns}
 
@@ -211,6 +231,23 @@ Information Processing Systems, 2009.
 \end{center}
 }
 
+\begin{frame}{Likelihood Computation}
+
+  \begin{equation}
+    P(\alert<5>{\mathcal{W}} \g \alert<2>{\mathcal{W}'}) = \int{ P( \alert<5>{\mathcal{W}} \g \alert<4>{\Phi},
+      \alpha ) P(\phi \g \mathcal{W'}, \alert<3>{\alpha}) d\alert<4>{\Phi} } 
+  \end{equation}
+
+  \begin{itemize}
+  \item \alert<2>{Training data}
+    \item \alert<3>{Hyperparameters}
+    \item \alert<4>{Latent variables (topics)}
+      \item \alert<5>{Held out data}
+  \end{itemize}
+  
+\end{frame}
+
+
 \begin{frame}{But we don't use topic models for prediction!}
 
 \gfxs{autocomplete}{.8}
@@ -263,18 +300,33 @@ Information Processing Systems, 2009.
   \begin{itemize}
     \item A way to get at an evaluation that matches {\bf what we care about}
     \item A necessary step to improving topic models for navigating large datasets~\cite{talley-11}
-    \item Others have discovered automatic methods that uncover the same properties~\cite{newman-10,mimno-11}
+    \item \alert<2>{Others have discovered automatic methods that uncover the same properties}~\cite{newman-10,mimno-11}
     \item And extended the technique to structured topics and
       phrases~\cite{lindsey-12,weninger-12}
       \item Iteractive refinement with tree-structured
         priors~\cite{hu-14} and spectral algorithms~\cite{Lund-17}
-    \item \alert<2>{Extending to multiple users}~\cite{Felt-15}
-      \ifjobtalk (CoNLL Best Paper) \fi
+    \item Extending to multiple users~\cite{Felt-15}
   \end{itemize}
 
 \end{frame}
 
+\begin{frame}{Machine Reading Tea Leaves}
+  \includegraphics[width=.8\paperwidth]{reading_tea_leaves/machine_reading_tea_leaves}
 
+  \begin{itemize}
+  \item Take a reference corpus, compute probability of words in that corpus
+  \item For a topic, take all pairs of words $w_i$, $w_j$ in the top
+    $n$ words
+  \item OC-Auto-NPMI
+    \begin{equation}
+      \sum_{j=2}^{N}\sum_{i=1}^{j-1}{{ \frac{\log \frac{P(w_j,
+          w_i)}{P(w_i)P(w_j)}}{-\log P(w_i, w_j)}}}
+    \end{equation}
+    \item Words that appear near each other in documents more than
+      their natural frequency
+  \end{itemize}
+  
+\end{frame}
 
 
 \begin{frame}{}
@@ -316,7 +368,7 @@ Information Processing Systems, 2009.
 ~\cite{Ning2020NonparametricTM} & \alert<2>{No} & Yes & \abr{npmi} & Lau github & No & Yes & Likely no & Yes & Variational & No\\
 ~\cite{Panwar2020TANNTMTA} & \alert<2>{No} & No & \abr{npmi} & Lau github & No & Yes & Likely no & No & Sampling & Yes\\
 ~\cite{Rezaee2020ADV} & \alert<2>{No} & No & N/A & N/A & N/A & Yes & Likely no & Yes & Variational & No\\
-~\cite{Thompson2020TopicMW} & \alert<2>{No} & No & Coherence, \abr{pmi} & In paper & External \abr{nyt} & \alert<2>{No} & No & Yes & Sampling & No\\
+~\cite{Thompson2020TopicMW} & \alert<2>{No} & No & Coherence, \abr{pmi} & In paper & External \abr{nyt} & No & No & Yes & Sampling & No\\
 ~\cite{Tian2020LearningVM} & \alert<2>{No} & Yes & \abr{npmi} & None & No & No & Yes & No & Variational & Yes\\
 ~\cite{Wang2020NeuralTM} & \alert<2>{No} & No & $C_p$, $C_a$, \abr{npmi}, UCI & Palmetto & No & No & No & No & Sampling & Yes\\
 ~\cite{Wu2020NeuralMC} & \alert<2>{No} & Yes & \abr{npmi} & None & No & No & Yes & No & N/A & Yes\\
@@ -360,10 +412,30 @@ passes automatic evaluations is not Gold}
 
 \begin{frame}{What about Supervised Models?}
 
+  \only<1>{
+    \begin{columns}
+      \column{.5\linewidth}
+      \begin{block}{Unsupervised Methods}
+        $p(z, x)$
+      \end{block}
+      \column{.5\linewidth}
+      \begin{block}{Supervised Methods}
+        $p(y \;|\; x)$
+      \end{block}      
+    \end{columns}
+
+    \begin{itemize}
+    \item Unsupervised methods \emph{discover} structure
+    \item Supervised methods \emph{reproduces} correct answers
+    \end{itemize}
+  }
+
+  
+\only<2>{
 \begin{center}
 \includegraphics[width=.6\paperwidth]{qb/squad_ex}
 \end{center}
-
+}
 \end{frame}
 
 
@@ -629,18 +701,60 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
  \end{columns}
 \end{frame}
 
+\begin{frame}{How to Evaluate}
+
+  \begin{columns}
+    \column{.5\linewidth}
+    \only<1>{
+      \includegraphics[width=0.8\linewidth]{simtrans/polish_jeopardy}}
+    \only<2->{\includegraphics[width=0.8\linewidth]{simtrans/interface}}
+    \column{.5\linewidth}
+    \begin{itemize}
+    \item You're a contestant on a Polish game show
+    \item You have access to a simultaneous translation system
+    \item Your job is to answer the question before your opponent
+      \only<3>{\alert<3>{ \item Keep QA system constant, vary translation}}
+    \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{BLEU results for modern Simultaneous Translation Systems}
+
+  \begin{center}
+  \includegraphics[width=0.9\linewidth]{simtrans/simQA/bleu_simqa}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Downstream QA Results}
+
+  \begin{center}
+  \includegraphics[width=0.9\linewidth]{simtrans/simQA/qametrics_simqa}
+\end{center}
+
+\only<2->{Additional benefit: Only need to translate the answer}
+
+\end{frame}
+
+
 \begin{frame}{Undertranslation}
   \begin{center}
-    \includegraphics[width=0.5\paperwidth]{simtrans/simQA/ex_undertranslation}
+    \includegraphics[width=0.4\paperwidth]{simtrans/simQA/ex_undertranslation}
   \end{center}
 When the information doesn't
 help an answerer, it's not producing anything useful
 \end{frame}
 
 \begin{frame}{Undertranslation}
-  \begin{center}
+  \begin{columns}
+    \column{.5\linewidth}
     \includegraphics[width=0.5\paperwidth]{simtrans/simQA/ex_hallucination}
-  \end{center}
+    \column{.5\linewidth}
+\includegraphics[width=0.5\paperwidth]{simtrans/simQA/ex_hallucination_text}
+
+  \end{columns}
+  
 When the information confuses an
   answerer, it's actively hindering!
 \end{frame}
@@ -654,7 +768,7 @@ When the information confuses an
 \vspace{-5cm}
 \begin{block}{Takeaways}
   \begin{itemize}
-    \item ML should be interpretable
+    \item AI should be interpretable
     \item We should measure interpretability
     \item Interpretability should reflect the world we want
   \end{itemize}
@@ -663,6 +777,24 @@ When the information confuses an
 }
 \end{frame}
 
+
+\begin{frame}{Future Work}
+
+  \begin{itemize}
+  \item Decide as a community what we want
+    \item Make it easier for human-driven evaluation
+    \item Have better models of individual users (e.g., item response
+      theory)
+    \item Focus on collaboration
+      \begin{itemize}
+      \item Triage
+      \item Sensemaking
+      \item Question answering
+        \item Media consumption
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
 
 \frame{
 
