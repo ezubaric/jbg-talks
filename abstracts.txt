@@ -1,6 +1,27 @@
 
 Sorry for the delay, and thanks for the reminder!
 
+You've probably heard of ChatGPT and other large language models.
+They can do some neat stuff!  But they still have some weaknesses.
+After briefly reviewing how transformer language models work, we will
+go into the weaknesses of models in 2023: recognizing unconventional
+language, numerical and logical reasoning, multihop questions,
+cross-cultural understanding, and incorporating new information.
+Next, we'll describe how to elicit questions that challenge today's
+computer models using adversarial human-in-the-loop authoring and how
+computers and humans compare at their ability to answer those
+questions.
+
+I’ll discuss two examples of our work putting experienced writers in front of a retrieval-driven
+adversarial authoring system: question writing and fact-checking. For question answering, we develop
+a retrieval-based adversarial authoring platform and create incentives to get people to use our system
+in the first place, write interesting questions humans can answer, and challenge a QA system. While
+the best humans lose to computer QA systems on normal questions, computers struggle to answer our
+adversarial questions. We then turn to fact checking, creating a new game (Fool Me Twice) to solicit
+difficult-to-verify claims—that can be either true or false—and to test how difficult the claims are both
+for humans and computers. We argue that the focus on retrieval is important for knowledge-based adversarial examples because it highlights diverse information, prevents frustration in authors, and takes
+advantage of users’ expertise.
+
 
 Title: Manchester vs. Cranfield: Why do we do question answering and
 how can we do it better?
