@@ -1,4 +1,59 @@
 
+Title: If We Want AI to be Interpretable, We Need to Measure Interpretability
+
+ Abstract: AI tools are ubiquitous, but most users treat it as a black
+box: a handy tool that suggests purchases, flags spam, or
+autocompletes text. While researchers have presented explanations for
+making AI less of a black box, a lack of metrics make it hard to
+optimize explicitly for interpretability. Thus, I propose two metrics
+for interpretability suitable for unsupervised and supervised AI
+methods.
+For unsupervised topic models, I discuss our proposed "intruder"
+interpretability metric, how it contradicts the previous evaluation
+metric for topic models (perplexity), and discuss its uptake in the
+community over the last decade. For supervised question answering
+approaches, I show how human-computer cooperation can be measured and
+directly optimized by a multi-armed bandit approach to learn what
+kinds of explanations help specific users. I will then briefly discuss
+how similar setups can help users navigate information-rich domains
+like fact checking, translation, and web search.
+
+Bio:  Jordan Boyd-Graber is an associate professor in the University
+of Maryland's Computer Science Department, iSchool, UMIACS, and
+Language Science Center. He generally works on how humans can interact
+with AI tools, starting first with topic models, then translation,
+then negotiation, and most recently question answering. He and his
+students have won "best of" awards at NIPS (2009, 2015), NAACL (2016),
+and CoNLL (2015). Jordan also won the British Computing Society's 2015
+Karen Spärk Jones Award and a 2017 NSF CAREER award.
+
+
+
+Researchers who work in Natural Language Processing work on
+"language".  But where does language data come from?  Rather than
+using found data from a "natural" distribution, this talk will make
+the case for using adversarial data.  After putting this in historical
+context, I’ll discuss two examples of adversarial authoring with a
+human-in-the-loop system: question writing and fact-checking. For
+question answering, we develop a retrieval-based adversarial authoring
+platform and create incentives to get people to use our system in the
+first place, write interesting questions humans can answer but that
+challenge a QA system: . We then turn to fact checking, creating a new
+game (Fool Me Twice) to solicit difficult-to-verify claims—that can be
+either true or false—and to test how difficult the claims are both for
+humans and computers. We argue that the focus on retrieval is
+important for knowledge-based adversarial examples because it
+highlights diverse information, prevents frustration in authors, and
+takes advantage of users’ expertise.  I'll finally turn to detecting
+deception in the board game Diplomacy, which further highlights the
+abilities of humans vs. computers.
+
+
+
+==========================
+
+
+
 Sorry for the delay, and thanks for the reminder!
 
 You've probably heard of ChatGPT and other large language models.

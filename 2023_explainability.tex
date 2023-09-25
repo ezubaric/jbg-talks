@@ -51,6 +51,12 @@
 }
 
 
+\newcommand{\gfxt}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{reading_tea_leaves/#1}
+\end{center}
+}
+
 \newcommand{\gfxi}[2]{
 \begin{center}
 	\includegraphics[width=#2\linewidth]{interpretability/#1}
@@ -294,22 +300,6 @@ Information Processing Systems, 2009.
 \end{center}
 }
 
-
-\begin{frame}{Since then \dots}
-
-  \begin{itemize}
-    \item A way to get at an evaluation that matches {\bf what we care about}
-    \item A necessary step to improving topic models for navigating large datasets~\cite{talley-11}
-    \item \alert<2>{Others have discovered automatic methods that uncover the same properties}~\cite{newman-10,mimno-11}
-    \item And extended the technique to structured topics and
-      phrases~\cite{lindsey-12,weninger-12}
-      \item Iteractive refinement with tree-structured
-        priors~\cite{hu-14} and spectral algorithms~\cite{Lund-17}
-    \item Extending to multiple users~\cite{Felt-15}
-  \end{itemize}
-
-\end{frame}
-
 \begin{frame}{Machine Reading Tea Leaves}
   \includegraphics[width=.8\paperwidth]{reading_tea_leaves/machine_reading_tea_leaves}
 
@@ -328,6 +318,45 @@ Information Processing Systems, 2009.
   
 \end{frame}
 
+
+\begin{frame}{Since then \dots}
+
+  \begin{itemize}
+    \item A way to get at an evaluation that matches {\bf what we care about}
+    \item A necessary step to improving topic models for navigating large datasets~\cite{talley-11}
+    \item \alert<2>{Others have discovered automatic methods that uncover the same properties}~\cite{newman-10,mimno-11}
+    \item And extended the technique to structured topics and
+      phrases~\cite{lindsey-12,weninger-12}
+      \item Iteractive refinement with tree-structured
+        priors~\cite{hu-14} and spectral algorithms~\cite{Lund-17}
+    \item Extending to multiple users~\cite{Felt-15}
+  \end{itemize}
+
+\end{frame}
+
+\fsi{general_figures/w2v_flow}{word2vec (Mikolov et al., 2013)}
+
+\begin{frame}{You know what's cool?}
+
+  \begin{columns}
+    \column{.5\linewidth}
+    \gfxt{drake_neural}{.9}
+    \column{.5\linewidth}
+  \begin{itemize}
+  \item Autoencoding Variational Inference for Topic Models
+    \item Embedded Topic Model: combine word representations into
+      document representations
+    \item Contextualized Topic Model: Reproduce word--document
+      coocurrence with \abr{bert}
+    \pause
+  \item Trivia: word2vec is factorizing
+    \begin{equation}
+      \mbox{PMI}(w_i, c_j) - \log k
+    \end{equation}
+  \end{itemize}
+
+  \end{columns}
+\end{frame}
 
 \begin{frame}{}
 
