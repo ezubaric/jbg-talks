@@ -126,7 +126,7 @@ st page.
   \item AI should be interpretable
     \item We should measure interpretability    
   \item Proposal for Unsupervised Methods (Topic Models)
-    \item Proposal for Supervised Methods (Question Answering / Translation)
+    \item Proposal for Supervised Methods \\ (Question Answering / Translation)
   \end{itemize}
 \end{block}
 
@@ -143,7 +143,7 @@ st page.
   \item Simulation:Can the user recreate the system
   \item Safety / Ethics: Does the system protect/hurt people
   \item Mismatched Objectives: How do you balance with accuracy
-    \only<2->{\item Augmentation}
+    \only<2->{\item \alert<2>{Augmentation}}
   \end{itemize}
 
   \begin{center}
@@ -284,8 +284,32 @@ Information Processing Systems, 2009.
 
 \only<2->{    \item \alert<2>{Intruder: high probability word from another topic}}
 \pause
+\item User's goal is to understand theme: can the user come to the
+  same conclusion as the computer
   \end{itemize}
 }
+
+\frame{
+\frametitle{Whom do we ask?}
+\begin{columns}[c]
+
+
+\column{0.45\linewidth}
+
+\begin{block}{Then}
+\includegraphics[width=0.95\linewidth]{evocation/figures/mechanical_turk_old}
+\end{block}
+
+
+\column{0.45\linewidth}
+
+\begin{block}{Now}
+\includegraphics[width=0.95\linewidth]{evocation/figures/mechanical_turk_new}
+\end{block}
+
+\end{columns}
+}
+
 
 \frame{
 \frametitle{Interpretability and Likelihood}
@@ -322,14 +346,15 @@ Information Processing Systems, 2009.
 \begin{frame}{Since then \dots}
 
   \begin{itemize}
-    \item A way to get at an evaluation that matches {\bf what we care about}
-    \item A necessary step to improving topic models for navigating large datasets~\cite{talley-11}
+    \item Used to manage \abr{nih}'s funding portfolio~\cite{talley-11}
     \item \alert<2>{Others have discovered automatic methods that uncover the same properties}~\cite{newman-10,mimno-11}
-    \item And extended the technique to structured topics and
+    \item Evaluations for structured topics and
       phrases~\cite{lindsey-12,weninger-12}
-      \item Iteractive refinement with tree-structured
+      \item We developed ways to fix topic models with tree-structured
         priors~\cite{hu-14} and spectral algorithms~\cite{Lund-17}
-    \item Extending to multiple users~\cite{Felt-15}
+      \item Extending to multiple users~\cite{Felt-15}
+        \pause
+        \item Neural networks everywhere
   \end{itemize}
 
 \end{frame}
@@ -343,11 +368,11 @@ Information Processing Systems, 2009.
     \gfxt{drake_neural}{.9}
     \column{.5\linewidth}
   \begin{itemize}
-  \item Autoencoding Variational Inference for Topic Models
+  \item Autoencoding Variational Inference for Topic Models~\cite{srivastava-17}
     \item Embedded Topic Model: combine word representations into
-      document representations
+      document representations~\cite{dieng-20}
     \item Contextualized Topic Model: Reproduce word--document
-      coocurrence with \abr{bert}
+      coocurrence with \abr{bert}~\cite{bianchi-21}
     \pause
   \item Trivia: word2vec is factorizing
     \begin{equation}
