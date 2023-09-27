@@ -704,6 +704,23 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
 \fsi{qb/augment/bandit_result}{Better than showing everything!}
 
+\begin{frame}{Simultaneous Interpretation is Hard!}
+
+  \begin{columns}
+    \column{.5\linewidth}
+  \begin{itemize}
+    \item Exhausting for humans
+    \item Computers not trusted
+    \item Differential strengths
+    \item Same word-by-word characteristic
+  \end{itemize}
+
+  \column{.5\linewidth}
+ \gfxs{computer-interpreter}{1.0}
+ \end{columns}
+\end{frame}
+
+
 \begin{frame}{}
   \begin{columns}
     \column{.2\linewidth}
@@ -716,10 +733,9 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
     \column{.8\linewidth}
 
         \begin{block}{ {\bf
-              \href{http://umiacs.umd.edu/~jbg//docs/2015_emnlp_rewrite.pdf}{Syntax-based
-                Rewriting for Simultaneous Machine Translation}}}
+              \href{http://umiacs.umd.edu/~jbg//docs/2014_emnlp_simtrans.pdf}{Don’t Until the Final Verb Wait: Reinforcement Learning for Simultaneous Machine Translation}}}
           \small
-He He, Alvin Grissom II, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2015
+Alvin Grissom II, He He, {\bf Jordan Boyd-Graber}, John Morgan, and Hal {Daum\'{e} III}.  \emph{Empirical Methods in Natural Language Processing}, 2014
         \end{block}
 
         \begin{block}{ {\bf
@@ -746,21 +762,6 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 
 \end{frame}
 
-\begin{frame}{Simultaneous Interpretation is Hard!}
-
-  \begin{columns}
-    \column{.5\linewidth}
-  \begin{itemize}
-    \item Exhausting for humans
-    \item Computers not trusted
-    \item Differential strengths
-    \item Same word-by-word characteristic
-  \end{itemize}
-
-  \column{.5\linewidth}
- \gfxs{computer-interpreter}{1.0}
- \end{columns}
-\end{frame}
 
 \fsi{simtrans/liang_huang}{}
 \fsi{simtrans/delay}{}
@@ -770,13 +771,14 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
   \begin{columns}
     \column{.5\linewidth}
     \only<1>{
-      \includegraphics[width=0.8\linewidth]{simtrans/polish_jeopardy}}
+      \includegraphics[width=1.0\linewidth]{simtrans/polish_jeopardy}}
     \only<2->{\includegraphics[width=0.8\linewidth]{simtrans/interface}}
     \column{.5\linewidth}
     \begin{itemize}
     \item You're a contestant on a Polish game show
     \item You have access to a simultaneous translation system
-    \item Your job is to answer the question before your opponent
+    \item Your job is to answer the question before your opponent (as
+      quickly as possible)
       \only<3>{\alert<3>{ \item Keep QA system constant, vary translation}}
     \end{itemize}
   \end{columns}
@@ -794,7 +796,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 \begin{frame}{Downstream QA Results}
 
   \begin{center}
-  \includegraphics[width=0.9\linewidth]{simtrans/simQA/qametrics_simqa}
+  \includegraphics[width=0.8\linewidth]{simtrans/simQA/qametrics_simqa}
 \end{center}
 
 \only<2->{Additional benefit: Only need to translate the answer}
@@ -806,11 +808,11 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
   \begin{center}
     \includegraphics[width=0.4\paperwidth]{simtrans/simQA/ex_undertranslation}
   \end{center}
-When the information doesn't
-help an answerer, it's not producing anything useful
+When the translation doesn't
+help\dots
 \end{frame}
 
-\begin{frame}{Undertranslation}
+\begin{frame}{When are Mistakes / Hallucinations Harmful?}
   \begin{columns}
     \column{.5\linewidth}
     \includegraphics[width=0.5\paperwidth]{simtrans/simQA/ex_hallucination}
