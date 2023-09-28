@@ -813,16 +813,23 @@ help\dots
 \end{frame}
 
 \begin{frame}{When are Mistakes / Hallucinations Harmful?}
-  \begin{columns}
-    \column{.5\linewidth}
-    \includegraphics[width=0.5\paperwidth]{simtrans/simQA/ex_hallucination}
-    \column{.5\linewidth}
-\includegraphics[width=0.5\paperwidth]{simtrans/simQA/ex_hallucination_text}
 
-  \end{columns}
-  
-When the information confuses an
-  answerer, it's actively hindering!
+
+  \begin{center}
+    \only<2->{This coordinate determines}
+    \only<3->{the double-wall}
+    \only<4->{angle between the southern half of the meridian plane
+      and the}
+    \only<5->{southern}
+  \only<1>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_0}}
+  \only<2>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_1}}
+  \only<3>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_2}}
+  \only<4>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_5}}  
+  \only<5>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_3}}
+  \only<6>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_4}}
+\end{center}
+{\bf Guess: } \only<1>{??} \only<2>{IP Address} \only<3>{Spherical
+  Coordinate} \only<4>{Longitude} \only<5>{Spherical Coordinate} \only<6>{Longitude}
 \end{frame}
 
 
@@ -867,8 +874,9 @@ When the information confuses an
 	\frametitle{Thanks}
 
         \begin{block}{Collaborators}
-          \textsc{naqt}, Hal Daum\'e III (UMD), Marine Carpuat, Leah Findlater (UMD), Kevin Seppi
-          (BYU), Eric Ringger
+          Hal Daum\'e III (UMD), David Blei (Columbia), Marine Carpuat
+          (UMD), Leah Findlater (UW), Kevin Seppi
+          (BYU), Eric Ringger (BYU)
         \end{block}
 
 	\begin{columns}
@@ -885,12 +893,63 @@ When the information confuses an
 
 	\column{.3\linewidth}
         \begin{block}{Supporters}
+          \includegraphics[width=1.0\linewidth]{general_figures/iac}
         	\gfxq{naqt}{1.0}
         \end{block}
 
         \end{columns}
 }
 
+\frame{
+  \frametitle{But wait, there's more!}
+
+  \vspace{-.5cm}
+
+\begin{columns}
+
+
+
+  \column{.5\linewidth}
+
+   \begin{block}{Computational Social Science}
+     \centering
+     \includegraphics[width=0.9\linewidth]{teaparty/figures/framing} \\
+     \cite{nguyen-13b,nguyen-15}
+   \end{block}
+
+
+    \begin{block}{Detecting Deception}
+    \centering
+        \includegraphics[width=0.4\linewidth]{general_figures/diplomacy} \\
+        \cite{niculae-15,sayeed-12,peskov-20,Eisenschlos-21}
+    \end{block}
+
+  \column{.5\linewidth}
+
+
+    \begin{block}{Multilingual Models}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{general_figures/tonal_translation} \\
+      \cite{eidelman-12,hu-14,Guo-22}
+       \end{center}
+    \vspace{-.3cm}
+    \end{block}
+
+
+  \begin{block}{Computational Biology}
+     \centering
+     \includegraphics[width=0.4\linewidth]{general_figures/protein} \\
+     \small
+     \cite{nguyen-13b,hu-13:coalescent}
+   \end{block}
+
+
+
+
+
+\end{columns}
+
+}
 
 
 \frame{
