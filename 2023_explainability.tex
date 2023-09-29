@@ -12,7 +12,7 @@
 \usepackage{colortbl}
 \usepackage{overpic}
 \usepackage{pdfpages}
-
+\usepackage[normalem]{ulem}
 \usepackage{multirow}
 
 \pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
@@ -134,13 +134,13 @@ st page.
 \end{frame}
 
 
-\begin{frame}{Interpretability is Big!}
+\begin{frame}{Interpretability/Human-Centered AI is Big!}
   \includegraphics[width=0.9\paperwidth]{general_figures/doshi-velez_kim}
 
   \begin{itemize}
   \item Understanding: Debugging
   \item Trust: Does the user believe the system
-  \item Simulation:Can the user recreate the system
+  \item Simulation: Can the user recreate the system
   \item Safety / Ethics: Does the system protect/hurt people
   \item Mismatched Objectives: How do you balance with accuracy
     \only<2->{\item \alert<2>{Augmentation}}
@@ -163,10 +163,13 @@ st page.
 
 Every second \dots
 \begin{itemize}
-  \item 600 new blog posts appear
-  \item 34,000 tweets are tweeted
-  \item 30 GB of data uploaded to Facebook
-\end{itemize}
+\item 3,400,00 e-mails sent
+\item 740,741 WhatsApp messages sent
+  \item 54,977 Facebook posts  
+  \item 5,700 \sout{tweets} Xeets are \sout{tweeted} Xeeted
+    \item 4,595 SMS Messages
+    \end{itemize}
+    (From Techcrunch, Zephoria, Intel)
 \pause
 
 \begin{block}{Unstructured}
@@ -364,9 +367,9 @@ Information Processing Systems, 2009.
 \begin{frame}{You know what's cool?}
 
   \begin{columns}
-    \column{.5\linewidth}
+    \column{.4\linewidth}
     \gfxt{drake_neural}{.9}
-    \column{.5\linewidth}
+    \column{.6\linewidth}
   \begin{itemize}
   \item Autoencoding Variational Inference for Topic Models~\cite{srivastava-17}
     \item Embedded Topic Model: combine word representations into
@@ -374,7 +377,7 @@ Information Processing Systems, 2009.
     \item Contextualized Topic Model: Reproduce word--document
       coocurrence with \abr{bert}~\cite{bianchi-21}
     \pause
-  \item Trivia: word2vec is factorizing
+  \item Trivia: word2vec with dimension~$k$ is factorizing~\cite{levy-14}
     \begin{equation}
       \mbox{PMI}(w_i, c_j) - \log k
     \end{equation}
@@ -520,29 +523,62 @@ passes automatic evaluations is not Gold}
 % TODO add more questions here
 
 \begin{frame}[t]
+\frametitle{Sample Question}
 	\frametitle{Sample Question}
 
-        The Swiss-Italian architect Pietro Antonio Solari
-        \only<2->{built several fortified towers in this city, which
-          often vied for power with its northern rival Tver. A ruler
-          of this city prevailed in the} \only<3->{Great Stand on the
-          Ugra River. A prince from this city was nicknamed for
-          winning a battle on the} \only<4->{Don river. Partly because
-          a ruler of this city married} \only<5->{Sophia Palaiologina,
-          the niece of the last Byzantine Emperor, this city styled
-          itself the} \only<6->{``Third Rome'' after the fall of
-          Constantinople. Another prince of this city stopped paying
-          tribute to the} \only<7->{Mongols in 1476, ending the
-          ``Tatar yoke.''} \only<8->{The Grand Duchy headquartered in
-          this city came to an end in 1547 with the ascension of}
-        \only<9->{ Ivan IV, who made it his capital. For 10 points,
-          name this city where Ivan III renovated the
-          Kremlin,} \only<10->{the capital of Russia.}\\
-        \vspace{.5cm} \only<11->{ {\bf Moscow} (Moskva / Muscovy)}
+With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no moving parts. He did not take interaction with neighbors into account when formulating his theory of} \only<3->{heat capacity, so} \only<4->{Debye adjusted the theory for low temperatures. His} \only<4->{summation convention automatically sums repeated indices in tensor products. His name is attached to the A and B coefficients} \only<5->{for spontaneous and stimulated emission, the subject of one of his multiple groundbreaking 1905 papers. He further developed the model of statistics sent to him by} \only<6->{Bose to describe particles with integer spin. For 10 points, who is this German physicist best known for formulating the} \only<7->{special and general theories of relativity?} \\
+\vspace{1cm}
+\only<8->{ {\bf Albert \underline{Einstein}}}
+
+\only<9->{
+\vspace{-6cm}
+
+\begin{block}{Faster = Smarter}
+
+  \begin{enumerate}
+    \item University of Chicago
+    \item Colorado School of Mines
+    \item Cornell University
+    \item UIUC
+    \item Brigham Young University
+    \item California Institute of Technology
+    \item Peking University
+    \item Harvey Mudd College
+    \item Darmstadt University
+    \item University of Colorado
+  \end{enumerate}
 
 
+\end{block}
+}
 
 \end{frame}
+
+
+% \begin{frame}[t]
+% 	\frametitle{Sample Question}
+
+%         The Swiss-Italian architect Pietro Antonio Solari
+%         \only<2->{built several fortified towers in this city, which
+%           often vied for power with its northern rival Tver. A ruler
+%           of this city prevailed in the} \only<3->{Great Stand on the
+%           Ugra River. A prince from this city was nicknamed for
+%           winning a battle on the} \only<4->{Don river. Partly because
+%           a ruler of this city married} \only<5->{Sophia Palaiologina,
+%           the niece of the last Byzantine Emperor, this city styled
+%           itself the} \only<6->{``Third Rome'' after the fall of
+%           Constantinople. Another prince of this city stopped paying
+%           tribute to the} \only<7->{Mongols in 1476, ending the
+%           ``Tatar yoke.''} \only<8->{The Grand Duchy headquartered in
+%           this city came to an end in 1547 with the ascension of}
+%         \only<9->{ Ivan IV, who made it his capital. For 10 points,
+%           name this city where Ivan III renovated the
+%           Kremlin,} \only<10->{the capital of Russia.}\\
+%         \vspace{.5cm} \only<11->{ {\bf Moscow} (Moskva / Muscovy)}
+
+
+
+% \end{frame}
 
 
 
@@ -597,6 +633,7 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 
 \fsi{qb/hsnct1}{}
 \fsi{qb/nasat}{Humans 345-145}
+\fsi{qb/jennings_handshake}{300-160}
 \fsi{qb/hsnct_2017}{Computer 260-215}
 
 
@@ -631,14 +668,15 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
 \end{frame}
 
 \fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
-\fsi{qb/augment/tools_buzz}{Highlights help experts}
+% \fsi{qb/augment/tools_buzz}{Highlights help experts}
 
 \begin{frame}{Regression Analysis}
-    For each triple (player, question, interpretations), we predict the outcome
-    (correct answer or not) with a logistic regression. The features include:
+  For each triple (player, question, interpretations), \\
+  predict the outcome (correct answer or not) \\
+  with logistic regression. Using features:
     \begin{itemize}
-        \item player ID
-        \item question ID
+        \item \alert<3>{player ID}
+        \item \alert<3>{question ID}
         \item buzzing position
         \item enabled interpretations: individual and combinations
     \end{itemize}
@@ -686,10 +724,11 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
   \only<3>{\gfxq{qb_centaur_3}{.9}}
   \only<4>{\gfxq{qb_centaur_6}{.9}}
 
+
 \end{frame}
 
 
-\begin{frame}{Improvement through Reinforcement Learning}
+\begin{frame}{Improvement through Bandit Algorithms}
 
   \only<1>{\gfxq{rl_centaur_2}{.9}}
   \only<2>{\gfxq{rl_centaur_3}{.9}}
@@ -697,6 +736,8 @@ Manjunatha, {\bf Jordan Boyd-Graber} and Hal {Daum\'{e} III}.  \emph{Empirical M
   \only<4>{\gfxq{rl_centaur_5}{.9}}
   \only<5>{\gfxq{rl_centaur_6}{.9}}
 
+  \only<5->{Bandit actions~\cite{robbins-52}: turn each of the explanations (Guess,
+    Highlight, Evidence) on or off.}
 \end{frame}
 
 \fsi{qb/augment/bandit_result_none}{Human alone without an AI teammate}
@@ -779,7 +820,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
     \item You have access to a simultaneous translation system
     \item Your job is to answer the question before your opponent (as
       quickly as possible)
-      \only<3>{\alert<3>{ \item Keep QA system constant, vary translation}}
+      \only<3>{\alert<3>{ \item Keep question answerer the same, vary translation}}
     \end{itemize}
   \end{columns}
 
@@ -855,7 +896,9 @@ help\dots
 
   \begin{itemize}
   \item Decide as a community what we want
-    \item Make it easier for human-driven evaluation
+  \item Make it easier for human-driven evaluation
+    \item Backpropagate into \emph{generation} of interpretations
+    \item Improve data quality with human-in-the-loop adversarial examples
     \item Have better models of individual users (e.g., item response
       theory)
     \item Focus on collaboration
@@ -863,7 +906,7 @@ help\dots
       \item Triage
       \item Sensemaking
       \item Question answering
-        \item Media consumption
+        \item Media consumption (fact checking)
       \end{itemize}
   \end{itemize}
 
@@ -913,7 +956,7 @@ help\dots
 
    \begin{block}{Computational Social Science}
      \centering
-     \includegraphics[width=0.9\linewidth]{teaparty/figures/framing} \\
+     \includegraphics[width=0.8\linewidth]{teaparty/figures/framing} \\
      \cite{nguyen-13b,nguyen-15}
    \end{block}
 
@@ -921,16 +964,16 @@ help\dots
     \begin{block}{Detecting Deception}
     \centering
         \includegraphics[width=0.4\linewidth]{general_figures/diplomacy} \\
-        \cite{niculae-15,sayeed-12,peskov-20,Eisenschlos-21}
+        \cite{peskov-20,Eisenschlos-21}
     \end{block}
 
   \column{.5\linewidth}
 
 
-    \begin{block}{Multilingual Models}
+    \begin{block}{Multilingual/Multicultural Models}
       \begin{center}
-        \includegraphics[width=0.5\linewidth]{general_figures/tonal_translation} \\
-      \cite{eidelman-12,hu-14,Guo-22}
+        \includegraphics[width=0.4\linewidth]{general_figures/tonal_translation} \\
+      \cite{hu-14,Guo-22}
        \end{center}
     \vspace{-.3cm}
     \end{block}
