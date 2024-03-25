@@ -1,4 +1,21 @@
 
+Title: AI's Certain Uncertainty Problem
+
+Modern AI tools will gladly give the answer to most questions.  And
+while most of those answers will be correct, some of them are not.
+But neither the users nor the systems can reliably detect when a
+system is confidently incorrect.  We first show that this has
+real-world consequences in human-centered tasks: users are more likely
+to make mistakes in a fact-checking task when presented with
+convincingly wrong outputs from large language models. We then discuss
+how to improve our estimation of uncertainty, but how it requires
+deeper access than is currently available from many popular LLMs.
+Next, we discuss ongoing research to evaluate topic models and label
+induction that depends on better uncertainty estimation.  Finally, I
+end with a proposal about how to improve our evaluation of LLM
+uncertainty in the spirit of previous AI "grand challenges".
+
+
 Title: If We Want AI to be Interpretable, We Need to Measure Interpretability
 
  Abstract: AI tools are ubiquitous, but most users treat it as a black
@@ -18,14 +35,14 @@ kinds of explanations help specific users. I will then briefly discuss
 how similar setups can help users navigate information-rich domains
 like fact checking, translation, and web search.
 
-Bio:  Jordan Boyd-Graber is an associate professor in the University
-of Maryland's Computer Science Department, iSchool, UMIACS, and
-Language Science Center. He generally works on how humans can interact
-with AI tools, starting first with topic models, then translation,
-then negotiation, and most recently question answering. He and his
-students have won "best of" awards at NIPS (2009, 2015), NAACL (2016),
-and CoNLL (2015). Jordan also won the British Computing Society's 2015
-Karen Spärk Jones Award and a 2017 NSF CAREER award.
+Bio: Jordan Boyd-Graber is an associate professor in the University of
+Maryland's Computer Science Department, iSchool, UMIACS, and Language
+Science Center. He generally works on how humans can interact with AI
+tools, starting first with topic models, then translation, then
+negotiation, and most recently question answering. He and his students
+have won "best of" awards at NIPS (2009, 2015), NAACL (2016), CoNLL
+(2015), and EMNLP (2024). Jordan also won the British Computing
+Society's 2015 Karen Spärk Jones Award and a 2017 NSF CAREER award.
 
 
 
