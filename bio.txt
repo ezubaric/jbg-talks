@@ -1,5 +1,14 @@
 
 
+Jordan Boyd-Graber is a full professor at the University of Maryland.  He has worked on model evaluations for human-centered topic models, psychologically inspired leaderboards, human–computer machine translation, and question answering.  He also contributed new models for improving generative models with RL, interactive approaches for question answering, topic models, and negotiations. Of his twenty former PhD students, seven have gone on to tenure track positions.  He and his students have been recognized with paper awards at  EMNLP (2023), IUI (2018), NAACL (2016), and NeurIPS (2009, 2015), and he won the 2015 Karen Spärk Jones Award and a 2017 NSF CAREER Award.  He served as PC for ACL 2023, SAC for EMNLP and NAACL, AC for ACL, NAACL, EMNLP, and NeurIPS, Poster Chair for EMNLP 2022, Tutorial Chair for ACL 2017, and Advisor for the ACL 2014 SRW.
+
+He previously was an assistant professor at the University of Colorado, Visiting Research Scientist at Google Zürich, and Praktikant at the Berlin-Brandenburg Akademie der Wissenschaften.  His undergraduate degrees are in Computer Science and History at the California Institute of Technology, and he received his PhD from Princeton University.  His Erdös number is 2 (via Maria Klawe), and his Bacon number is 3 (by embarrassing himself on Jeopardy!).
+
+He lives in Silver Spring, Maryland with his wife, two roombas, three fish, two daughters, and their 外婆.
+
+
+============================
+
 Jordan Boyd-Graber is an associate professor in the University of
 Maryland's Computer Science Department, iSchool, UMIACS, and Language
 Science Center. Jordan's research focus is in applying machine
