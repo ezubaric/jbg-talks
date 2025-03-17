@@ -77,6 +77,19 @@
 }
 
 
+\newcommand{\gfxa}[2]{
+	\begin{center}
+		\includegraphics[width=#2\linewidth]{advcal/#1}
+	\end{center}
+}
+
+
+\newcommand{\gfxu}[2]{
+	\begin{center}
+		\includegraphics[width=#2\linewidth]{uncertainty/#1}
+	\end{center}
+}
+
 \newif\ifjobtalk\jobtalktrue
 \newif\iflong\longtrue
 
@@ -88,7 +101,7 @@ st page.
           ]{UMD}
 
 
-\title[]{If You Want Interpretable AI, Measure It}
+\title[]{Language Games}
 \author{ Jordan Boyd-Graber}
 \date{2023}
 
@@ -119,7 +132,7 @@ st page.
 
 
     \column{.5\linewidth}
-    % TODO (jbg): Picture of Wittgenstein
+    \gfxa{wittgenstein}{.8}
 
 
     \column{.5\linewidth}
@@ -142,25 +155,37 @@ st page.
 \fsi{qb/starcraft}{Image: DeepMind}
 \fsi{qb/DeepBlue}{Peter Morgan/Reuters}
 
-
-\begin{frame}{Calibration is hard}
-	
-	
+\begin{frame}{Today's Topics}
+	\item Fact Checking
 	\begin{itemize}
-		\item If they knew when they were making stuff up, this wouldn’t be a problem
-		But LLMs are notoriously bad at knowing when they don’t know
-		\begin{itemize}
-			\item Depends on length of generation
-			\item Depends on frequency of response
-			\item Depends on reasoning
-			\item Depends on tokenization 
-		\end{itemize}
-		\item Even our metrics for knowing when the uncertainty is bad are flawed
-		\item And doing a good job of detection requires deeper access to the model
+		\item Getting harder examples
+		\item Playing well with humans
+	\end{itemize}
+	\item Question Answering
+	\begin{itemize}
+		\item Getting harder examples (accuracy and calibration)
+		\item Measuring human vs. computer accuracy and calibration
+	\end{itemize}
+	\item Negotiation
+	\begin{itemize}
+		\item Measuring human vs. computer ability
+		\item Detecting lies
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Fact Checking with Humans in the Loop}
+	\begin{columns}
+		\column{.5\linewidth}
 
+\gfxu{paper_convincingly}{.9}
+
+\column{.5\linewidth}
+\begin{center}
+\includegraphics[width=1.0\linewidth]{general_figures/chenglei}		
+	
+\end{center}
+	\end{columns}
+\end{frame}
 
 \begin{frame}{Research Questions}
 	\begin{itemize}
@@ -170,25 +195,9 @@ st page.
 	\end{itemize}
 \end{frame}
   
-  
-  \begin{frame}{Mimicking How Humans Learn Calibration}
-  	\begin{columns}
-  		\column{.3\linewidth}
-  		\begin{itemize}
-  			\item Questions get easier
-  			(for humans)
-  			\item Humans evaluate whether they know enough to answer
-  			\item If they answer too early, they get “locked out” from the rest of the questions
-  			
-  		\end{itemize}
+  \fsi{uncertainty/fever}{\textbf{F}act \textbf{E}xtraction and \textbf{VER}ification}
   		
-  		\column{.7\linewidth}
-  		%TODO(jbg): QB picture
-  	\end{columns}
-  	
-  \end{frame}
-  		
-\begin{frame}{FEVER isn't Hard Enough}
+\begin{frame}{FEVER categories}
 	\begin{itemize}
 		\item Examples from FEVER (Thorne et al., 2018)
 		\item Supported:
@@ -210,12 +219,60 @@ st page.
 			\item Toy Story is incapable of being a film.
 		\end{itemize}
 	\end{itemize}
-	Not interesting, not realistic, not that hard!
+	You don't always need the evidence
 	(Poliak, 2018)
 \end{frame}
 
+\begin{frame}{Fool Me Twice}
+	\gfxu{fm2}{1.0}
+\end{frame}
 
+% TODO(jbg): Add Fm2 screenshots
 
+\begin{frame}{It is Harder (a bit)}
+	\gfxu{fm2_retrieval}{.8}
+\end{frame}
+
+\begin{frame}{Helping Humans Do the Task}
+	\only<1>{\gfxu{hints_0}{.9}}
+	\only<2>{\gfxu{hints_1}{.9}}
+	\only<3>{\gfxu{hints_2}{.9}}
+	\only<4>{\gfxu{hints_3}{.9}}
+				
+\end{frame}
+
+\begin{frame}{Calibration is hard}
+	
+	\begin{itemize}
+		\item If they knew when they were making stuff up, this wouldn’t be a problem
+		But LLMs are notoriously bad at knowing when they don’t know
+		\begin{itemize}
+			\item Depends on length of generation
+			\item Depends on frequency of response
+			\item Depends on reasoning
+			\item Depends on tokenization 
+		\end{itemize}
+		\item Even our metrics for knowing when the uncertainty is bad are flawed
+		\item And doing a good job of detection requires deeper access to the model
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Mimicking How Humans Learn Calibration}
+	\begin{columns}
+		\column{.3\linewidth}
+		\begin{itemize}
+			\item Questions get easier
+			(for humans)
+			\item Humans evaluate whether they know enough to answer
+			\item If they answer too early, they get “locked out” from the rest of the questions
+			
+		\end{itemize}
+		
+		\column{.7\linewidth}
+		%TODO(jbg): QB picture
+	\end{columns}
+	
+\end{frame}
 
 \begin{frame}[plain]
   \vspace{-2cm}
@@ -299,6 +356,17 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 % TODO: Diplomacy slides
 
 % TODO: Chenglei slides
+
+
+\begin{frame}{What's hard for Computers}
+	
+	\only<1>{\gfxa{simplex_0}{.9}}
+	\only<2>{\gfxa{simplex_1}{.9}}	
+	\only<3>{\gfxa{simplex_2}{.9}}
+	\only<4>{\gfxa{simplex_3}{.9}}
+\end{frame}
+
+\
 
 \fsi{simtrans/centaur-chess}{Centaur Chess}
 
@@ -384,6 +452,8 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \end{frame}
 
 
+
+
 \begin{frame}{Improvement through Bandit Algorithms}
 
   \only<1>{\gfxq{rl_centaur_2}{.9}}
@@ -400,6 +470,27 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \fsi{qb/augment/bandit_result_ai}{AI alone without a human teammate}
 \fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
 \fsi{qb/augment/bandit_result}{Better than showing everything!}
+
+\begin{frame}{What makes for Adversarial Example}
+\only<1>{\gfxa{irtplot_0}{.9}}	
+\only<2>{\gfxa{irtplot_1}{.9}}
+\only<3>{\gfxa{irtplot_2}{.9}}
+\only<4>{\gfxa{irtplot_3}{.9}}
+\only<5>{\gfxa{irtplot_4}{.9}}
+\only<6>{\gfxa{irtplot_5}{.9}}
+\only<7>{\gfxa{irtplot_6}{.9}}
+\end{frame}
+
+\begin{frame}{Adversarial Strategies}
+	\begin{columns}
+		\column{.5\linewidth}
+			\only<1-2>{\gfxa{chrisrock}{.9}}
+			\only<3-4>{\gfxa{parasite}{.9}}
+		\column{.5\linewidth}
+			\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
+			\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}		
+	\end{columns}
+\end{frame}
 
 \begin{frame}{Simultaneous Interpretation is Hard!}
 
