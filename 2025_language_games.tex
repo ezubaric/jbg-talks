@@ -1,3 +1,4 @@
+% In this talk, I’ll talk about how we can use silly games to understand the strengths and weaknesses of AIs. We first begin with games that test memory: testing the recall of obscure facts. While AI has been viewed as superhuman at this task, it isn’t universally so. We show that a new measure of adversarial datasets (the gap between humans and computers) is decreasing but not yet closed, with computers still struggling on abstract reasoning and knowing when they know the correct answer. Given these disparate skill sets, we then analyze how we can best build human and computer teams to learn new facts and detect false statements. Finally, I close with a similar line of results for another silly language game, Diplomacy, where computers have still not reached dominance but can be used to assist human players think strategically and detect lies.”
 
 \documentclass[compress]{beamer}
 
@@ -141,13 +142,79 @@ st page.
 \fsi{qb/starcraft}{Image: DeepMind}
 \fsi{qb/DeepBlue}{Peter Morgan/Reuters}
 
-  
-\only<2>{
-\begin{center}
-\includegraphics[width=.6\paperwidth]{qb/squad_ex}
-\end{center}
-}
+
+\begin{frame}{Calibration is hard}
+	
+	
+	\begin{itemize}
+		\item If they knew when they were making stuff up, this wouldn’t be a problem
+		But LLMs are notoriously bad at knowing when they don’t know
+		\begin{itemize}
+			\item Depends on length of generation
+			\item Depends on frequency of response
+			\item Depends on reasoning
+			\item Depends on tokenization 
+		\end{itemize}
+		\item Even our metrics for knowing when the uncertainty is bad are flawed
+		\item And doing a good job of detection requires deeper access to the model
+	\end{itemize}
 \end{frame}
+
+
+
+\begin{frame}{Research Questions}
+	\begin{itemize}
+		\item Are natural language explanations more effective than retrieved passages for human fact-checking?
+		\item Can contrastive explanations—arguing for or against a fact being true—mitigate over-reliance and be more effective than non- contrastive explanations?
+		\item  Are there complementary benefits in presenting both natural language explanations and retrieved passages?
+	\end{itemize}
+\end{frame}
+  
+  
+  \begin{frame}{Mimicking How Humans Learn Calibration}
+  	\begin{columns}
+  		\column{.3\linewidth}
+  		\begin{itemize}
+  			\item Questions get easier
+  			(for humans)
+  			\item Humans evaluate whether they know enough to answer
+  			\item If they answer too early, they get “locked out” from the rest of the questions
+  			
+  		\end{itemize}
+  		
+  		\column{.7\linewidth}
+  		%TODO(jbg): QB picture
+  	\end{columns}
+  	
+  \end{frame}
+  		
+\begin{frame}{FEVER isn't Hard Enough}
+	\begin{itemize}
+		\item Examples from FEVER (Thorne et al., 2018)
+		\item Supported:
+		\begin{itemize}
+			\item Woody Allen is a person.
+			\item The Shining was directed.
+			\item François de Belleforest wrote.
+		\end{itemize}
+		\item Not Enough Info:
+		\begin{itemize}
+			\item Lisa Kudrow was in a car.
+			\item Tipper Gore was curated to Al Gore.
+			\item International Relations includes animals.
+		\end{itemize}
+		\item Refuted:
+		\begin{itemize}
+			\item Tipper Gore was created in 1048.
+			\item Alpha House is inspired by nobody.
+			\item Toy Story is incapable of being a film.
+		\end{itemize}
+	\end{itemize}
+	Not interesting, not realistic, not that hard!
+	(Poliak, 2018)
+\end{frame}
+
+
 
 
 \begin{frame}[plain]
