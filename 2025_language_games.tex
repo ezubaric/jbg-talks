@@ -229,6 +229,14 @@ st page.
 	\gfxu{fm2}{1.0}
 \end{frame}
 
+\begin{frame}{How to gather claims}
+	\only<1>{\gfxu{fm2_interface_0}{.9}}
+	\only<2>{\gfxu{fm2_interface_1}{.9}}
+	\only<3>{\gfxu{fm2_interface_2}{.9}}
+	\only<4>{\gfxu{fm2_interface_3}{.9}}
+	\only<5>{\gfxu{fm2_interface_4}{.9}}				
+\end{frame}
+
 % TODO(jbg): Add Fm2 screenshots
 
 \begin{frame}{It is Harder (a bit)}
@@ -242,6 +250,50 @@ st page.
 	\only<4>{\gfxu{hints_3}{.9}}
 				
 \end{frame}
+
+
+\begin{frame}{Results}
+	\begin{columns}
+		\column{.5\linewidth}
+		\gfxu{acc_correct}{1.0}
+		\column{.5\linewidth}
+		\only<2>{\gfxu{acc_wrong}{1.0}}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Why not just show IR all the time?}
+	\pause
+	\gfxu{acc_correct}
+\end{frame}
+
+\begin{frame}{Breaking Things Down}
+	\begin{itemize}
+	\item What's the solution?
+	\item If the models were never wrong, we wouldn't have this problem
+	\item If the models could know when they were wrong, we wouldn't have this problem
+	\item \alert<2->{If we knew when the models would be wrong, we wouldn't have this problem}
+	\end{itemize} 
+	\begin{block}{CAIMIRA}
+		Model that can predict when a model is likely to get a question right
+	\end{block}
+\end{frame}
+
+\begin{frame}{CAIMIRA}
+	\gfxa{paper_caimira}
+	\begin{center}
+		\includegraphics[width=0.25\linewidth]{general_figures/maharshi}
+	\end{center}
+\end{frame}
+
+\begin{frame}{What's hard for Computers}
+	
+	\only<1>{\gfxa{simplex_0}{.9}}
+	\only<2>{\gfxa{simplex_1}{.9}}	
+	\only<3>{\gfxa{simplex_2}{.9}}
+	\only<4>{\gfxa{simplex_3}{.9}}
+\end{frame}
+
+
 
 \begin{frame}{Calibration is hard}
 	
@@ -271,7 +323,7 @@ st page.
 		\end{itemize}
 		
 		\column{.7\linewidth}
-		%TODO(jbg): QB picture
+		\gfxq{example_game}{1.0}
 	\end{columns}
 	
 \end{frame}
@@ -308,7 +360,7 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \only<9->{
 \vspace{-6cm}
 
-\begin{block}{Faster = Smarter}
+\begin{block}{Faster = Smarter, More Calibrated}
 
   \begin{enumerate}
     \item University of Chicago
@@ -359,16 +411,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 % TODO: Chenglei slides
 
-
-\begin{frame}{What's hard for Computers}
-	
-	\only<1>{\gfxa{simplex_0}{.9}}
-	\only<2>{\gfxa{simplex_1}{.9}}	
-	\only<3>{\gfxa{simplex_2}{.9}}
-	\only<4>{\gfxa{simplex_3}{.9}}
-\end{frame}
-
-\
 
 \fsi{simtrans/centaur-chess}{Centaur Chess}
 
