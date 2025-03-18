@@ -263,7 +263,7 @@ st page.
 
 \begin{frame}{Why not just show IR all the time?}
 	\pause
-	\gfxu{acc_correct}
+	\gfxu{acc_correct}{.5}
 \end{frame}
 
 \begin{frame}{Breaking Things Down}
@@ -279,21 +279,81 @@ st page.
 \end{frame}
 
 \begin{frame}{CAIMIRA}
-	\gfxa{paper_caimira}
+	\gfxa{paper_caimira}{1.0}
 	\begin{center}
 		\includegraphics[width=0.25\linewidth]{general_figures/maharshi}
 	\end{center}
 \end{frame}
 
-\begin{frame}{What's hard for Computers}
-	
-	\only<1>{\gfxa{simplex_0}{.9}}
-	\only<2>{\gfxa{simplex_1}{.9}}	
-	\only<3>{\gfxa{simplex_2}{.9}}
-	\only<4>{\gfxa{simplex_3}{.9}}
+
+%todo(jbg):  or irt and chimera
+
+\begin{frame}{Item Response Theory}
+
+\only<1>{\gfxa{sat_sheet}{.9}}
+\only<2>{\gfxa{sat_sheet_prob}{.9}}
+
+
+\only<3>{\gfxa{jeopardy_irt_0}{.9}}
+\only<4>{\gfxa{jeopardy_irt_1}{.9}}
+\only<5>{\gfxa{jeopardy_irt_2}{.9}}
+
+\end{frame}
+
+\begin{frame}{What more do we need?}
+\only<1>{\gfxa{caimira_0}{.9}}
+\only<2>{\gfxa{caimira_1}{.9}}
+\only<3>{\gfxa{caimira_2}{.9}}
+\only<4>{\gfxa{caimira_3}{.9}}
+\only<5>{\gfxa{caimira_4}{.9}}
 \end{frame}
 
 
+\begin{frame}{What's hard for Computers}
+  \begin{colu	
+	\only<1>{\gfxa{simplex_0}{.9}}
+	\only<2>{\gfxa{simplex_1}{.9}}	
+	\only<3>{\gfxa{simplex_2}{.9}}
+	\only<4->{\gfxa{simplex_3}{.9}}
+
+        \only<5>{\gfxa{caimira_objective}{.5}}
+\end{frame}
+
+  \begin{frame}{Making Dimensions Interpretable}
+
+    % TODO(jbg): Add equations
+    \begin{itemize}
+    \item We encode features to predict when a latent dimension will be active $r_{i,j}$
+    \item Only allow model to use a few dimensions
+    \item Objective function encourages model to find dimensions that discriminate agents
+    \item Posthoc analysis allows us to label the dimensions
+    \end{itemize}
+
+ \end{frame}
+
+  \begin{frame}{Hard for Computers: Abductive Inference}
+
+    \begin{columns}
+      \column{.5\linewidth}
+      \gfxa{caimira_abductive_features}{1.0}
+      \column{.5\linewidth}      
+      \only<2>{\gfxa{caimira_abductive_skills}{1.0}}
+    \end{columns}
+
+  \end{frame}
+
+
+  
+  \begin{frame}{Hard for Humans: Science}
+
+    \begin{columns}
+      \column{.5\linewidth}
+      \gfxa{caimira_science_features}{1.0}
+      \column{.5\linewidth}      
+      \only<2>{\gfxa{caimira_science_skills}{1.0}}
+    \end{columns}
+
+  \end{frame}
 
 \begin{frame}{Calibration is hard}
 	
