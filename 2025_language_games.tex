@@ -18,6 +18,8 @@
 
 \pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
 
+\newcommand{\twoplprob}[3]{\sigma_{2\text{pl}}\left(#1, #2, #3 \right)}
+
 \newcommand{\slda}[0]{\abr{slda}}
 \newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
 \newcommand{\lda}[0]{\abr{lda}}
@@ -355,6 +357,43 @@ st page.
 
   \end{frame}
 
+  \begin{frame}{Adversarial Datasets}
+
+    \begin{columns}
+      \column{.5\linewidth}
+%TODO(jbg): DADC saturation figure
+            \column{.5\linewidth}
+            \begin{itemize}
+              %TODO(jbg): add adversarial citation
+              
+            \item Many benchmarks are ``saturated''
+            \item Newer datasets claim to be ``adversarial''
+              \begin{itemize}
+              \item Hard for computers, ``easy'' for humans
+              \item No real metric / definition
+              \end{itemize}
+            \item Can we use the lessons of the previous paper to inform how to write hard examples
+            \item Can we \emph{measure} how well we did?
+              \pause
+                \item Language game: increasing the difficulty level
+    \end{itemize}
+
+ \end{frame}
+
+    \begin{frame}{Adversarial Score}
+
+      \begin{itemize}
+      \item Use \abr{irt} again
+        \item Model probability of an agent getting 
+\begin{equation}\label{eq:margin}
+    \mu_j = \explain{Skilled human rep. prob.}{\twoplprob{\beta^{H_{(0)}}_{*}}{\theta_j}{\gamma_j}} - \explain{Skilled model rep. prob.}{\twoplprob{\beta^{M_{(0)}}_{*}}{\theta_j}{\gamma_j}},
+\end{equation}
+
+\end{itemize}
+      
+    \end{frame}
+
+    
 \begin{frame}{Calibration is hard}
 	
 	\begin{itemize}
