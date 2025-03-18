@@ -18,8 +18,9 @@
 
 \pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
 
+\newcommand{\advscore}{\abr{AdvScore}}
 \newcommand{\twoplprob}[3]{\sigma_{2\text{pl}}\left(#1, #2, #3 \right)}
-
+\newcommand{\iif}{\abr{iif}}
 \newcommand{\slda}[0]{\abr{slda}}
 \newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
 \newcommand{\lda}[0]{\abr{lda}}
@@ -145,6 +146,7 @@ st page.
       \item Wittgenstein: Language is a product of the context in which it is
         used
       \item Interaction allows us to figure out how to use language
+        \item Score lets us know how well we're doing
     \end{itemize}
 
 
@@ -302,6 +304,39 @@ st page.
 
 \end{frame}
 
+\begin{frame}{Aside: Family Tree}
+
+  \begin{columns}
+    \column{.3\linewidth}
+
+    \vspace{2cm}
+    \begin{block}{Bradley-Terry Models}
+
+    \end{block}
+
+    \column{.3\linewidth}
+    \begin{block}{Zermelo}
+
+    \end{block}
+
+    \begin{block}{Ideal Point Models}
+
+    \end{block}
+    
+    \column{.3\linewidth}    
+
+    \vspace{2cm}
+    \begin{block}{ELO Models}
+
+    \end{block}
+
+    
+  \end{columns}
+
+  
+\end{frame}
+
+
 \begin{frame}{What more do we need?}
 \only<1>{\gfxa{caimira_0}{.9}}
 \only<2>{\gfxa{caimira_1}{.9}}
@@ -312,7 +347,6 @@ st page.
 
 
 \begin{frame}{What's hard for Computers}
-  \begin{colu	
 	\only<1>{\gfxa{simplex_0}{.9}}
 	\only<2>{\gfxa{simplex_1}{.9}}	
 	\only<3>{\gfxa{simplex_2}{.9}}
@@ -375,39 +409,129 @@ st page.
             \item Can we use the lessons of the previous paper to inform how to write hard examples
             \item Can we \emph{measure} how well we did?
               \pause
-                \item Language game: increasing the difficulty level
+            \item Language game: increasing the difficulty level
+              \item But need to measure!
     \end{itemize}
-
+            \end{columns}
  \end{frame}
 
+    \begin{frame}{Expanding IRT: Discriminability}
+
+      \begin{block}{How much of a skill gap is needed?}
+      \begin{equation}
+        p\left(r_{i,j} \right) = \frac{ 1 }{ \ex{ \alert<2>{\gamma_j} (\beta_i - \theta_j ) }}
+      \end{equation}
+      \end{block}
+
+      % TODO(jbg): Add perfect discriminability pictures
+
+      \end{frame}
+    
     \begin{frame}{Adversarial Score}
 
       \begin{itemize}
       \item Use \abr{irt} again
-        \item Model probability of an agent getting 
+        \item Model probability of skilled human getting it right, compare to models (want it to be high!)
 \begin{equation}\label{eq:margin}
     \mu_j = \explain{Skilled human rep. prob.}{\twoplprob{\beta^{H_{(0)}}_{*}}{\theta_j}{\gamma_j}} - \explain{Skilled model rep. prob.}{\twoplprob{\beta^{M_{(0)}}_{*}}{\theta_j}{\gamma_j}},
 \end{equation}
+\only<2>{
+  \begin{block}{Why not use raw accuracy?}
+    \begin{itemize}
+    \item Want patterns, not luck
+    \item \abr{irt} can find (and downweight) bad questions
+    \end{itemize}
+  \end{block}
+
+}
+\only<3->{
+\item Skilled humans should agree on the answer
+  \begin{equation}\label{eq:delta}
+\delta_j = \mathop{\text{MD}}_{i \sim H_{(1)}}\left[\twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j})\right].
+\end{equation}
+}
+
+\only<4->{
+  \item Question should be informative (Fischer information to agent skill):
+\begin{align}\label{eq:iif}
+\iif{}_j(\theta) &= \gamma_j^2  \cdot p_j(\theta) \cdot (1 -p_j(\theta)), \text{ where} \\
+p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
+\end{align}
+
+
+}
+
+\only<5->{
+  \begin{block}{Adversarial Score}
+
+\begin{equation}
+    \text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j} \cdot (1 + \kappa_j)
+\end{equation}
+    
+
+  \end{block}
+
+
+}
 
 \end{itemize}
       
     \end{frame}
 
+    \begin{frame}{Is this a viable incentive structure?}
+      \begin{itemize}
+    \item Can human authors interpret incentive?
+      \begin{itemize}
+      \item Computers should get questions wrong, smart humans should get them right
+      \item Answers should be unique and easily verifiable
+      \item Reward knowledge and skill
+        \item Avoid ambiguity
+      \end{itemize}
+    \item Posthoc (no realtime feedback): Prizes given based on metric
+      \item Professional trivia writers
+      \end{itemize}
+   \end{frame}
+
+\begin{frame}{Adversarial Strategies}
+	\begin{columns}
+		\column{.5\linewidth}
+			\only<1-2>{\gfxa{chrisrock}{.9}}
+			\only<3-4>{\gfxa{parasite}{.9}}
+		\column{.5\linewidth}
+			\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
+			\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}		
+	\end{columns}
+\end{frame}
+
     
-\begin{frame}{Calibration is hard}
-	
-	\begin{itemize}
-		\item If they knew when they were making stuff up, this wouldn’t be a problem
-		But LLMs are notoriously bad at knowing when they don’t know
-		\begin{itemize}
-			\item Depends on length of generation
-			\item Depends on frequency of response
-			\item Depends on reasoning
-			\item Depends on tokenization 
-		\end{itemize}
-		\item Even our metrics for knowing when the uncertainty is bad are flawed
-		\item And doing a good job of detection requires deeper access to the model
-	\end{itemize}
+    % TODO(jbg): AdvCal Picture slide
+
+    \begin{frame}{Which Datasets are Adversarial?}
+      \gfxa{cumulative_advscore}{.9}
+
+      \begin{itemize}
+      \item Not all datasets remain adversarial forever
+      \item What helps make datasets adversarial?
+        \begin{itemize}
+          \item Bamboogle: Automatically generated          
+          \item TrickMe: Human in the loop interface (expert), \abr{ir} models
+        \item FM2: Human in the loop interface (crowdworker), \abr{ir} models
+        \item AdvCal: Huaman in the loop (expert), \abr{llm} model + category instructions
+        \end{itemize}
+
+      \end{itemize}
+    \end{frame}
+
+\begin{frame}{The Value of Repeated Games}
+
+  \begin{itemize}
+  \item We're only learning per example
+  \item Can we learn more efficiently?
+  \item What if we got feedback per token?
+    \pause
+  \item And improve calibration?
+  \end{itemize}
+
 \end{frame}
 
 \begin{frame}{Mimicking How Humans Learn Calibration}
@@ -614,6 +738,24 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
 \fsi{qb/augment/bandit_result}{Better than showing everything!}
 
+    
+\begin{frame}{Calibration is hard}
+	
+	\begin{itemize}
+		\item If they knew when they were making stuff up, this wouldn’t be a problem
+		But LLMs are notoriously bad at knowing when they don’t know
+		\begin{itemize}
+			\item Depends on length of generation
+			\item Depends on frequency of response
+			\item Depends on reasoning
+			\item Depends on tokenization 
+		\end{itemize}
+		\item Even our metrics for knowing when the uncertainty is bad are flawed
+		\item And doing a good job of detection requires deeper access to the model
+	\end{itemize}
+\end{frame}
+
+
 \begin{frame}{What makes for Adversarial Example}
 \only<1>{\gfxa{irtplot_0}{.9}}	
 \only<2>{\gfxa{irtplot_1}{.9}}
@@ -622,17 +764,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \only<5>{\gfxa{irtplot_4}{.9}}
 \only<6>{\gfxa{irtplot_5}{.9}}
 \only<7>{\gfxa{irtplot_6}{.9}}
-\end{frame}
-
-\begin{frame}{Adversarial Strategies}
-	\begin{columns}
-		\column{.5\linewidth}
-			\only<1-2>{\gfxa{chrisrock}{.9}}
-			\only<3-4>{\gfxa{parasite}{.9}}
-		\column{.5\linewidth}
-			\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
-			\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}		
-	\end{columns}
 \end{frame}
 
 \begin{frame}{Simultaneous Interpretation is Hard!}
