@@ -55,6 +55,12 @@
 }
 
 
+\newcommand{\gfxd}[2]{
+	\begin{center}
+		\includegraphics[width=#2\linewidth]{diplomacy/#1}
+	\end{center}
+}
+
 \newcommand{\gfxt}[2]{
 \begin{center}
 	\includegraphics[width=#2\linewidth]{reading_tea_leaves/#1}
@@ -106,7 +112,7 @@ st page.
 
 \title[]{Language Games}
 \author{ Jordan Boyd-Graber}
-\date{2023}
+\date{2025}
 
 \institute[] % (optional, but mostly needed)
 {University of Maryland}
@@ -176,6 +182,8 @@ st page.
 		\item Measuring human vs. computer ability
 		\item Detecting lies
 	\end{itemize}
+	\pause
+	\item Challenging AI, finding its limits
 	\end{itemize}
 \end{frame}
 
@@ -212,7 +220,7 @@ st page.
 			\item The Shining was directed.
 			\item François de Belleforest wrote.
 		\end{itemize}
-		\item Not Enough Info:
+		\item \alert<2>{Not Enough Info}:
 		\begin{itemize}
 			\item Lisa Kudrow was in a car.
 			\item Tipper Gore was curated to Al Gore.
@@ -267,7 +275,7 @@ st page.
 
 \begin{frame}{Why not just show IR all the time?}
 	\pause
-	\gfxu{acc_correct}{.5}
+	\gfxu{time}{.5}
 \end{frame}
 
 \begin{frame}{Breaking Things Down}
@@ -298,9 +306,9 @@ st page.
 \only<2>{\gfxa{sat_sheet_prob}{.9}}
 
 
-\only<3>{\gfxa{jeopardy_irt_0}{.9}}
-\only<4>{\gfxa{jeopardy_irt_1}{.9}}
-\only<5>{\gfxa{jeopardy_irt_2}{.9}}
+\only<3>{\gfxa{jeopardy_irt_0}{.7}}
+\only<4>{\gfxa{jeopardy_irt_1}{.7}}
+\only<5>{\gfxa{jeopardy_irt_2}{.7}}
 
 \end{frame}
 
@@ -311,23 +319,23 @@ st page.
 
     \vspace{2cm}
     \begin{block}{Bradley-Terry Models}
-
+\gfxq{rlhf}{1.0}
     \end{block}
 
     \column{.3\linewidth}
     \begin{block}{Zermelo}
-
+\gfxq{Ernst_Zermelo_1900s}{0.5}
     \end{block}
 
     \begin{block}{Ideal Point Models}
-
+\gfxq{dw_nominate}{1.0}
     \end{block}
     
     \column{.3\linewidth}    
 
     \vspace{2cm}
     \begin{block}{ELO Models}
-
+\gfxq{elo}{1.0}
     \end{block}
 
     
@@ -356,7 +364,7 @@ st page.
 \end{frame}
 
   \begin{frame}{Making Dimensions Interpretable}
-
+	\gfxq{caimira_component}{.5}
     % TODO(jbg): Add equations
     \begin{itemize}
     \item We encode features to predict when a latent dimension will be active $r_{i,j}$
@@ -395,7 +403,7 @@ st page.
 
     \begin{columns}
       \column{.5\linewidth}
-%TODO(jbg): DADC saturation figure
+      \gfxq{benchmark_saturation}{1.0}
             \column{.5\linewidth}
             \begin{itemize}
               %TODO(jbg): add adversarial citation
@@ -417,17 +425,35 @@ st page.
 
     \begin{frame}{Expanding IRT: Discriminability}
 
-      \begin{block}{How much of a skill gap is needed?}
-      \begin{equation}
-        p\left(r_{i,j} \right) = \frac{ 1 }{ \ex{ \alert<2>{\gamma_j} (\beta_i - \theta_j ) }}
-      \end{equation}
-      \end{block}
-
-      % TODO(jbg): Add perfect discriminability pictures
+    \gfxq{discrimination}{1.0}
 
       \end{frame}
     
+    \begin{frame}{Finding Skill of Subject is Like Binary Search}
+    	\only<1>{\gfxq{discrimination_1}{1.0}}
+    	\only<2>{\gfxq{discrimination_2}{1.0}}
+    	\only<3>{\gfxq{discrimination_3}{1.0}}
+    	\only<4>{\gfxq{discrimination_4}{1.0}}
+    	\only<5>{\gfxq{discrimination_5}{1.0}}
+    \end{frame}
+    
     \begin{frame}{Adversarial Score}
+
+
+\only<5->{
+	\vspace{-1.5cm}
+	\begin{block}{Adversarial Score}
+		
+		\begin{equation}
+			\text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j} \cdot (1 + \kappa_j)
+		\end{equation}
+		
+		
+	\end{block}
+	
+	
+}
+
 
       \begin{itemize}
       \item Use \abr{irt} again
@@ -461,24 +487,11 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
 
 }
 
-\only<5->{
-  \begin{block}{Adversarial Score}
-
-\begin{equation}
-    \text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j} \cdot (1 + \kappa_j)
-\end{equation}
-    
-
-  \end{block}
-
-
-}
-
 \end{itemize}
       
     \end{frame}
 
-    \begin{frame}{Is this a viable incentive structure?}
+    \begin{frame}{AdvCal: Is this a viable incentive structure?}
       \begin{itemize}
     \item Can human authors interpret incentive?
       \begin{itemize}
@@ -491,6 +504,17 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
       \item Professional trivia writers
       \end{itemize}
    \end{frame}
+   
+   
+   \begin{frame}{What makes for Adversarial Example}
+   	\only<1>{\gfxa{irtplot_0}{.9}}	
+   	\only<2>{\gfxa{irtplot_1}{.9}}
+   	\only<3>{\gfxa{irtplot_2}{.9}}
+   	\only<4>{\gfxa{irtplot_3}{.9}}
+   	\only<5>{\gfxa{irtplot_4}{.9}}
+   	\only<6>{\gfxa{irtplot_5}{.9}}
+   	\only<7>{\gfxa{irtplot_6}{.9}}
+   \end{frame}
 
 \begin{frame}{Adversarial Strategies}
 	\begin{columns}
@@ -499,7 +523,9 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
 			\only<3-4>{\gfxa{parasite}{.9}}
 		\column{.5\linewidth}
 			\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
-			\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}		
+			\only<2>{\\ \textbf{Brad Pitt / Will Smith}}
+			\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}
+			\only<4>{\\ \textbf{Snowpiercer / Train to Busan}		}
 	\end{columns}
 \end{frame}
 
@@ -534,18 +560,19 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
 
 \end{frame}
 
-\begin{frame}{Mimicking How Humans Learn Calibration}
+\begin{frame}{Human--Computer Calibration}
 	\begin{columns}
-		\column{.3\linewidth}
+		\column{.4\linewidth}
 		\begin{itemize}
 			\item Questions get easier
 			(for humans)
 			\item Humans evaluate whether they know enough to answer
 			\item If they answer too early, they get “locked out” from the rest of the questions
+			\item Big idea: what if we give the humans tools to better understand computer thought process
 			
 		\end{itemize}
 		
-		\column{.7\linewidth}
+		\column{.6\linewidth}
 		\gfxq{example_game}{1.0}
 	\end{columns}
 	
@@ -739,32 +766,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \fsi{qb/augment/bandit_result}{Better than showing everything!}
 
     
-\begin{frame}{Calibration is hard}
-	
-	\begin{itemize}
-		\item If they knew when they were making stuff up, this wouldn’t be a problem
-		But LLMs are notoriously bad at knowing when they don’t know
-		\begin{itemize}
-			\item Depends on length of generation
-			\item Depends on frequency of response
-			\item Depends on reasoning
-			\item Depends on tokenization 
-		\end{itemize}
-		\item Even our metrics for knowing when the uncertainty is bad are flawed
-		\item And doing a good job of detection requires deeper access to the model
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}{What makes for Adversarial Example}
-\only<1>{\gfxa{irtplot_0}{.9}}	
-\only<2>{\gfxa{irtplot_1}{.9}}
-\only<3>{\gfxa{irtplot_2}{.9}}
-\only<4>{\gfxa{irtplot_3}{.9}}
-\only<5>{\gfxa{irtplot_4}{.9}}
-\only<6>{\gfxa{irtplot_5}{.9}}
-\only<7>{\gfxa{irtplot_6}{.9}}
-\end{frame}
 
 \begin{frame}{Changing Gears}
 
@@ -833,7 +834,22 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 %TODO(jbg): Add Joy slide
 
 \begin{frame}{Cicero is really good}
-	\gfxd{cicero_results}{.3}
+	\begin{columns}
+		\column{.7\linewidth}
+		\gfxd{cicero_model}{1.0}
+		\column{.7\linewidth}
+		\gfxd{cicero_results}{1.0}
+	\end{columns}
+	And we confirm their results, it wins around 90\% of games!
+\end{frame}
+
+\begin{frame}{}
+	\begin{columns}
+		\column{.5\linewidth}
+		\includegraphics[width=1.0\linewidth]{general_figures/joy}
+		\column{.5\linewidth}
+		\gfxd{benchmark_paper}{1.0}
+	\end{columns}
 \end{frame}
 
 \begin{frame}{Can they tell it's a bot?}
@@ -843,15 +859,15 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 			No in-game messages indicated that players believed they were playing with an AI agent. One player mentioned in post-game chat a suspicion that one of Cicero’s accounts might be a bot, but this did not lead to Cicero being detected as an AI agent by other players in the league.
 		\end{block}
 		\column{.5\linewidth}
-		\only<1>{\gfx{benchmark_detection_0}{.9}}
-		\only<2>{\gfx{benchmark_detection_1}{.9}}
-		\only<3>{\gfx{benchmark_detection_2}{.9}}
-		\only<4>{\gfx{benchmark_detection_3}{.9}}
+		\only<1>{\gfxd{benchmark_detection_0}{.9}}
+		\only<2>{\gfxd{benchmark_detection_1}{.9}}
+		\only<3>{\gfxd{benchmark_detection_2}{.9}}
+		\only<4>{\gfxd{benchmark_detection_3}{.9}}
 	\end{columns}
 \end{frame}
 
 \begin{frame}{Persuasion}
-	\only<1>{\gfxd{persuasion}{.2}}
+	\only<1>{\gfxd{persuasion}{.15}}
 	\only<2>{\gfxd{persuasion_1}{.8}}
 	\only<3>{\gfxd{persuasion_2}{.8}}
 	\only<4>{\gfxd{persuasion_3}{.8}}
@@ -865,28 +881,36 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 \begin{frame}{Broken Commitments (subset of deception)}
 	\only<1>{\gfxd{cicero_deception_1}{.25}}
-	\only<2>{\gfxd{cicero_deception_2}{.5}}
-	\only<3>{\gfxd{cicero_deception_3}{.75}}
-\only<4>{\gfxd{cicero_deception_4}{1.0}}	
+	\only<2>{\gfxd{cicero_deception_2}{.4}}
+	\only<3>{\gfxd{cicero_deception_3}{.6}}
+\only<4>{\gfxd{cicero_deception_4}{0.75}}	
 \end{frame}
 
 \begin{frame}{People Lie to Cicero More}
 	\gfxd{lies_sent}{.8}
 \end{frame}
 
-%TODO(jbg): Add Feng slide
+\begin{frame}{}
+	\begin{columns}
+		\column{.5\linewidth}
+		\includegraphics[width=1.0\linewidth]{general_figures/feng}
+		\column{.5\linewidth}
+		\gfxd{pholus_paper}{1.0}
+	\end{columns}
+\end{frame}
 
 
 \begin{frame}{Giving Advice}
-	\only<1>{\gfx{pholus_inteface}{1.0}}
-	\only<2>{\gfx{pholus_interface_label}{1.0}}
+	\only<1>{\gfxd{pholus_interface}{1.0}}
+	\only<2>{\gfxd{pholus_interface_label}{1.0}}
 \end{frame}
 
 \begin{frame}{Advice Helps}
-	\only<1>{\gfxd{chiron_skill_regression}{.5}}
+	\only<1>{\gfxd{chiron_skill_regression}{.5}\gfxd{pholus_coefficient_scale}{.5}}
 	\only<2>{\gfxd{chiron_all_regression}{.5}}
+		
 	\only<3>{\gfxd{chiron_acceptance}{.5}}
-	
+
 \end{frame}
 
 \begin{frame}{How to better detect Deception}
@@ -918,8 +942,40 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \fsi{general_figures/blackbox}{}
 \fsi{general_figures/bennet_robot}{}
 \fsi{general_figures/tng_poker}{}
-\fsi{general_figures/robot_shake}{We need ML that understands our gratitude and our fears}
 
+
+
+
+\frame{
+	
+	\frametitle{Thanks}
+	
+	\begin{block}{Collaborators}
+		Hal Daum\'e III (UMD), David Blei (Columbia), Marine Carpuat
+		(UMD), Leah Findlater (UW), Kevin Seppi
+		(BYU), Eric Ringger (BYU)
+	\end{block}
+	
+	\begin{columns}
+		
+		\column{.75\linewidth}
+		\begin{block}{Funders}
+			\begin{center}
+				\includegraphics[width=0.2\linewidth]{general_figures/nsf}
+				\includegraphics[width=0.2\linewidth]{general_figures/darpa}
+				\includegraphics[width=0.2\linewidth]{general_figures/arl}
+				\includegraphics[width=0.2\linewidth]{general_figures/iarpa}
+			\end{center}
+		\end{block}
+		
+		\column{.3\linewidth}
+		\begin{block}{Supporters}
+			\includegraphics[width=1.0\linewidth]{general_figures/iac}
+			\gfxq{naqt}{1.0}
+		\end{block}
+		
+	\end{columns}
+}
 
 
 
@@ -1050,38 +1106,6 @@ help\dots
 {\bf Guess: } \only<1>{??} \only<2>{IP Address} \only<3>{Spherical
   Coordinate} \only<4>{Longitude} \only<5>{Spherical Coordinate} \only<6>{Longitude}
 \end{frame}
-
-
-\frame{
-
-	\frametitle{Thanks}
-
-        \begin{block}{Collaborators}
-          Hal Daum\'e III (UMD), David Blei (Columbia), Marine Carpuat
-          (UMD), Leah Findlater (UW), Kevin Seppi
-          (BYU), Eric Ringger (BYU)
-        \end{block}
-
-	\begin{columns}
-
-	\column{.75\linewidth}
-        \begin{block}{Funders}
-        \begin{center}
-          \includegraphics[width=0.2\linewidth]{general_figures/nsf}
-          \includegraphics[width=0.2\linewidth]{general_figures/darpa}
-          \includegraphics[width=0.2\linewidth]{general_figures/arl}
-          \includegraphics[width=0.2\linewidth]{general_figures/iarpa}
-       \end{center}
-        \end{block}
-
-	\column{.3\linewidth}
-        \begin{block}{Supporters}
-          \includegraphics[width=1.0\linewidth]{general_figures/iac}
-        	\gfxq{naqt}{1.0}
-        \end{block}
-
-        \end{columns}
-}
 
 \frame{
   \frametitle{But wait, there's more!}
@@ -1256,6 +1280,34 @@ Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi. 
   
 \end{frame}
 
+
+
+\begin{frame}{Calibration is hard}
+	
+	\begin{itemize}
+		\item If they knew when they were making stuff up, this wouldn’t be a problem
+		But LLMs are notoriously bad at knowing when they don’t know
+		\begin{itemize}
+			\item Depends on length of generation
+			\item Depends on frequency of response
+			\item Depends on reasoning
+			\item Depends on tokenization 
+		\end{itemize}
+		\item Even our metrics for knowing when the uncertainty is bad are flawed
+		\item And doing a good job of detection requires deeper access to the model
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{What makes for Adversarial Example}
+	\only<1>{\gfxa{irtplot_0}{.9}}	
+	\only<2>{\gfxa{irtplot_1}{.9}}
+	\only<3>{\gfxa{irtplot_2}{.9}}
+	\only<4>{\gfxa{irtplot_3}{.9}}
+	\only<5>{\gfxa{irtplot_4}{.9}}
+	\only<6>{\gfxa{irtplot_5}{.9}}
+	\only<7>{\gfxa{irtplot_6}{.9}}
+\end{frame}
 
 
 \end{document}
