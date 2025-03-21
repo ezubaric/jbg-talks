@@ -575,7 +575,10 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
   \item Can we learn more efficiently?
   \item What if we got feedback per token?
     \pause
-  \item And improve calibration?
+    \begin{itemize}
+      \item Improve Calibration
+      \item Improve Cooperation
+    \end{itemize}
   \end{itemize}
 
 \end{frame}
@@ -680,6 +683,42 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 % TODO: Diplomacy slides
 
 % TODO: Chenglei slides
+
+\begin{frame}{How does a computer buzz in?}
+
+  \begin{itemize}
+  \item Ask computer for guess every $N$ words
+  \item Compute average log probability
+  \begin{itemize}
+  \item Threshold on log probability of output
+  \item Threshold chosen from TrickMe set
+  \item Can do better!
+  \end{itemize}
+  \item Again, only have one chance to buzz
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Human--Computer Competition}
+  
+  \begin{itemize}
+  \item Top human team won
+  \item Best computer team had \emph{much} higher accuracy
+  \item Computers had strictly higher accuracy
+  \item Humans had \emph{much} higher \textbf{conditional} accuracy
+  \end{itemize}
+
+  \begin{columns}
+    \column{.5\linewidth}
+    % TODO(jbg): add animation
+    \gfxa{accuracy_plot}{1.0}
+
+    \column{.5\linewidth}    
+    \gfxa{p_buzz_correct_2}{1.0}
+    
+  \end{columns}
+
+  
+\end{frame}
 
 
 \fsi{simtrans/centaur-chess}{Centaur Chess}
@@ -1015,7 +1054,9 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 
 
 
-\begin{frame}{Simultaneous Interpretation is Hard!}
+
+
+\begin{frame}{Moving beyond games}
 
   \begin{columns}
     \column{.5\linewidth}
@@ -1072,6 +1113,7 @@ He He, {\bf Jordan Boyd-Graber}, and Hal {Daum\'{e} III}.
 
 
 \end{frame}
+
 
 
 \fsi{simtrans/liang_huang}{}
@@ -1142,6 +1184,8 @@ help\dots
 {\bf Guess: } \only<1>{??} \only<2>{IP Address} \only<3>{Spherical
   Coordinate} \only<4>{Longitude} \only<5>{Spherical Coordinate} \only<6>{Longitude}
 \end{frame}
+
+
 
 \frame{
   \frametitle{But wait, there's more!}
@@ -1234,6 +1278,77 @@ Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi. 
 \fsi{qb/viz_first_draft}{Andrea Lin}
 
 
+
+\fsi{simtrans/liang_huang}{}
+\fsi{simtrans/delay}{}
+
+\begin{frame}{How to Evaluate}
+
+  \begin{columns}
+    \column{.5\linewidth}
+    \only<1>{
+      \includegraphics[width=1.0\linewidth]{simtrans/polish_jeopardy}}
+    \only<2->{\includegraphics[width=0.8\linewidth]{simtrans/interface}}
+    \column{.5\linewidth}
+    \begin{itemize}
+    \item You're a contestant on a Polish game show
+    \item You have access to a simultaneous translation system
+    \item Your job is to answer the question before your opponent (as
+      quickly as possible)
+      \only<3>{\alert<3>{ \item Keep question answerer the same, vary translation}}
+    \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{BLEU results for modern Simultaneous Translation Systems}
+
+  \begin{center}
+  \includegraphics[width=0.9\linewidth]{simtrans/simQA/bleu_simqa}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Downstream QA Results}
+
+  \begin{center}
+  \includegraphics[width=0.8\linewidth]{simtrans/simQA/qametrics_simqa}
+\end{center}
+
+\only<2->{Additional benefit: Only need to translate the answer}
+
+\end{frame}
+
+
+\begin{frame}{Undertranslation}
+  \begin{center}
+    \includegraphics[width=0.4\paperwidth]{simtrans/simQA/ex_undertranslation}
+  \end{center}
+When the translation doesn't
+help\dots
+\end{frame}
+
+\begin{frame}{When are Mistakes / Hallucinations Harmful?}
+
+
+  \begin{center}
+    \only<2->{This coordinate determines}
+    \only<3->{the double-wall}
+    \only<4->{angle between the southern half of the meridian plane
+      and the}
+    \only<5->{southern}
+  \only<1>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_0}}
+  \only<2>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_1}}
+  \only<3>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_2}}
+  \only<4>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_5}}  
+  \only<5>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_3}}
+  \only<6>{\includegraphics[width=0.5\paperwidth]{simtrans/simQA/hallucination_example_4}}
+\end{center}
+{\bf Guess: } \only<1>{??} \only<2>{IP Address} \only<3>{Spherical
+  Coordinate} \only<4>{Longitude} \only<5>{Spherical Coordinate} \only<6>{Longitude}
+\end{frame}
+
+
 \begin{frame}{References}
 \bibliographystyle{style/acl}
 \tiny
@@ -1241,77 +1356,6 @@ Forough Poursabzi-Sangdeh, Jordan Boyd-Graber, Leah Findlater, and Kevin Seppi. 
 \end{frame}
 
 
-
-\begin{frame}{RC TRUST}
-\begin{center}
-  \includegraphics[width=0.7\paperwidth]{job_talks/trust_research_centers}
-\end{center}
-\small
-  \only<2>{
-    \begin{columns}
-      \column{.6\linewidth}
-    \begin{block}{Psychology \& Social Sciences}
-      \begin{itemize}
-      \item Method: Item Response Theory
-      \item Method: Ideal Point Models
-        \item Application: Multilingual and Multicultural Models of
-          Persuasion and Alliance Building
-        \item Collaboration: Bundesverfassungsgericht Entscheidungen
-        \end{itemize}
-      \end{block}
-      \column{.4\linewidth}      
-      \end{columns}
-  }
-  
-  \only<3>{
-    \begin{columns}
-      \column{.1\linewidth}
-      \column{.6\linewidth}
-      \begin{block}{AI \& ML}
-              \begin{itemize}
-    \item Method: Reinforcement Learning 
-    \item Method: Neural Text Similarity
-    \item Application: Training QA Retrieval Mechanisms
-    \item Collaboration: Improving Google QA
-      \end{itemize}
-      \end{block}
-      \column{.3\linewidth}      
-    \end{columns}
-  }
-
-
-  \only<4>{
-    \begin{columns}
-      \column{.3\linewidth}
-      \column{.6\linewidth}
-      \begin{block}{Data Science \& Statistical Learning}
-        \begin{itemize}
-    \item Method: Bayesian Nonparametrics
-    \item Method: Interactive Dirichlet Forest Priors
-    \item Application: Sensemaking
-    \item Collaboration: Monitoring Local Reseliency
-      \end{itemize}
-    \end{block}
-            \column{.1\linewidth}
-  \end{columns}
-
-  }
-
-  \only<5>{
-    \begin{columns}
-      \column{.4\linewidth}
-      \column{.6\linewidth}
-    \begin{block}{Cybersecurity and Privacy}
-      \begin{itemize}
-      \item Method: Adversarial Example Construction
-      \item Method: Disinformation Gamefication
-      \item Application: Fake News Detection
-        \item Collaboration: Climate Fact Checking
-      \end{itemize}
-
-    \end{block}
-      \end{columns}
-  }
 
   
 \end{frame}
