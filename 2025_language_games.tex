@@ -1,4 +1,4 @@
-% In this talk, I’ll talk about how we can use silly games to understand the strengths and weaknesses of AIs. We first begin with games that test memory: testing the recall of obscure facts. While AI has been viewed as superhuman at this task, it isn’t universally so. We show that a new measure of adversarial datasets (the gap between humans and computers) is decreasing but not yet closed, with computers still struggling on abstract reasoning and knowing when they know the correct answer. Given these disparate skill sets, we then analyze how we can best build human and computer teams to learn new facts and detect false statements. Finally, I close with a similar line of results for another silly language game, Diplomacy, where computers have still not reached dominance but can be used to assist human players think strategically and detect lies.”
+% In this talk, I’ll talk about how we can use silly games to understand the strengths and weaknesses of AIs. We first begin with games that test memory: testing the recall of obscure facts. While AI has been viewed as superhuman at this task, it isn’t universally so. We show that a new measure of adversarial datasets (the gap between humans and computers) is decreasing but not yet closed, with computers still struggling on abstract reasoning and knowing when they know the correct answer. Given these disparate skill sets, we then analyze how we can best build human and computer teams ito learn new facts and detect false statements. Finally, I close with a similar line of results for another silly language game, Diplomacy, where computers have still not reached dominance but can be used to assist human players think strategically and detect lies.”
 
 \documentclass[compress]{beamer}
 
@@ -19,7 +19,8 @@
 \pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
 
 \newcommand{\advscore}{\abr{AdvScore}}
-\newcommand{\twoplprob}[3]{\sigma_{2\text{pl}}\left(#1, #2, #3 \right)}
+\newcommand{\tif}[0]{\abr{tif}}
+\newcommand{\twoplprob}[3]{ \frac{1}{\ex{-#3\left[ #1 - #2 \right] }  }}
 \newcommand{\iif}{\abr{iif}}
 \newcommand{\slda}[0]{\abr{slda}}
 \newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
@@ -176,7 +177,8 @@ st page.
 	\item It takes work to figure this out
 	\begin{itemize}
 		\item Getting harder examples
-		\item Measuring human vs. computer accuracy 
+		\item Measuring human vs. computer accuracy: Item Response Theory
+                \item Competitive and Cooperative
 	\end{itemize}
 	\item Tasks
 	\begin{itemize}
@@ -241,7 +243,7 @@ st page.
 	\gfxu{fm2}{1.0}
 \end{frame}
 
-\begin{frame}{How to gather claims}
+\begin{frame}{Author Claims where Gold Evidence is \textbf{not} Model's Top Evidence}
 	\only<1>{\gfxu{fm2_interface_0}{.9}}
 	\only<2>{\gfxu{fm2_interface_1}{.9}}
 	\only<3>{\gfxu{fm2_interface_2}{.9}}
@@ -259,7 +261,7 @@ st page.
 	\begin{columns}
 		\column{.5\linewidth}
 	\begin{block}{Direct}
-		 \scriptsize The claim that Manhattan has the most residents of New York City's boroughs is false.  Manhattan has a population of approximately 1.6 million residents1234. However, New York City as a whole has a population of approximately 8.3 million residents56. Therefore, Manhattan does not have the most residents among New York City's boroughs.  
+		 \scriptsize The claim that Manhattan has the most residents of New York City's boroughs is false.  Manhattan has a population of approximately 1.6 million residents. However, New York City as a whole has a population of approximately 8.3 million residents. Therefore, Manhattan does not have the most residents among New York City's boroughs.  
     \end{block}
 
 		\begin{block}{Case For}
@@ -332,67 +334,24 @@ st page.
 
 \end{frame}
 
-\begin{frame}{Aside: Family Tree}
-
-  \begin{columns}
-    \column{.3\linewidth}
-
-    \vspace{2cm}
-    \begin{block}{Bradley-Terry Models}
-\gfxq{rlhf}{1.0}
-    \end{block}
-
-    \column{.3\linewidth}
-    \begin{block}{Zermelo}
-\gfxq{Ernst_Zermelo_1900s}{0.5}
-    \end{block}
-
-    \begin{block}{Ideal Point Models}
-\gfxq{dw_nominate}{1.0}
-    \end{block}
-    
-    \column{.3\linewidth}    
-
-    \vspace{2cm}
-    \begin{block}{ELO Models}
-\gfxq{elo}{1.0}
-    \end{block}
-
-    
-  \end{columns}
-
-  
-\end{frame}
-
-
-\begin{frame}{What more do we need?}
-\only<1>{\gfxa{caimira_0}{.9}}
-\only<2>{\gfxa{caimira_1}{.9}}
-\only<3>{\gfxa{caimira_2}{.9}}
-\only<4>{\gfxa{caimira_3}{.9}}
-\only<5>{\gfxa{caimira_4}{.9}}
-\end{frame}
-
-
-\begin{frame}{What's hard for Computers}
-	\only<1>{\gfxa{simplex_0}{.9}}
-	\only<2>{\gfxa{simplex_1}{.9}}	
-	\only<3>{\gfxa{simplex_2}{.9}}
-	\only<4->{\gfxa{simplex_3}{.9}}
-
-        \only<5>{\gfxa{caimira_objective}{.5}}
-\end{frame}
 
   \begin{frame}{Making Dimensions Interpretable}
-	\gfxq{caimira_component}{.5}
     % TODO(jbg): Add equations
-    \begin{itemize}
-    \item We encode features to predict when a latent dimension will be active $r_{i,j}$
-    \item Only allow model to use a few dimensions
-    \item Objective function encourages model to find dimensions that discriminate agents
-    \item Posthoc analysis allows us to label the dimensions
+        \begin{itemize}
+        \item Make skills and difficulty vector-valued
+          \begin{equation}
+            \gamma_j \sum_k \left[ \theta_{i,k} - \beta_{j,k} \right]
+          \end{equation}
+        \item Where do the dimensions come from?
+          \pause
+          \begin{itemize}
+          \item Latent variable: learned to predict correctness
+          \item Function of question encoding, question features
+          \item Regularized to be sparse
+          \end{itemize}
+    \item Posthoc labeling
     \end{itemize}
-
+	\gfxq{caimira_component}{.5}
  \end{frame}
 
   \begin{frame}{Hard for Computers: Abductive Inference}
@@ -460,7 +419,7 @@ st page.
     \begin{frame}{Adversarial Score}
 
 
-\only<5->{
+\only<6->{
 	\vspace{-1.5cm}
 	\begin{block}{Adversarial Score}
 		
@@ -493,17 +452,22 @@ st page.
 \only<3->{
 \item Skilled humans should agree on the answer
   \begin{equation}\label{eq:delta}
-\delta_j = \mathop{\text{MD}}_{i \sim H_{(1)}}\left[\twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j})\right].
+    \delta_j = \sum_{i \sim H_{(1)}}
+    \left[
+      \frac{\twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j} -
+        \bar{p_{H_{(1)}}(r_{i,j})}}
+           {|H_{(1)}|}
+    \right].
 \end{equation}
 }
 
 \only<4->{
   \item Question should be informative (Fischer information to agent skill):
 \begin{align}\label{eq:iif}
-\iif{}_j(\theta) &= \gamma_j^2  \cdot p_j(\theta) \cdot (1 -p_j(\theta)), \text{ where} \\
-p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
+\only<4>{\iif{}_j(\theta) &= \gamma_j^2  \cdot p_j(\theta) \cdot (1 -p_j(\theta)), \text{ where} \\
+p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}}
+    \kappa_j &= 1-\exp\left(-{\tif{}_j}\right).
 \end{align}
-
 
 }
 
@@ -511,7 +475,7 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
       
     \end{frame}
 
-    \begin{frame}{AdvCal: Is this a viable incentive structure?}
+    \begin{frame}{AdvQA: Is this a viable incentive structure?}
       \begin{itemize}
     \item Can human authors interpret incentive?
       \begin{itemize}
@@ -562,167 +526,13 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}.
           \item Bamboogle: Automatically generated          
           \item TrickMe: Human in the loop interface (expert), \abr{ir} models
         \item FM2: Human in the loop interface (crowdworker), \abr{ir} models
-        \item AdvCal: Huaman in the loop (expert), \abr{llm} model + category instructions
+        \item AdvQA: Huaman in the loop (expert), \abr{llm} model + category instructions
         \end{itemize}
 
       \end{itemize}
     \end{frame}
 
-\begin{frame}{The Value of Repeated Games}
-
-  \begin{itemize}
-  \item We're only learning per example
-  \item Can we learn more efficiently?
-  \item What if we got feedback per token?
-    \pause
-    \begin{itemize}
-      \item Improve Calibration
-      \item Improve Cooperation
-    \end{itemize}
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Human--Computer Calibration}
-	\begin{columns}
-		\column{.4\linewidth}
-		\begin{itemize}
-			\item Questions get easier
-			(for humans)
-			\item Humans evaluate whether they know enough to answer
-			\item If they answer too early, they get “locked out” from the rest of the questions
-			\item Big idea: what if we give the humans tools to better understand computer thought process
-			
-		\end{itemize}
-		
-		\column{.6\linewidth}
-		\gfxq{example_game}{1.0}
-	\end{columns}
-	
-\end{frame}
-
-\begin{frame}[plain]
-  \vspace{-2cm}
-		\includegraphics[width=1.0\linewidth]{qb/jeopardy}
-                \pause
-                \vspace{-8cm}
-         \begin{block}{This is {\bf not} Jeopardy}
-		\begin{itemize}
-                        \item Jeopardy: must decide to answer {\bf once}, after
-                          complete question
-                        \item Quiz Bowl: decide after each word
-		\end{itemize}
-
-	\end{block}
-
-\end{frame}
-
-
-
-
-% TODO add more questions here
-
-\begin{frame}[t]
-\frametitle{Sample Question}
-	\frametitle{Sample Question}
-
-With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no moving parts. He did not take interaction with neighbors into account when formulating his theory of} \only<3->{heat capacity, so} \only<4->{Debye adjusted the theory for low temperatures. His} \only<4->{summation convention automatically sums repeated indices in tensor products. His name is attached to the A and B coefficients} \only<5->{for spontaneous and stimulated emission, the subject of one of his multiple groundbreaking 1905 papers. He further developed the model of statistics sent to him by} \only<6->{Bose to describe particles with integer spin. For 10 points, who is this German physicist best known for formulating the} \only<7->{special and general theories of relativity?} \\
-\vspace{1cm}
-\only<8->{ {\bf Albert \underline{Einstein}}}
-
-\only<9->{
-\vspace{-6cm}
-
-\begin{block}{Faster = Smarter, More Calibrated}
-
-  \begin{enumerate}
-    \item University of Chicago
-    \item Colorado School of Mines
-    \item Cornell University
-    \item UIUC
-    \item Brigham Young University
-    \item California Institute of Technology
-    \item Peking University
-    \item Harvey Mudd College
-    \item Darmstadt University
-    \item University of Colorado
-  \end{enumerate}
-
-
-\end{block}
-}
-
-\end{frame}
-
-
-% \begin{frame}[t]
-% 	\frametitle{Sample Question}
-
-%         The Swiss-Italian architect Pietro Antonio Solari
-%         \only<2->{built several fortified towers in this city, which
-%           often vied for power with its northern rival Tver. A ruler
-%           of this city prevailed in the} \only<3->{Great Stand on the
-%           Ugra River. A prince from this city was nicknamed for
-%           winning a battle on the} \only<4->{Don river. Partly because
-%           a ruler of this city married} \only<5->{Sophia Palaiologina,
-%           the niece of the last Byzantine Emperor, this city styled
-%           itself the} \only<6->{``Third Rome'' after the fall of
-%           Constantinople. Another prince of this city stopped paying
-%           tribute to the} \only<7->{Mongols in 1476, ending the
-%           ``Tatar yoke.''} \only<8->{The Grand Duchy headquartered in
-%           this city came to an end in 1547 with the ascension of}
-%         \only<9->{ Ivan IV, who made it his capital. For 10 points,
-%           name this city where Ivan III renovated the
-%           Kremlin,} \only<10->{the capital of Russia.}\\
-%         \vspace{.5cm} \only<11->{ {\bf Moscow} (Moskva / Muscovy)}
-
-
-
-% \end{frame}
-
-% TODO: Diplomacy slides
-
-% TODO: Chenglei slides
-
-\begin{frame}{How does a computer buzz in?}
-
-  \begin{itemize}
-  \item Ask computer for guess every $N$ words
-  \item Compute average log probability
-  \begin{itemize}
-  \item Threshold on log probability of output
-  \item Threshold chosen from TrickMe set
-  \item Can do better!
-  \end{itemize}
-  \item Again, only have one chance to buzz
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Human--Computer Competition}
-  
-  \begin{itemize}
-  \item Top human team won
-  \item Best computer team had \emph{much} higher accuracy
-  \item Computers had strictly higher accuracy
-  \item Humans had \emph{much} higher \textbf{conditional} accuracy
-  \end{itemize}
-
-  \begin{columns}
-    \column{.5\linewidth}
-    % TODO(jbg): add animation
-    \gfxa{accuracy_plot}{1.0}
-
-    \column{.5\linewidth}    
-    \gfxa{p_buzz_correct_2}{1.0}
-    
-  \end{columns}
-
-  
-\end{frame}
-
-
 \fsi{simtrans/centaur-chess}{Centaur Chess}
-
 
 \fsi{qb/augment/screenshot_all}{Interface}
 
@@ -747,17 +557,9 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
 % \fsi{qb/augment/tools_buzz}{Highlights help experts}
 
-\begin{frame}{Regression Analysis}
-  For each triple (player, question, interpretations), \\
-  predict the outcome (correct answer or not) \\
-  with logistic regression. Using features:
-    \begin{itemize}
-        \item \alert<3>{player ID}
-        \item \alert<3>{question ID}
-        \item buzzing position
-        \item enabled interpretations: individual and combinations
-    \end{itemize}
-
+\begin{frame}{Skill Boost}
+  Rerun IRT analysis: rather than contrast human vs. computer skill,
+  we see how much interface boosts (or diminishes) user skill.
     \pause
 
     \begin{block}{Coefficients tell story!}
@@ -1357,10 +1159,6 @@ help\dots
 
 
 
-  
-\end{frame}
-
-
 
 \begin{frame}{Calibration is hard}
 	
@@ -1379,14 +1177,211 @@ help\dots
 \end{frame}
 
 
-\begin{frame}{What makes for Adversarial Example}
-	\only<1>{\gfxa{irtplot_0}{.9}}	
-	\only<2>{\gfxa{irtplot_1}{.9}}
-	\only<3>{\gfxa{irtplot_2}{.9}}
-	\only<4>{\gfxa{irtplot_3}{.9}}
-	\only<5>{\gfxa{irtplot_4}{.9}}
-	\only<6>{\gfxa{irtplot_5}{.9}}
-	\only<7>{\gfxa{irtplot_6}{.9}}
+
+\begin{frame}{The Value of Repeated Games}
+
+  \begin{itemize}
+  \item We're only learning per example
+  \item Can we learn more efficiently?
+  \item What if we got feedback per token?
+    \pause
+    \begin{itemize}
+      \item Improve Calibration
+      \item Improve Cooperation
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Human--Computer Calibration}
+	\begin{columns}
+		\column{.4\linewidth}
+		\begin{itemize}
+			\item Questions get easier
+			(for humans)
+			\item Humans evaluate whether they know enough to answer
+			\item If they answer too early, they get “locked out” from the rest of the questions
+			\item Big idea: what if we give the humans tools to better understand computer thought process
+			
+		\end{itemize}
+		
+		\column{.6\linewidth}
+		\gfxq{example_game}{1.0}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}[plain]
+  \vspace{-2cm}
+		\includegraphics[width=1.0\linewidth]{qb/jeopardy}
+                \pause
+                \vspace{-8cm}
+         \begin{block}{This is {\bf not} Jeopardy}
+		\begin{itemize}
+                        \item Jeopardy: must decide to answer {\bf once}, after
+                          complete question
+                        \item Quiz Bowl: decide after each word
+		\end{itemize}
+
+	\end{block}
+
+\end{frame}
+
+
+
+
+% TODO add more questions here
+
+\begin{frame}[t]
+\frametitle{Sample Question}
+	\frametitle{Sample Question}
+
+With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no moving parts. He did not take interaction with neighbors into account when formulating his theory of} \only<3->{heat capacity, so} \only<4->{Debye adjusted the theory for low temperatures. His} \only<4->{summation convention automatically sums repeated indices in tensor products. His name is attached to the A and B coefficients} \only<5->{for spontaneous and stimulated emission, the subject of one of his multiple groundbreaking 1905 papers. He further developed the model of statistics sent to him by} \only<6->{Bose to describe particles with integer spin. For 10 points, who is this German physicist best known for formulating the} \only<7->{special and general theories of relativity?} \\
+\vspace{1cm}
+\only<8->{ {\bf Albert \underline{Einstein}}}
+
+\only<9->{
+\vspace{-6cm}
+
+\begin{block}{Faster = Smarter, More Calibrated}
+
+  \begin{enumerate}
+    \item University of Chicago
+    \item Colorado School of Mines
+    \item Cornell University
+    \item UIUC
+    \item Brigham Young University
+    \item California Institute of Technology
+    \item Peking University
+    \item Harvey Mudd College
+    \item Darmstadt University
+    \item University of Colorado
+  \end{enumerate}
+
+
+\end{block}
+}
+
+\end{frame}
+
+
+% \begin{frame}[t]
+% 	\frametitle{Sample Question}
+
+%         The Swiss-Italian architect Pietro Antonio Solari
+%         \only<2->{built several fortified towers in this city, which
+%           often vied for power with its northern rival Tver. A ruler
+%           of this city prevailed in the} \only<3->{Great Stand on the
+%           Ugra River. A prince from this city was nicknamed for
+%           winning a battle on the} \only<4->{Don river. Partly because
+%           a ruler of this city married} \only<5->{Sophia Palaiologina,
+%           the niece of the last Byzantine Emperor, this city styled
+%           itself the} \only<6->{``Third Rome'' after the fall of
+%           Constantinople. Another prince of this city stopped paying
+%           tribute to the} \only<7->{Mongols in 1476, ending the
+%           ``Tatar yoke.''} \only<8->{The Grand Duchy headquartered in
+%           this city came to an end in 1547 with the ascension of}
+%         \only<9->{ Ivan IV, who made it his capital. For 10 points,
+%           name this city where Ivan III renovated the
+%           Kremlin,} \only<10->{the capital of Russia.}\\
+%         \vspace{.5cm} \only<11->{ {\bf Moscow} (Moskva / Muscovy)}
+
+
+
+% \end{frame}
+
+% TODO: Diplomacy slides
+
+% TODO: Chenglei slides
+
+\begin{frame}{How does a computer buzz in?}
+
+  \begin{itemize}
+  \item Ask computer for guess every $N$ words
+  \item Compute average log probability
+  \begin{itemize}
+  \item Threshold on log probability of output
+  \item Threshold chosen from TrickMe set
+  \item Can do better!
+  \end{itemize}
+  \item Again, only have one chance to buzz
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Human--Computer Competition}
+  
+  \begin{itemize}
+  \item Top human team won
+  \item Best computer team had \emph{much} higher accuracy
+  \item Computers had strictly higher accuracy
+  \item Humans had \emph{much} higher \textbf{conditional} accuracy
+  \end{itemize}
+
+  \begin{columns}
+    \column{.5\linewidth}
+    % TODO(jbg): add animation
+    \gfxa{accuracy_plot}{1.0}
+
+    \column{.5\linewidth}    
+    \gfxa{p_buzz_correct_2}{1.0}
+    
+  \end{columns}
+
+  
+\end{frame}
+
+
+
+\begin{frame}{What's hard for Computers}
+	\only<1>{\gfxa{simplex_0}{.9}}
+	\only<2>{\gfxa{simplex_1}{.9}}	
+	\only<3>{\gfxa{simplex_2}{.9}}
+	\only<4->{\gfxa{simplex_3}{.9}}
+
+        \only<5>{\gfxa{caimira_objective}{.5}}
+\end{frame}
+
+
+\begin{frame}{Aside: Family Tree}
+
+  \begin{columns}
+    \column{.3\linewidth}
+
+    \vspace{2cm}
+    \begin{block}{Bradley-Terry Models}
+\gfxq{rlhf}{1.0}
+    \end{block}
+
+    \column{.3\linewidth}
+    \begin{block}{Zermelo}
+\gfxq{Ernst_Zermelo_1900s}{0.5}
+    \end{block}
+
+    \begin{block}{Ideal Point Models}
+\gfxq{dw_nominate}{1.0}
+    \end{block}
+    
+    \column{.3\linewidth}    
+
+    \vspace{2cm}
+    \begin{block}{ELO Models}
+\gfxq{elo}{1.0}
+    \end{block}
+
+    
+  \end{columns}
+
+  
+\end{frame}
+
+
+
+\begin{frame}{What more do we need?}
+\only<1>{\gfxa{caimira_0}{.9}}
+\only<2>{\gfxa{caimira_1}{.9}}
+\only<3>{\gfxa{caimira_2}{.9}}
+\only<4>{\gfxa{caimira_3}{.9}}
+\only<5>{\gfxa{caimira_4}{.9}}
 \end{frame}
 
 
