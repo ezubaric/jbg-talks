@@ -6,6 +6,7 @@
 \usepackage{xmpmulti}
 
 \usepackage{booktabs}
+\usepackage{xfrac}
 \usepackage{graphicx,float,wrapfig, bbm}
 \usepackage{amsfonts, bbold, comment}
 \usepackage{mdwlist}
@@ -201,16 +202,10 @@ st page.
 	
 \end{center}
 	\end{columns}
+	Can we help users detect incorrect statements?
+	
 \end{frame}
 
-\begin{frame}{Research Questions}
-	\begin{itemize}
-		\item Are natural language explanations more effective than retrieved passages for human fact-checking?
-		\item Can contrastive explanations—arguing for or against a fact being true—mitigate over-reliance and be more effective than non- contrastive explanations?
-		\item  Are there complementary benefits in presenting both natural language explanations and retrieved passages?
-	\end{itemize}
-\end{frame}
- 
   \fsi{uncertainty/fever}{\textbf{F}act \textbf{E}xtraction and \textbf{VER}ification}
   		
 \begin{frame}{FEVER categories}
@@ -260,29 +255,35 @@ st page.
 \begin{frame}{Claim: Manhattan has the most residents of New York City's boroughs. }
 	\begin{columns}
 		\column{.5\linewidth}
-	\begin{block}{Direct}
-		 \scriptsize The claim that Manhattan has the most residents of New York City's boroughs is false.  Manhattan has a population of approximately 1.6 million residents. However, New York City as a whole has a population of approximately 8.3 million residents. Therefore, Manhattan does not have the most residents among New York City's boroughs.  
-    \end{block}
-
-		\begin{block}{Case For}
-			\scriptsize
-		Manhattan is the most populous borough in New York City, with a population of approximately 1,627,788 as of 2025.  The other boroughs have smaller populations: Brooklyn: 2.72 million; Queens: 2.57 million; The Bronx: 1.46 million; Staten Island: 552,00.
-	\end{block}	
-    
+		\only<3->{
+			\begin{block}{Direct}
+				The claim that Manhattan has the most residents of New York City's boroughs is false.  Manhattan has a population of approximately 1.6 million residents. However, New York City as a whole has a population of approximately 8.3 million residents. Therefore, Manhattan does not have the most residents among New York City's boroughs.  
+			\end{block}
+		}
+%		\only<4->{
+%			
+%			\begin{block}{Case For}
+%				\scriptsize
+%				Manhattan is the most populous borough in New York City, with a population of approximately 1,627,788 as of 2025.  The other boroughs have smaller populations: Brooklyn: 2.72 million; Queens: 2.57 million; The Bronx: 1.46 million; Staten Island: 552,00.
+%			\end{block}	
+%		}
 		\column{.5\linewidth}	
-
-    
-    	\begin{block}{IR}
-    	 \scriptsize New York City's borough of Manhattan is the highest nominal income county in the United States. In particular, ZIP code 10021 on Manhattan's Upper East Side, with more than 100,000 inhabitants and a per capita income of over \$90,000, has one of the largest concentrations of income in the United States. The other boroughs, especially Queens and Staten Island, have large middle-class populations. 
-    \end{block}
-
-
-		\begin{block}{Case Against}
-			\scriptsize According to recent data, Brooklyn is the most populated borough in New York City, not Manhattan. Manhattan has a population of approximately 1.6 million residents, while Brooklyn has a significantly higher population.
-		\end{block}					
+		
+		\only<2->{
+			
+			\begin{block}{IR}
+				New York City's borough of Manhattan is the highest nominal income county in the United States. In particular, ZIP code 10021 on Manhattan's Upper East Side, with more than 100,000 inhabitants and a per capita income of over \$90,000, has one of the largest concentrations of income in the United States. The other boroughs, especially Queens and Staten Island, have large middle-class populations. 
+			\end{block}
+		}
+%		\only<4->{
+%			
+%			\begin{block}{Case Against}
+%				\scriptsize According to recent data, Brooklyn is the most populated borough in New York City, not Manhattan. Manhattan has a population of approximately 1.6 million residents, while Brooklyn has a significantly higher population.
+%			\end{block}		
+%		}			
 	\end{columns}
-		
-		
+	
+	
 \end{frame}
 
 
@@ -382,13 +383,14 @@ st page.
 
     \begin{columns}
       \column{.5\linewidth}
-      \gfxq{benchmark_saturation}{1.0}
+      \gfxq{benchmark_saturation}{0.75}
+Biggio et al., 2012: Poisoning attacks against Support Vector Machines
+
+              \gfxa{adversarial_turtle}{.6}
+
+
             \column{.5\linewidth}
             \begin{itemize}
-            \item Biggio et al., 2012: Poisoning attacks against Support Vector Machines
-
-              \gfx{adversarial_turtle}{.6}
-              %TODO(jbg): add adversarial citation
               
             \item Many benchmarks are ``saturated''
             \item Newer datasets claim to be ``adversarial''
@@ -422,14 +424,13 @@ st page.
     \begin{frame}{Adversarial Score}
 
 
-\only<6->{
+\only<4->{
 	\vspace{-1.5cm}
 	\begin{block}{Adversarial Score}
 		
 		\begin{equation}
-			\text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j} \cdot (1 + \kappa_j)
+			\text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j}
 		\end{equation}
-		
 		
 	\end{block}
 	
@@ -438,8 +439,7 @@ st page.
 
 
       \begin{itemize}
-      \item Use \abr{irt} again
-        \item Model probability of skilled human getting it right, compare to models (want it to be high!)
+        \item Gap between skilled human getting it right and machine (should be big)
 \begin{equation}\label{eq:margin}
     \mu_j = \explain{Skilled human rep. prob.}{\twoplprob{\beta^{H_{(0)}}_{*}}{\theta_j}{\gamma_j}} - \explain{Skilled model rep. prob.}{\twoplprob{\beta^{M_{(0)}}_{*}}{\theta_j}{\gamma_j}},
 \end{equation}
@@ -456,22 +456,12 @@ st page.
 \item Skilled humans should agree on the answer
   \begin{equation}\label{eq:delta}
     \delta_j = \sum_{i \sim H_{(1)}}
-    \left[
-      \frac{\twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j} -
-        \bar{p_{H_{(1)}}(r_{i,j})}}
-           {|H_{(1)}|}
-    \right].
+      \sfrac{\left[ \twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j} -
+        \overline{p_{H_{(1)}}(r_{i,j})} \right] }{|H_{(1)}|}
 \end{equation}
 }
-
-\only<4->{
-  \item Question should be informative (Fischer information to agent skill):
-\begin{align}\label{eq:iif}
-\only<4>{\iif{}_j(\theta) &= \gamma_j^2  \cdot p_j(\theta) \cdot (1 -p_j(\theta)), \text{ where} \\
-p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}}
-    \kappa_j &= 1-\exp\left(-{\tif{}_j}\right).
-\end{align}
-
+\only<5->{
+	\item In paper, also have a bonus for Fischer information wrt to difficulty $\theta$, but not a huge factor
 }
 
 \end{itemize}
@@ -701,7 +691,7 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}}
 	\begin{columns}
 		\column{.7\linewidth}
 		\gfxd{cicero_model}{1.0}
-		\column{.7\linewidth}
+		\column{.3\linewidth}
 		\gfxd{cicero_results}{1.0}
 	\end{columns}
 	And we confirm their results, it wins around 90\% of games!
@@ -769,11 +759,33 @@ p_j(\theta) &= \twoplprob{\theta}{\theta_j}{\gamma_j}}
 	\only<2>{\gfxd{pholus_interface_label}{1.0}}
 \end{frame}
 
-\begin{frame}{Advice Helps}
+\begin{frame}{How does Advice Boost (or Diminish) Skill?}
 	\only<1>{\gfxd{chiron_skill_regression}{.5}\gfxd{pholus_coefficient_scale}{.5}}
 	\only<2>{\gfxd{chiron_all_regression}{.5}}
-		
-	\only<3>{\gfxd{chiron_acceptance}{.5}}
+	
+\only<2>{
+\begin{block}{Why are messages hurting?}
+
+\begin{itemize}
+	\item Cognitive load / distraction
+\item Not tuned for suboptimal moves
+\item Inconsistency with moves
+\end{itemize}
+\end{block}
+
+}
+\end{frame}
+
+\begin{frame}{Are they just parrots?}
+
+
+	\gfxd{chiron_acceptance}{.5}
+
+\begin{itemize}
+	\item Don't think for themselves?
+\item Beginners often take move advice
+\item Message advice rarely taken
+\end{itemize}
 
 \end{frame}
 
@@ -1418,6 +1430,44 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 \only<3>{\gfxa{caimira_2}{.9}}
 \only<4>{\gfxa{caimira_3}{.9}}
 \only<5>{\gfxa{caimira_4}{.9}}
+\end{frame}
+
+\begin{frame}{It is Harder (a bit)}
+	\gfxu{fm2_retrieval}{.8}
+\end{frame}
+
+\begin{frame}{Claim: Manhattan has the most residents of New York City's boroughs. }
+	\begin{columns}
+		\column{.5\linewidth}
+		\only<3->{
+			\begin{block}{Direct}
+				\scriptsize The claim that Manhattan has the most residents of New York City's boroughs is false.  Manhattan has a population of approximately 1.6 million residents. However, New York City as a whole has a population of approximately 8.3 million residents. Therefore, Manhattan does not have the most residents among New York City's boroughs.  
+			\end{block}
+		}
+		\only<4->{
+			
+			\begin{block}{Case For}
+				\scriptsize
+				Manhattan is the most populous borough in New York City, with a population of approximately 1,627,788 as of 2025.  The other boroughs have smaller populations: Brooklyn: 2.72 million; Queens: 2.57 million; The Bronx: 1.46 million; Staten Island: 552,00.
+			\end{block}	
+		}
+		\column{.5\linewidth}	
+		
+		\only<2->{
+			
+			\begin{block}{IR}
+				\scriptsize New York City's borough of Manhattan is the highest nominal income county in the United States. In particular, ZIP code 10021 on Manhattan's Upper East Side, with more than 100,000 inhabitants and a per capita income of over \$90,000, has one of the largest concentrations of income in the United States. The other boroughs, especially Queens and Staten Island, have large middle-class populations. 
+			\end{block}
+		}
+		\only<4->{
+			
+			\begin{block}{Case Against}
+				\scriptsize According to recent data, Brooklyn is the most populated borough in New York City, not Manhattan. Manhattan has a population of approximately 1.6 million residents, while Brooklyn has a significantly higher population.
+			\end{block}		
+		}			
+	\end{columns}
+	
+	
 \end{frame}
 
 
