@@ -21,7 +21,7 @@
 
 \newcommand{\advscore}{\abr{AdvScore}}
 \newcommand{\tif}[0]{\abr{tif}}
-\newcommand{\twoplprob}[3]{ \frac{1}{\ex{-#3\left[ #1 - #2 \right] }  }}
+\newcommand{\twoplprob}[3]{ \frac{1}{1+\ex{-#3\left[ #1 - #2 \right] }  }}
 \newcommand{\iif}{\abr{iif}}
 \newcommand{\slda}[0]{\abr{slda}}
 \newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
@@ -112,7 +112,7 @@ st page.
           ]{UMD}
 
 
-\title[]{Computers and Humans Playing Language Games Together}
+\title[]{Language Games: Sure, ask AI who wrote \textit{Cogwheels}, but don't use it for relationship advice}
 \author{ Jordan Boyd-Graber}
 \date{2025}
 
@@ -167,27 +167,22 @@ st page.
 \fsi{qb/starcraft}{Image: DeepMind}
 \fsi{qb/DeepBlue}{Peter Morgan/Reuters}
 
-\begin{frame}{Today's Takeaways}
-	\begin{itemize}
-	\item Different Systems and Skilled Humans have Different Strengths
-	\begin{itemize}
-		\item Retrieval Methods: Less likely to confabulate
-		\item LLMs: Good for easy, straightforward tasks
-		\item Humans: good for nuance and abstraction
-	\end{itemize}
-	\item It takes work to figure this out
-	\begin{itemize}
-		\item Getting harder examples
-		\item Measuring human vs. computer accuracy: Item Response Theory
-                \item Competitive and Cooperative
-	\end{itemize}
-	\item Tasks
-	\begin{itemize}
-		\item Finding false claims
-		\item Question answering
-		\item Detecting lies
-	\end{itemize}
-	\end{itemize}
+
+\begin{frame}{Measuring Skill}
+	\only<1>{\gfxa{ken_vs_hal_skill}{.35}}
+	\only<2->{\gfxa{ken_vs_hal}{.35}}
+	\only<3->{
+		\begin{block}{Augmentation}
+			How much can we \emph{increase} the skill of a human in a language game with computational (i.e., AI) support?	   
+			\only<4->{
+				\begin{enumerate}
+					\item Fact Checking
+					\item Question Answering
+					\item Negotiation
+				\end{enumerate}
+			}
+		\end{block}
+	}
 \end{frame}
 
 \begin{frame}{Fact Checking with Humans in the Loop}
@@ -234,8 +229,15 @@ st page.
 	(Poliak, 2018)
 \end{frame}
 
+
 \begin{frame}{Fool Me Twice}
 	\gfxu{fm2}{1.0}
+	
+	\pause
+	\vspace{-5cm}
+	\begin{block}{We intended this to be ``adversarial''}
+		Your homework: do you think we did it?  How would you know?
+		\end{block}
 \end{frame}
 
 \begin{frame}{Author Claims where Gold Evidence is \textbf{not} Model's Top Evidence}
@@ -379,6 +381,19 @@ st page.
 
   \end{frame}
 
+\begin{frame}{AdvScore}
+	\begin{columns}
+		\column{.3\linewidth}
+		
+		\includegraphics[width=1.0\linewidth]{general_figures/yooyeon}
+		\column{.7\linewidth}
+		\gfxa{advscore_paper}{1.0}
+	\end{columns}
+\centering
+	NAACL 2025 Outstanding Paper
+\end{frame}
+
+
   \begin{frame}{Adversarial Datasets}
 
     \begin{columns}
@@ -448,6 +463,7 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
     \begin{itemize}
     \item Want patterns, not luck
     \item \abr{irt} can find (and downweight) bad questions
+    \item What's the capital of Georgia?
     \end{itemize}
   \end{block}
 
@@ -457,7 +473,7 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
   \begin{equation}\label{eq:delta}
     \delta_j = \sum_{i \sim H_{(1)}}
       \sfrac{\left[ \twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j} -
-        \overline{p_{H_{(1)}}(r_{i,j})} \right] }{|H_{(1)}|}
+        \overline{p_{H_{(1)}}}(r_{i,j}) \right] }{|H_{(1)}|}
 \end{equation}
 }
 \only<5->{
@@ -498,11 +514,17 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 		\column{.5\linewidth}
 			\only<1-2>{\gfxa{chrisrock}{.9}}
 			\only<3-4>{\gfxa{parasite}{.9}}
+			\only<5-6>{\gfxa{lulu_lemon}{.9}}
+			\only<7-9>{\gfxa{akutagawa}{.9}}
 		\column{.5\linewidth}
 			\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
 			\only<2>{\\ \textbf{Brad Pitt / Will Smith}}
 			\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}
 			\only<4>{\\ \textbf{Snowpiercer / Train to Busan}		}
+			\only<5-6>{It's not headquartered in Biel, Switzerland but this activewear company has a logo that resembles the last letter of the Greek alphabet.}
+			\only<6>{\\ \textbf{Omega / Lululemon}}
+			\only<7-9>{A character in one story by \alert<8>{this author opens Crime and Punishment} to discover that it has turned into The Brothers Karamazov}
+			\only<9>{\\ \textbf{Dostoyevski / Akutagawa}}
 	\end{columns}
 \end{frame}
 
@@ -520,6 +542,8 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
           \item TrickMe: Human in the loop interface (expert), \abr{ir} models
         \item FM2: Human in the loop interface (crowdworker), \abr{ir} models
         \item AdvQA: Huaman in the loop (expert), \abr{llm} model + category instructions
+        \pause
+        \item Missing anything?
         \end{itemize}
 
       \end{itemize}
@@ -617,7 +641,7 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 \fsi{qb/augment/bandit_result_none}{Human alone without an AI teammate}
 \fsi{qb/augment/bandit_result_ai}{AI alone without a human teammate}
 \fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
-\fsi{qb/augment/bandit_result}{Better than showing everything!}
+\fsi{qb/augment/everything}{Better than showing everything!}
 
     
 
@@ -721,11 +745,11 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 \end{frame}
 
 \begin{frame}{Persuasion}
-	\only<1>{\gfxd{persuasion}{.15}}
-	\only<2>{\gfxd{persuasion_1}{.8}}
-	\only<3>{\gfxd{persuasion_2}{.8}}
-	\only<4>{\gfxd{persuasion_3}{.8}}
-	\only<5>{\gfxd{persuasion_4}{.8}}
+	\only<1>{\begin{columns} \column{.2\linewidth}\gfxd{persuasion}{.65}\column{.8\linewidth}\end{columns}}
+	\only<2>{\begin{columns} \column{.8\linewidth}\gfxd{persuasion_1}{.9}\column{.2\linewidth}\end{columns}}
+	\only<3>{\gfxd{persuasion_2}{1.0}}
+	\only<4>{\gfxd{persuasion_3}{1.0}}
+	\only<5>{\gfxd{persuasion_4}{1.0}}
 \end{frame}
 
 
@@ -828,26 +852,34 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 	
 \end{frame}
 
+
 \begin{frame}{Human and Computer Skills}
-	\begin{itemize}
-	\item LLMs are not perfect
-	\begin{itemize}
-		\item Retrieval Methods: Slow but Trustworthy
-		\item LLMs: Use if you are confident
-		\item Humans: Leave them in driver's seat
-	\end{itemize}
-	\item Item Response Theory
-	\begin{itemize}
-		\item Highlight skills and examples
-		\item Measure how much computers \emph{help} or \emph{hurt}
-	\end{itemize}
-	\item Application
-	\begin{itemize}
-		\item Supporting Users to find False Claims
-		\item Supporting Users to Answer Questions
-		\item Supporting Users to Negotiate
-	\end{itemize}
-	\end{itemize}
+	\begin{columns}
+		\column{.5\linewidth}
+		
+		\begin{itemize}
+			\item LLMs are not perfect
+			\begin{itemize}
+				\item Retrieval Methods: Slow but Trustworthy
+				\item LLMs: Use if you are confident
+				\item Humans: Leave them in driver's seat
+			\end{itemize}
+			\item Item Response Theory
+			\begin{itemize}
+				\item Highlight skills and examples
+				\item Measure how much computers \emph{help} or \emph{hurt}
+			\end{itemize}
+			\item Application
+			\begin{itemize}
+				\item Supporting Users to find False Claims
+				\item Supporting Users to Answer Questions
+				\item Supporting Users to Negotiate
+			\end{itemize}
+		\end{itemize}
+		\column{.5\linewidth}
+		
+		\gfxa{ken_vs_hal}{1}
+	\end{columns}
 \end{frame}
 
 \begin{frame}{Why didn't you\dots}
@@ -862,13 +894,14 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
   \end{itemize}
 \end{frame}
 
-\fsi{general_figures/black_box_outline}{}
-\fsi{general_figures/kill_all_humans}{}
-\fsi{general_figures/blackbox}{}
+
+\fsi{general_figures/black_box_outline}{AI is omnipresent but opaque}
+\fsi{general_figures/kill_all_humans}{Fear of replacement (or worse)}
+\fsi{general_figures/blackbox}{AI is omnipresent but opaque}
 %\fsi{general_figures/bennet_robot}{}
 \fsi{general_figures/tng_poker}{}
 
-
+\fsi{advcal/qanta_2025}{}
 
 
 \frame{
@@ -1225,6 +1258,7 @@ help\dots
 \end{frame}
 
 
+\fsi{advcal/qanta_2025}{}
 
 \begin{frame}{The Value of Repeated Games}
 
@@ -1420,6 +1454,31 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
   \end{columns}
 
   
+\end{frame}
+
+
+
+\begin{frame}{Today's Takeaways}
+	\begin{itemize}
+	\item Different Systems and Skilled Humans have Different Strengths
+	\begin{itemize}
+		\item Retrieval Methods: Less likely to confabulate
+		\item LLMs: Good for easy, straightforward tasks
+		\item Humans: good for nuance and abstraction
+	\end{itemize}
+	\item It takes work to figure this out
+	\begin{itemize}
+		\item Getting harder examples
+		\item Measuring human vs. computer accuracy: Item Response Theory
+                \item Competitive and Cooperative
+	\end{itemize}
+	\item Tasks
+	\begin{itemize}
+		\item Finding false claims
+		\item Question answering
+		\item Detecting lies
+	\end{itemize}
+	\end{itemize}
 \end{frame}
 
 
