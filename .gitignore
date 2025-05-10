@@ -8,3 +8,11 @@
 2025_language_games.synctex.gz
 2025_language_games.synctex.gz
 2025_language_games.synctex.gz
+*.aux
+*.log
+*.out
+2025_pw_adversarial.synctex.gz
+*.toc
+*.snm
+*.nav
+2025_pw_adversarial.pdf
