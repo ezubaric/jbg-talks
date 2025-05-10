@@ -141,9 +141,9 @@ st page.
 \fsi{qb/jeopardy}{Sony Pictures}
 
 
-\begin{frame}{Measuring Skill}
-	\only<1>{\gfxa{ken_vs_hal_skill}{.35}}
-	\only<2->{\gfxa{ken_vs_hal}{.35}}
+\begin{frame}{How Skilled is Generative AI?}
+	\only<1>{\gfxa{ken_vs_hal_skill}{.65}}
+	\only<2->{\gfxa{ken_vs_hal}{.65}}
 \end{frame}
 
 \begin{frame}{CAIMIRA}
@@ -173,9 +173,9 @@ st page.
     % TODO(jbg): Add equations
         \begin{itemize}
         \item Examine thousands of questions (written for humans)
-        \item Discover subsets of the data where there's a divergence
-          between human and computer accuracy
-        \item We then label each of those components
+        \item Discover sets of questions where human and computer
+          accuracy differences are big
+        \item We then label those sets
     \end{itemize}
 	\gfxq{caimira_component}{.5}
  \end{frame}
@@ -185,10 +185,18 @@ st page.
     \begin{columns}
       \column{.5\linewidth}
       \gfxa{caimira_abductive_features}{1.0}
-      \column{.5\linewidth}      
-      \only<2>{\gfxa{caimira_abductive_skills}{1.0}}
+      \column{.5\linewidth}
+      \only<2->{
+        \begin{block}{\only<3->{Arnolfini Wedding}}
+          \tiny
+      Symbols in this painting include a pair of discarded clogs and a chandelier with one lit candle. In the
+middle of this painting, a feather duster and a beaded chain flank the artist’s signature, which is above a circular
+mirror. A dog sits near this painting’s two human figures, one of whom wears a green dress as she holds the hand of
+her suitor.
+\end{block}}
+      \only<4->{\gfxa{caimira_abductive_skills}{1.0}}
     \end{columns}
-
+    \only<5->{\vspace{-3.5cm}{\gfxa{ken_vs_hal_narrative}{.8}}}
   \end{frame}
 
 
@@ -198,10 +206,17 @@ st page.
     \begin{columns}
       \column{.5\linewidth}
       \gfxa{caimira_science_features}{1.0}
-      \column{.5\linewidth}      
-      \only<2>{\gfxa{caimira_science_skills}{1.0}}
+            \column{.5\linewidth}
+      \only<2->{
+        \begin{block}{\only<3->{Electron}}
+          \tiny
+      This particle was discovered by J.J. Thomson, and its exact charge was discovered in the Millikan oil drop
+experiment. According to the Pauli Exclusion Principle, two of these particles cannot exist in the same quantum
+state.
+\end{block}}
+      \only<4->{\gfxa{caimira_science_skills}{1.0}}
     \end{columns}
-
+    \only<5->{\vspace{-3.5cm}{\gfxa{ken_vs_hal_recall}{.8}}}
   \end{frame}
 
 \begin{frame}{AdvScore}
@@ -230,7 +245,7 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
             \column{.5\linewidth}
             \begin{itemize}
               
-            \item Many benchmarks are ``saturated''
+            \item Many tasks have ``superhuman'' accuracy by computers
             \item Newer datasets claim to be ``adversarial''
               \begin{itemize}
               \item Hard for computers, ``easy'' for humans
@@ -312,20 +327,24 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 \begin{frame}{Adversarial Strategies}
 	\begin{columns}
 		\column{.5\linewidth}
-			\only<1-2>{\gfxa{chrisrock}{.9}}
-			\only<3-4>{\gfxa{parasite}{.9}}
-			\only<5-6>{\gfxa{lulu_lemon}{.9}}
-			\only<7-9>{\gfxa{akutagawa}{.9}}
+			\only<1-3>{\gfxa{chrisrock}{.9}}
+			\only<4-5>{\gfxa{parasite}{.9}}
+			\only<6-8>{\gfxa{lulu_lemon}{.9}}
+			\only<9-12>{\gfxa{akutagawa}{.9}}
 		\column{.5\linewidth}
-			\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
-			\only<2>{\\ \textbf{Brad Pitt / Will Smith}}
-			\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}
-			\only<4>{\\ \textbf{Snowpiercer / Train to Busan}		}
-			\only<5-6>{It's not headquartered in Biel, Switzerland but this activewear company has a logo that resembles the last letter of the Greek alphabet.}
-			\only<6>{\\ \textbf{Omega / Lululemon}}
-			\only<7-9>{A character in one story by \alert<8>{this author opens Crime and Punishment} to discover that it has turned into The Brothers Karamazov}
-			\only<9>{\\ \textbf{Dostoyevski / Akutagawa}}
-	\end{columns}
+			\only<1-3>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
+			\only<2-3>{\\ \textbf{Brad Pitt / Will Smith}}
+			\only<4-5>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}
+			\only<5>{\\ \textbf{Snowpiercer / Train to
+                            Busan}		}
+			\only<6-8>{It's not headquartered in Biel, Switzerland but this activewear company has a logo that resembles the last letter of the Greek alphabet.}
+			\only<7-8>{\\ \textbf{Omega / Lululemon}}
+			\only<9-12>{A character in one story by \alert<11>{this author opens Crime and Punishment} to discover that it has turned into The Brothers Karamazov}
+			\only<10-12>{\\ \textbf{Dostoyevski / Akutagawa}}
+                                              \end{columns}
+                        \only<3>{\vspace{-2cm}{\gfxa{ken_vs_hal_recent}{.8}}}                                                    \only<8>{\vspace{-1cm}{\gfxa{ken_vs_hal_negation}{.8}}}                    
+                                                \only<12>{\vspace{-3cm}{\gfxa{ken_vs_hal_clause}{.8}}}
+                  
 \end{frame}
 
     
@@ -349,10 +368,11 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 
 \fsi{general_figures/blackbox}{AI is omnipresent but opaque}   
 \fsi{simtrans/centaur-chess}{Centaur Chess}
-\fsi{general_figures/kill_all_humans}{Fear of replacement (or worse)}
+%\fsi{general_figures/kill_all_humans}{Fear of replacement (or worse)}
 %\fsi{general_figures/bennet_robot}{}
 
 \fsi{advcal/qanta_2025}{}
+
 
 
 \frame{
