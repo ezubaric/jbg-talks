@@ -88,6 +88,12 @@
 }
 
 
+\newcommand{\gfxm}[2]{
+\begin{center}
+	\includegraphics[width=#2\linewidth]{mnemonic/#1}
+\end{center}
+}
+
 \newcommand{\gfxa}[2]{
 	\begin{center}
 		\includegraphics[width=#2\linewidth]{advcal/#1}
@@ -112,7 +118,8 @@ st page.
           ]{UMD}
 
 
-\title[]{Language Games: Sure, ask AI who wrote \textit{Cogwheels}, but don't use it for relationship advice}
+\title[]{Helpful AI Models: You can't always get what you want, but you
+might get what you need}
 \author{ Jordan Boyd-Graber}
 \date{2025}
 
@@ -136,33 +143,100 @@ st page.
 }
 
 
-\begin{frame}{Why Language Games?}
+\fsi{mnemonic/llm_usage_0}{}
+\fsi{mnemonic/llm_usage_1}{}
 
 
-  \begin{columns}
 
+\begin{frame}{The Old Days}
 
-    \column{.5\linewidth}
-    \gfxa{wittgenstein}{.8}
+	\only<1>{\gfxm{prior_qa_0}{.9}}
+	\only<2>{\gfxm{prior_qa_1}{.9}}
+	\only<3>{\gfxm{prior_qa_2}{.9}}
+\end{frame}
 
+\begin{frame}{How we ask questions today}
+	\gfxm{llm_today}{1.0}
+\end{frame}
 
-    \column{.5\linewidth}
+\begin{frame}{How LLMs are trained}
 
-
-    \begin{itemize}
-
-      \item Wittgenstein: Language is a product of the context in which it is
-        used
-      \item Interaction allows us to figure out how to use language
-        \item Score lets us know how well we're doing
-    \end{itemize}
-
-
-    \end{columns}
-
-  
+	\only<1>{\gfxm{llm_training}{1.0}}
+	\only<2>{\gfxm{llm_training_zoom}{.8}}
+	\only<3>{\gfxm{llm_zoom_1}{.8}}
+	\only<4>{\gfxm{llm_zoom_2}{.8}}
+	\only<5>{\gfxm{llm_zoom_3}{.8}}
 
 \end{frame}
+
+
+	\only<>{\gfxm{}{}}
+\begin{frame}{How do we learn preferences?}
+
+
+	\only<1>{\gfxm{standard_preference_1}{.9}}
+	\only<2>{\gfxm{standard_preference_2}{.9}}
+
+\end{frame}
+
+\begin{frame}{Correctness vs. Helpfulness}
+
+\gfxm{correctness_vs_helpfulness}{.8}
+
+\end{frame}
+
+\begin{frame}{What does it mean to be Helpful?}
+
+\begin{columns}
+	\column{.5\linewidth}
+		\gfxm{goal_fact}{1.0}
+	\column{.5\linewidth}
+		\gfxm{goal_learning}{1.0}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Our Application: Learning Vocabulary}
+
+	\gfxm{vocab}{.9}
+\end{frame}
+
+\begin{frame}{Using Mnmenonics to Learn}
+
+	\gfxm{mnemonic}{.9}
+
+\end{frame}
+
+\begin{frame}{Flashcard Interface}
+
+\only<1>{\gfxm{compliant_0}{.8}}
+\only<2>{\gfxm{compliant_1}{.8}}
+\only<3->{\gfxm{compliant_2}{.8}}
+\only<4>{\gfxm{compliant_correct}{.8}}
+
+\end{frame}
+
+
+\begin{frame}{Do People Prefer What they Need?}
+
+	\only<1>{\gfxm{preference_table_0}{.9}}
+	\only<2>{\gfxm{preference_table_1}{.9}}
+	\only<3>{\gfxm{preference_table_2}{.9}}
+	\only<4>{\gfxm{preference_table_3}{.9}}
+
+\end{frame}
+
+\begin{frame}{Eval}
+
+\only<1>{\gfxm{eval_0}{.8}}
+\only<2>{\gfxm{eval_1}{.8}}
+\only<3->{\gfxm{eval_2}{.8}}
+\only<4>{\gfxm{compliant_correct}{.8}}
+
+\end{frame}
+
+\fsi{mnemonic/mnemonic_recap}{}
+
 
 \fsi{qb/starcraft}{Image: DeepMind}
 \fsi{qb/DeepBlue}{Peter Morgan/Reuters}
@@ -236,9 +310,11 @@ st page.
 	\pause
 	\vspace{-5cm}
 	\begin{block}{We intended this to be ``adversarial''}
-		Your homework: do you think we did it?  How would you know?
+		Gold evidence could not be the highest ranking \abr{ir} hit 
 		\end{block}
 \end{frame}
+
+\iflong
 
 \begin{frame}{Author Claims where Gold Evidence is \textbf{not} Model's Top Evidence}
 	\only<1>{\gfxu{fm2_interface_0}{.9}}
@@ -250,9 +326,13 @@ st page.
 
 % TODO(jbg): Add Fm2 screenshots
 
+\fi
+
 \begin{frame}{It is Harder (a bit)}
 	\gfxu{fm2_retrieval}{.8}
 \end{frame}
+
+
 
 \begin{frame}{Claim: Manhattan has the most residents of New York City's boroughs. }
 	\begin{columns}
@@ -904,6 +984,7 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 \fsi{advcal/qanta_2025}{}
 
 \iflong
+
 \frame{
 	
 	\frametitle{Thanks}
@@ -1528,7 +1609,6 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 	
 	
 \end{frame}
-
 \fi
 
 \end{document}
