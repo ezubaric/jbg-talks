@@ -248,20 +248,27 @@ Check the model’s knowledge, ability to help users, \dots
 
 \begin{frame}{Outline for Today}
 	
-	\begin{itemize}
-		\item Models to generate mnemonics (learning)
-		\item Fact checking (accuracy)
-		\item Question answering (accuracy, but personalized)
-		\item Negotiation (winning ``Diplomacy'')
-		\item Other / Future work
-	\end{itemize}
+	\gfxa{skill_team}{.7}
+	
+	\begin{tabular}{ccc}
+		\textbf{Task} & \textbf{Metric} & \textbf{Teaming} \\
+		\toprule
+		\alert<2>{Vocab Learning & Time & Showing Mnemonics} \\
+		Fact Checking & Accuracy & Free Text Explanations \\
+		Question Answering & Accuracy & Explanation Subsets \\
+		Negotiation & Game Score & Computer Suggested Actions \\
+		\bottomrule
+	\end{tabular}
 	
 \end{frame}
 
+%TODO(jbg): Nishant slide for KARL / Mnemonic paper
+\begin{frame}{}
+	
+\end{frame}
 
 \begin{frame}{Our Application: Learning Vocabulary}
-
-	\gfxm{vocab}{.9}
+	\gfxm{vocab}{1.0}
 \end{frame}
 
 \begin{frame}{Using Mnmenonics to Learn}
@@ -301,6 +308,22 @@ Check the model’s knowledge, ability to help users, \dots
 	\only<1>{\gfxm{standard_preference_1}{.9}}
 	\only<2>{\gfxm{standard_preference_2}{.9}}
 
+\end{frame}
+
+\begin{frame}{Objective Preferences: What \textbf{helps} users}
+	
+	\begin{columns}
+		\column{.5\linewidth}
+			\only<1>{\gfxm{objective_0}{1.0}}
+			\only<2>{\gfxm{objective_1}{1.0}}
+		\column{.5\linewidth}
+			\begin{itemize}
+				\item Ideal: randomized control w/ \abr{gre} scores
+				\item Compromise: how many sessions until student retains word
+				\item Assumption: more helpful mnemonics require fewer exposures
+			\end{itemize}
+	\end{columns}
+	
 \end{frame}
 
 
