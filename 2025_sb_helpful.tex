@@ -143,49 +143,67 @@ might get what you need}
 }
 
 
-\fsi{mnemonic/llm_usage_0}{}
-\fsi{mnemonic/llm_usage_1}{}
+\begin{frame}{Why do we use AI?}
+	% TODO (jbg): Make pretty
+	\begin{itemize}
+		\item To ask a question
+		\item To learn something new
+		\item To check if something is true
+		\item Complete a task (e.g., negotiate)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{What do we mean by helpfulness?}
+
+\begin{block}{Bai, et al.: Training a Helpful and harmless Assistant}
+Our goal is not to define or prescribe what ‘helpful’ and ‘harmless’ mean …, so for the most part we simply let our crowdworkers interpret these concepts 
+\end{block}
+\gfxm{correctness_vs_helpfulness}{1.0}
+
+\begin{block}{Our Definition}
+A question answering system is helpful if it provides responses that enable users to \alert<2>{maximally achieve their goals}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Helpfulness in Pictures}
+
+\only<3->{
+	\begin{block}{Alternative Definition of Helpfulness}
+		Increasing the skill of human--computer collaboration
+	\end{block}
+}
 
 
+\only<1>{\gfxa{skill_comp}{0.9}}
+\only<2->{\gfxa{skill_hum}{0.9}}
+\only<3->{\gfxa{skill_team}{0.9}}
+
+\begin{itemize}
+	\item Higher accuracy
+	\item Shorter time
+	\item Better creativity
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}{The Old Days}
 
 	\only<1>{\gfxm{prior_qa_0}{.9}}
 	\only<2>{\gfxm{prior_qa_1}{.9}}
-	\only<3>{\gfxm{prior_qa_2}{.9}}
+	\only<3->{\gfxm{prior_qa_2}{.9}}
+	\only<4>{User Goal identical to Development}
 \end{frame}
 
 \begin{frame}{How we ask questions today}
 	\gfxm{llm_today}{1.0}
-\end{frame}
-
-\begin{frame}{How LLMs are trained}
-
-	\only<1>{\gfxm{llm_training}{1.0}}
-	\only<2>{\gfxm{llm_training_zoom}{.8}}
-	\only<3>{\gfxm{llm_zoom_1}{.8}}
-	\only<4>{\gfxm{llm_zoom_2}{.8}}
-	\only<5>{\gfxm{llm_zoom_3}{.8}}
-
-\end{frame}
-
-
-	\only<>{\gfxm{}{}}
-\begin{frame}{How do we learn preferences?}
-
-
-	\only<1>{\gfxm{standard_preference_1}{.9}}
-	\only<2>{\gfxm{standard_preference_2}{.9}}
-
-\end{frame}
-
-\begin{frame}{Correctness vs. Helpfulness}
-
-\gfxm{correctness_vs_helpfulness}{.8}
-
+	\pause
+	Do user goals with LLMs match LLM development?
 \end{frame}
 
 \begin{frame}{What does it mean to be Helpful?}
+
+Users can now ask LLMs questions to support goals beyond correctness
 
 \begin{columns}
 	\column{.5\linewidth}
@@ -194,7 +212,52 @@ might get what you need}
 		\gfxm{goal_learning}{1.0}
 \end{columns}
 
+The answer shouldn't just be correct, but also logically consistent
+
 \end{frame}
+
+
+\begin{frame}{How LLMs are trained}
+
+	\only<1>{\gfxm{llm_training}{1.0}}
+
+	\only<1>{
+	\begin{columns}
+	\column{.3\linewidth}
+	Learn to mimic human-written texts (next-token prediction)
+
+
+	\column{.3\linewidth}
+Fine-tuned to be safe, follow instructions, use a certain style, \dots
+
+
+	\column{.3\linewidth}
+Check the model’s knowledge, ability to help users, \dots
+
+	\end{columns}
+
+	}
+
+	\only<2>{\gfxm{llm_training_zoom}{.8}}
+	\only<3>{\gfxm{llm_zoom_1}{.8}}
+	\only<4>{\gfxm{llm_zoom_2}{.8}}
+	\only<5>{\gfxm{llm_zoom_3}{.8}}
+
+\end{frame}
+
+
+\begin{frame}{Outline for Today}
+	
+	\begin{itemize}
+		\item Models to generate mnemonics (learning)
+		\item Fact checking (accuracy)
+		\item Question answering (accuracy, but personalized)
+		\item Negotiation (winning ``Diplomacy'')
+		\item Other / Future work
+	\end{itemize}
+	
+\end{frame}
+
 
 \begin{frame}{Our Application: Learning Vocabulary}
 
@@ -205,14 +268,38 @@ might get what you need}
 
 	\gfxm{mnemonic}{.9}
 
+	\textbf{Goal:} Build a mnemonic generator (SMART) to help students learn vocab
+
+\end{frame}
+
+\begin{frame}{Teach SMART which mnemonics are \textbf{helpful} via preference training}
+
+	\gfxm{preference}{.9}
+
+	Preference training assumes users can predict what is helpful \dots
+	\pause
+	but it's hard to know \textit{a priori} what works
+
 \end{frame}
 
 \begin{frame}{Flashcard Interface}
+
+47 Learners study with mnemonics from the SMART model in a flashcard app
 
 \only<1>{\gfxm{compliant_0}{.8}}
 \only<2>{\gfxm{compliant_1}{.8}}
 \only<3->{\gfxm{compliant_2}{.8}}
 \only<4>{\gfxm{compliant_correct}{.8}}
+
+\end{frame}
+
+
+
+\begin{frame}{Expressed Preferences: What users \textbf{think} will help them.}
+
+
+	\only<1>{\gfxm{standard_preference_1}{.9}}
+	\only<2>{\gfxm{standard_preference_2}{.9}}
 
 \end{frame}
 
