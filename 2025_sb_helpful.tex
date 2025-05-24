@@ -108,7 +108,7 @@
 }
 
 \newif\ifjobtalk\jobtalktrue
-\newif\iflong\longfalse
+\newif\iflong\longtrue
 
 \usetheme[
           showdate=true,                     % show the date on the title page
@@ -211,7 +211,7 @@ Users can now ask LLMs questions to support goals beyond correctness
 	\column{.5\linewidth}
 		\gfxm{goal_learning}{1.0}
 \end{columns}
-
+\vspace{1.5cm}
 The answer shouldn't just be correct, but also logically consistent
 
 \end{frame}
@@ -421,36 +421,7 @@ Check the model’s knowledge, ability to help users, \dots
 		\end{itemize}
 	\end{itemize}
 	You don't always need the evidence
-	(Poliak, 2018)
-\end{frame}
-
-
-\begin{frame}{Fool Me Twice}
-	\gfxu{fm2}{1.0}
-	
-	\pause
-	\vspace{-5cm}
-	\begin{block}{Meant to be harder than FEVER}
-		Gold evidence could not be the highest ranking \abr{ir} hit 
-		\end{block}
-\end{frame}
-
-\iflong
-
-\begin{frame}{Author Claims where Gold Evidence is \textbf{not} Model's Top Evidence}
-	\only<1>{\gfxu{fm2_interface_0}{.9}}
-	\only<2>{\gfxu{fm2_interface_1}{.9}}
-	\only<3>{\gfxu{fm2_interface_2}{.9}}
-	\only<4>{\gfxu{fm2_interface_3}{.9}}
-	\only<5>{\gfxu{fm2_interface_4}{.9}}				
-\end{frame}
-
-% TODO(jbg): Add Fm2 screenshots
-
-\fi
-
-\begin{frame}{It is Harder (a bit)}
-	\gfxu{fm2_retrieval}{.8}
+	(Poliak, 2018).  Actual claims come from Fool Me Twice (Eisenschlos, 2021).
 \end{frame}
 
 
@@ -501,9 +472,20 @@ Check the model’s knowledge, ability to help users, \dots
 
 \begin{frame}{Why not just show IR all the time?}
 	\pause
-	\gfxu{time}{.5}
+	\gfxu{time}{.7}
+
 \end{frame}
 
+\begin{frame}{Remaining Issues}
+	
+	\begin{itemize}
+		\item If you could know if LLM was correct, problem becomes much simpler
+		\item Calibration remains difficult
+		\item Users are too trusting
+		\item One size fits all: helpfulness depends on user skill
+	\end{itemize}
+	
+\end{frame}
     
 
 \begin{frame}{Outline for Today}
@@ -612,7 +594,7 @@ Check the model’s knowledge, ability to help users, \dots
   \only<4>{\gfxq{rl_centaur_5}{.9}}
   \only<5>{\gfxq{rl_centaur_6}{.9}}
 
-  \only<5->{Bandit actions~\cite{robbins-52}: turn each of the explanations (Guess,
+  \only<5->{Bandit actions (Robbins, 1952): turn each of the explanations (Guess,
     Highlight, Evidence) on or off.}
 \end{frame}
 
@@ -621,6 +603,13 @@ Check the model’s knowledge, ability to help users, \dots
 \fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
 \fsi{qb/augment/everything}{Better than showing everything!}
 
+\begin{frame}{What is helpful?}
+	\begin{itemize}
+		\item Respecting users skill
+		\item Sometimes the computer should keep quiet
+		\item What is helpful to one user is not helpful to another
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{Outline for Today}
 	
@@ -645,6 +634,10 @@ Check the model’s knowledge, ability to help users, \dots
 	
 	\column{.5\linewidth}
 	\gfxd{cicero_science}{1.0}
+	\begin{center}
+		
+		\textbf{Cicero}
+	\end{center}
 	\column{.5\linewidth}	
 \begin{itemize}
 	\item Focusing on interpersonal relationships
@@ -799,7 +792,7 @@ Check the model’s knowledge, ability to help users, \dots
 \begin{frame}{Are they just parrots?}
 
 
-	\gfxd{chiron_acceptance}{.5}
+	\gfxd{chiron_acceptance}{0.8}
 
 \begin{itemize}
 	\item Don't think for themselves?
@@ -845,7 +838,6 @@ Check the model’s knowledge, ability to help users, \dots
 		\begin{itemize}
 			\item Caveats and omissions: one dimensional skill
 			\item Short-term next steps: helpful generation
-			\item Long-term picture: better evaluation and task integration
 		\end{itemize}
 		
 	\end{block}
@@ -865,7 +857,7 @@ Check the model’s knowledge, ability to help users, \dots
 		\column{.5\linewidth}
 		\gfxa{caimira_abductive_features}{1.0}
 		\column{.5\linewidth}
-		\only<2->{
+		\only<1->{
 			\begin{block}{\only<3->{Arnolfini Wedding}}
 				\tiny
 				Symbols in this painting include a pair of discarded clogs and a chandelier with one lit candle. In the
@@ -873,9 +865,9 @@ Check the model’s knowledge, ability to help users, \dots
 				mirror. A dog sits near this painting’s two human figures, one of whom wears a green dress as she holds the hand of
 				her suitor.
 		\end{block}}
-		\only<4->{\gfxa{caimira_abductive_skills}{1.0}}
+		\only<1->{\gfxa{caimira_abductive_skills}{1.0}}
 	\end{columns}
-	\only<5->{\vspace{-3.5cm}{\gfxa{ken_vs_hal_narrative}{.8}}}
+	\only<1->{\vspace{-3.5cm}{\gfxa{ken_vs_hal_narrative}{.8}}}
 \end{frame}
 
 
@@ -886,16 +878,16 @@ Check the model’s knowledge, ability to help users, \dots
 		\column{.5\linewidth}
 		\gfxa{caimira_science_features}{1.0}
 		\column{.5\linewidth}
-		\only<2->{
+		\only<1->{
 			\begin{block}{\only<3->{Electron}}
 				\tiny
 				This particle was discovered by J.J. Thomson, and its exact charge was discovered in the Millikan oil drop
 				experiment. According to the Pauli Exclusion Principle, two of these particles cannot exist in the same quantum
 				state.
 		\end{block}}
-		\only<4->{\gfxa{caimira_science_skills}{1.0}}
+		\only<1->{\gfxa{caimira_science_skills}{1.0}}
 	\end{columns}
-	\only<5->{\vspace{-3.5cm}{\gfxa{ken_vs_hal_recall}{.8}}}
+	\only<1->{\vspace{-3.5cm}{\gfxa{ken_vs_hal_recall}{.8}}}
 \end{frame}
 
 
@@ -933,6 +925,7 @@ Check the model’s knowledge, ability to help users, \dots
 	\begin{itemize}
 		\item Workflows: Getting the right answer is not only objective (also trust and attribution)
 		\item Agents: should test helpfulness at every step (plan generation and execution)
+		\item Helpfulness in Decoding: Actually tailor the generation 
 		\item Two-way calibration: Models should better estimate and communicate their confidence, and models should be able to better identify human confidence 
 		\begin{itemize}
 			\item Prosody
@@ -942,6 +935,20 @@ Check the model’s knowledge, ability to help users, \dots
 	\end{itemize}
 	
 \end{frame}
+
+\begin{frame}{Recap}
+	\includegraphics[width=1.0\linewidth]{general_figures/blackbox}
+	\pause
+	\vspace{-5cm}
+	\begin{block}{What is the future of AI Collaboration?}
+		\begin{itemize}
+			\item Measure the ``skill'' of humans and computers
+			\item Trust is hard to come by, and easily lost			
+			\item Calibration and Minimizing Hallucinations
+		\end{itemize}
+	\end{block}
+\end{frame}
+
 
 \fsi{advcal/qanta_2025}{}
 
@@ -979,6 +986,35 @@ Check the model’s knowledge, ability to help users, \dots
 }
 
 
+   
+   \begin{frame}{Fool Me Twice}
+   	\gfxu{fm2}{1.0}
+   	
+   	\pause
+   	\vspace{-5cm}
+   	\begin{block}{Meant to be harder than FEVER}
+   		Gold evidence could not be the highest ranking \abr{ir} hit 
+   	\end{block}
+   \end{frame}
+   
+   \iflong
+   
+   \begin{frame}{Author Claims where Gold Evidence is \textbf{not} Model's Top Evidence}
+   	\only<1>{\gfxu{fm2_interface_0}{.9}}
+   	\only<2>{\gfxu{fm2_interface_1}{.9}}
+   	\only<3>{\gfxu{fm2_interface_2}{.9}}
+   	\only<4>{\gfxu{fm2_interface_3}{.9}}
+   	\only<5>{\gfxu{fm2_interface_4}{.9}}				
+   \end{frame}
+   
+   % TODO(jbg): Add Fm2 screenshots
+   
+   \fi
+   
+   \begin{frame}{It is Harder (a bit)}
+   	\gfxu{fm2_retrieval}{.8}
+   \end{frame}
+   
    
 
 \begin{frame}{What makes for Adversarial Example}
