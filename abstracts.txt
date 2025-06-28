@@ -1,3 +1,28 @@
+Title: Helpful AI Models: You can't always get what you want, but you
+might get what you need
+
+Abstract: AIs are trained in many ways, depending on the application.
+For example: on specific tasks, the goal is to maximize accuracy; with
+"general purpose" LLMs, the goal is to give users answers they want.
+This talk argues that the focus should be slightly different:
+we should specifically measure human-computer workflows and optimize
+the ability of the combined team at that task.  I'll discuss three
+different examples of human-computer teams that our group has
+explored: learning new vocabulary, strategic negotiation, and
+identifying false claims.  For learning new vocabulary, we adapt
+alignment tuning to combine what looks helpful and is truly helpful
+into a flashcard scheduler that can improve the overall quality of
+study aids from our QA system.  For strategic negotiation, we have
+computer agents help humans play a board game called Diplomacy to
+assist human players think strategically and detect lies, which we
+capture using an analysis of grounded statements with abstract meaning
+representation and value functions.  Finally, we show that computers
+can help humans identify false statements---but only when the computer
+is not confidently incorrect.  I'll then close with a discussion of
+how these questions lead into a broader discussion of human skill vs.
+computer skill, how to measure that, and on what datasets.
+
+
 Title: AIs Playing Games with Language: Balancing Uncertainty, Truth, and Usefulness in Large Language Models
 
 Abstract: In this talk, I'll discuss three silly games that show the same pattern: computers are very good, there are still things humans are better at, and that we can create much stronger human--computer teams.  We first begin with games that test memory: testing the recall of obscure facts. While AI has been viewed as superhuman at the task of question answering, it isn't universally so. After building a new human-in-the-loop authoring system for drafting challenging examples, we show that a new measure of adversarial datasets based on item response theory (which can capture the gap between humans and computer skill) is decreasing but not yet closed, with computers still struggling on abstract reasoning and knowing when they know the correct answer. Given these disparate skill sets, we then analyze how we can best build human and computer teams to learn new facts and detect false statements: computers can help humans identify false statements---but only when the computer is not confidently incorrect. Finally, I close with a similar line of results for another silly language game, Diplomacy, where computers have still not reached dominance but can be used to assist human players think strategically and detect lies, which we capture using an analysis of grounded statements with abstract meaning representation and value functions.  I'll then close with how these results help inform how we can construct better human--computer interactions in "the real world".
