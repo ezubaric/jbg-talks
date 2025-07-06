@@ -1,0 +1,389 @@
+% In this talk, I’ll talk about how we can use silly games to understand the strengths and weaknesses of AIs. We first begin with games that test memory: testing the recall of obscure facts. While AI has been viewed as superhuman at this task, it isn’t universally so. We show that a new measure of adversarial datasets (the gap between humans and computers) is decreasing but not yet closed, with computers still struggling on abstract reasoning and knowing when they know the correct answer. Given these disparate skill sets, we then analyze how we can best build human and computer teams ito learn new facts and detect false statements. Finally, I close with a similar line of results for another silly language game, Diplomacy, where computers have still not reached dominance but can be used to assist human players think strategically and detect lies.”
+
+\documentclass[compress]{beamer}
+
+%\usepackage{beamerthemesplit}
+\usepackage{xmpmulti}
+
+\usepackage{booktabs}
+\usepackage{xfrac}
+\usepackage{graphicx,float,wrapfig, bbm}
+\usepackage{amsfonts, bbold, comment}
+\usepackage{mdwlist}
+\usepackage{subfigure}
+\usepackage{colortbl}
+\usepackage{overpic}
+\usepackage{pdfpages}
+\usepackage[normalem]{ulem}
+\usepackage{multirow}
+
+\pgfdeclareimage[width=\paperwidth]{mybackground}{../../common/boulder.pdf}
+
+\newcommand{\advscore}{\abr{AdvScore}}
+\newcommand{\tif}[0]{\abr{tif}}
+\newcommand{\twoplprob}[3]{ \frac{1}{1+\ex{-#3\left[ #1 - #2 \right] }  }}
+\newcommand{\iif}{\abr{iif}}
+\newcommand{\slda}[0]{\abr{slda}}
+\newcommand{\bm}[1]{\mbox{\boldmath$#1$}}
+\newcommand{\lda}[0]{\abr{lda}}
+\newcommand{\explain}[2]{\underbrace{#2}_{\mbox{\footnotesize{#1}}}}
+\newcommand{\itmspace}[0]{\hspace{2cm}}
+\newcommand{\pos}[1]{{\texttt{#1}}}
+\newcommand{\e}[2]{\mathbb{E}_{#1}\left[ #2 \right] }
+\newcommand{\ind}[1]{\mathbb{I}\left[ #1 \right] }
+\newcommand{\abr}[1]{\textsc{#1} }
+\newcommand{\ex}[1]{\mbox{exp}\left\{ #1\right\} }
+\newcommand{\g}{\, | \,}
+\newcommand{\citename}[1]{#1 }
+\newcommand{\fsi}[2]{
+\begin{frame}[plain]
+\vspace*{-1pt}
+\makebox[\linewidth]{\includegraphics[width=\paperwidth]{#1}}
+\begin{center}
+#2
+\end{center}
+\end{frame}
+}
+
+
+
+\newcommand{\gfxz}[2]{
+	\begin{center}
+		\includegraphics[width=#2\linewidth]{job_talks/zurich_#1}
+	\end{center}
+}
+
+
+\newcommand{\gfxu}[2]{
+	\begin{center}
+		\includegraphics[width=#2\linewidth]{uncertainty/#1}
+	\end{center}
+}
+
+\newif\ifjobtalk\jobtalktrue
+\newif\iflong\longfalse
+
+\usetheme[
+          showdate=true,                     % show the date on the title page
+          alternativetitlepage=true,         % Use the fancy title page.
+          titlepagelogo=general_figures/shell,              % Logo for the fir\
+st page.
+          ]{UMD}
+
+
+\title[]{Research Agenda}
+\author{ Jordan Boyd-Graber}
+\date{2025}
+
+\institute[] % (optional, but mostly needed)
+{University of Maryland}
+
+
+%gets rid of bottom navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%gets rid of footer
+%will override 'frame number' instruction above
+%comment out to revert to previous/default definitions
+\setbeamertemplate{footline}{}
+
+\begin{document}
+
+\frame{
+\titlepage
+\tiny
+}
+
+\begin{frame}{Google Zurich Collaborations}
+\begin{columns}
+  \begin{column}{0.25\textwidth}
+    \gfxz{massi}{1.0}
+    \gfxz{jannis}{1.0}
+  \end{column}
+  \begin{column}{0.8\textwidth}
+    \begin{block}{Past Collaborations}
+      \begin{enumerate}
+        \item \textbf{Adversarial}:  
+        \textit{Fool Me Twice} (Eisenschlos, 2021)
+
+        \item \textbf{Equivalence}:  
+        \textit{Tomayto, Tomahto} (EMNLP 2022)
+
+        \item \textbf{Calibration}:  
+          \textit{Meta Answering}(Kilcher 2020)
+
+
+          \item \textbf{Efficient QA} (Min 2020)
+      \end{enumerate}
+    \end{block}
+
+    \begin{block}{Future Opportunities}
+      \begin{enumerate}
+        \item \textbf{Calibrated Efficient QA}  (QANTA 2025)
+        \item \textbf{Multimodal Question Answering} (Audio Adversarial Questions)
+        \item \textbf{Multimodal Fact Checking} (Misleading Video Headlines)
+      \end{enumerate}
+    \end{block}
+  \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Zurich Topic Modeling}
+\begin{columns}
+  \begin{column}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{zurich_topic_map.jpg} % e.g., a word cloud or network graphic
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \begin{block}{Key Researchers}
+      \begin{enumerate}
+        \item \textbf{Bruno Wüest} — UZH  
+        Political text analysis, topic modeling for discourse studies
+
+        \item \textbf{Gerold Schneider} — UZH  
+        Linguistically informed modeling, corpus-driven semantic exploration
+
+        \item \textbf{Elliott Ash} — ETH Zürich  
+        Legal, economic, and historical document modeling at scale
+      \end{enumerate}
+    \end{block}
+
+    \begin{block}{Shared Research Themes}
+      \begin{enumerate}
+        \item Human-centered evaluation (e.g., \textit{ProxAnn}, ACL 2025)
+        \item Topic modeling for social science applications (\textit{TENOR}, EACL 2024)
+        \item Large-scale document clustering and summarization
+      \end{enumerate}
+    \end{block}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{UZH Computational Linguistics}
+\begin{columns}
+  \begin{column}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{uzh_cl_logo_or_labphoto.jpg} % Replace as needed
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \begin{block}{Past Connections}
+      \begin{enumerate}
+        \item \textbf{Adaptation Across Languages}:  
+        Entity and metaphor transfer in QA and translation (EMNLP 2021, 2023)
+
+        \item \textbf{Translation Confidence}:  
+        Work on calibration (e.g., GRACE, ACL 2025) aligns with UZH interest in uncertainty in MT
+
+        \item \textbf{Evaluation and Explicitation}:  
+        Joint concerns on metrics that reflect human utility in multilingual tasks
+      \end{enumerate}
+    \end{block}
+
+    \begin{block}{Shared Interests}
+      \begin{enumerate}
+        \item Domain adaptation  
+        \item Eye tracking as RL feedback for LLMs 
+        \item Human-grounded evaluation
+      \end{enumerate}
+    \end{block}
+  \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{ETH Zürich (Computer Science)}
+\begin{columns}
+  \begin{column}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{eth_inf_building.jpg} % Or use ETH logo / headshots collage
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \begin{block}{Key Researchers}
+      \begin{enumerate}
+        \item \textbf{Mrinmaya Sachan} — QA, reasoning, evaluation  
+        \item \textbf{Thomas Hofmann} — topic models, interpretability  
+        \item \textbf{Andreas Krause} — bandits, uncertainty, human-AI
+      \end{enumerate}
+    \end{block}
+
+    \begin{block}{Research Overlap}
+      \begin{enumerate}
+        \item Evaluation theory for QA (\textit{MCQA is Flawed}, ACL 2025)
+        \item Calibration and decision-making (\textit{GRACE}, \textit{KARL})
+        \item Probabilistic reasoning and interpretability in NLP
+      \end{enumerate}
+    \end{block}
+  \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{UZH Department of Informatics}
+\begin{columns}
+  \begin{column}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{uzh_informatics.jpg} % Replace with UZH Inf logo or photo
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \begin{block}{Key Collaborators}
+      \begin{enumerate}
+        \item \textbf{Markus Leippold} — climate disinformation, sustainability AI  
+        \item \textbf{Elaine Huang} — human-centered design, health and accessibility  
+        \item \textbf{Abraham Bernstein} — augmented intelligence, interactive evaluation
+      \end{enumerate}
+    \end{block}
+
+    \begin{block}{Shared Research Themes}
+      \begin{enumerate}
+        \item Robust fact-checking (\textit{CLIMATE-FEVER}, NeurIPS 2020)  
+        \item Accessible QA and health-focused NLP (\textit{Rosie}, JMIR 2024)  
+        \item Evaluation via augmentation and utility (\textit{CAIMIRA}, EMNLP 2024)
+      \end{enumerate}
+    \end{block}
+  \end{column}
+\end{columns}
+\end{frame}
+
+
+
+\title[]{Teaching Plan}
+
+
+\frame{
+\titlepage
+\tiny
+}
+
+
+\begin{frame}{Core Teaching Opportunities}
+\framesubtitle{Introductory Computer Science \& Statistics}
+\begin{itemize}
+  \item \textbf{Informatik I}:  
+        Fundamentals of programming and algorithms (e.g., Python, data structures, recursion)
+  \item \textbf{Informatik II}:  
+        Intermediate programming concepts—object‑oriented design, modularity, testing
+  \item \textbf{Statistik}:  
+        Introduction to probability, estimation, hypothesis testing, basic regression
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Upper-Level Undergraduate Courses}
+\framesubtitle{Advanced Topics in AI, ML, and NLP}
+\begin{itemize}
+  \item \textbf{Introduction to Machine Learning / AI}  
+        Supervised learning, unsupervised methods, reinforcement learning, ethical considerations
+
+  \item \textbf{AI and ML Evaluation}  
+        Metrics, robustness, adversarial examples, human-in-the-loop evaluation, calibration
+
+  \item \textbf{Large Language Models (LLMs)}  
+        Transformer architectures, fine-tuning, alignment, prompting, societal impacts
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{PhD Seminars}
+\framesubtitle{Research-Centered Topics in NLP and ML}
+\begin{itemize}
+  \item \textbf{Question Answering}  
+        From factoid QA to interactive and adversarial settings; evaluation, personalization, and multimodality
+
+  \item \textbf{LLM Fine-Tuning and Alignment}  
+        Reinforcement learning, preference modeling, persona inference, safety and control
+
+  \item \textbf{Interactive Machine Learning}  
+        Human-in-the-loop systems, adaptive interfaces, mixed-initiative workflows, evaluation via augmentation
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{PhD Seminars}
+\framesubtitle{Research-Centered Topics in NLP and ML}
+\begin{itemize}
+  \item \textbf{Question Answering}  
+        From factoid QA to interactive and adversarial settings; evaluation, personalization, and multimodality
+
+  \item \textbf{LLM Fine-Tuning and Alignment}  
+        Reinforcement learning, preference modeling, persona inference, safety and control
+
+  \item \textbf{Interactive Machine Learning}  
+        Human-in-the-loop systems, adaptive interfaces, mixed-initiative workflows, evaluation via augmentation
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Philosophy Behind the New AI Curriculum}
+\framesubtitle{AI from the Start, with Interdisciplinary Depth}
+\begin{itemize}
+  \item \textbf{Early Exposure:}  
+        Introduce AI concepts in the first year—via seminars, ethics, and programming
+
+  \item \textbf{Build, Not Just Use:}  
+        Emphasize designing and training models from scratch, not just applying APIs
+
+  \item \textbf{Integration Across Disciplines:}  
+        Core technical depth + AI in health, society, accessibility, cities, and law
+
+  \item \textbf{Evaluation and Reflection:}  
+        Treat measurement and critical assessment as central technical skills
+
+  \item \textbf{Ethics as Infrastructure:}  
+        AI fairness and ethics courses required from year one onward
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Signature Courses}
+\framesubtitle{Embedding AI into Core Technical Education}
+\begin{itemize}
+  \item \textbf{CSAI 216: Efficient Systems for AI Applications}  
+        Hands-on systems programming for AI — CUDA, memory layout, and computation graphs for scalable model training
+
+  \item \textbf{CSAI 220: Preferences and Ranking}  
+        From ordinal data to paired comparisons — mathematical foundations of how AI systems evaluate, rank, and optimize decisions
+
+  \item \textbf{CSAI 141: Intro to Programming with Pyret}  
+        Teaches programming principles + AI reasoning patterns; safer syntax and explicit structure for beginners
+
+  \item \textbf{CSAI 142: Programming with AI Tools}  
+        A second course that incorporates LLMs and AI coding assistants to teach modular design, reasoning, and debugging
+\end{itemize}
+\end{frame}
+
+\begin{frame}{AI Specializations}
+\framesubtitle{Choose Depth in a Technical and Interdisciplinary Focus}
+\begin{columns}
+  \begin{column}{0.48\textwidth}
+    \begin{block}{Generative AI}
+      \begin{itemize}
+        \item CSAI 370: Multilingual Text Processing  
+        \item CSAI 429: Multimodal Generation  
+        \item LING 200 / LING 240: Semantics & Meaning
+      \end{itemize}
+    \end{block}
+
+    \begin{block}{AI Algorithms}
+      \begin{itemize}
+        \item CSAI 427: Reinforcement Learning  
+        \item CMSC 470: Natural Language Processing  
+        \item CMSC 477: Robotics Perception and Planning
+      \end{itemize}
+    \end{block}
+  \end{column}
+
+  \begin{column}{0.48\textwidth}
+    \begin{block}{AI, Society, and Decision Making}
+      \begin{itemize}
+        \item CSAI 460: AI and the Life of Great Cities  
+        \item CSAI 491: AI Clinic  
+        \item INST 366: Big Data Ethics
+      \end{itemize}
+    \end{block}
+
+    \begin{block}{Accessibility}
+      \begin{itemize}
+        \item INST 401: Design for Disability and Aging  
+        \item CMSC 434: Human–Computer Interaction  
+        \item CSAI 431: AI and UX
+      \end{itemize}
+    \end{block}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\end{document}
