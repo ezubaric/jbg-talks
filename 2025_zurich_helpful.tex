@@ -109,6 +109,8 @@
 
 \newif\ifjobtalk\jobtalktrue
 \newif\iflong\longfalse
+\newif\ifirt\irtfalse
+\newif\ifdiplomacy\diplomacytrue
 
 \usetheme[
           showdate=true,                     % show the date on the title page
@@ -154,41 +156,42 @@ might get what you need}
 \end{frame}
 
 \begin{frame}{What do we mean by helpfulness?}
-
-\begin{block}{Bai, et al.: Training a Helpful and harmless Assistant}
-Our goal is not to define or prescribe what ‘helpful’ and ‘harmless’ mean …, so for the most part we simply let our crowdworkers interpret these concepts 
-\end{block}
-\gfxm{correctness_vs_helpfulness}{1.0}
-
-\begin{block}{Our Definition}
-A question answering system is helpful if it provides responses that enable users to \alert<2>{maximally achieve their goals}
-\end{block}
-
+	
+	\begin{block}{Bai, et al.: Training a Helpful and harmless Assistant}
+		Our goal is not to define or prescribe what ‘helpful’ and ‘harmless’ mean …, so for the most part we simply let our crowdworkers interpret these concepts 
+	\end{block}
+	\gfxm{correctness_vs_helpfulness}{1.0}
+	
+	\begin{block}{Our Definition}
+		A question answering system is helpful if it provides responses that enable users to \alert<2>{maximally achieve their goals}
+	\end{block}
+	
 \end{frame}
 
 \begin{frame}{Helpfulness in Pictures}
-
-\only<3->{
-	\begin{block}{Alternative Definition of Helpfulness}
-		Increasing the skill of human--computer collaboration
-	\end{block}
-}
-
-
-\only<1>{\gfxa{skill_comp}{0.9}}
-\only<2->{\gfxa{skill_hum}{0.9}}
-\only<3->{\gfxa{skill_team}{0.9}}
-
-\begin{itemize}
-	\item Higher accuracy
-	\item Shorter time
-	\item Better creativity
-\end{itemize}
-
+	
+	\only<3->{
+		\begin{block}{Alternative Definition of Helpfulness}
+			Increasing the skill of human--computer collaboration
+		\end{block}
+	}
+	
+	
+	\only<1>{\gfxa{skill_comp}{0.9}}
+	\only<2->{\gfxa{skill_hum}{0.9}}
+	\only<3->{\gfxa{skill_team}{0.9}}
+	
+	\begin{itemize}
+		\item Higher accuracy
+		\item Shorter time
+		\item Better creativity
+	\end{itemize}
+	
 \end{frame}
 
+\iflong
 \begin{frame}{The Old Days}
-
+	
 	\only<1>{\gfxm{prior_qa_0}{.9}}
 	\only<2>{\gfxm{prior_qa_1}{.9}}
 	\only<3->{\gfxm{prior_qa_2}{.9}}
@@ -202,47 +205,47 @@ A question answering system is helpful if it provides responses that enable user
 \end{frame}
 
 \begin{frame}{What does it mean to be Helpful?}
-
-Users can now ask LLMs questions to support goals beyond correctness
-
-\begin{columns}
-	\column{.5\linewidth}
+	
+	Users can now ask LLMs questions to support goals beyond correctness
+	
+	\begin{columns}
+		\column{.5\linewidth}
 		\gfxm{goal_fact}{1.0}
-	\column{.5\linewidth}
+		\column{.5\linewidth}
 		\gfxm{goal_learning}{1.0}
-\end{columns}
-
-The answer shouldn't just be correct, but also logically consistent
-
+	\end{columns}
+	
+	The answer shouldn't just be correct, but also logically consistent
+	
 \end{frame}
-
+\fi
 
 \begin{frame}{How LLMs are trained}
-
+	
 	\only<1>{\gfxm{llm_training}{1.0}}
-
+	
 	\only<1>{
-	\begin{columns}
-	\column{.3\linewidth}
-	Learn to mimic human-written texts (next-token prediction)
-
-
-	\column{.3\linewidth}
-Fine-tuned to be safe, follow instructions, use a certain style, \dots
-
-
-	\column{.3\linewidth}
-Check the model’s knowledge, ability to help users, \dots
-
-	\end{columns}
-
+		\begin{columns}
+			\column{.3\linewidth}
+			Learn to mimic human-written texts (next-token prediction)
+			
+			
+			\column{.3\linewidth}
+			Fine-tuned to be safe, follow instructions, use a certain style, \dots
+			
+			
+			\column{.3\linewidth}
+			Check the model’s knowledge, ability to help users, \dots
+			
+		\end{columns}
+		
 	}
-
+	
 	\only<2>{\gfxm{llm_training_zoom}{.8}}
 	\only<3>{\gfxm{llm_zoom_1}{.8}}
 	\only<4>{\gfxm{llm_zoom_2}{.8}}
 	\only<5>{\gfxm{llm_zoom_3}{.8}}
-
+	
 \end{frame}
 
 
@@ -252,7 +255,9 @@ Check the model’s knowledge, ability to help users, \dots
 		\item Models to generate mnemonics (learning)
 		\item Fact checking (accuracy)
 		\item Question answering (accuracy, but personalized)
+		\ifdiplomacy
 		\item Negotiation (winning ``Diplomacy'')
+		\fi
 		\item Other / Future work
 	\end{itemize}
 	
@@ -260,66 +265,66 @@ Check the model’s knowledge, ability to help users, \dots
 
 
 \begin{frame}{Our Application: Learning Vocabulary}
-
+	
 	\gfxm{vocab}{.9}
 \end{frame}
 
 \begin{frame}{Using Mnmenonics to Learn}
-
+	
 	\gfxm{mnemonic}{.9}
-
+	
 	\textbf{Goal:} Build a mnemonic generator (SMART) to help students learn vocab
-
+	
 \end{frame}
 
 \begin{frame}{Teach SMART which mnemonics are \textbf{helpful} via preference training}
-
+	
 	\gfxm{preference}{.9}
-
+	
 	Preference training assumes users can predict what is helpful \dots
 	\pause
 	but it's hard to know \textit{a priori} what works
-
+	
 \end{frame}
 
 \begin{frame}{Flashcard Interface}
-
-47 Learners study with mnemonics from the SMART model in a flashcard app
-
-\only<1>{\gfxm{compliant_0}{.8}}
-\only<2>{\gfxm{compliant_1}{.8}}
-\only<3->{\gfxm{compliant_2}{.8}}
-\only<4>{\gfxm{compliant_correct}{.8}}
-
+	
+	47 Learners study with mnemonics from the SMART model in a flashcard app
+	
+	\only<1>{\gfxm{compliant_0}{.8}}
+	\only<2>{\gfxm{compliant_1}{.8}}
+	\only<3->{\gfxm{compliant_2}{.8}}
+	\only<4>{\gfxm{compliant_correct}{.8}}
+	
 \end{frame}
 
 
 
 \begin{frame}{Expressed Preferences: What users \textbf{think} will help them.}
-
-
+	
+	
 	\only<1>{\gfxm{standard_preference_1}{.9}}
 	\only<2>{\gfxm{standard_preference_2}{.9}}
-
+	
 \end{frame}
 
 
 \begin{frame}{Do People Prefer What they Need?}
-
+	
 	\only<1>{\gfxm{preference_table_0}{.9}}
 	\only<2>{\gfxm{preference_table_1}{.9}}
 	\only<3>{\gfxm{preference_table_2}{.9}}
 	\only<4>{\gfxm{preference_table_3}{.9}}
-
+	
 \end{frame}
 
 \begin{frame}{Eval}
-
-\only<1>{\gfxm{eval_0}{.8}}
-\only<2>{\gfxm{eval_1}{.8}}
-\only<3->{\gfxm{eval_2}{.8}}
-\only<4>{\gfxm{compliant_correct}{.8}}
-
+	
+	\only<1>{\gfxm{eval_0}{.6}}
+	\only<2>{\gfxm{eval_1}{.6}}
+	\only<3->{\gfxm{eval_2}{.6}}
+	\only<4>{\gfxm{compliant_correct}{.6}}
+	
 \end{frame}
 
 \fsi{mnemonic/mnemonic_recap}{}
@@ -349,21 +354,22 @@ Check the model’s knowledge, ability to help users, \dots
 \begin{frame}{Fact Checking with Humans in the Loop}
 	\begin{columns}
 		\column{.5\linewidth}
-
-\gfxu{paper_convincingly}{.9}
-
-\column{.5\linewidth}
-\begin{center}
-\includegraphics[width=1.0\linewidth]{general_figures/chenglei}		
-	
-\end{center}
+		
+		\gfxu{paper_convincingly}{.9}
+		
+		\column{.5\linewidth}
+		\begin{center}
+			\includegraphics[width=1.0\linewidth]{general_figures/chenglei}		
+			
+		\end{center}
 	\end{columns}
 	Can we help users detect incorrect statements?
 	
 \end{frame}
 
-  \fsi{uncertainty/fever}{\textbf{F}act \textbf{E}xtraction and \textbf{VER}ification}
-  		
+\fsi{uncertainty/fever}{\textbf{F}act \textbf{E}xtraction and \textbf{VER}ification}
+
+\iflong		
 \begin{frame}{FEVER categories}
 	\begin{itemize}
 		\item Examples from FEVER (Thorne et al., 2018)
@@ -398,8 +404,9 @@ Check the model’s knowledge, ability to help users, \dots
 	\vspace{-5cm}
 	\begin{block}{We intended this to be ``adversarial''}
 		Gold evidence could not be the highest ranking \abr{ir} hit 
-		\end{block}
+	\end{block}
 \end{frame}
+\fi
 
 \iflong
 
@@ -413,12 +420,12 @@ Check the model’s knowledge, ability to help users, \dots
 
 % TODO(jbg): Add Fm2 screenshots
 
-\fi
 
 \begin{frame}{It is Harder (a bit)}
 	\gfxu{fm2_retrieval}{.8}
 \end{frame}
 
+\fi
 
 
 \begin{frame}{Claim: Manhattan has the most residents of New York City's boroughs. }
@@ -429,13 +436,13 @@ Check the model’s knowledge, ability to help users, \dots
 				The claim that Manhattan has the most residents of New York City's boroughs is false.  Manhattan has a population of approximately 1.6 million residents. However, New York City as a whole has a population of approximately 8.3 million residents. Therefore, Manhattan does not have the most residents among New York City's boroughs.  
 			\end{block}
 		}
-%		\only<4->{
-%			
-%			\begin{block}{Case For}
-%				\scriptsize
-%				Manhattan is the most populous borough in New York City, with a population of approximately 1,627,788 as of 2025.  The other boroughs have smaller populations: Brooklyn: 2.72 million; Queens: 2.57 million; The Bronx: 1.46 million; Staten Island: 552,00.
-%			\end{block}	
-%		}
+		%		\only<4->{
+			%			
+			%			\begin{block}{Case For}
+				%				\scriptsize
+				%				Manhattan is the most populous borough in New York City, with a population of approximately 1,627,788 as of 2025.  The other boroughs have smaller populations: Brooklyn: 2.72 million; Queens: 2.57 million; The Bronx: 1.46 million; Staten Island: 552,00.
+				%			\end{block}	
+			%		}
 		\column{.5\linewidth}	
 		
 		\only<2->{
@@ -444,12 +451,12 @@ Check the model’s knowledge, ability to help users, \dots
 				New York City's borough of Manhattan is the highest nominal income county in the United States. In particular, ZIP code 10021 on Manhattan's Upper East Side, with more than 100,000 inhabitants and a per capita income of over \$90,000, has one of the largest concentrations of income in the United States. The other boroughs, especially Queens and Staten Island, have large middle-class populations. 
 			\end{block}
 		}
-%		\only<4->{
-%			
-%			\begin{block}{Case Against}
-%				\scriptsize According to recent data, Brooklyn is the most populated borough in New York City, not Manhattan. Manhattan has a population of approximately 1.6 million residents, while Brooklyn has a significantly higher population.
-%			\end{block}		
-%		}			
+		%		\only<4->{
+			%			
+			%			\begin{block}{Case Against}
+				%				\scriptsize According to recent data, Brooklyn is the most populated borough in New York City, not Manhattan. Manhattan has a population of approximately 1.6 million residents, while Brooklyn has a significantly higher population.
+				%			\end{block}		
+			%		}			
 	\end{columns}
 	
 	
@@ -472,10 +479,10 @@ Check the model’s knowledge, ability to help users, \dots
 
 \begin{frame}{Breaking Things Down}
 	\begin{itemize}
-	\item What's the solution?
-	\item If the models were never wrong, we wouldn't have this problem
-	\item If the models could know when they were wrong, we wouldn't have this problem
-	\item \alert<2->{If we knew when the models would be wrong, we wouldn't have this problem}
+		\item What's the solution?
+		\item If the models were never wrong, we wouldn't have this problem
+		\item If the models could know when they were wrong, we wouldn't have this problem
+		\item \alert<2->{If we knew when the models would be wrong, we wouldn't have this problem}
 	\end{itemize} 
 	\begin{block}{CAIMIRA}
 		Model that can predict when a model is likely to get a question right
@@ -492,61 +499,62 @@ Check the model’s knowledge, ability to help users, \dots
 
 %todo(jbg):  or irt and chimera
 
+\ifirt
 \begin{frame}{Item Response Theory}
-
-\only<1>{\gfxa{sat_sheet}{.9}}
-\only<2>{\gfxa{sat_sheet_prob}{.9}}
-
-
-\only<3>{\gfxa{jeopardy_irt_0}{.7}}
-\only<4>{\gfxa{jeopardy_irt_1}{.7}}
-\only<5>{\gfxa{jeopardy_irt_2}{.7}}
-
+	
+	\only<1>{\gfxa{sat_sheet}{.9}}
+	\only<2>{\gfxa{sat_sheet_prob}{.9}}
+	
+	
+	\only<3>{\gfxa{jeopardy_irt_0}{.7}}
+	\only<4>{\gfxa{jeopardy_irt_1}{.7}}
+	\only<5>{\gfxa{jeopardy_irt_2}{.7}}
+	
 \end{frame}
 
 
-  \begin{frame}{Making Dimensions Interpretable}
-    % TODO(jbg): Add equations
-        \begin{itemize}
-        \item Make skills and difficulty vector-valued
-          \begin{equation}
-            \gamma_j \sum_k \left[ \theta_{i,k} - \beta_{j,k} \right]
-          \end{equation}
-        \item Where do the dimensions come from?
-          \pause
-          \begin{itemize}
-          \item Latent variable: learned to predict correctness
-          \item Function of question encoding, question features
-          \item Regularized to be sparse
-          \end{itemize}
-    \item Posthoc labeling
-    \end{itemize}
+\begin{frame}{Making Dimensions Interpretable}
+	% TODO(jbg): Add equations
+	\begin{itemize}
+		\item Make skills and difficulty vector-valued
+		\begin{equation}
+			\gamma_j \sum_k \left[ \theta_{i,k} - \beta_{j,k} \right]
+		\end{equation}
+		\item Where do the dimensions come from?
+		\pause
+		\begin{itemize}
+			\item Latent variable: learned to predict correctness
+			\item Function of question encoding, question features
+			\item Regularized to be sparse
+		\end{itemize}
+		\item Posthoc labeling
+	\end{itemize}
 	\gfxq{caimira_component}{.5}
- \end{frame}
+\end{frame}
 
-  \begin{frame}{Hard for Computers: Abductive Inference}
+\begin{frame}{Hard for Computers: Abductive Inference}
+	
+	\begin{columns}
+		\column{.5\linewidth}
+		\gfxa{caimira_abductive_features}{1.0}
+		\column{.5\linewidth}      
+		\only<2>{\gfxa{caimira_abductive_skills}{1.0}}
+	\end{columns}
+	
+\end{frame}
 
-    \begin{columns}
-      \column{.5\linewidth}
-      \gfxa{caimira_abductive_features}{1.0}
-      \column{.5\linewidth}      
-      \only<2>{\gfxa{caimira_abductive_skills}{1.0}}
-    \end{columns}
-
-  \end{frame}
 
 
-  
-  \begin{frame}{Hard for Humans: Science}
-
-    \begin{columns}
-      \column{.5\linewidth}
-      \gfxa{caimira_science_features}{1.0}
-      \column{.5\linewidth}      
-      \only<2>{\gfxa{caimira_science_skills}{1.0}}
-    \end{columns}
-
-  \end{frame}
+\begin{frame}{Hard for Humans: Science}
+	
+	\begin{columns}
+		\column{.5\linewidth}
+		\gfxa{caimira_science_features}{1.0}
+		\column{.5\linewidth}      
+		\only<2>{\gfxa{caimira_science_skills}{1.0}}
+	\end{columns}
+	
+\end{frame}
 
 \begin{frame}{AdvScore}
 	\begin{columns}
@@ -556,165 +564,167 @@ Check the model’s knowledge, ability to help users, \dots
 		\column{.7\linewidth}
 		\gfxa{advscore_paper}{1.0}
 	\end{columns}
-\centering
+	\centering
 	NAACL 2025 Outstanding Paper
 \end{frame}
 
 
-  \begin{frame}{Adversarial Datasets}
-
-    \begin{columns}
-      \column{.5\linewidth}
-      \gfxq{benchmark_saturation}{0.75}
-Biggio et al., 2012: Poisoning attacks against Support Vector Machines
-
-              \gfxa{adversarial_turtle}{.6}
-
-
-            \column{.5\linewidth}
-            \begin{itemize}
-              
-            \item Many benchmarks are ``saturated''
-            \item Newer datasets claim to be ``adversarial''
-              \begin{itemize}
-              \item Hard for computers, ``easy'' for humans
-              \item No real metric / definition
-              \end{itemize}
-            \item Can we use the lessons of the previous paper to inform how to write hard examples
-            \item Can we \emph{measure} how well we did?
-              \pause
-            \item Language game: increasing the difficulty level
-              \item But need to measure!
-    \end{itemize}
-            \end{columns}
- \end{frame}
-
-    \begin{frame}{Expanding IRT: Discriminability}
-
-    \gfxq{discrimination}{1.0}
-
-      \end{frame}
-    
-    \begin{frame}{Finding Skill of Subject is Like Binary Search}
-    	\only<1>{\gfxq{discrimination_1}{1.0}}
-    	\only<2>{\gfxq{discrimination_2}{1.0}}
-    	\only<3>{\gfxq{discrimination_3}{1.0}}
-    	\only<4>{\gfxq{discrimination_4}{1.0}}
-    	\only<5>{\gfxq{discrimination_5}{1.0}}
-    \end{frame}
-    
-    \begin{frame}{Adversarial Score}
-
-
-\only<4->{
-	\vspace{-1.5cm}
-	\begin{block}{Adversarial Score}
+\begin{frame}{Adversarial Datasets}
+	
+	\begin{columns}
+		\column{.5\linewidth}
+		\gfxq{benchmark_saturation}{0.75}
+		Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 		
-		\begin{equation}
-			\text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j}
+		\gfxa{adversarial_turtle}{.6}
+		
+		
+		\column{.5\linewidth}
+		\begin{itemize}
+			
+			\item Many benchmarks are ``saturated''
+			\item Newer datasets claim to be ``adversarial''
+			\begin{itemize}
+				\item Hard for computers, ``easy'' for humans
+				\item No real metric / definition
+			\end{itemize}
+			\item Can we use the lessons of the previous paper to inform how to write hard examples
+			\item Can we \emph{measure} how well we did?
+			\pause
+			\item Language game: increasing the difficulty level
+			\item But need to measure!
+		\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Expanding IRT: Discriminability}
+	
+	\gfxq{discrimination}{1.0}
+	
+\end{frame}
+
+\begin{frame}{Finding Skill of Subject is Like Binary Search}
+	\only<1>{\gfxq{discrimination_1}{1.0}}
+	\only<2>{\gfxq{discrimination_2}{1.0}}
+	\only<3>{\gfxq{discrimination_3}{1.0}}
+	\only<4>{\gfxq{discrimination_4}{1.0}}
+	\only<5>{\gfxq{discrimination_5}{1.0}}
+\end{frame}
+
+\begin{frame}{Adversarial Score}
+	
+	
+	\only<4->{
+		\vspace{-1.5cm}
+		\begin{block}{Adversarial Score}
+			
+			\begin{equation}
+				\text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j}
+			\end{equation}
+			
+		\end{block}
+		
+		
+	}
+	
+	
+	\begin{itemize}
+		\item Gap between skilled human getting it right and machine (should be big)
+		\begin{equation}\label{eq:margin}
+			\mu_j = \explain{Skilled human rep. prob.}{\twoplprob{\beta^{H_{(0)}}_{*}}{\theta_j}{\gamma_j}} - \explain{Skilled model rep. prob.}{\twoplprob{\beta^{M_{(0)}}_{*}}{\theta_j}{\gamma_j}},
 		\end{equation}
+		\only<2>{
+			\begin{block}{Why not use raw accuracy?}
+				\begin{itemize}
+					\item Want patterns, not luck
+					\item \abr{irt} can find (and downweight) bad questions
+					\item What's the capital of Georgia?
+				\end{itemize}
+			\end{block}
+			
+		}
+		\only<3->{
+			\item Skilled humans should agree on the answer
+			\begin{equation}\label{eq:delta}
+				\delta_j = \sum_{i \sim H_{(1)}}
+				\sfrac{\left[ \twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j} -
+					\overline{p_{H_{(1)}}}(r_{i,j}) \right] }{|H_{(1)}|}
+			\end{equation}
+		}
+		\only<5->{
+			\item In paper, also have a bonus for Fischer information wrt to difficulty $\theta$, but not a huge factor
+		}
 		
-	\end{block}
+	\end{itemize}
 	
-	
-}
+\end{frame}
+
+\begin{frame}{AdvQA: Is this a viable incentive structure?}
+	\begin{itemize}
+		\item Can human authors interpret incentive?
+		\begin{itemize}
+			\item Computers should get questions wrong, smart humans should get them right
+			\item Answers should be unique and easily verifiable
+			\item Reward knowledge and skill
+			\item Avoid ambiguity
+		\end{itemize}
+		\item Posthoc (no realtime feedback): Prizes given based on metric
+		\item Professional trivia writers
+	\end{itemize}
+\end{frame}
 
 
-      \begin{itemize}
-        \item Gap between skilled human getting it right and machine (should be big)
-\begin{equation}\label{eq:margin}
-    \mu_j = \explain{Skilled human rep. prob.}{\twoplprob{\beta^{H_{(0)}}_{*}}{\theta_j}{\gamma_j}} - \explain{Skilled model rep. prob.}{\twoplprob{\beta^{M_{(0)}}_{*}}{\theta_j}{\gamma_j}},
-\end{equation}
-\only<2>{
-  \begin{block}{Why not use raw accuracy?}
-    \begin{itemize}
-    \item Want patterns, not luck
-    \item \abr{irt} can find (and downweight) bad questions
-    \item What's the capital of Georgia?
-    \end{itemize}
-  \end{block}
-
-}
-\only<3->{
-\item Skilled humans should agree on the answer
-  \begin{equation}\label{eq:delta}
-    \delta_j = \sum_{i \sim H_{(1)}}
-      \sfrac{\left[ \twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j} -
-        \overline{p_{H_{(1)}}}(r_{i,j}) \right] }{|H_{(1)}|}
-\end{equation}
-}
-\only<5->{
-	\item In paper, also have a bonus for Fischer information wrt to difficulty $\theta$, but not a huge factor
-}
-
-\end{itemize}
-      
-    \end{frame}
-
-    \begin{frame}{AdvQA: Is this a viable incentive structure?}
-      \begin{itemize}
-    \item Can human authors interpret incentive?
-      \begin{itemize}
-      \item Computers should get questions wrong, smart humans should get them right
-      \item Answers should be unique and easily verifiable
-      \item Reward knowledge and skill
-        \item Avoid ambiguity
-      \end{itemize}
-    \item Posthoc (no realtime feedback): Prizes given based on metric
-      \item Professional trivia writers
-      \end{itemize}
-   \end{frame}
-   
-   
-   \begin{frame}{What makes for Adversarial Example}
-   	\only<1>{\gfxa{irtplot_0}{.9}}	
-   	\only<2>{\gfxa{irtplot_1}{.9}}
-   	\only<3>{\gfxa{irtplot_2}{.9}}
-   	\only<4>{\gfxa{irtplot_3}{.9}}
-   	\only<5>{\gfxa{irtplot_4}{.9}}
-   	\only<6>{\gfxa{irtplot_5}{.9}}
-   	\only<7>{\gfxa{irtplot_6}{.9}}
-   \end{frame}
+\begin{frame}{What makes for Adversarial Example}
+	\only<1>{\gfxa{irtplot_0}{.9}}	
+	\only<2>{\gfxa{irtplot_1}{.9}}
+	\only<3>{\gfxa{irtplot_2}{.9}}
+	\only<4>{\gfxa{irtplot_3}{.9}}
+	\only<5>{\gfxa{irtplot_4}{.9}}
+	\only<6>{\gfxa{irtplot_5}{.9}}
+	\only<7>{\gfxa{irtplot_6}{.9}}
+\end{frame}
 
 \begin{frame}{Adversarial Strategies}
 	\begin{columns}
 		\column{.5\linewidth}
-			\only<1-2>{\gfxa{chrisrock}{.9}}
-			\only<3-4>{\gfxa{parasite}{.9}}
-			\only<5-6>{\gfxa{lulu_lemon}{.9}}
-			\only<7-9>{\gfxa{akutagawa}{.9}}
+		\only<1-2>{\gfxa{chrisrock}{.9}}
+		\only<3-4>{\gfxa{parasite}{.9}}
+		\only<5-6>{\gfxa{lulu_lemon}{.9}}
+		\only<7-9>{\gfxa{akutagawa}{.9}}
 		\column{.5\linewidth}
-			\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
-			\only<2>{\\ \textbf{Brad Pitt / Will Smith}}
-			\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}
-			\only<4>{\\ \textbf{Snowpiercer / Train to Busan}		}
-			\only<5-6>{It's not headquartered in Biel, Switzerland but this activewear company has a logo that resembles the last letter of the Greek alphabet.}
-			\only<6>{\\ \textbf{Omega / Lululemon}}
-			\only<7-9>{A character in one story by \alert<8>{this author opens Crime and Punishment} to discover that it has turned into The Brothers Karamazov}
-			\only<9>{\\ \textbf{Dostoyevski / Akutagawa}}
+		\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
+		\only<2>{\\ \textbf{Brad Pitt / Will Smith}}
+		\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}
+		\only<4>{\\ \textbf{Snowpiercer / Train to Busan}		}
+		\only<5-6>{It's not headquartered in Biel, Switzerland but this activewear company has a logo that resembles the last letter of the Greek alphabet.}
+		\only<6>{\\ \textbf{Omega / Lululemon}}
+		\only<7-9>{A character in one story by \alert<8>{this author opens Crime and Punishment} to discover that it has turned into The Brothers Karamazov}
+		\only<9>{\\ \textbf{Dostoyevski / Akutagawa}}
 	\end{columns}
 \end{frame}
 
-    
-    % TODO(jbg): AdvCal Picture slide
 
-    \begin{frame}{Which Datasets are Adversarial?}
-      \gfxa{cumulative_advscore}{.9}
+% TODO(jbg): AdvCal Picture slide
 
-      \begin{itemize}
-      \item Not all datasets remain adversarial forever
-      \item What helps make datasets adversarial?
-        \begin{itemize}
-          \item Bamboogle: Automatically generated          
-          \item TrickMe: Human in the loop interface (expert), \abr{ir} models
-        \item FM2: Human in the loop interface (crowdworker), \abr{ir} models
-        \item AdvQA: Huaman in the loop (expert), \abr{llm} model + category instructions
-        \pause
-        \item Missing anything?
-        \end{itemize}
+\begin{frame}{Which Datasets are Adversarial?}
+	\gfxa{cumulative_advscore}{.9}
+	
+	\begin{itemize}
+		\item Not all datasets remain adversarial forever
+		\item What helps make datasets adversarial?
+		\begin{itemize}
+			\item Bamboogle: Automatically generated          
+			\item TrickMe: Human in the loop interface (expert), \abr{ir} models
+			\item FM2: Human in the loop interface (crowdworker), \abr{ir} models
+			\item AdvQA: Huaman in the loop (expert), \abr{llm} model + category instructions
+			\pause
+			\item Missing anything?
+		\end{itemize}
+		
+	\end{itemize}
+\end{frame}
+\fi
 
-      \end{itemize}
-    \end{frame}
 
 \fsi{simtrans/centaur-chess}{Centaur Chess}
 
@@ -727,82 +737,82 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 \fsi{qb/augment/screenshot_evidence}{}
 
 \begin{frame}{Experts vs. Novices}
-
- \begin{block}{Experts}
-   Trivia experts, familiar with task, enjoy the task
- \end{block}
-
- \begin{block}{Mechanical Turkers}
-   Mechanical Turkers: easily overwhelmed, need the help
- \end{block}
-
+	
+	\begin{block}{Experts}
+		Trivia experts, familiar with task, enjoy the task
+	\end{block}
+	
+	\begin{block}{Mechanical Turkers}
+		Mechanical Turkers: easily overwhelmed, need the help
+	\end{block}
+	
 \end{frame}
 
 \fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
 % \fsi{qb/augment/tools_buzz}{Highlights help experts}
 
 \begin{frame}{Skill Boost}
-  Rerun IRT analysis: rather than contrast human vs. computer skill,
-  we see how much interface boosts (or diminishes) user skill.
-    \pause
-
-    \begin{block}{Coefficients tell story!}
-      \begin{itemize}
-        \item {\bf Big, Positive}: Help
-        \item {\bf Big, Negative}: Hurt
-        \item {\bf Small}: Neutral
-      \end{itemize}
-    \end{block}
-
+	Rerun IRT analysis: rather than contrast human vs. computer skill,
+	we see how much interface boosts (or diminishes) user skill.
+	\pause
+	
+	\begin{block}{Coefficients tell story!}
+		\begin{itemize}
+			\item {\bf Big, Positive}: Help
+			\item {\bf Big, Negative}: Hurt
+			\item {\bf Small}: Neutral
+		\end{itemize}
+	\end{block}
+	
 \end{frame}
 
 
 \fsi{qb/augment/coefs_0}{Everything helps: Evidence for novies,
-  Highlight for experts}
+	Highlight for experts}
 \fsi{qb/augment/coefs_1}{Synergistic effects}
 \fsi{qb/augment/coefs_2}{Highlight and evidence help experts most}
 \fsi{qb/augment/coefs_3}{For novices, less synergy}
 
 
 \begin{frame}{}
-
-  \begin{columns}
-    \column{.4\linewidth}
-    \begin{center}
-        \includegraphics[width=0.8\linewidth]{general_figures/shi}
-        \end{center}
-    \column{.6\linewidth}
-    \begin{block}{\href{http://umiacs.umd.edu/~jbg//docs/2023_emnlp_augment.pdf}{Learning to Explain Selectively}}
-      \underline{\href{http://users.umiacs.umd.edu/~shifeng/}{Shi Feng}} and {\bf Jordan Boyd-Graber}.  \emph{Empirical Methods in Natural Language Processing}, 2022
-        \end{block}
-
-  \end{columns}
+	
+	\begin{columns}
+		\column{.4\linewidth}
+		\begin{center}
+			\includegraphics[width=0.8\linewidth]{general_figures/shi}
+		\end{center}
+		\column{.6\linewidth}
+		\begin{block}{\href{http://umiacs.umd.edu/~jbg//docs/2023_emnlp_augment.pdf}{Learning to Explain Selectively}}
+			\underline{\href{http://users.umiacs.umd.edu/~shifeng/}{Shi Feng}} and {\bf Jordan Boyd-Graber}.  \emph{Empirical Methods in Natural Language Processing}, 2022
+		\end{block}
+		
+	\end{columns}
 \end{frame}
 
 
 \begin{frame}{Measuring Interpretability}
-
-  \only<1>{\gfxq{qb_centaur_1}{.9}}
-  \only<2>{\gfxq{qb_centaur_2}{.9}}
-  \only<3>{\gfxq{qb_centaur_3}{.9}}
-  \only<4>{\gfxq{qb_centaur_6}{.9}}
-
-
+	
+	\only<1>{\gfxq{qb_centaur_1}{.9}}
+	\only<2>{\gfxq{qb_centaur_2}{.9}}
+	\only<3>{\gfxq{qb_centaur_3}{.9}}
+	\only<4>{\gfxq{qb_centaur_6}{.9}}
+	
+	
 \end{frame}
 
 
 
 
 \begin{frame}{Improvement through Bandit Algorithms}
-
-  \only<1>{\gfxq{rl_centaur_2}{.9}}
-  \only<2>{\gfxq{rl_centaur_3}{.9}}
-  \only<3>{\gfxq{rl_centaur_4}{.9}}
-  \only<4>{\gfxq{rl_centaur_5}{.9}}
-  \only<5>{\gfxq{rl_centaur_6}{.9}}
-
-  \only<5->{Bandit actions~\cite{robbins-52}: turn each of the explanations (Guess,
-    Highlight, Evidence) on or off.}
+	
+	\only<1>{\gfxq{rl_centaur_2}{.9}}
+	\only<2>{\gfxq{rl_centaur_3}{.9}}
+	\only<3>{\gfxq{rl_centaur_4}{.9}}
+	\only<4>{\gfxq{rl_centaur_5}{.9}}
+	\only<5>{\gfxq{rl_centaur_6}{.9}}
+	
+	\only<5->{Bandit actions~\cite{robbins-52}: turn each of the explanations (Guess,
+		Highlight, Evidence) on or off.}
 \end{frame}
 
 \fsi{qb/augment/bandit_result_none}{Human alone without an AI teammate}
@@ -810,28 +820,28 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 \fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
 \fsi{qb/augment/everything}{Better than showing everything!}
 
-    
+\ifdiplomacy    
 
 \begin{frame}{Changing Gears}
-
-\begin{columns}
 	
-	\column{.5\linewidth}
-	\gfxd{cicero_science}{1.0}
-	\column{.5\linewidth}	
-\begin{itemize}
-	\item Focusing on interpersonal relationships
-\begin{itemize}
-	\item Cooperation
-	\item Deception
-	\item Betrayal
-\end{itemize}
-\item Multi-turn interactions
-\end{itemize}
-
-\end{columns}
-
-
+	\begin{columns}
+		
+		\column{.5\linewidth}
+		\gfxd{cicero_science}{1.0}
+		\column{.5\linewidth}	
+		\begin{itemize}
+			\item Focusing on interpersonal relationships
+			\begin{itemize}
+				\item Cooperation
+				\item Deception
+				\item Betrayal
+			\end{itemize}
+			\item Multi-turn interactions
+		\end{itemize}
+		
+	\end{columns}
+	
+	
 \end{frame}
 
 \begin{frame}{}
@@ -928,7 +938,7 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 	\only<1>{\gfxd{cicero_deception_1}{.25}}
 	\only<2>{\gfxd{cicero_deception_2}{.4}}
 	\only<3>{\gfxd{cicero_deception_3}{.6}}
-\only<4>{\gfxd{cicero_deception_4}{0.75}}	
+	\only<4>{\gfxd{cicero_deception_4}{0.75}}	
 \end{frame}
 
 \begin{frame}{People Lie to Cicero More}
@@ -954,32 +964,35 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 	\only<1>{\gfxd{chiron_skill_regression}{.5}\gfxd{pholus_coefficient_scale}{.5}}
 	\only<2>{\gfxd{chiron_all_regression}{.5}}
 	
-\only<2>{
-\begin{block}{Why are messages hurting?}
-
-\begin{itemize}
-	\item Cognitive load / distraction
-\item Not tuned for suboptimal moves
-\item Inconsistency with moves
-\end{itemize}
-\end{block}
-
-}
+	\only<2>{
+		\begin{block}{Why are messages hurting?}
+			
+			\begin{itemize}
+				\item Cognitive load / distraction
+				\item Not tuned for suboptimal moves
+				\item Inconsistency with moves
+			\end{itemize}
+		\end{block}
+		
+	}
 \end{frame}
 
 \begin{frame}{Are they just parrots?}
-
-
+	
+	
 	\gfxd{chiron_acceptance}{.5}
-
-\begin{itemize}
-	\item Don't think for themselves?
-\item Beginners often take move advice
-\item Message advice rarely taken
-\end{itemize}
-
+	
+	\begin{itemize}
+		\item Don't think for themselves?
+		\item Beginners often take move advice
+		\item Message advice rarely taken
+	\end{itemize}
+	
 \end{frame}
+\fi
 
+
+\iflong
 \begin{frame}{How to better detect Deception}
 	\only<1>{\gfxd{pholus_map}{.5}}
 	\only<2>{\gfxd{pholus_map_1}{.6}}	
@@ -1002,7 +1015,10 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 	
 	Human ability is around 0.2
 \end{frame}
+\fi 
 
+
+\iflong
 \begin{frame}{Recap}
 	\begin{itemize}
 		\item Reinforcement learning is really good at determining moves
@@ -1018,7 +1034,7 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 	\end{itemize}
 	
 \end{frame}
-
+\fi
 
 \begin{frame}{Human and Computer Skills}
 	\begin{columns}
@@ -1031,16 +1047,19 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 				\item LLMs: Use if you are confident
 				\item Humans: Leave them in driver's seat
 			\end{itemize}
-			\item Item Response Theory
+			\item Need to measure application-specific outcomes
 			\begin{itemize}
-				\item Highlight skills and examples
-				\item Measure how much computers \emph{help} or \emph{hurt}
+				\item Often requires multiturn
+				\item Not currently tuned
+				\item Different skills
 			\end{itemize}
 			\item Application
 			\begin{itemize}
 				\item Supporting Users to find False Claims
 				\item Supporting Users to Answer Questions
+				\ifdiplomacy
 				\item Supporting Users to Negotiate
+				\fi
 			\end{itemize}
 		\end{itemize}
 		\column{.5\linewidth}
@@ -1050,15 +1069,15 @@ Biggio et al., 2012: Poisoning attacks against Support Vector Machines
 \end{frame}
 
 \begin{frame}{Why didn't you\dots}
-  \begin{itemize}
-  \item IR works better than LLM for fact checking \emph{sometimes}
-  \item We also showed bandit model can figure out what evidence to show when
-  \item Use Bandit model to show \emph{right} evidence to user
-    \pause
-  \item We're trying\dots requires good calibration
-  \item ACL Submission: Adversarial Calibration
-  \item Looking for collaborators
-  \end{itemize}
+	\begin{itemize}
+		\item IR works better than LLM for fact checking \emph{sometimes}
+		\item We also showed bandit model can figure out what evidence to show when
+		\item Use Bandit model to show \emph{right} evidence to user
+		\pause
+		\item We're trying\dots requires good calibration
+		\item ACL Submission: Adversarial Calibration
+		\item Looking for collaborators
+	\end{itemize}
 \end{frame}
 
 
