@@ -108,8 +108,8 @@
 }
 
 \newif\ifjobtalk\jobtalktrue
-\newif\iflong\longfalse
-\newif\ifirt\irtfalse
+\newif\iflong\longtrue
+\newif\ifirt\irttrue
 \newif\ifdiplomacy\diplomacytrue
 
 \usetheme[
@@ -163,7 +163,7 @@ might get what you need}
 	\gfxm{correctness_vs_helpfulness}{1.0}
 	
 	\begin{block}{Our Definition}
-		A question answering system is helpful if it provides responses that enable users to \alert<2>{maximally achieve their goals}
+		A system is helpful if it provides responses that enable users to \alert<2>{maximally achieve their goals}
 	\end{block}
 	
 \end{frame}
@@ -264,6 +264,16 @@ might get what you need}
 \end{frame}
 
 
+\begin{frame}{Helpfulness as Learning}
+	\begin{columns}
+		\column{.5\linewidth}
+			\includegraphics[width=.9\linewidth]{general_figures/nishant}
+		\column{.5\linewidth}
+			\gfxm{karl_paper}{.9}
+			\gfxm{mnemonic_paper}{.9}
+	\end{columns}
+\end{frame}
+
 \begin{frame}{Our Application: Learning Vocabulary}
 	
 	\gfxm{vocab}{.9}
@@ -323,7 +333,6 @@ might get what you need}
 	\only<1>{\gfxm{eval_0}{.6}}
 	\only<2>{\gfxm{eval_1}{.6}}
 	\only<3->{\gfxm{eval_2}{.6}}
-	\only<4>{\gfxm{compliant_correct}{.6}}
 	
 \end{frame}
 
@@ -332,6 +341,7 @@ might get what you need}
 
 \fsi{qb/starcraft}{Image: DeepMind}
 \fsi{qb/DeepBlue}{Peter Morgan/Reuters}
+\fsi{simtrans/centaur-chess}{Centaur Chess}
 
 
 \begin{frame}{Measuring Skill}
@@ -482,20 +492,19 @@ might get what you need}
 		\item What's the solution?
 		\item If the models were never wrong, we wouldn't have this problem
 		\item If the models could know when they were wrong, we wouldn't have this problem
-		\item \alert<2->{If we knew when the models would be wrong, we wouldn't have this problem}
+		\item \alert<2->{We try to pick which help to show when}
 	\end{itemize} 
-	\begin{block}{CAIMIRA}
-		Model that can predict when a model is likely to get a question right
-	\end{block}
+	
 \end{frame}
 
+\ifirt
 \begin{frame}{CAIMIRA}
 	\gfxa{paper_caimira}{1.0}
 	\begin{center}
 		\includegraphics[width=0.25\linewidth]{general_figures/maharshi}
 	\end{center}
 \end{frame}
-
+\fi
 
 %todo(jbg):  or irt and chimera
 
@@ -726,8 +735,6 @@ might get what you need}
 \fi
 
 
-\fsi{simtrans/centaur-chess}{Centaur Chess}
-
 \fsi{qb/augment/screenshot_all}{Interface}
 
 \fsi{qb/augment/screenshot_guesses}{}
@@ -751,6 +758,8 @@ might get what you need}
 \fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
 % \fsi{qb/augment/tools_buzz}{Highlights help experts}
 
+\iflong
+
 \begin{frame}{Skill Boost}
 	Rerun IRT analysis: rather than contrast human vs. computer skill,
 	we see how much interface boosts (or diminishes) user skill.
@@ -773,6 +782,7 @@ might get what you need}
 \fsi{qb/augment/coefs_2}{Highlight and evidence help experts most}
 \fsi{qb/augment/coefs_3}{For novices, less synergy}
 
+\fi
 
 \begin{frame}{}
 	
@@ -801,8 +811,6 @@ might get what you need}
 \end{frame}
 
 
-
-
 \begin{frame}{Improvement through Bandit Algorithms}
 	
 	\only<1>{\gfxq{rl_centaur_2}{.9}}
@@ -811,14 +819,16 @@ might get what you need}
 	\only<4>{\gfxq{rl_centaur_5}{.9}}
 	\only<5>{\gfxq{rl_centaur_6}{.9}}
 	
-	\only<5->{Bandit actions~\cite{robbins-52}: turn each of the explanations (Guess,
+	\only<5->{Bandit actions (Robbins, 1952): turn each of the explanations (Guess,
 		Highlight, Evidence) on or off.}
 \end{frame}
+
 
 \fsi{qb/augment/bandit_result_none}{Human alone without an AI teammate}
 \fsi{qb/augment/bandit_result_ai}{AI alone without a human teammate}
 \fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
 \fsi{qb/augment/everything}{Better than showing everything!}
+
 
 \ifdiplomacy    
 
@@ -907,6 +917,17 @@ might get what you need}
 	\end{columns}
 \end{frame}
 
+\begin{frame}{What I wanted to know}
+	\begin{itemize}
+		\item Do people recognize Cicero is a bot?
+		\item Is Cicero persuasive?
+		\item Does Cicero lie?
+		\item Do people trust Cicero?
+	\end{itemize}
+\end{frame}
+
+\iflong
+
 \begin{frame}{Can they tell it's a bot?}
 	\begin{columns}
 		\column{.5\linewidth}
@@ -943,6 +964,18 @@ might get what you need}
 
 \begin{frame}{People Lie to Cicero More}
 	\gfxd{lies_sent}{.8}
+\end{frame}
+
+\fi
+
+
+\begin{frame}{What I wanted to know}
+	\begin{itemize}
+		\item Do people recognize Cicero is a bot? \only<2>{\textbf{Yes (F-Score 0.8)}}
+		\item Is Cicero persuasive? \only<3>{\textbf{Yes, but less than humans}}
+		\item Does Cicero lie? \only<4>{\textbf{Not intentionally, less than humans, hallucinations are a problem}}
+		\item Do people trust Cicero? \only<5>{\textbf{Less than humans}}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{}
@@ -1036,7 +1069,7 @@ might get what you need}
 \end{frame}
 \fi
 
-\begin{frame}{Human and Computer Skills}
+\begin{frame}{Is AI Helpful?}
 	\begin{columns}
 		\column{.5\linewidth}
 		
