@@ -108,7 +108,7 @@
 }
 
 \newif\ifjobtalk\jobtalktrue
-\newif\iflong\longtrue
+\newif\iflong\longfalse
 \newif\ifirt\irttrue
 \newif\ifdiplomacy\diplomacytrue
 
@@ -1101,15 +1101,17 @@ might get what you need}
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Why didn't you\dots}
+\begin{frame}{Ongoing Directions}
 	\begin{itemize}
-		\item IR works better than LLM for fact checking \emph{sometimes}
-		\item We also showed bandit model can figure out what evidence to show when
-		\item Use Bandit model to show \emph{right} evidence to user
-		\pause
-		\item We're trying\dots requires good calibration
-		\item ACL Submission: Adversarial Calibration
-		\item Looking for collaborators
+		\item Helpfulness is directly tied to personalization: using user representations as a part of preference tuning
+		\item Fine-tuning ``off-the-shelf'' LLMs for playing Diplomacy
+		\begin{itemize}
+			\item Tuning for trust, cooperation
+			\item Explicitly modeling deception
+		\end{itemize}
+		\item Different conversational styles for fact checking (extending bandit setting)
+		\item Multimodal adversarial datasets
+		\item Autoregressive calibration metrics (ACL 2025, ongoing)
 	\end{itemize}
 \end{frame}
 
