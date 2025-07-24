@@ -328,6 +328,8 @@ might get what you need}
 	
 \end{frame}
 
+\fsi{mnemonic/smart_system}{Learning, Model, Tuning}
+
 \begin{frame}{Eval}
 	
 	\only<1>{\gfxm{eval_0}{.6}}
@@ -497,8 +499,111 @@ might get what you need}
 	
 \end{frame}
 
+
+\fsi{qb/augment/screenshot_all}{Interface}
+
+\fsi{qb/augment/screenshot_guesses}{}
+
+\fsi{qb/augment/screenshot_highlight}{{\bf Highlighting}}
+
+\fsi{qb/augment/screenshot_evidence}{}
+
+\begin{frame}{Experts vs. Novices}
+	
+	\begin{block}{Experts}
+		Trivia experts, familiar with task, enjoy the task
+	\end{block}
+	
+	\begin{block}{Mechanical Turkers}
+		Mechanical Turkers: easily overwhelmed, need the help
+	\end{block}
+	
+\end{frame}
+
+\fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
+% \fsi{qb/augment/tools_buzz}{Highlights help experts}
+
+\iflong
+
+\begin{frame}{Skill Boost}
+	Rerun IRT analysis: rather than contrast human vs. computer skill,
+	we see how much interface boosts (or diminishes) user skill.
+	\pause
+	
+	\begin{block}{Coefficients tell story!}
+		\begin{itemize}
+			\item {\bf Big, Positive}: Help
+			\item {\bf Big, Negative}: Hurt
+			\item {\bf Small}: Neutral
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+\fsi{qb/augment/coefs_0}{Everything helps: Evidence for novies,
+	Highlight for experts}
+\fsi{qb/augment/coefs_1}{Synergistic effects}
+\fsi{qb/augment/coefs_2}{Highlight and evidence help experts most}
+\fsi{qb/augment/coefs_3}{For novices, less synergy}
+
+\fi
+
+\begin{frame}{}
+	
+	\begin{columns}
+		\column{.4\linewidth}
+		\begin{center}
+			\includegraphics[width=0.8\linewidth]{general_figures/shi}
+		\end{center}
+		\column{.6\linewidth}
+		\begin{block}{\href{http://umiacs.umd.edu/~jbg//docs/2023_emnlp_augment.pdf}{Learning to Explain Selectively}}
+			\underline{\href{http://users.umiacs.umd.edu/~shifeng/}{Shi Feng}} and {\bf Jordan Boyd-Graber}.  \emph{Empirical Methods in Natural Language Processing}, 2022
+		\end{block}
+		
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}{Measuring Interpretability}
+	
+	\only<1>{\gfxq{qb_centaur_1}{.9}}
+	\only<2>{\gfxq{qb_centaur_2}{.9}}
+	\only<3>{\gfxq{qb_centaur_3}{.9}}
+	\only<4>{\gfxq{qb_centaur_6}{.9}}
+	
+	
+\end{frame}
+
+
+\begin{frame}{Improvement through Bandit Algorithms}
+	
+	\only<1>{\gfxq{rl_centaur_2}{.9}}
+	\only<2>{\gfxq{rl_centaur_3}{.9}}
+	\only<3>{\gfxq{rl_centaur_4}{.9}}
+	\only<4>{\gfxq{rl_centaur_5}{.9}}
+	\only<5>{\gfxq{rl_centaur_6}{.9}}
+	
+	\only<5->{Bandit actions (Robbins, 1952): turn each of the explanations (Guess,
+		Highlight, Evidence) on or off.}
+\end{frame}
+
+
+\fsi{qb/augment/bandit_result_none}{Human alone without an AI teammate}
+\fsi{qb/augment/bandit_result_ai}{AI alone without a human teammate}
+\fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
+\fsi{qb/augment/everything}{Better than showing everything!}
+
+
+\begin{frame}{Can we describe the tradeoffs?}
+	
+	\gfxa{ken_vs_hal}{.35}
+	
+\end{frame}
+
+
 \ifirt
-\begin{frame}{CAIMIRA}
+\begin{frame}{What are the complementary skills: CAIMIRA}
 	\gfxa{paper_caimira}{1.0}
 	\begin{center}
 		\includegraphics[width=0.25\linewidth]{general_figures/maharshi}
@@ -735,100 +840,33 @@ might get what you need}
 \fi
 
 
-\fsi{qb/augment/screenshot_all}{Interface}
-
-\fsi{qb/augment/screenshot_guesses}{}
-
-\fsi{qb/augment/screenshot_highlight}{{\bf Highlighting}}
-
-\fsi{qb/augment/screenshot_evidence}{}
-
-\begin{frame}{Experts vs. Novices}
-	
-	\begin{block}{Experts}
-		Trivia experts, familiar with task, enjoy the task
-	\end{block}
-	
-	\begin{block}{Mechanical Turkers}
-		Mechanical Turkers: easily overwhelmed, need the help
-	\end{block}
-	
-\end{frame}
-
-\fsi{qb/augment/tools_acc}{Evidence helps novices, experts are expert}
-% \fsi{qb/augment/tools_buzz}{Highlights help experts}
-
-\iflong
-
-\begin{frame}{Skill Boost}
-	Rerun IRT analysis: rather than contrast human vs. computer skill,
-	we see how much interface boosts (or diminishes) user skill.
-	\pause
-	
-	\begin{block}{Coefficients tell story!}
-		\begin{itemize}
-			\item {\bf Big, Positive}: Help
-			\item {\bf Big, Negative}: Hurt
-			\item {\bf Small}: Neutral
-		\end{itemize}
-	\end{block}
-	
-\end{frame}
-
-
-\fsi{qb/augment/coefs_0}{Everything helps: Evidence for novies,
-	Highlight for experts}
-\fsi{qb/augment/coefs_1}{Synergistic effects}
-\fsi{qb/augment/coefs_2}{Highlight and evidence help experts most}
-\fsi{qb/augment/coefs_3}{For novices, less synergy}
-
-\fi
-
-\begin{frame}{}
-	
+\begin{frame}{GRACE}
 	\begin{columns}
-		\column{.4\linewidth}
-		\begin{center}
-			\includegraphics[width=0.8\linewidth]{general_figures/shi}
-		\end{center}
-		\column{.6\linewidth}
-		\begin{block}{\href{http://umiacs.umd.edu/~jbg//docs/2023_emnlp_augment.pdf}{Learning to Explain Selectively}}
-			\underline{\href{http://users.umiacs.umd.edu/~shifeng/}{Shi Feng}} and {\bf Jordan Boyd-Graber}.  \emph{Empirical Methods in Natural Language Processing}, 2022
-		\end{block}
+		\column{.3\linewidth}
 		
+		\includegraphics[width=1.0\linewidth]{general_figures/yooyeon}
+		\column{.7\linewidth}
+		\includegraphics[width=1.0\linewidth]{calibration/grace_paper}
 	\end{columns}
+	\centering
+	ACL Oral
 \end{frame}
 
 
-\begin{frame}{Measuring Interpretability}
-	
-	\only<1>{\gfxq{qb_centaur_1}{.9}}
-	\only<2>{\gfxq{qb_centaur_2}{.9}}
-	\only<3>{\gfxq{qb_centaur_3}{.9}}
-	\only<4>{\gfxq{qb_centaur_6}{.9}}
-	
-	
-\end{frame}
 
+\fsi{calibration/hallucination_tax}{}
 
-\begin{frame}{Improvement through Bandit Algorithms}
-	
-	\only<1>{\gfxq{rl_centaur_2}{.9}}
-	\only<2>{\gfxq{rl_centaur_3}{.9}}
-	\only<3>{\gfxq{rl_centaur_4}{.9}}
-	\only<4>{\gfxq{rl_centaur_5}{.9}}
-	\only<5>{\gfxq{rl_centaur_6}{.9}}
-	
-	\only<5->{Bandit actions (Robbins, 1952): turn each of the explanations (Guess,
-		Highlight, Evidence) on or off.}
-\end{frame}
+\fsi{calibration/abstention_bench}{}
 
+\fsi{calibration/hallucination_tax}{}
 
-\fsi{qb/augment/bandit_result_none}{Human alone without an AI teammate}
-\fsi{qb/augment/bandit_result_ai}{AI alone without a human teammate}
-\fsi{qb/augment/bandit_result_dynamic}{Dynamic assistance to human}
-\fsi{qb/augment/everything}{Better than showing everything!}
+\fsi{calibration/p_buzz_given_correct_0}{}
 
+\fsi{calibration/p_buzz_given_correct_1}{}
+
+\fsi{calibration/p_buzz_given_correct_2}{}
+
+\fsi{calibration/p_buzz_given_correct_3}{}
 
 \ifdiplomacy    
 
@@ -1071,7 +1109,7 @@ might get what you need}
 
 \begin{frame}{Is AI Helpful?}
 	\begin{columns}
-		\column{.5\linewidth}
+		\column{.6\linewidth}
 		
 		\begin{itemize}
 			\item LLMs are not perfect
@@ -1083,8 +1121,8 @@ might get what you need}
 			\item Need to measure application-specific outcomes
 			\begin{itemize}
 				\item Often requires multiturn
-				\item Not currently tuned
-				\item Different skills
+				\item Not currently tuned (even our work!)
+				\item Different outcomes (e.g., being trusted)
 			\end{itemize}
 			\item Application
 			\begin{itemize}
@@ -1095,7 +1133,7 @@ might get what you need}
 				\fi
 			\end{itemize}
 		\end{itemize}
-		\column{.5\linewidth}
+		\column{.4\linewidth}
 		
 		\gfxa{ken_vs_hal}{1}
 	\end{columns}
@@ -1110,7 +1148,7 @@ might get what you need}
 			\item Explicitly modeling deception
 		\end{itemize}
 		\item Different conversational styles for fact checking (extending bandit setting)
-		\item Multimodal adversarial datasets
+		\item \alert<2>{Multimodal adversarial datasets}
 		\item Autoregressive calibration metrics (ACL 2025, ongoing)
 	\end{itemize}
 \end{frame}
