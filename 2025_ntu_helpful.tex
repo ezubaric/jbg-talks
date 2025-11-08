@@ -403,6 +403,19 @@ Nishant Balepur, Matthew Shu, Yoo Yeon Sung, Seraphina Goldfarb-Tarrant, Shi Fen
 
 \end{frame}
 
+\begin{frame}{How much did the plan help?}
+
+\only<1->{\gfxp{IRT_motivation_0}{1.0}}
+
+\only<2->{\gfxp{IRT_motivation_1}{1.0}}
+
+We can’t just use accuracy/speed without considering human abilities
+
+
+%TODO: replace with images of Burt from Celebrity Jeopardy
+\end{frame}
+
+
 \ifirt
 \begin{frame}{Item Response Theory}
 	
@@ -419,11 +432,48 @@ Nishant Balepur, Matthew Shu, Yoo Yeon Sung, Seraphina Goldfarb-Tarrant, Shi Fen
 
 \fi
 
+\begin{frame}{Measuring Helpfulness}
 
+\begin{block}{IRT Equation}
+\begin{equation}
+	p(c) = \frac{1}{1 + \ex{-\left( \theta_s - \beta_q\only<2->{\alert<2>{ + \delta_p}}}\right)}
+\end{equation}
+\end{block}
+
+% TODO: add arrow
+
+\begin{itemize}
+	\item IRT is essentially a regression, fit on people answering questions
+	\item $\delta_p$ is boost to skill / decrease difficulty
+	\item Complication: incorporating time
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Results}
+
+	\only<1>{\gfxp{results_0}{1.0}}
+	\only<2>{\gfxp{results_1}{1.0}}
+	\only<3>{\gfxp{results_2}{1.0}}
+	\only<4>{\gfxp{results_3}{1.0}}
+	\only<5>{\gfxp{results_4}{1.0}}
+	\only<6>{\gfxp{results_5}{1.0}}
+
+\only<4>{Agreement matrix of preferences and helpfulness across humans and models}
+
+\only<5>{Nothing predicts what helps humans}
+
+\only<6>{Reward models + GPT don’t even know what helps GPT!}
+\end{frame}
+
+% Recap: 
 
 \fsi{qb/starcraft}{Image: DeepMind}
 \fsi{qb/DeepBlue}{Peter Morgan/Reuters}
 \fsi{simtrans/centaur-chess}{Centaur Chess}
+
+
 
 
 \begin{frame}{Measuring Skill}
@@ -675,244 +725,6 @@ Nishant Balepur, Matthew Shu, Yoo Yeon Sung, Seraphina Goldfarb-Tarrant, Shi Fen
 \fsi{qb/augment/everything}{Better than showing everything!}
 
 
-\begin{frame}{Can we describe the tradeoffs?}
-	
-	\gfxa{ken_vs_hal}{.35}
-	
-\end{frame}
-
-
-\ifirt
-\begin{frame}{What are the complementary skills: CAIMIRA}
-	\gfxa{paper_caimira}{1.0}
-	\begin{center}
-		\includegraphics[width=0.25\linewidth]{general_figures/maharshi}
-	\end{center}
-\end{frame}
-\fi
-
-
-\begin{frame}{Hard for Computers: Abductive Inference}
-	
-	\begin{columns}
-		\column{.5\linewidth}
-		\gfxa{caimira_abductive_features}{1.0}
-		\column{.5\linewidth}      
-		\only<2>{\gfxa{caimira_abductive_skills}{1.0}}
-	\end{columns}
-	
-\end{frame}
-
-
-
-\begin{frame}{Hard for Humans: Science}
-	
-	\begin{columns}
-		\column{.5\linewidth}
-		\gfxa{caimira_science_features}{1.0}
-		\column{.5\linewidth}      
-		\only<2>{\gfxa{caimira_science_skills}{1.0}}
-	\end{columns}
-	
-\end{frame}
-
-\begin{frame}{AdvScore}
-	\begin{columns}
-		\column{.3\linewidth}
-		
-		\includegraphics[width=1.0\linewidth]{general_figures/yooyeon}
-		\column{.7\linewidth}
-		\gfxa{advscore_paper}{1.0}
-	\end{columns}
-	\centering
-	NAACL 2025 Outstanding Paper
-\end{frame}
-
-
-\begin{frame}{Adversarial Datasets}
-	
-	\begin{columns}
-		\column{.5\linewidth}
-		\gfxq{benchmark_saturation}{0.75}
-		Biggio et al., 2012: Poisoning attacks against Support Vector Machines
-		
-		\gfxa{adversarial_turtle}{.6}
-		
-		
-		\column{.5\linewidth}
-		\begin{itemize}
-			
-			\item Many benchmarks are ``saturated''
-			\item Newer datasets claim to be ``adversarial''
-			\begin{itemize}
-				\item Hard for computers, ``easy'' for humans
-				\item No real metric / definition
-			\end{itemize}
-			\item Can we use the lessons of the previous paper to inform how to write hard examples
-			\item Can we \emph{measure} how well we did?
-			\pause
-			\item Language game: increasing the difficulty level
-			\item But need to measure!
-		\end{itemize}
-	\end{columns}
-\end{frame}
-
-\begin{frame}{Expanding IRT: Discriminability}
-	
-	\gfxq{discrimination}{1.0}
-	
-\end{frame}
-
-\begin{frame}{Finding Skill of Subject is Like Binary Search}
-	\only<1>{\gfxq{discrimination_1}{1.0}}
-	\only<2>{\gfxq{discrimination_2}{1.0}}
-	\only<3>{\gfxq{discrimination_3}{1.0}}
-	\only<4>{\gfxq{discrimination_4}{1.0}}
-	\only<5>{\gfxq{discrimination_5}{1.0}}
-\end{frame}
-
-\begin{frame}{Adversarial Score}
-	
-	
-	\only<4->{
-		\vspace{-1.5cm}
-		\begin{block}{Adversarial Score}
-			
-			\begin{equation}
-				\text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j}
-			\end{equation}
-			
-		\end{block}
-		
-		
-	}
-	
-	
-	\begin{itemize}
-		\item Gap between skilled human getting it right and machine (should be big)
-		\begin{equation}\label{eq:margin}
-			\mu_j = \explain{Skilled human rep. prob.}{\twoplprob{\beta^{H_{(0)}}_{*}}{\theta_j}{\gamma_j}} - \explain{Skilled model rep. prob.}{\twoplprob{\beta^{M_{(0)}}_{*}}{\theta_j}{\gamma_j}},
-		\end{equation}
-		\only<2>{
-			\begin{block}{Why not use raw accuracy?}
-				\begin{itemize}
-					\item Want patterns, not luck
-					\item \abr{irt} can find (and downweight) bad questions
-					\item What's the capital of Georgia?
-				\end{itemize}
-			\end{block}
-			
-		}
-		\only<3->{
-			\item Skilled humans should agree on the answer
-			\begin{equation}\label{eq:delta}
-				\delta_j = \sum_{i \sim H_{(1)}}
-				\sfrac{\left[ \twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j} -
-					\overline{p_{H_{(1)}}}(r_{i,j}) \right] }{|H_{(1)}|}
-			\end{equation}
-		}
-		\only<5->{
-			\item In paper, also have a bonus for Fischer information wrt to difficulty $\theta$, but not a huge factor
-		}
-		
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}{AdvQA: Is this a viable incentive structure?}
-	\begin{itemize}
-		\item Can human authors interpret incentive?
-		\begin{itemize}
-			\item Computers should get questions wrong, smart humans should get them right
-			\item Answers should be unique and easily verifiable
-			\item Reward knowledge and skill
-			\item Avoid ambiguity
-		\end{itemize}
-		\item Posthoc (no realtime feedback): Prizes given based on metric
-		\item Professional trivia writers
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}{What makes for Adversarial Example}
-	\only<1>{\gfxa{irtplot_0}{.9}}	
-	\only<2>{\gfxa{irtplot_1}{.9}}
-	\only<3>{\gfxa{irtplot_2}{.9}}
-	\only<4>{\gfxa{irtplot_3}{.9}}
-	\only<5>{\gfxa{irtplot_4}{.9}}
-	\only<6>{\gfxa{irtplot_5}{.9}}
-	\only<7>{\gfxa{irtplot_6}{.9}}
-\end{frame}
-
-\begin{frame}{Adversarial Strategies}
-	\begin{columns}
-		\column{.5\linewidth}
-		\only<1-2>{\gfxa{chrisrock}{.9}}
-		\only<3-4>{\gfxa{parasite}{.9}}
-		\only<5-6>{\gfxa{lulu_lemon}{.9}}
-		\only<7-9>{\gfxa{akutagawa}{.9}}
-		\column{.5\linewidth}
-		\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
-		\only<2>{\\ \textbf{Brad Pitt / Will Smith}}
-		\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}
-		\only<4>{\\ \textbf{Snowpiercer / Train to Busan}		}
-		\only<5-6>{It's not headquartered in Biel, Switzerland but this activewear company has a logo that resembles the last letter of the Greek alphabet.}
-		\only<6>{\\ \textbf{Omega / Lululemon}}
-		\only<7-9>{A character in one story by \alert<8>{this author opens Crime and Punishment} to discover that it has turned into The Brothers Karamazov}
-		\only<9>{\\ \textbf{Dostoyevski / Akutagawa}}
-	\end{columns}
-\end{frame}
-
-
-% TODO(jbg): AdvCal Picture slide
-
-\begin{frame}{Which Datasets are Adversarial?}
-	\gfxa{cumulative_advscore}{.9}
-	
-	\begin{itemize}
-		\item Not all datasets remain adversarial forever
-		\item What helps make datasets adversarial?
-		\begin{itemize}
-			\item Bamboogle: Automatically generated          
-			\item TrickMe: Human in the loop interface (expert), \abr{ir} models
-			\item FM2: Human in the loop interface (crowdworker), \abr{ir} models
-			\item AdvQA: Huaman in the loop (expert), \abr{llm} model + category instructions
-			\pause
-			\item Missing anything?
-		\end{itemize}
-		
-	\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}{GRACE}
-	\begin{columns}
-		\column{.3\linewidth}
-		
-		\includegraphics[width=1.0\linewidth]{general_figures/yooyeon}
-		\column{.7\linewidth}
-		\includegraphics[width=1.0\linewidth]{calibration/grace_paper}
-	\end{columns}
-	\centering
-	ACL Oral
-\end{frame}
-
-
-
-\fsi{calibration/hallucination_tax}{}
-
-\fsi{calibration/abstention_bench}{}
-
-\fsi{calibration/hallucination_tax}{}
-
-\fsi{calibration/p_buzz_given_correct_0}{}
-
-\fsi{calibration/p_buzz_given_correct_1}{}
-
-\fsi{calibration/p_buzz_given_correct_2}{}
-
-\fsi{calibration/p_buzz_given_correct_3}{}
 
 \ifdiplomacy    
 
@@ -1135,6 +947,7 @@ Nishant Balepur, Matthew Shu, Yoo Yeon Sung, Seraphina Goldfarb-Tarrant, Shi Fen
 \fi 
 
 
+
 \iflong
 \begin{frame}{Recap}
 	\begin{itemize}
@@ -1152,6 +965,12 @@ Nishant Balepur, Matthew Shu, Yoo Yeon Sung, Seraphina Goldfarb-Tarrant, Shi Fen
 	
 \end{frame}
 \fi
+
+
+%TODO: Conclusion should do a better job of saying:
+% I didn't actually tell you how to help people
+% we still need to figure that out
+% larger scale data, more tasks
 
 \begin{frame}{Is AI Helpful?}
 	\begin{columns}
@@ -1242,6 +1061,271 @@ Nishant Balepur, Matthew Shu, Yoo Yeon Sung, Seraphina Goldfarb-Tarrant, Shi Fen
 }
 
 
+\begin{frame}{Can we describe the tradeoffs?}
+	
+	\gfxa{ken_vs_hal}{.35}
+	
+\end{frame}
+
+
+\ifirt
+\begin{frame}{What are the complementary skills: CAIMIRA}
+	\gfxa{paper_caimira}{1.0}
+	\begin{center}
+		\includegraphics[width=0.25\linewidth]{general_figures/maharshi}
+	\end{center}
+\end{frame}
+\fi
+
+
+\begin{frame}{Hard for Computers: Abductive Inference}
+	
+	\begin{columns}
+		\column{.5\linewidth}
+		\gfxa{caimira_abductive_features}{1.0}
+		\column{.5\linewidth}      
+		\only<2>{\gfxa{caimira_abductive_skills}{1.0}}
+	\end{columns}
+	
+\end{frame}
+
+
+
+\begin{frame}{Hard for Humans: Science}
+	
+	\begin{columns}
+		\column{.5\linewidth}
+		\gfxa{caimira_science_features}{1.0}
+		\column{.5\linewidth}      
+		\only<2>{\gfxa{caimira_science_skills}{1.0}}
+	\end{columns}
+	
+\end{frame}
+
+
+
+\begin{frame}{AdvScore}
+	\begin{columns}
+		\column{.3\linewidth}
+		
+		\includegraphics[width=1.0\linewidth]{general_figures/yooyeon}
+		\column{.7\linewidth}
+		\gfxa{advscore_paper}{1.0}
+	\end{columns}
+	\centering
+	NAACL 2025 Outstanding Paper
+\end{frame}
+
+\iflong
+\begin{frame}{Adversarial Datasets}
+	
+	\begin{columns}
+		\column{.5\linewidth}
+		\gfxq{benchmark_saturation}{0.75}
+		Biggio et al., 2012: Poisoning attacks against Support Vector Machines
+		
+		\gfxa{adversarial_turtle}{.6}
+		
+		
+		\column{.5\linewidth}
+		\begin{itemize}
+			
+			\item Many benchmarks are ``saturated''
+			\item Newer datasets claim to be ``adversarial''
+			\begin{itemize}
+				\item Hard for computers, ``easy'' for humans
+				\item No real metric / definition
+			\end{itemize}
+			\item Can we use the lessons of the previous paper to inform how to write hard examples
+			\item Can we \emph{measure} how well we did?
+			\pause
+			\item Language game: increasing the difficulty level
+			\item But need to measure!
+		\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Expanding IRT: Discriminability}
+	
+	\gfxq{discrimination}{1.0}
+	
+\end{frame}
+
+\begin{frame}{Finding Skill of Subject is Like Binary Search}
+	\only<1>{\gfxq{discrimination_1}{1.0}}
+	\only<2>{\gfxq{discrimination_2}{1.0}}
+	\only<3>{\gfxq{discrimination_3}{1.0}}
+	\only<4>{\gfxq{discrimination_4}{1.0}}
+	\only<5>{\gfxq{discrimination_5}{1.0}}
+\end{frame}
+\fi
+
+
+\begin{frame}{Adversarial Score}
+	
+	
+	\only<4->{
+		\vspace{-1.5cm}
+		\begin{block}{Adversarial Score}
+			
+			\begin{equation}
+				\text{\advscore{}}_\text{j} = \frac{\mu_j}{1 + \delta_j}
+			\end{equation}
+			
+		\end{block}
+		
+		
+	}
+	
+	
+	\begin{itemize}
+		\item Gap between skilled human getting it right and machine (should be big)
+		\begin{equation}\label{eq:margin}
+			\mu_j = \explain{Skilled human rep. prob.}{\twoplprob{\beta^{H_{(0)}}_{*}}{\theta_j}{\gamma_j}} - \explain{Skilled model rep. prob.}{\twoplprob{\beta^{M_{(0)}}_{*}}{\theta_j}{\gamma_j}},
+		\end{equation}
+		\only<2>{
+			\begin{block}{Why not use raw accuracy?}
+				\begin{itemize}
+					\item Want patterns, not luck
+					\item \abr{irt} can find (and downweight) bad questions
+					\item What's the capital of Georgia?
+				\end{itemize}
+			\end{block}
+			
+		}
+		\only<3->{
+			\item Skilled humans should agree on the answer
+			\begin{equation}\label{eq:delta}
+				\delta_j = \sum_{i \sim H_{(1)}}
+				\sfrac{\left[ \twoplprob{\beta_i^{H_{(1)}}}{\theta_j}{\gamma_j} -
+					\overline{p_{H_{(1)}}}(r_{i,j}) \right] }{|H_{(1)}|}
+			\end{equation}
+		}
+		\only<5->{
+			\item In paper, also have a bonus for Fischer information wrt to difficulty $\theta$, but not a huge factor
+		}
+		
+	\end{itemize}
+	
+\end{frame}
+
+\iflong
+
+\begin{frame}{AdvQA: Is this a viable incentive structure?}
+	\begin{itemize}
+		\item Can human authors interpret incentive?
+		\begin{itemize}
+			\item Computers should get questions wrong, smart humans should get them right
+			\item Answers should be unique and easily verifiable
+			\item Reward knowledge and skill
+			\item Avoid ambiguity
+		\end{itemize}
+		\item Posthoc (no realtime feedback): Prizes given based on metric
+		\item Professional trivia writers
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{What makes for Adversarial Example}
+	\only<1>{\gfxa{irtplot_0}{.9}}	
+	\only<2>{\gfxa{irtplot_1}{.9}}
+	\only<3>{\gfxa{irtplot_2}{.9}}
+	\only<4>{\gfxa{irtplot_3}{.9}}
+	\only<5>{\gfxa{irtplot_4}{.9}}
+	\only<6>{\gfxa{irtplot_5}{.9}}
+	\only<7>{\gfxa{irtplot_6}{.9}}
+\end{frame}
+
+\begin{frame}{Adversarial Strategies}
+	\begin{columns}
+		\column{.5\linewidth}
+		\only<1-2>{\gfxa{chrisrock}{.9}}
+		\only<3-4>{\gfxa{parasite}{.9}}
+		\only<5-6>{\gfxa{lulu_lemon}{.9}}
+		\only<7-9>{\gfxa{akutagawa}{.9}}
+		\column{.5\linewidth}
+		\only<1-2>{What is the name of the American actor who stood up for his wife with a "slap that was heard around the world" during a popular awards show?}
+		\only<2>{\\ \textbf{Brad Pitt / Will Smith}}
+		\only<3-4>{What post-apocalyptic film directed by a Korean but not the director of Parasite is an allegory set on a train featuring the machinations of a rich businessman against the occupants of other cars?}
+		\only<4>{\\ \textbf{Snowpiercer / Train to Busan}		}
+		\only<5-6>{It's not headquartered in Biel, Switzerland but this activewear company has a logo that resembles the last letter of the Greek alphabet.}
+		\only<6>{\\ \textbf{Omega / Lululemon}}
+		\only<7-9>{A character in one story by \alert<8>{this author opens Crime and Punishment} to discover that it has turned into The Brothers Karamazov}
+		\only<9>{\\ \textbf{Dostoyevski / Akutagawa}}
+	\end{columns}
+\end{frame}
+
+\else
+
+
+
+\begin{frame}{Adversarial Strategies}
+	\begin{columns}
+		\column{.5\linewidth}
+		\only<1-3>{\gfxa{akutagawa}{.9}}
+		\only<1-3>{A character in one story by \alert<2>{this author opens Crime and Punishment} to discover that it has turned into The Brothers Karamazov}
+		\only<3>{\\ \textbf{Dostoyevski / Akutagawa}}
+	\end{columns}
+\end{frame}
+
+
+
+\fi
+
+
+% TODO(jbg): AdvCal Picture slide
+
+\iflong
+
+\begin{frame}{Which Datasets are Adversarial?}
+	\gfxa{cumulative_advscore}{.9}
+	
+	\begin{itemize}
+		\item Not all datasets remain adversarial forever
+		\item What helps make datasets adversarial?
+		\begin{itemize}
+			\item Bamboogle: Automatically generated          
+			\item TrickMe: Human in the loop interface (expert), \abr{ir} models
+			\item FM2: Human in the loop interface (crowdworker), \abr{ir} models
+			\item AdvQA: Huaman in the loop (expert), \abr{llm} model + category instructions
+			\pause
+			\item Missing anything?
+		\end{itemize}
+		
+	\end{itemize}
+\end{frame}
+
+\fi
+
+\begin{frame}{GRACE}
+	\begin{columns}
+		\column{.3\linewidth}
+		
+		\includegraphics[width=1.0\linewidth]{general_figures/yooyeon}
+		\column{.7\linewidth}
+		\includegraphics[width=1.0\linewidth]{calibration/grace_paper}
+	\end{columns}
+	\centering
+	ACL Oral
+\end{frame}
+
+\iflong
+
+\fsi{calibration/hallucination_tax}{}
+
+\fsi{calibration/abstention_bench}{}
+
+\fsi{calibration/hallucination_tax}{}
+
+\fi
+
+\fsi{calibration/p_buzz_given_correct_0}{}
+
+\fsi{calibration/p_buzz_given_correct_1}{}
+
+\fsi{calibration/p_buzz_given_correct_2}{}
+
+\fsi{calibration/p_buzz_given_correct_3}{}
 
 
 
