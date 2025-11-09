@@ -152,14 +152,9 @@ might get what you need}
 }
 
 
-\begin{frame}{Why do we use AI?}
-	% TODO (jbg): Make pretty
-	\begin{itemize}
-		\item To ask a question
-		\item To learn something new
-		\item To check if something is true
-		\item Complete a task (e.g., negotiate)
-	\end{itemize}
+\begin{frame}{Why do we use AI? (Ipsos)}
+
+	\gfxm{gen_ai_uses}{1.0}
 \end{frame}
 
 \begin{frame}{What do we mean by helpfulness?}
@@ -256,13 +251,9 @@ might get what you need}
 \end{frame}
 
 
-\begin{frame}{Why is this a problem?}
+\fsi{mnemonic/sychophancy_paper}{}
+\fsi{mnemonic/sychophancy_cartoon}{}
 
-% TODO(jbg): Talk about the suicide?
-
-
-
-\end{frame}
 
 
 \begin{frame}{Outline for Today}
@@ -326,6 +317,47 @@ might get what you need}
 \end{frame}
 
 
+\begin{frame}{What is helpful?}
+
+\begin{block}{Trace A ($n=3$)}
+\end{block}
+
+\begin{columns}
+	\column{.18\linewidth}
+	\gfxm{wrong_check}{1.0}
+	\column{.18\linewidth}
+	\gfxm{wrong_check}{1.0}
+	\column{.18\linewidth}
+	\gfxm{green_check}{1.0}
+	\column{.18\linewidth}
+	\column{.18\linewidth}
+\end{columns}
+
+
+
+\begin{block}{Trace B ($n=5$)}
+
+\end{block}
+\begin{columns}
+	\column{.18\linewidth}
+	\gfxm{wrong_check}{1.0}
+	\column{.18\linewidth}
+	\gfxm{wrong_check}{1.0}
+	\column{.18\linewidth}
+	\gfxm{wrong_check}{1.0}
+	\column{.18\linewidth}
+	\gfxm{wrong_check}{1.0}
+	\column{.18\linewidth}
+	\gfxm{green_check}{1.0}
+\end{columns}
+
+\pause
+
+Thus, we say that Trace A was more helpful.
+
+
+\end{frame}
+
 
 \begin{frame}{Expressed Preferences: What users \textbf{think} will help them.}
 	
@@ -381,8 +413,8 @@ Nishant Balepur, Matthew Shu, Yoo Yeon Sung, Seraphina Goldfarb-Tarrant, Shi Fen
 \begin{block}{Benefits}
 \begin{itemize}
 %TODO: Add cites
-\item Guidance (AI-assisted decision-making)
-\item Study aid for similar questions in the future (Scaffolding)
+\item Guidance (Bansal et al., 2021): AI-assisted decision-making
+\item Scaffolding (Wood et al., 1976): Study aid for similar future questions
 \end{itemize}
 
 \end{block}
@@ -979,9 +1011,8 @@ We can’t just use accuracy/speed without considering human abilities
 		\begin{itemize}
 			\item LLMs are not perfect
 			\begin{itemize}
-				\item Retrieval Methods: Slow but Trustworthy
-				\item LLMs: Use if you are confident
-				\item Humans: Leave them in driver's seat
+				\item Unreliable 
+				\item Sychophantic
 			\end{itemize}
 			\item Need to measure application-specific outcomes
 			\begin{itemize}
@@ -1013,8 +1044,8 @@ We can’t just use accuracy/speed without considering human abilities
 			\item Explicitly modeling deception
 		\end{itemize}
 		\item Different conversational styles for fact checking (extending bandit setting)
-		\item \alert<2>{Multimodal adversarial datasets}
-		\item Autoregressive calibration metrics (ACL 2025, ongoing)
+\pause
+		\item Creating outputs that are actually helpful
 	\end{itemize}
 \end{frame}
 
