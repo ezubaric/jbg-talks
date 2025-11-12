@@ -115,7 +115,7 @@
 }
 
 \newif\ifjobtalk\jobtalktrue
-\newif\iflong\longfalse
+\newif\iflong\longtrue
 \newif\ifirt\irttrue
 \newif\ifdiplomacy\diplomacytrue
 
@@ -676,7 +676,7 @@ We can’t just use accuracy/speed without considering human abilities
 		Trivia experts, familiar with task, enjoy the task
 	\end{block}
 	
-	\begin{block}{Mechanical Turkers}
+	\begin{block}{Crowdworkers}
 		Mechanical Turkers: easily overwhelmed, need the help
 	\end{block}
 	
@@ -1013,6 +1013,7 @@ We can’t just use accuracy/speed without considering human abilities
 			\begin{itemize}
 				\item Unreliable 
 				\item Sychophantic
+				\item \textbf{Neither LLMs nor humans can identify what will help}
 			\end{itemize}
 			\item Need to measure application-specific outcomes
 			\begin{itemize}
@@ -1056,10 +1057,6 @@ We can’t just use accuracy/speed without considering human abilities
 %\fsi{general_figures/bennet_robot}{}
 \fsi{general_figures/tng_poker}{}
 
-\fsi{advcal/qanta_2025}{}
-
-\iflong
-
 \frame{
 	
 	\frametitle{Thanks}
@@ -1091,6 +1088,8 @@ We can’t just use accuracy/speed without considering human abilities
 	\end{columns}
 }
 
+
+\fsi{planorama/bad_plans}{}
 
 \begin{frame}{Can we describe the tradeoffs?}
 	
@@ -1189,7 +1188,7 @@ We can’t just use accuracy/speed without considering human abilities
 	\only<4>{\gfxq{discrimination_4}{1.0}}
 	\only<5>{\gfxq{discrimination_5}{1.0}}
 \end{frame}
-\fi
+
 
 
 \begin{frame}{Adversarial Score}
@@ -1921,7 +1920,7 @@ With Leo Szilard, he invented a doubly-eponymous \only<2->{refrigerator with no 
 		\column{.5\linewidth}
 		\only<3->{
 			\begin{block}{Direct}
-				\scriptsize The claim that Manhattan has the most residents of New York City's boroughs is false.  Manhattan has a population of approximately 1.6 million residents. However, New York City as a whole has a population of approximately 8.3 million residents. Therefore, Manhattan does not have the most residents among New York City's boroughs.  
+				\scriptsize The claim that Manhattan has the most residents of New York City's boroughs \alert<4>{is false}.  Manhattan has a population of approximately 1.6 million residents. However, New York City as a whole has a population of approximately 8.3 million residents. Therefore, Manhattan does not have the most residents among New York City's boroughs.  
 			\end{block}
 		}
 		\only<4->{
